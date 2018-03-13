@@ -1,0 +1,6 @@
+3124RFG,12/12/2012 12:00,Probando,12.0,Pendiente
+6543,13/12/2012,Probando2,32.0,En proceso
+4567FGB,14/12/2012,Probando3,22.0,En proceso
+5566777,3atre,ga,43.0,Pendiente
+fwe,few,ewf,32.0,Cerrado
+probando,dwq,wqd,22.0,Finalizado

@@ -75,7 +75,6 @@ public class Citas extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(900, 500));
-        setPreferredSize(new java.awt.Dimension(900, 500));
         setResizable(false);
         setSize(new java.awt.Dimension(900, 500));
 
@@ -203,8 +202,8 @@ public class Citas extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(comboestado, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(inprecio, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(bañadircita))))
+                            .addComponent(inprecio, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(bañadircita))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -250,12 +249,12 @@ public class Citas extends javax.swing.JFrame {
                             .addComponent(jLabel6)
                             .addComponent(comboestado, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addComponent(bañadircita, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(bañadircita))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(bborrarcita, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(26, 40, Short.MAX_VALUE))
+                .addGap(27, 41, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(22, 22, 22)
@@ -296,6 +295,22 @@ public class Citas extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_bborrarcitaMouseClicked
 
+    private void indescripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_indescripcionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_indescripcionActionPerformed
+
+    private void infechahoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_infechahoraActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_infechahoraActionPerformed
+
+    private void infechahoraFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_infechahoraFocusGained
+        infechahora.setText("");
+    }//GEN-LAST:event_infechahoraFocusGained
+
+    private void inmatriculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inmatriculaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_inmatriculaActionPerformed
+
     private void bañadircitaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bañadircitaMouseClicked
 
         try {
@@ -317,22 +332,6 @@ public class Citas extends javax.swing.JFrame {
             indescripcion.setText("");
         }
     }//GEN-LAST:event_bañadircitaMouseClicked
-
-    private void indescripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_indescripcionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_indescripcionActionPerformed
-
-    private void infechahoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_infechahoraActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_infechahoraActionPerformed
-
-    private void infechahoraFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_infechahoraFocusGained
-        infechahora.setText("");
-    }//GEN-LAST:event_infechahoraFocusGained
-
-    private void inmatriculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inmatriculaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_inmatriculaActionPerformed
 
     /**
      * @param args the command line arguments

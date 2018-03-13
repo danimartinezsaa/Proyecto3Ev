@@ -12,7 +12,7 @@ import com.tallerplus.objetos.Venta;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import libreria.ValidarFormatos; // importamos la libreria que creamos
+import Validaciones.ValidarFormatos; // importamos la libreria que creamos
 
 
 /**

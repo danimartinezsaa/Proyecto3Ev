@@ -154,7 +154,7 @@ public class ClientesVentas extends javax.swing.JFrame {
     }//GEN-LAST:event_textoTelefonoActionPerformed
 
     private void botonOkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonOkMouseClicked
-        boolean bandera=false;
+
         boolean matriculaCorrecta=ValidarFormatos.validarMatricula(textoMatricula.getText());
         boolean dniCorrecto=ValidarFormatos.validarDni(textoDni.getText());
         boolean telefonoCorrecto=ValidarFormatos.validarTelefono(textoTelefono.getText());
@@ -162,7 +162,7 @@ public class ClientesVentas extends javax.swing.JFrame {
                           GestionClientes.anadirCliente
                           (textoMatricula.getText(), VentaCoches.motor, VentaCoches.cilindrada, 
                           VentaCoches.caballos,textoNombre.getText(),textoDni.getText(),textoTelefono.getText());
-                          bandera=true;
+                          dispose();
                         }
                  else {
                  JOptionPane.showMessageDialog(null,"Datos erroneos");
@@ -184,10 +184,9 @@ public class ClientesVentas extends javax.swing.JFrame {
                  else{
                      textoTelefono.setForeground(Color.black);
                  }
-                 if(bandera==true){
-                 dispose();
+                 
                  }
-                 }
+                
                  
     
     }//GEN-LAST:event_botonOkMouseClicked

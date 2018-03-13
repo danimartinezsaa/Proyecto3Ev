@@ -6,7 +6,9 @@
 package com.tallerplus.interfaz;
 
 import com.tallerplus.gestion.GestionClientes;
-import static jdk.nashorn.internal.runtime.JSType.isNumber;
+import java.awt.Color;
+import javax.swing.JOptionPane;
+import Validaciones.ValidarFormatos;
 
 /**
  *
@@ -152,16 +154,42 @@ public class ClientesVentas extends javax.swing.JFrame {
     }//GEN-LAST:event_textoTelefonoActionPerformed
 
     private void botonOkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonOkMouseClicked
-        // TODO add your handling code here:
-                 if (VentaCoches.correcto != false) {
-                     if(!isNumber(textoTelefono.getText())){
-                          telefono=textoTelefono.getText();
-                          GestionClientes.anadirCliente(textoMatricula.getText(), VentaCoches.motor, VentaCoches.cilindrada, VentaCoches.caballos,textoNombre.getText(),textoDni.getText(),telefono);
+        boolean bandera=false;
+        boolean matriculaCorrecta=ValidarFormatos.validarMatricula(textoMatricula.getText());
+        boolean dniCorrecto=ValidarFormatos.validarDni(textoDni.getText());
+        boolean telefonoCorrecto=ValidarFormatos.validarTelefono(textoTelefono.getText());
+                 if (matriculaCorrecta==true && dniCorrecto==true && telefonoCorrecto==true){
+                          GestionClientes.anadirCliente
+                          (textoMatricula.getText(), VentaCoches.motor, VentaCoches.cilindrada, 
+                          VentaCoches.caballos,textoNombre.getText(),textoDni.getText(),textoTelefono.getText());
+                          bandera=true;
                         }
-                            
-                          
-                        }else System.out.println("no se pudo añadir el cliente");
+                 else {
+                 JOptionPane.showMessageDialog(null,"Datos erroneos");
+                 if(matriculaCorrecta==false){
+                     textoMatricula.setForeground(Color.red);
+                 }
+                 else{
+                     textoMatricula.setForeground(Color.black);
+                 }
+                 if(dniCorrecto==false){
+                     textoDni.setForeground(Color.red);
+                 }
+                 else{
+                    textoDni.setForeground(Color.black); 
+                 }
+                 if(telefonoCorrecto==false){
+                     textoTelefono.setForeground(Color.red);
+                 }
+                 else{
+                     textoTelefono.setForeground(Color.black);
+                 }
+                 if(bandera==true){
                  dispose();
+                 }
+                 }
+                 
+    
     }//GEN-LAST:event_botonOkMouseClicked
 
     /**

@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import Validaciones.ValidarFormatos; // importamos la libreria que creamos
+import java.awt.Color;
 
 
 /**
@@ -293,21 +294,24 @@ public class VentaCoches extends javax.swing.JFrame {
      * @param evt
      */
     private void bañadirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bañadirMouseClicked
-        boolean caballosvalidos=ValidarFormatos.isNumeric(incaballos.getText());// realizado para pruebas IMPLANTAR 
-        if(caballosvalidos==true)
-            System.out.println("caballos validos");
-        else System.out.println("caballos no validos");
+        boolean caballosValidos=ValidarFormatos.isNumeric(incaballos.getText()); // comprobacion de que los datos esten validados correctamente 
+        boolean precioValido=ValidarFormatos.validarPrecio(inprecio.getText());
+        boolean cilindradaValida=ValidarFormatos.validarPrecio(incilindrada.getText());
         if (Login.getUsuarioLogueado().equals("admin")) {
-            
-            String modelo = inmodelo.getText();
+        if(caballosValidos==true && precioValido==true && cilindradaValida==true){ // si se cumplen que todos los datos esten validados correctamente 
+                incaballos.setForeground(Color.black); // marcamos que todos los campos tengan color de letra negra, porque si se introducieron datos erroneos antes, el color que aparece es rojo 
+                incilindrada.setForeground(Color.black);
+                inprecio.setForeground(Color.black);
+                
+            String modelo = inmodelo.getText(); // guardamos en una variable cada uno de los campos que introducimos en la interfaz 
             String motor = (String) inmotor.getSelectedItem();
             String cilindrada = incilindrada.getText();
             String caballos = incaballos.getText();
             Float precio = Float.parseFloat(inprecio.getText());
 
-            GestionVentas.anadirVenta(modelo, precio, motor, cilindrada, caballos);
+            GestionVentas.anadirVenta(modelo, precio, motor, cilindrada, caballos); // llamamos al metodo añadir ventas para poder insertar un coche en venta 
 
-            inmodelo.setText("");
+            inmodelo.setText(""); // una vez ya insertamos el coche marcamos todos los campos de entrada de texto en blanco 
             incilindrada.setText("");
             incaballos.setText("");
             inprecio.setText("");
@@ -332,15 +336,33 @@ public class VentaCoches extends javax.swing.JFrame {
                 tabla.addRow(anadir);
             }
             this.tablabusqueda.setModel(tabla);
-        } else {
-            JOptionPane.showMessageDialog(null, "No tienes permisos para realizar esta operación", "Error", 0);
-            inmodelo.setText("");
+            }
+            else{ // en caso de que no se cumpla que los campos no esten validados con exito 
+                JOptionPane.showMessageDialog(null,"datos erroneos"); // mostramos un mensaje de error al usuario 
+                if(caballosValidos==false)
+                    incaballos.setForeground(Color.red); // en caso de que este mal validado marcamos el campo con letra de color rojo 
+                else
+                    incaballos.setForeground(Color.black); // en caso contrario ponemos la letra en negro, por si en un intento anterior se haya puesto en rojo 
+                if(cilindradaValida==false)
+                    incilindrada.setForeground(Color.red);
+                else
+                    incilindrada.setForeground(Color.black);
+                if(precioValido==false)
+                    inprecio.setForeground(Color.red);
+                else
+                    inprecio.setForeground(Color.black);
+                
+            }
+        } else { // en caso de que el usuario que intenta realizar la operacion no tenga permisos suficientes 
+            JOptionPane.showMessageDialog(null, "No tienes permisos para realizar esta operación", "Error", 0); // mostramos un mensaje de error
+            inmodelo.setText(""); // y ponemos de nuevo todos los campos en blanco 
             incilindrada.setText("");
             incaballos.setText("");
             inprecio.setText("");
         }
-
+    
     }//GEN-LAST:event_bañadirMouseClicked
+
     /**
      * Botón para borrar un coche de las ventas.
      *

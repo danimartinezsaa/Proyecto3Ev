@@ -1,5 +1,6 @@
 package com.tallerplus.gestion;
 
+import VentanasEmergentes.Mensajes;
 import com.tallerplus.files.Ficheros;
 import com.tallerplus.objetos.Cita;
 import java.util.ArrayList;
@@ -21,7 +22,7 @@ public class GestionCitas {
         boolean encontrado = false;
         for (int i = 0; i < Ficheros.citas.size(); i++) {
             if (Ficheros.citas.get(i).getMatricula().equals(matricula) && Ficheros.citas.get(i).getFechaHora().equals(fechaHora)) {
-                JOptionPane.showMessageDialog(null, "La cita ya existe en el sistema", "cita no valida", 0);
+                Mensajes.ventanaError("La cita ya existe en el sistema.", "Cita no válida.");
                 encontrado = true;
                 break;
             } else;
@@ -56,7 +57,7 @@ public class GestionCitas {
         if (borrado == true && confirmado == YES_OPTION) {
             Ficheros.escribirFicheroCitas();
         } else if (confirmado != YES_OPTION); else {
-            JOptionPane.showMessageDialog(null, "cita no encontrada", "gestión de citas", 0);
+            Mensajes.ventanaError("Cita no encontrada.", "Gestión de citas.");
         }
 
         return borrado;
@@ -84,7 +85,7 @@ public class GestionCitas {
         if (modificado == true) {
             Ficheros.escribirFicheroCitas();
         } else {
-            JOptionPane.showMessageDialog(null, "cita no encontrada, no se ha podido modificar", "modificación de citas", 0);
+            Mensajes.ventanaError("Cita no encontrada, no se ha podido modificar.", "Modificación de citas.");
         }
 
         return modificado;
@@ -107,6 +108,7 @@ public class GestionCitas {
         }
 
         if (encontrado == false) {
+            Mensajes.ventanaError("Cita no encontrada.", "Búsqueda.");
             JOptionPane.showMessageDialog(null, "Cita no encontrada", "Búsqueda", 0);
         }
         return encontradas;
@@ -131,7 +133,7 @@ public class GestionCitas {
         }
 
         if (encontrado == false) {
-            JOptionPane.showMessageDialog(null, "Cita no encontrada", "Búsqueda", 0);
+            Mensajes.ventanaError("Cita no encontrada.", "Búsqueda.");
         }
         return encontradas;
     }
@@ -156,7 +158,7 @@ public class GestionCitas {
         }
 
         if (encontrado == false) {
-            JOptionPane.showMessageDialog(null, "Cita no encontrada", "Búsqueda", 0);
+            Mensajes.ventanaError("Cita no encontrada.", "Búsqueda.");
         }
         return encontradas;
     }
@@ -188,7 +190,7 @@ public class GestionCitas {
         for (Cita elemento : Ficheros.citas) {
             if (elemento.getMatricula().equals(matricula) && elemento.getFechaHora().equals(fechahora)) {
                 elemento.setEstado("Cerrado");
-                JOptionPane.showMessageDialog(null, "Cita Cerrada!", "Cita", 1);
+                Mensajes.ventanaInfo("Cita cerrada!","Cita");
                 Ficheros.escribirFicheroCitas();
             }
         }

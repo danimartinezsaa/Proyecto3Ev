@@ -1,5 +1,6 @@
 package com.tallerplus.gestion;
 
+import VentanasEmergentes.Mensajes;
 import com.tallerplus.interfaz.LoginUsers;
 import com.tallerplus.interfaz.VentanaPrincipal;
 import com.tallerplus.objetos.Usuario;
@@ -33,7 +34,7 @@ public class Login {
         }
         
         if(encontrado==false)
-            JOptionPane.showMessageDialog(null, "Los datos no coinciden, vuelva a intentarlo.", "Usuario o contraseña errónea", 0);
+            Mensajes.ventanaError("Los datos no coinciden, vuelva a intentarlo.", "Usuario o contraseña errónea.");
         
         return encontrado;
     }

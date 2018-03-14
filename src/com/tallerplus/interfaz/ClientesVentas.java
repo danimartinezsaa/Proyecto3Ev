@@ -20,12 +20,13 @@ public class ClientesVentas extends javax.swing.JFrame {
      * Creates new form ClientesVentas
      */
     String telefono;
+
     public ClientesVentas() {
         initComponents();
         setLocationRelativeTo(null);
         setVisible(true);
         setResizable(false);
-        
+
     }
 
     /**
@@ -48,7 +49,7 @@ public class ClientesVentas extends javax.swing.JFrame {
         textoTelefono = new javax.swing.JTextField();
         botonOk = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(109, 132, 180));
 
@@ -155,40 +156,34 @@ public class ClientesVentas extends javax.swing.JFrame {
 
     private void botonOkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonOkMouseClicked
 
-        boolean matriculaCorrecta=ValidarFormatos.validarMatricula(textoMatricula.getText());
-        boolean dniCorrecto=ValidarFormatos.validarDni(textoDni.getText());
-        boolean telefonoCorrecto=ValidarFormatos.validarTelefono(textoTelefono.getText());
-                 if (matriculaCorrecta==true && dniCorrecto==true && telefonoCorrecto==true){
-                          GestionClientes.anadirCliente
-                          (textoMatricula.getText(), VentaCoches.motor, VentaCoches.cilindrada, 
-                          VentaCoches.caballos,textoNombre.getText(),textoDni.getText(),textoTelefono.getText());
-                          dispose();
-                        }
-                 else {
-                 JOptionPane.showMessageDialog(null,"Datos erroneos");
-                 if(matriculaCorrecta==false){
-                     textoMatricula.setForeground(Color.red);
-                 }
-                 else{
-                     textoMatricula.setForeground(Color.black);
-                 }
-                 if(dniCorrecto==false){
-                     textoDni.setForeground(Color.red);
-                 }
-                 else{
-                    textoDni.setForeground(Color.black); 
-                 }
-                 if(telefonoCorrecto==false){
-                     textoTelefono.setForeground(Color.red);
-                 }
-                 else{
-                     textoTelefono.setForeground(Color.black);
-                 }
-                 
-                 }
-                
-                 
-    
+        boolean matriculaCorrecta = ValidarFormatos.validarMatricula(textoMatricula.getText());
+        boolean dniCorrecto = ValidarFormatos.validarDni(textoDni.getText());
+        boolean telefonoCorrecto = ValidarFormatos.validarTelefono(textoTelefono.getText());
+        if (matriculaCorrecta == true && dniCorrecto == true && telefonoCorrecto == true) {
+            GestionClientes.anadirCliente(textoMatricula.getText(), VentaCoches.motor, VentaCoches.cilindrada,
+                    VentaCoches.caballos, textoNombre.getText(), textoDni.getText(), textoTelefono.getText());
+            dispose();
+        } else {
+            JOptionPane.showMessageDialog(null, "Datos erroneos");
+            if (matriculaCorrecta == false) {
+                textoMatricula.setForeground(Color.red);
+            } else {
+                textoMatricula.setForeground(Color.black);
+            }
+            if (dniCorrecto == false) {
+                textoDni.setForeground(Color.red);
+            } else {
+                textoDni.setForeground(Color.black);
+            }
+            if (telefonoCorrecto == false) {
+                textoTelefono.setForeground(Color.red);
+            } else {
+                textoTelefono.setForeground(Color.black);
+            }
+
+        }
+
+
     }//GEN-LAST:event_botonOkMouseClicked
 
     /**

@@ -1,5 +1,6 @@
 package com.tallerplus.gestion;
 
+import VentanasEmergentes.Mensajes;
 import com.tallerplus.files.Ficheros;
 import com.tallerplus.objetos.Usuario;
 import javax.swing.JOptionPane;
@@ -26,7 +27,7 @@ public class GestionUsuarios {
             Ficheros.usuarios.add(new Usuario(usuario, contrasena, tipo));
             Ficheros.escribirFicheroUsuarios();
         } else {
-            JOptionPane.showMessageDialog(null, "Ya existe un usuario con ese nombre", "Añadir Usuario", 0);
+            Mensajes.ventanaError("Ya existe un usuario con ese nombre.","Añadir usuario");
         }
 
         return repetido;
@@ -52,12 +53,10 @@ public class GestionUsuarios {
             }
             if (borrado == true) {
                 Ficheros.escribirFicheroUsuarios();
-            } else {
-                System.out.println("No se han encontrado usuarios.");
             }
         } else {
             bandera = false;
-            JOptionPane.showMessageDialog(null, "No puede borrar 'ADMIN'", "Error", 0);
+            Mensajes.ventanaError("No se puede borrar 'ADMIN'","Error");
         }
         return bandera;
     }

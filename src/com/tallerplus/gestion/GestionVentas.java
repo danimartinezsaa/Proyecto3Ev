@@ -5,6 +5,7 @@
  */
 package com.tallerplus.gestion;
 
+import VentanasEmergentes.Mensajes;
 import com.tallerplus.files.Ficheros;
 import com.tallerplus.objetos.Venta;
 import javax.swing.JOptionPane;
@@ -27,7 +28,7 @@ public class GestionVentas {
      */
     public static void anadirVenta(String modelo, Float precio, String motor, String cilindrada, String caballos) {
         Ficheros.ventas.add(new Venta(modelo, precio, motor, cilindrada, caballos));
-        JOptionPane.showMessageDialog(null, "Coche añadido con éxito", "Ventas", 1);
+        Mensajes.ventanaInfo("Coche añadido con éxito.","Ventas");
         Ficheros.escribirFicheroVentas();
     }
 

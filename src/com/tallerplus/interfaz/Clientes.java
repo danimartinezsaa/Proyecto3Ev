@@ -5,9 +5,11 @@
  */
 package com.tallerplus.interfaz;
 
+import Validaciones.ValidarFormatos;
 import com.tallerplus.files.Ficheros;
 import com.tallerplus.gestion.GestionClientes;
 import com.tallerplus.objetos.Coche;
+import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -286,6 +288,18 @@ DefaultTableModel tablaCliente=new DefaultTableModel();
 
     private void botonAnadirClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAnadirClienteMouseClicked
         // TODO add your handling code here:
+        boolean caballosValidos=ValidarFormatos.isNumeric(textoCaballos.getText()); // comprobacion de que los datos esten validados correctamente 
+        boolean matriculaValida=ValidarFormatos.validarPrecio(textoMatricula.getText());
+        boolean cilindradaValida=ValidarFormatos.validarPrecio(textoCilindrada.getText());
+        boolean dniValido=ValidarFormatos.validarDni(textoDni.getText());
+        boolean telefonoValido=ValidarFormatos.validarTelefono(textoTelefono.getText());
+        // TODO add your handling code here:
+        if(caballosValidos==true && matriculaValida==true && cilindradaValida==true && dniValido==true && telefonoValido==true){
+        textoCaballos.setForeground(Color.black);
+        textoMatricula.setForeground(Color.black);
+        textoCilindrada.setForeground(Color.black);
+        textoDni.setForeground(Color.black);
+        textoTelefono.setForeground(Color.black);
         String matricula,motor,cilindrada,caballos,nombre,dni,telefono;
         matricula=textoMatricula.getText();
         motor=(String)textoMotor.getSelectedItem();
@@ -316,6 +330,40 @@ DefaultTableModel tablaCliente=new DefaultTableModel();
             textoDni.setText("");
             textoTelefono.setText("");
     }
+  } else {
+            JOptionPane.showMessageDialog(null,"datos erroneos");
+            if(caballosValidos==false){
+                textoCaballos.setForeground(Color.red);
+            }
+            else{
+                textoCaballos.setForeground(Color.black);
+            }
+            if(matriculaValida==false){
+                textoMatricula.setForeground(Color.red);
+            }
+            else{
+                textoMatricula.setForeground(Color.black);
+            }
+            if(cilindradaValida==false){
+                textoCilindrada.setForeground(Color.red);
+            }
+            else{
+                textoCilindrada.setForeground(Color.black);
+            }
+            if(dniValido=false){
+                textoDni.setForeground(Color.red);
+            }
+            else{
+                textoDni.setForeground(Color.black);
+            }
+            if(telefonoValido==false){
+                textoTelefono.setForeground(Color.red);
+            }
+            else{
+                textoTelefono.setForeground(Color.black);
+            }
+        }
+            
             
     }//GEN-LAST:event_botonAnadirClienteMouseClicked
 

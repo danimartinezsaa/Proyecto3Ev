@@ -1,5 +1,6 @@
 package com.tallerplus.gestion;
 
+import VentanasEmergentes.Mensajes;
 import com.tallerplus.files.Ficheros;
 import com.tallerplus.objetos.Coche;
 import java.util.ArrayList;
@@ -22,7 +23,7 @@ public class GestionClientes {
         boolean encontrado = false;
         for (int i = 0; i < Ficheros.coches.size(); i++) {
             if (Ficheros.coches.get(i).getMatricula().equals(matricula)) {
-                JOptionPane.showMessageDialog(null, "El cliente introducido ya existe", "Gestión de clientes", 0);
+                Mensajes.ventanaError("El cliente introducido ya existe.", "Gestión de clientes.");
                 encontrado = true;
                 break;
             }
@@ -30,7 +31,7 @@ public class GestionClientes {
 
         if (encontrado == false) {
             Ficheros.coches.add(new Coche(matricula, motor, cilindrada, caballos, nombreDueño, dni, telefono));
-            JOptionPane.showMessageDialog(null, "cliente introducido con exito", "Gestión de clientes", 1);
+            Mensajes.ventanaInfo("Cliente introducido con éxito", "Gestión de clientes.");
             Ficheros.escribirFicheroCoches();
         }
         
@@ -56,9 +57,9 @@ public class GestionClientes {
         if (borrado == true) {
             Ficheros.escribirFicheroCoches();
             if(eb.equals("borrar"))
-                JOptionPane.showMessageDialog(null, "cliente borrado", "gestión de clientes", 1);
+                Mensajes.ventanaInfo("Cliente borrado","Gestión de clientes.");
         } else {
-            JOptionPane.showMessageDialog(null, "no se ha encontrado el cliente a eliminar", "Gestión de clientes", 0);
+            Mensajes.ventanaError("No se ha encontrado al cliente a eliminar.","Gestión de clientes.");
         }
     }
 

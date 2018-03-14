@@ -5,6 +5,7 @@
  */
 package com.tallerplus.gestion;
 
+import VentanasEmergentes.Mensajes;
 import java.awt.Desktop;
 import java.io.File;
 import java.io.FileWriter;
@@ -48,6 +49,7 @@ public class GestionFacturas {
         try {
             Desktop.getDesktop().open(fichero);
         } catch (IOException ex) {
+            Mensajes.ventanaError("Error al abrir la factura.", "Error");
             JOptionPane.showMessageDialog(null,"Error al abrir la factura","Error",0);
         }
     }

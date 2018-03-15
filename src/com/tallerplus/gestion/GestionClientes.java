@@ -32,7 +32,7 @@ public class GestionClientes {
             Mensajes.ventanaInfo("Cliente introducido con éxito", "Gestión de clientes.");
             Ficheros.escribirFicheroCoches();
         }
-        
+
         return encontrado;
     }
 
@@ -42,7 +42,7 @@ public class GestionClientes {
      * @param matricula matricula del vehiculo a eliminar
      * @param eb le indica si estamos modificando o borrando al cliente
      */
-    public static void borrarCliente(String matricula,String eb) {
+    public static void borrarCliente(String matricula, String eb) {
         boolean borrado = false; // indicador de borrado que solo salta a true en caso de que se encuentre el coche, posteriormente trataremos que no se encuentre con el 
         for (int i = 0; i < Ficheros.coches.size(); i++) {
             if (Ficheros.coches.get(i).getMatricula().equals(matricula)) {
@@ -54,11 +54,34 @@ public class GestionClientes {
         }
         if (borrado == true) {
             Ficheros.escribirFicheroCoches();
-            if(eb.equals("borrar"))
-                Mensajes.ventanaInfo("Cliente borrado","Gestión de clientes.");
+            if (eb.equals("borrar")) {
+                Mensajes.ventanaInfo("Cliente borrado", "Gestión de clientes.");
+            }
         } else {
-            Mensajes.ventanaError("No se ha encontrado al cliente a eliminar.","Gestión de clientes.");
+            Mensajes.ventanaError("No se ha encontrado al cliente a eliminar.", "Gestión de clientes.");
         }
+    }
+    
+    /**
+     * Edita los parámetros de un cliente en concreto.
+     * @param numero Número de la posición del cliente en el ArrayList coches.
+     * @param matricula Matrícula a insertar en el cliente indicado.
+     * @param motor Motor a insertar en el cliente indicado.
+     * @param cilindrada Cilindrada a insertar en el cliente indicado.
+     * @param caballos Caballos a insertar en el cliente indicado.
+     * @param nombreDueño Nombre del dueño a insertar en el cliente indicado.
+     * @param dni DNI a insertar en el cliente indicado.
+     * @param telefono Teléfono a insertar en el cliente indicado.
+     * @return true si se ha editado el cliente.
+     */
+    public static boolean editarCliente(int numero, String matricula, String motor, String cilindrada, String caballos, String nombreDueño, String dni, String telefono) {
+        boolean editado = false;
+        Ficheros.coches.set(numero, new Coche(matricula, motor, cilindrada, caballos, nombreDueño, dni, telefono));
+        editado = true;
+
+        Ficheros.escribirFicheroUsuarios();
+
+        return editado;
     }
 
 }

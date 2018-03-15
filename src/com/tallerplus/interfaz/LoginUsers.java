@@ -3,6 +3,8 @@ package com.tallerplus.interfaz;
 
 import com.tallerplus.files.Ficheros;
 import com.tallerplus.gestion.Login;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class LoginUsers extends javax.swing.JFrame {
 
@@ -11,6 +13,9 @@ public class LoginUsers extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setVisible(true);
         setResizable(false);
+        entrar.addKeyListener(new PresionarTecla()); // escuchador en el boton entrar para poder utilizar el enter indistantemente del mouse click, cuando estemos sobre el boton
+        inusuario.addKeyListener(new PresionarTecla());// escuchador para que funcione el boton intro cuando estemos dentro de insertar usuario
+        incontrasena.addKeyListener(new PresionarTecla()); // escuchador para cuando estemos ubicados en insertar contraseña
     }
 
     @SuppressWarnings("unchecked")
@@ -141,7 +146,15 @@ public class LoginUsers extends javax.swing.JFrame {
             //Si el usuario y la contraseña son correctos cierro ventana login.
             dispose();
     }//GEN-LAST:event_entrarMouseClicked
-
+    public class PresionarTecla extends KeyAdapter{ // inner class para poder usar el enter en el boton enviar
+        @Override
+        public void keyPressed(KeyEvent e){
+            if(e.getKeyCode()==KeyEvent.VK_ENTER){
+                entrarMouseClicked(null);
+            }
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */

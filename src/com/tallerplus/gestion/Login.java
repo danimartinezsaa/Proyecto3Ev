@@ -5,7 +5,7 @@ import com.tallerplus.interfaz.LoginUsers;
 import com.tallerplus.interfaz.VentanaPrincipal;
 import com.tallerplus.objetos.Usuario;
 import java.util.ArrayList;
-import javax.swing.JOptionPane;
+
 
 public class Login {
     private static String usuario_logueado;

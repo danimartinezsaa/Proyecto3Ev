@@ -5,9 +5,11 @@
  */
 package com.tallerplus.interfaz;
 
+import Validaciones.ValidarFormatos;
 import com.tallerplus.files.Ficheros;
 import com.tallerplus.gestion.GestionCitas;
 import com.tallerplus.objetos.Cita;
+import java.awt.Color;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -44,6 +46,35 @@ public class Citas extends javax.swing.JFrame {
 
         this.tablacitas.setModel(tabla);
     }
+     private boolean validarDatos( String matricula,  String precio) {
+        boolean validado = false;
+        boolean matriculaValida = ValidarFormatos.validarMatricula(inmatricula.getText());
+        boolean preciovalido = ValidarFormatos.validarPrecio(inprecio.getText());
+        if ( matriculaValida == true && preciovalido == true) {
+            inmatricula.setForeground(Color.black);
+            inprecio.setForeground(Color.black);
+            validado = true;
+        } else {
+
+            JOptionPane.showMessageDialog(null, "datos erroneos");
+           
+            if (matriculaValida == false) {
+                inmatricula.setForeground(Color.red);
+            } else {
+                inmatricula.setForeground(Color.black);
+            }
+            if (preciovalido == false) {
+                inprecio.setForeground(Color.red);
+            } else {
+                inprecio.setForeground(Color.black);
+            }
+           
+            validado = false;
+
+        }
+        return validado;
+    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -312,7 +343,10 @@ public class Citas extends javax.swing.JFrame {
     }//GEN-LAST:event_inmatriculaActionPerformed
 
     private void bañadircitaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bañadircitaMouseClicked
-
+        String matricula=inmatricula.getText();
+        String precio=inprecio.getText();
+        boolean validado=validarDatos(matricula,precio);
+        if(validado==true){
         try {
 
             String anadir[] = new String[5];
@@ -331,6 +365,7 @@ public class Citas extends javax.swing.JFrame {
             inprecio.setText("");
             indescripcion.setText("");
         }
+        }   
     }//GEN-LAST:event_bañadircitaMouseClicked
 
     /**

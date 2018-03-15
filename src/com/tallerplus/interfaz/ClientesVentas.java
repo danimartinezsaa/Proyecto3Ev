@@ -9,6 +9,10 @@ import com.tallerplus.gestion.GestionClientes;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 import Validaciones.ValidarFormatos;
+import com.tallerplus.files.Ficheros;
+import com.tallerplus.gestion.GestionVentas;
+import static com.tallerplus.interfaz.VentaCoches.eliminar;
+import static com.tallerplus.interfaz.VentaCoches.motor;
 
 /**
  *
@@ -160,9 +164,17 @@ public class ClientesVentas extends javax.swing.JFrame {
         boolean dniCorrecto = ValidarFormatos.validarDni(textoDni.getText());
         boolean telefonoCorrecto = ValidarFormatos.validarTelefono(textoTelefono.getText());
         if (matriculaCorrecta == true && dniCorrecto == true && telefonoCorrecto == true) {
-            GestionClientes.anadirCliente(textoMatricula.getText(), VentaCoches.motor, VentaCoches.cilindrada,
+            VentaCoches.motor = Ficheros.ventas.get(eliminar).getMotor();
+              VentaCoches.cilindrada = Ficheros.ventas.get(eliminar).getCilindrada();
+              VentaCoches.caballos = Ficheros.ventas.get(eliminar).getCaballos();
+              VentaCoches.correcto = GestionVentas.borrarVenta(eliminar, true);
+              GestionClientes.anadirCliente(textoMatricula.getText(), VentaCoches.motor, VentaCoches.cilindrada,
                     VentaCoches.caballos, textoNombre.getText(), textoDni.getText(), textoTelefono.getText());
+              
+           
             dispose();
+            
+            
         } else {
             JOptionPane.showMessageDialog(null, "Datos erroneos");
             if (matriculaCorrecta == false) {

@@ -374,9 +374,7 @@ public class VentaCoches extends javax.swing.JFrame {
             int eliminar = tablabusqueda.getSelectedRow();
             if (eliminar >= 0) {
                  boolean correcto = GestionVentas.borrarVenta(eliminar, false);
-                if (correcto != false) {
-                    tabla.removeRow(eliminar);
-                }
+               
             }
         } else {
             JOptionPane.showMessageDialog(null, "No tienes permisos para realizar esta operación", "Error", 0);
@@ -386,12 +384,9 @@ public class VentaCoches extends javax.swing.JFrame {
     private void bvenderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bvenderMouseClicked
          eliminar = tablabusqueda.getSelectedRow();
         if (eliminar >= 0) {
-              motor = Ficheros.ventas.get(eliminar).getMotor();
-              cilindrada = Ficheros.ventas.get(eliminar).getCilindrada();
-              caballos = Ficheros.ventas.get(eliminar).getCaballos();
-              correcto = GestionVentas.borrarVenta(eliminar, true);
+             
              ClientesVentas clienteventas=new ClientesVentas();
-             tabla.removeRow(VentaCoches.eliminar);
+             
         }else System.out.println("errror");
     }//GEN-LAST:event_bvenderMouseClicked
 

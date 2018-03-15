@@ -17,7 +17,7 @@ public class GestionClientes {
      * @param dni numero de identificacion personal del dueño del vehiculo
      * @param telefono telefono de contacto del dueño del vehiculo
      */
-    public static boolean anadirCliente(String matricula, String motor, String cilindrada, String caballos, String nombreDueño, String telefono, String dni) {
+    public static boolean anadirCliente(String matricula, String motor, String cilindrada, String caballos, String nombreDueño, String dni, String telefono) {
         boolean encontrado = false;
         for (int i = 0; i < Ficheros.coches.size(); i++) {
             if (Ficheros.coches.get(i).getMatricula().equals(matricula)) {
@@ -28,7 +28,7 @@ public class GestionClientes {
         }
 
         if (encontrado == false) {
-            Ficheros.coches.add(new Coche(matricula, motor, cilindrada, caballos, nombreDueño, dni, telefono));
+            Ficheros.coches.add(new Coche(matricula, motor, cilindrada, caballos, nombreDueño, telefono, dni));
             Mensajes.ventanaInfo("Cliente introducido con éxito", "Gestión de clientes.");
             Ficheros.escribirFicheroCoches();
         }
@@ -74,9 +74,9 @@ public class GestionClientes {
      * @param telefono Teléfono a insertar en el cliente indicado.
      * @return true si se ha editado el cliente.
      */
-    public static boolean editarCliente(int numero, String matricula, String motor, String cilindrada, String caballos, String nombreDueño, String dni, String telefono) {
+    public static boolean editarCliente(int numero, String matricula, String motor, String cilindrada, String caballos, String nombreDueño, String telefono, String dni) {
         boolean editado = false;
-        Ficheros.coches.set(numero, new Coche(matricula, motor, cilindrada, caballos, nombreDueño, dni, telefono));
+        Ficheros.coches.set(numero, new Coche(matricula, motor, cilindrada, caballos, nombreDueño, telefono, dni));
         editado = true;
 
         Ficheros.escribirFicheroUsuarios();

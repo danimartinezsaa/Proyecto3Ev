@@ -5,11 +5,13 @@
  */
 package com.tallerplus.interfaz;
 
+import VentanasEmergentes.Mensajes;
 import com.tallerplus.files.Ficheros;
 import com.tallerplus.gestion.GestionTabla;
 import com.tallerplus.gestion.GestionUsuarios;
 import com.tallerplus.objetos.Usuario;
 import javax.swing.JOptionPane;
+import static javax.swing.JOptionPane.YES_OPTION;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -21,6 +23,7 @@ public class Usuarios extends javax.swing.JFrame {
     DefaultTableModel tabla = new DefaultTableModel();
     boolean edicion = false;
     int usuario_editar;
+
     /**
      * Creates new form Usuarios
      */
@@ -29,7 +32,7 @@ public class Usuarios extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setVisible(true);
         setResizable(false);
-
+        edicion = false;
         //Columnas de la tabla
         tabla.addColumn("Usuario");
         tabla.addColumn("Contraseña");
@@ -207,7 +210,6 @@ public class Usuarios extends javax.swing.JFrame {
 
     private void batrasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_batrasMouseClicked
         VentanaPrincipal venanaprincipal = new VentanaPrincipal();
-        edicion = false;
         dispose();
     }//GEN-LAST:event_batrasMouseClicked
     /**
@@ -217,20 +219,24 @@ public class Usuarios extends javax.swing.JFrame {
      */
     private void banadirusuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_banadirusuarioMouseClicked
         if (edicion == false) {
-            String anadir[] = new String[3];
-            anadir[0] = inusuario.getText();
-            anadir[1] = incontrasena.getText();
-            anadir[2] = (String) combotipo.getSelectedItem();
-            boolean repetido = GestionUsuarios.anadirUsuario(anadir[0], anadir[1], anadir[2]);
-            if (repetido == false) {
-                tabla.addRow(anadir);
+            if (!inusuario.getText().equals("") || !incontrasena.getText().equals("")) {
+                String anadir[] = new String[3];
+                anadir[0] = inusuario.getText();
+                anadir[1] = incontrasena.getText();
+                anadir[2] = (String) combotipo.getSelectedItem();
+                boolean repetido = GestionUsuarios.anadirUsuario(anadir[0], anadir[1], anadir[2]);
+                if (repetido == false) {
+                    tabla.addRow(anadir);
+                }
+            } else {
+                Mensajes.ventanaError("Debes cubrir todos los campos.", "Error.");
             }
         } else {
-            if (usuario_editar==0) {
-                GestionUsuarios.editarUsuario(usuario_editar,"admin", incontrasena.getText(), "admin");
+            if (usuario_editar == 0) {
+                GestionUsuarios.editarUsuario(usuario_editar, "admin", incontrasena.getText(), "admin");
                 JOptionPane.showMessageDialog(null, "Al usuario Admin sólo se le puede cambiar la contraseña, contraseña cambiada", "Información", 1);
             } else {
-                GestionUsuarios.editarUsuario(usuario_editar,inusuario.getText(), incontrasena.getText(), (String) combotipo.getSelectedItem());
+                GestionUsuarios.editarUsuario(usuario_editar, inusuario.getText(), incontrasena.getText(), (String) combotipo.getSelectedItem());
             }
 
             GestionTabla.borrarTabla(tabla);
@@ -254,33 +260,43 @@ public class Usuarios extends javax.swing.JFrame {
      * @param evt
      */
     private void bborrarusuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bborrarusuarioMouseClicked
-        int eliminar = tablausuarios.getSelectedRow();
-        if (eliminar >= 0) {
-            boolean correcto = GestionUsuarios.borrarUsuario(Ficheros.usuarios.get(eliminar).getUsuario());
-            if (correcto != false) {
-                tabla.removeRow(eliminar);
+        if (edicion == false) {
+            int eliminar = tablausuarios.getSelectedRow();
+            if (eliminar >= 0) {
+
+                int confirmado = JOptionPane.showConfirmDialog(null, "¿Seguro que deseas eliminar este usuario?");
+                if (confirmado == YES_OPTION) {
+                    boolean correcto = GestionUsuarios.borrarUsuario(Ficheros.usuarios.get(eliminar).getUsuario());
+                    if (correcto != false) {
+                        tabla.removeRow(eliminar);
+                    }
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "No hay usuarios para eliminar.", "Error", 0);
             }
         } else {
-            JOptionPane.showMessageDialog(null, "No hay usuarios para eliminar.", "Error", 0);
+            Mensajes.ventanaError("No puedes borrar a un usuario mientras editas.", "Usuarios.");
         }
-        edicion = false;
     }//GEN-LAST:event_bborrarusuarioMouseClicked
     /**
-     * Botón editar usuario, saca los datos al formulario para añadirlo con los nuevos.
-     * @param evt 
+     * Botón editar usuario, saca los datos al formulario para añadirlo con los
+     * nuevos.
+     *
+     * @param evt
      */
     private void beditarusuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_beditarusuarioMouseClicked
         int editar = tablausuarios.getSelectedRow();
         if (editar >= 0) {
             inusuario.setText(tablausuarios.getValueAt(editar, 0).toString());
             incontrasena.setText(tablausuarios.getValueAt(editar, 1).toString());
-            if(tablausuarios.getValueAt(editar,2).equals("admin"))
-                    combotipo.setSelectedIndex(2);
-            else if(tablausuarios.getValueAt(editar,2).equals("recepcion"))
-                    combotipo.setSelectedIndex(1);
-            else
+            if (tablausuarios.getValueAt(editar, 2).equals("admin")) {
+                combotipo.setSelectedIndex(2);
+            } else if (tablausuarios.getValueAt(editar, 2).equals("recepcion")) {
+                combotipo.setSelectedIndex(1);
+            } else {
                 combotipo.setSelectedIndex(0);
-            usuario_editar=editar;
+            }
+            usuario_editar = editar;
             edicion = true;
         } else {
             JOptionPane.showMessageDialog(null, "Seleccione un usuario", "Error", 1);

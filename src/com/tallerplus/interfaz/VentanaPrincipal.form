@@ -333,7 +333,7 @@
         <Component class="javax.swing.JLabel" name="banadircita">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\dani_\Documents\NetBeansProjects\Taller-Plus\src\com\tallerplus\icon\calendario.png"/>
+              <Image iconType="3" name="/com/tallerplus/icon/calendario.png"/>
             </Property>
           </Properties>
           <Events>

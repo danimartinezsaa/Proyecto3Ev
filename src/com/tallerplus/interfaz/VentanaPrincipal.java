@@ -137,7 +137,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jLabel20.setForeground(new java.awt.Color(240, 240, 240));
         jLabel20.setText("Historial cliente");
 
-        banadircita.setIcon(new javax.swing.ImageIcon("C:\\Users\\dani_\\Documents\\NetBeansProjects\\Taller-Plus\\src\\com\\tallerplus\\icon\\calendario.png")); // NOI18N
+        banadircita.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tallerplus/icon/calendario.png"))); // NOI18N
         banadircita.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 banadircitaMouseClicked(evt);

@@ -61,11 +61,17 @@ public class GestionUsuarios {
         return bandera;
     }
 
+    /**
+     * Edita los parámetros de un usuario en concreto
+     * @param numero Número de la posición del array que ocupa el usuario a editar.
+     * @param usuario Nuevo usuario a insertar.
+     * @param contrasena Nueva contraseña a insertar.
+     * @param tipo Nuevo tipo a insertar.
+     * @return true si se ha editado el usuario.
+     */
     public static boolean editarUsuario(int numero,String usuario, String contrasena, String tipo) {
         boolean editado = false;
         Ficheros.usuarios.set(numero, new Usuario(usuario, contrasena, tipo));
-        for(Usuario elemento: Ficheros.usuarios)
-            System.out.println(elemento);
         editado = true;
 
         Ficheros.escribirFicheroUsuarios();

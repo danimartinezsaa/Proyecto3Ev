@@ -8,6 +8,7 @@ package com.tallerplus.interfaz;
 import Validaciones.ValidarFormatos;
 import com.tallerplus.files.Ficheros;
 import com.tallerplus.gestion.GestionClientes;
+import com.tallerplus.gestion.GestionTabla;
 import com.tallerplus.objetos.Coche;
 import java.awt.Color;
 import javax.swing.JOptionPane;
@@ -19,6 +20,8 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Clientes extends javax.swing.JFrame {
 
+    int cliente_editar;
+    boolean edicion = false;
     DefaultTableModel tablaCliente = new DefaultTableModel();
 
     /**
@@ -38,21 +41,12 @@ public class Clientes extends javax.swing.JFrame {
         tablaCliente.addColumn("telefono");
 
         // añadimos los coches a la tabla
-        for (Coche elemento : Ficheros.coches) {
-            String anadir[] = new String[7];
-            anadir[0] = elemento.getMatricula();
-            anadir[1] = elemento.getMotor();
-            anadir[2] = elemento.getCilindrada();
-            anadir[3] = elemento.getCaballos();
-            anadir[4] = elemento.getNombreDueño();
-            anadir[5] = elemento.getTelefono();
-            anadir[6] = elemento.getDni();
-            tablaCliente.addRow(anadir);
-        }
-        this.tablaClientes.setModel(tablaCliente);
+        mostrarTabla();
     }
+
     /**
      * Método para validar todos los datos introducidos.
+     *
      * @param caballos Caballos a validar.
      * @param matricula Matrícula a validar.
      * @param cilindrada Cilindrada a validar.
@@ -336,7 +330,8 @@ public class Clientes extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     /**
      * Botón para volver a la pantalla anterior.
-     * @param evt 
+     *
+     * @param evt
      */
     private void batras1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_batras1MouseClicked
         VentanaPrincipal venanaprincipal = new VentanaPrincipal();
@@ -344,11 +339,12 @@ public class Clientes extends javax.swing.JFrame {
     }//GEN-LAST:event_batras1MouseClicked
     /**
      * Botón para añadir un cliente.
-     * @param evt 
+     *
+     * @param evt
      */
     private void botonAnadirClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAnadirClienteMouseClicked
 
-        String matricula, motor, cilindrada, caballos, nombre, dni, telefono;
+        String matricula, motor, cilindrada, caballos, nombre, telefono, dni;
         matricula = textoMatricula.getText();
         motor = (String) textoMotor.getSelectedItem();
         cilindrada = textoCilindrada.getText();
@@ -356,22 +352,28 @@ public class Clientes extends javax.swing.JFrame {
         nombre = textoNombre.getText();
         dni = textoDni.getText();
         telefono = textoTelefono.getText();
-        boolean validado = validarDatos(caballos, matricula, cilindrada, dni, telefono);
+        boolean validado = validarDatos(caballos, matricula, cilindrada, telefono, dni);
         if (validado == true) {
 
             // metemos los datos en un array para despues insertarlos en la tabla
-            String[] datos = {matricula, motor, cilindrada, caballos, nombre, dni, telefono};
+            String[] datos = {matricula, motor, cilindrada, caballos, nombre, telefono, dni};
 
             // comprobamos que esten todos los datos introducidos
             if ("".equals(matricula) || "".equals(cilindrada) || "".equals(caballos) || "".equals(nombre) || "".equals(dni) || "".equals(telefono)) {
                 JOptionPane.showMessageDialog(null, "Debes introducir todos los datos del vehiculo", "error", JOptionPane.OK_OPTION);
 
             } else {
-                // si se han introducido todos los campos
-                boolean encontrado = GestionClientes.anadirCliente(matricula, motor, cilindrada, caballos, nombre, dni, telefono);
-                if (encontrado == false) {
-                    tablaCliente.addRow(datos); // lo añadimos en la lista que tenemos en pantalla
-                }            // ponemos todos los campos a null
+                if (edicion == false) {
+                    // si se han introducido todos los campos
+                    boolean encontrado = GestionClientes.anadirCliente(matricula, motor, cilindrada, caballos, nombre, telefono, dni);
+                    if (encontrado == false) {
+                        tablaCliente.addRow(datos); // lo añadimos en la lista que tenemos en pantalla
+                    }            // ponemos todos los campos a null
+                } else {
+                    GestionClientes.editarCliente(cliente_editar, matricula, motor, cilindrada, caballos, nombre, telefono, dni);
+                    GestionTabla.borrarTabla(tablaCliente);
+                    mostrarTabla();
+                }
                 textoMatricula.setText("");
                 textoCilindrada.setText("");
                 textoCaballos.setText("");
@@ -395,11 +397,20 @@ public class Clientes extends javax.swing.JFrame {
             textoCilindrada.setText(tablaClientes.getValueAt(editar, 2).toString());
             textoCaballos.setText(tablaClientes.getValueAt(editar, 3).toString());
             textoNombre.setText(tablaClientes.getValueAt(editar, 4).toString());
-            textoDni.setText(tablaClientes.getValueAt(editar, 6).toString());
-            textoTelefono.setText(tablaClientes.getValueAt(editar, 5).toString());
-            GestionClientes.borrarCliente(Ficheros.coches.get(editar).getMatricula(), eb);
-            tablaCliente.removeRow(editar);
+            textoDni.setText(tablaClientes.getValueAt(editar, 5).toString());
+            textoTelefono.setText(tablaClientes.getValueAt(editar, 6).toString());
 
+            if (tablaCliente.getValueAt(editar, 1).equals("Diesel")) {
+                textoMotor.setSelectedIndex(0);
+            } else if (tablaCliente.getValueAt(editar, 1).equals("Gasolina")) {
+                textoMotor.setSelectedIndex(1);
+            } else if (tablaCliente.getValueAt(editar, 1).equals("Hibrido")) {
+                textoMotor.setSelectedIndex(2);
+            } else {
+                textoMotor.setSelectedIndex(3);
+            }
+            cliente_editar = editar;
+            edicion = true;
         } else {
             JOptionPane.showMessageDialog(null, "Seleccione un usuario", "Error", 1);
         }
@@ -455,6 +466,24 @@ public class Clientes extends javax.swing.JFrame {
                 new Clientes().setVisible(true);
             }
         });
+    }
+    
+    /**
+     * Muestra la tabla actualizada.
+     */
+    private void mostrarTabla() {
+        for (Coche elemento : Ficheros.coches) {
+            String anadir[] = new String[7];
+            anadir[0] = elemento.getMatricula();
+            anadir[1] = elemento.getMotor();
+            anadir[2] = elemento.getCilindrada();
+            anadir[3] = elemento.getCaballos();
+            anadir[4] = elemento.getNombreDueño();
+            anadir[5] = elemento.getTelefono();
+            anadir[6] = elemento.getDni();
+            tablaCliente.addRow(anadir);
+        }
+        this.tablaClientes.setModel(tablaCliente);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

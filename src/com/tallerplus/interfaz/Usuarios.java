@@ -6,6 +6,7 @@
 package com.tallerplus.interfaz;
 
 import com.tallerplus.files.Ficheros;
+import com.tallerplus.gestion.GestionTabla;
 import com.tallerplus.gestion.GestionUsuarios;
 import com.tallerplus.objetos.Usuario;
 import javax.swing.JOptionPane;
@@ -232,11 +233,7 @@ public class Usuarios extends javax.swing.JFrame {
                 GestionUsuarios.editarUsuario(usuario_editar,inusuario.getText(), incontrasena.getText(), (String) combotipo.getSelectedItem());
             }
 
-            //Borramos contenido anterior de la tabla
-            for (int i = 0; i < tabla.getRowCount(); i++) {
-                tabla.removeRow(i);
-                i -= 1;
-            }
+            GestionTabla.borrarTabla(tabla);
             //Filas de la tabla
             for (Usuario elemento : Ficheros.usuarios) {
                 String anadir[] = new String[3];

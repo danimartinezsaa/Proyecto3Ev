@@ -7,6 +7,7 @@ package com.tallerplus.interfaz;
 
 import com.tallerplus.files.Ficheros;
 import com.tallerplus.gestion.GestionCitas;
+import com.tallerplus.gestion.GestionTabla;
 import com.tallerplus.objetos.Cita;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -265,7 +266,7 @@ public class VerCitas extends javax.swing.JFrame {
         encontradas = GestionCitas.consultarCitaFecha(fecha);
 
         borrarCitasPendientesProceso();
-        borrarTabla();
+        GestionTabla.borrarTabla(tabla);
         mostrarTablaEncontradas(encontradas);
         infecha.setText("");
     }//GEN-LAST:event_bbuscarfechaMouseClicked
@@ -282,7 +283,7 @@ public class VerCitas extends javax.swing.JFrame {
 
 
         borrarCitasPendientesProceso();
-        borrarTabla();
+        GestionTabla.borrarTabla(tabla);
         mostrarTablaEncontradas(encontradas);
 
         inmatricula.setText("");
@@ -303,7 +304,7 @@ public class VerCitas extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Seleccione una cita", "Error", 0);
         }
 
-        borrarTabla();
+        GestionTabla.borrarTabla(tabla);
         mostrarTabla();
     }//GEN-LAST:event_botoncomboMouseClicked
 
@@ -343,15 +344,6 @@ public class VerCitas extends javax.swing.JFrame {
         });
     }
 
-    /**
-     * Método que borra el contenido de la tabla.
-     */
-    private void borrarTabla() {
-        for (int i = 0; i < tabla.getRowCount(); i++) {
-            tabla.removeRow(i);
-            i -= 1;
-        }
-    }
     /**
      * Método que muestra en la tabla todas las citas pendientes y en proceso.
      */

@@ -6,6 +6,7 @@
 package com.tallerplus.interfaz;
 
 import com.tallerplus.gestion.GestionCitas;
+import com.tallerplus.gestion.GestionTabla;
 import com.tallerplus.objetos.Cita;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
@@ -178,11 +179,7 @@ public class HistorialCliente extends javax.swing.JFrame {
         //Recibimos la citas encontradas
         encontradas=GestionCitas.consultarCitaMatricula(matricula);
 
-        //Borramos contenido anterior de la tabla
-        for (int i = 0; i < tabla.getRowCount(); i++) {
-            tabla.removeRow(i);
-            i-=1;
-        }
+        GestionTabla.borrarTabla(tabla);
 
         //Añadimos las citas encontadas a la tabla
         for(Cita elemento: encontradas){

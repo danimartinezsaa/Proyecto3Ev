@@ -8,6 +8,7 @@ package com.tallerplus.interfaz;
 import com.tallerplus.files.Ficheros;
 import com.tallerplus.gestion.GestionCitas;
 import com.tallerplus.gestion.GestionFacturas;
+import com.tallerplus.gestion.GestionTabla;
 import com.tallerplus.objetos.Cita;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
@@ -290,7 +291,7 @@ public class Facturas extends javax.swing.JFrame {
         //Recibimos la citas encontradas
         encontradas = GestionCitas.consultarCitaFecha(fecha);
 
-        borrarTabla();
+        GestionTabla.borrarTabla(tabla);
         mostrarTabla(encontradas);
     }//GEN-LAST:event_bbuscarfechaMouseClicked
     /**
@@ -312,7 +313,7 @@ public class Facturas extends javax.swing.JFrame {
         //Recibimos la citas encontradas
         encontradas = GestionCitas.consultarCitaMatricula(matricula);
 
-        borrarTabla();
+        GestionTabla.borrarTabla(tabla);
         mostrarTabla(encontradas);
     }//GEN-LAST:event_bbuscarmatriculaMouseClicked
 
@@ -363,15 +364,6 @@ public class Facturas extends javax.swing.JFrame {
         });
     }
 
-    /**
-     * Método que borra el contenido de la tabla.
-     */
-    private void borrarTabla() {
-        for (int i = 0; i < tabla.getRowCount(); i++) {
-            tabla.removeRow(i);
-            i -= 1;
-        }
-    }
     /**
      * Método que muestra el contenido un ArrayList en la tabla.
      * @param contenido ArrayList con el contenido a mostrar en la tabla.

@@ -17,9 +17,11 @@ import javax.swing.table.DefaultTableModel;
  * @author dani_
  */
 public class Facturas extends javax.swing.JFrame {
-    DefaultTableModel tabla=new DefaultTableModel();
+
+    DefaultTableModel tabla = new DefaultTableModel();
     ArrayList<Cita> encontradas = new ArrayList();
     ArrayList<Cita> finalizadas = new ArrayList();
+
     /**
      * Creates new form Facturas
      */
@@ -33,25 +35,17 @@ public class Facturas extends javax.swing.JFrame {
         tabla.addColumn("Descripción");
         tabla.addColumn("Precio");
         tabla.addColumn("Estado");
-        
+
         //Recibimos la citas encontradas
         encontradas = Ficheros.citas;
         //Desechamos las cerradas
-        for(int i=0;i<encontradas.size();i++){
-            if(encontradas.get(i).getEstado().equals("Finalizado") || encontradas.get(i).getEstado().equals("Cerrado"))
+        for (int i = 0; i < encontradas.size(); i++) {
+            if (encontradas.get(i).getEstado().equals("Finalizado") || encontradas.get(i).getEstado().equals("Cerrado")) {
                 finalizadas.add(encontradas.get(i));
+            }
         }
 
-        //Añadimos las citas encontadas a la tabla
-        for (Cita elemento : finalizadas) {
-                String anadir[] = new String[4];
-                anadir[0] = elemento.getMatricula();
-                anadir[1] = elemento.getDescripcion();
-                anadir[2] = Float.toString(elemento.getPrecio());
-                anadir[3]=elemento.getEstado();
-                tabla.addRow(anadir);
-        }
-        this.tablabusqueda.setModel(tabla);
+        mostrarTabla(finalizadas);
     }
 
     /**
@@ -269,91 +263,66 @@ public class Facturas extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 /**
- * Botón para volver a la pantalla principal.
- * @param evt 
- */
+     * Botón para volver a la pantalla principal.
+     *
+     * @param evt
+     */
     private void batras1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_batras1MouseClicked
-        VentanaPrincipal venanaprincipal=new VentanaPrincipal();
+        VentanaPrincipal venanaprincipal = new VentanaPrincipal();
         dispose();
     }//GEN-LAST:event_batras1MouseClicked
-/**
- * Introdución de fecha para búsqueda
- * @param evt 
- */
+    /**
+     * Introdución de fecha para búsqueda
+     *
+     * @param evt
+     */
     private void infechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_infechaActionPerformed
 
     }//GEN-LAST:event_infechaActionPerformed
-/**
- * Botón buscar cita por fecha
- * @param evt 
- */
+    /**
+     * Botón buscar cita por fecha
+     *
+     * @param evt
+     */
     private void bbuscarfechaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bbuscarfechaMouseClicked
-        ArrayList<Cita> encontradas=new ArrayList();
-        String fecha=infecha.getText();
+        String fecha = infecha.getText();
 
         //Recibimos la citas encontradas
-        encontradas=GestionCitas.consultarCitaFecha(fecha);
+        encontradas = GestionCitas.consultarCitaFecha(fecha);
 
-        //Borramos contanido anterior de la tabla
-        for (int i = 0; i < tabla.getRowCount(); i++) {
-            tabla.removeRow(i);
-            i-=1;
-        }
-
-        //Añadimos las citas encontadas a la tabla
-        for(Cita elemento: encontradas){
-            String anadir[]=new String [4];
-            anadir[0]=elemento.getMatricula();
-            anadir[1]=elemento.getDescripcion();
-            anadir[2]=Float.toString(elemento.getPrecio());
-            anadir[3]=elemento.getEstado();
-            tabla.addRow(anadir);
-        }
-        this.tablabusqueda.setModel(tabla);
+        borrarTabla();
+        mostrarTabla(encontradas);
     }//GEN-LAST:event_bbuscarfechaMouseClicked
-/**
- * Introdución de texto para buscar por matrícula.
- * @param evt 
- */
+    /**
+     * Introdución de texto para buscar por matrícula.
+     *
+     * @param evt
+     */
     private void inmatriculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inmatriculaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_inmatriculaActionPerformed
-/**
- * Botón de buscar por matrícula.
- * @param evt 
- */
+    /**
+     * Botón de buscar por matrícula.
+     *
+     * @param evt
+     */
     private void bbuscarmatriculaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bbuscarmatriculaMouseClicked
-        ArrayList<Cita> encontradas=new ArrayList();
-        String matricula=inmatricula.getText();
+        String matricula = inmatricula.getText();
 
         //Recibimos la citas encontradas
-        encontradas=GestionCitas.consultarCitaMatricula(matricula);
+        encontradas = GestionCitas.consultarCitaMatricula(matricula);
 
-        //Borramos contenido anterior de la tabla
-        for (int i = 0; i < tabla.getRowCount(); i++) {
-            tabla.removeRow(i);
-            i-=1;
-        }
-
-        //Añadimos las citas encontadas a la tabla
-        for(Cita elemento: encontradas){
-            String anadir[]=new String [4];
-            anadir[0]=elemento.getMatricula();
-            anadir[1]=elemento.getDescripcion();
-            anadir[2]=Float.toString(elemento.getPrecio());
-            anadir[3]=elemento.getEstado();
-            tabla.addRow(anadir);
-        }
-        this.tablabusqueda.setModel(tabla);
+        borrarTabla();
+        mostrarTabla(encontradas);
     }//GEN-LAST:event_bbuscarmatriculaMouseClicked
 
     private void bgenerarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bgenerarMouseClicked
-        int seleccionado=tablabusqueda.getSelectedRow();
-        
-        if(seleccionado>=0){
-            String matricula=finalizadas.get(seleccionado).getMatricula();
-            String descripcion=finalizadas.get(seleccionado).getDescripcion();
-            Float precio=finalizadas.get(seleccionado).getPrecio();
+        int seleccionado = tablabusqueda.getSelectedRow();
+
+        if (seleccionado >= 0) {
+            String matricula = finalizadas.get(seleccionado).getMatricula();
+            String descripcion = finalizadas.get(seleccionado).getDescripcion();
+            Float precio = finalizadas.get(seleccionado).getPrecio();
             GestionFacturas.generarFactura(matricula, descripcion, precio);
             Ficheros.citas.get(seleccionado).setEstado("Cerrado");
         }
@@ -394,6 +363,30 @@ public class Facturas extends javax.swing.JFrame {
         });
     }
 
+    /**
+     * Método que borra el contenido de la tabla.
+     */
+    private void borrarTabla() {
+        for (int i = 0; i < tabla.getRowCount(); i++) {
+            tabla.removeRow(i);
+            i -= 1;
+        }
+    }
+    /**
+     * Método que muestra el contenido un ArrayList en la tabla.
+     * @param contenido ArrayList con el contenido a mostrar en la tabla.
+     */
+    private void mostrarTabla(ArrayList<Cita> contenido){
+        for (Cita elemento : contenido) {
+            String anadir[] = new String[4];
+            anadir[0] = elemento.getMatricula();
+            anadir[1] = elemento.getDescripcion();
+            anadir[2] = Float.toString(elemento.getPrecio());
+            anadir[3] = elemento.getEstado();
+            tabla.addRow(anadir);
+        }
+        this.tablabusqueda.setModel(tabla);        
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel batras1;
     private javax.swing.JLabel bbuscarfecha;

@@ -10,7 +10,6 @@ import com.tallerplus.files.Ficheros;
 import com.tallerplus.gestion.GestionClientes;
 import com.tallerplus.objetos.Coche;
 import java.awt.Color;
-import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -19,7 +18,9 @@ import javax.swing.table.DefaultTableModel;
  * @author dani_
  */
 public class Clientes extends javax.swing.JFrame {
-DefaultTableModel tablaCliente=new DefaultTableModel();
+
+    DefaultTableModel tablaCliente = new DefaultTableModel();
+
     /**
      * Creates new form Clientes
      */
@@ -35,12 +36,9 @@ DefaultTableModel tablaCliente=new DefaultTableModel();
         tablaCliente.addColumn("nombre");
         tablaCliente.addColumn("DNI");
         tablaCliente.addColumn("telefono");
-        
-        ArrayList<Coche>cochesClientes=new ArrayList();
-        cochesClientes=Ficheros.coches;
-        
+
         // añadimos los coches a la tabla
-        for (Coche elemento : cochesClientes) {
+        for (Coche elemento : Ficheros.coches) {
             String anadir[] = new String[7];
             anadir[0] = elemento.getMatricula();
             anadir[1] = elemento.getMotor();
@@ -53,57 +51,62 @@ DefaultTableModel tablaCliente=new DefaultTableModel();
         }
         this.tablaClientes.setModel(tablaCliente);
     }
-    private  boolean validarDatos(String caballos,String matricula,String cilindrada,String dni,String telefono){
-        boolean validado=false;
-        boolean caballosValidos=ValidarFormatos.isNumeric(textoCaballos.getText()); // comprobacion de que los datos esten validados correctamente 
-        boolean matriculaValida=ValidarFormatos.validarMatricula(textoMatricula.getText());
-        boolean cilindradaValida=ValidarFormatos.validarPrecio(textoCilindrada.getText());
-        boolean dniValido=ValidarFormatos.validarDni(textoDni.getText());
-        boolean telefonoValido=ValidarFormatos.validarTelefono(textoTelefono.getText());
-         if(caballosValidos==true && matriculaValida==true && cilindradaValida==true && dniValido==true && telefonoValido==true){
+    /**
+     * Método para validar todos los datos introducidos.
+     * @param caballos Caballos a validar.
+     * @param matricula Matrícula a validar.
+     * @param cilindrada Cilindrada a validar.
+     * @param dni DNI a validar.
+     * @param telefono Teléfono a validar.
+     * @return True si son datos válidos, false si no lo son.
+     */
+    private boolean validarDatos(String caballos, String matricula, String cilindrada, String dni, String telefono) {
+        boolean validado = false;
+        boolean caballosValidos = ValidarFormatos.isNumeric(textoCaballos.getText()); // comprobacion de que los datos esten validados correctamente 
+        boolean matriculaValida = ValidarFormatos.validarMatricula(textoMatricula.getText());
+        boolean cilindradaValida = ValidarFormatos.validarPrecio(textoCilindrada.getText());
+        boolean dniValido = ValidarFormatos.validarDni(textoDni.getText());
+        boolean telefonoValido = ValidarFormatos.validarTelefono(textoTelefono.getText());
+        if (caballosValidos == true && matriculaValida == true && cilindradaValida == true && dniValido == true && telefonoValido == true) {
             textoCaballos.setForeground(Color.black);
             textoMatricula.setForeground(Color.black);
             textoCilindrada.setForeground(Color.black);
             textoDni.setForeground(Color.black);
             textoTelefono.setForeground(Color.black);
-            validado=true;
-         }else{
-            
-            JOptionPane.showMessageDialog(null,"datos erroneos");
-            if(caballosValidos==false){
+            validado = true;
+        } else {
+
+            JOptionPane.showMessageDialog(null, "datos erroneos");
+            if (caballosValidos == false) {
                 textoCaballos.setForeground(Color.red);
-            }
-            else{
+            } else {
                 textoCaballos.setForeground(Color.black);
             }
-            if(matriculaValida==false){
+            if (matriculaValida == false) {
                 textoMatricula.setForeground(Color.red);
-            }
-            else{
+            } else {
                 textoMatricula.setForeground(Color.black);
             }
-            if(cilindradaValida==false){
+            if (cilindradaValida == false) {
                 textoCilindrada.setForeground(Color.red);
-            }
-            else{
+            } else {
                 textoCilindrada.setForeground(Color.black);
             }
-            if(dniValido==false){
+            if (dniValido == false) {
                 textoDni.setForeground(Color.red);
-            }
-            else{
+            } else {
                 textoDni.setForeground(Color.black);
             }
-            if(telefonoValido==false){
+            if (telefonoValido == false) {
                 textoTelefono.setForeground(Color.red);
-            }
-            else{
+            } else {
                 textoTelefono.setForeground(Color.black);
-               
-         } validado=false;
-        
-    }
-         return validado;
+
+            }
+            validado = false;
+
+        }
+        return validado;
     }
 
     /**
@@ -331,87 +334,92 @@ DefaultTableModel tablaCliente=new DefaultTableModel();
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    /**
+     * Botón para volver a la pantalla anterior.
+     * @param evt 
+     */
     private void batras1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_batras1MouseClicked
-        VentanaPrincipal venanaprincipal=new VentanaPrincipal();
+        VentanaPrincipal venanaprincipal = new VentanaPrincipal();
         dispose();
     }//GEN-LAST:event_batras1MouseClicked
-
+    /**
+     * Botón para añadir un cliente.
+     * @param evt 
+     */
     private void botonAnadirClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAnadirClienteMouseClicked
-        // TODO add your handling code here:
-        
-        // TODO add your handling code here:
-        String matricula,motor,cilindrada,caballos,nombre,dni,telefono;
-        matricula=textoMatricula.getText();
-        motor=(String)textoMotor.getSelectedItem();
-        cilindrada=textoCilindrada.getText();
-        caballos=textoCaballos.getText();
-        nombre=textoNombre.getText();
-        dni=textoDni.getText();
-        telefono=textoTelefono.getText();
-        boolean validado=validarDatos(caballos,matricula,cilindrada,dni,telefono);
-        if(validado==true){
-        
-        // metemos los datos en un array para despues insertarlos en la tabla
-        String[]datos={matricula,motor,cilindrada,caballos,nombre,dni,telefono};
-        
-        
-        // comprobamos que esten todos los datos introducidos
-        if("".equals(matricula) || "".equals(cilindrada) || "".equals(caballos) || "".equals(nombre)|| "".equals(dni) || "".equals(telefono)){
-            JOptionPane.showMessageDialog(null,"Debes introducir todos los datos del vehiculo","error",JOptionPane.OK_OPTION);
-        
+
+        String matricula, motor, cilindrada, caballos, nombre, dni, telefono;
+        matricula = textoMatricula.getText();
+        motor = (String) textoMotor.getSelectedItem();
+        cilindrada = textoCilindrada.getText();
+        caballos = textoCaballos.getText();
+        nombre = textoNombre.getText();
+        dni = textoDni.getText();
+        telefono = textoTelefono.getText();
+        boolean validado = validarDatos(caballos, matricula, cilindrada, dni, telefono);
+        if (validado == true) {
+
+            // metemos los datos en un array para despues insertarlos en la tabla
+            String[] datos = {matricula, motor, cilindrada, caballos, nombre, dni, telefono};
+
+            // comprobamos que esten todos los datos introducidos
+            if ("".equals(matricula) || "".equals(cilindrada) || "".equals(caballos) || "".equals(nombre) || "".equals(dni) || "".equals(telefono)) {
+                JOptionPane.showMessageDialog(null, "Debes introducir todos los datos del vehiculo", "error", JOptionPane.OK_OPTION);
+
+            } else {
+                // si se han introducido todos los campos
+                boolean encontrado = GestionClientes.anadirCliente(matricula, motor, cilindrada, caballos, nombre, dni, telefono);
+                if (encontrado == false) {
+                    tablaCliente.addRow(datos); // lo añadimos en la lista que tenemos en pantalla
+                }            // ponemos todos los campos a null
+                textoMatricula.setText("");
+                textoCilindrada.setText("");
+                textoCaballos.setText("");
+                textoNombre.setText("");
+                textoDni.setText("");
+                textoTelefono.setText("");
+            }
         }
-       else {
-            // si se han introducido todos los campos
-            boolean encontrado=GestionClientes.anadirCliente(matricula, motor, cilindrada, caballos, nombre, dni, telefono);
-            if(encontrado==false)
-                tablaCliente.addRow(datos); // lo añadimos en la lista que tenemos en pantalla
-            // ponemos todos los campos a null
-            textoMatricula.setText("");
-            textoCilindrada.setText("");
-            textoCaballos.setText("");
-            textoNombre.setText("");
-            textoDni.setText("");
-            textoTelefono.setText("");
-    }
-  } 
-            
-            
-            
     }//GEN-LAST:event_botonAnadirClienteMouseClicked
-
+    /**
+     * Botón para editar un cliente seleccionado en la tabla.
+     *
+     * @param evt
+     */
     private void botonEditarClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonEditarClienteMouseClicked
-        String eb="editar";
-        int editar=tablaClientes.getSelectedRow();
-        if(editar>=0){
-            textoMatricula.setText(tablaClientes.getValueAt(editar,0).toString());
-            textoMotor.setSelectedItem(tablaClientes.getValueAt(editar,1).toString());
-            textoCilindrada.setText(tablaClientes.getValueAt(editar,2).toString());
-            textoCaballos.setText(tablaClientes.getValueAt(editar,3).toString());
-            textoNombre.setText(tablaClientes.getValueAt(editar,4).toString());
-            textoDni.setText(tablaClientes.getValueAt(editar,5).toString());
-            textoTelefono.setText(tablaClientes.getValueAt(editar,6).toString());
-            GestionClientes.borrarCliente(Ficheros.coches.get(editar).getMatricula(),eb);
+        String eb = "editar";
+        int editar = tablaClientes.getSelectedRow();
+        if (editar >= 0) {
+            textoMatricula.setText(tablaClientes.getValueAt(editar, 0).toString());
+            textoMotor.setSelectedItem(tablaClientes.getValueAt(editar, 1).toString());
+            textoCilindrada.setText(tablaClientes.getValueAt(editar, 2).toString());
+            textoCaballos.setText(tablaClientes.getValueAt(editar, 3).toString());
+            textoNombre.setText(tablaClientes.getValueAt(editar, 4).toString());
+            textoDni.setText(tablaClientes.getValueAt(editar, 5).toString());
+            textoTelefono.setText(tablaClientes.getValueAt(editar, 6).toString());
+            GestionClientes.borrarCliente(Ficheros.coches.get(editar).getMatricula(), eb);
             tablaCliente.removeRow(editar);
-            
-        }else{
-            JOptionPane.showMessageDialog(null,"Seleccione un usuario","Error",1);
-        }
-        
-       
-    }//GEN-LAST:event_botonEditarClienteMouseClicked
 
-    private void botonEliminarClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonEliminarClienteMouseClicked
-        String eb="eliminar";
-        int eliminar=tablaClientes.getSelectedRow();
-        
-        if(eliminar>=0){
-            GestionClientes.borrarCliente(Ficheros.coches.get(eliminar).getMatricula(),eb);
-            tablaCliente.removeRow(eliminar);
-        }else{
-            JOptionPane.showMessageDialog(null,"No hay usuarios para eliminar.","Error",0);
+        } else {
+            JOptionPane.showMessageDialog(null, "Seleccione un usuario", "Error", 1);
         }
-        
+    }//GEN-LAST:event_botonEditarClienteMouseClicked
+    /**
+     * botón para eliminar al cliente seleccionado en la tabla.
+     *
+     * @param evt
+     */
+    private void botonEliminarClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonEliminarClienteMouseClicked
+        String eb = "eliminar";
+        int eliminar = tablaClientes.getSelectedRow();
+
+        if (eliminar >= 0) {
+            GestionClientes.borrarCliente(Ficheros.coches.get(eliminar).getMatricula(), eb);
+            tablaCliente.removeRow(eliminar);
+        } else {
+            JOptionPane.showMessageDialog(null, "No hay usuarios para eliminar.", "Error", 0);
+        }
+
     }//GEN-LAST:event_botonEliminarClienteMouseClicked
 
     /**

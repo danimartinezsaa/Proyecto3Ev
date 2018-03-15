@@ -9,6 +9,7 @@ import com.tallerplus.gestion.GestionClientes;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 import Validaciones.ValidarFormatos;
+import VentanasEmergentes.Mensajes;
 import com.tallerplus.files.Ficheros;
 import com.tallerplus.gestion.GestionVentas;
 import static com.tallerplus.interfaz.VentaCoches.eliminar;
@@ -166,7 +167,19 @@ public class ClientesVentas extends javax.swing.JFrame {
         boolean matriculaCorrecta = ValidarFormatos.validarMatricula(textoMatricula.getText());
         boolean dniCorrecto = ValidarFormatos.validarDni(textoDni.getText());
         boolean telefonoCorrecto = ValidarFormatos.validarTelefono(textoTelefono.getText());
+        boolean bandera=false;
+        
+            for (int i = 0; i < Ficheros.coches.size(); i++) {
+            if (Ficheros.coches.get(i).getMatricula().equals(textoMatricula.getText())) {
+                Mensajes.ventanaError("El cliente introducido ya existe.", "Gestión de clientes.");
+               bandera=false;
+               break; 
+            }else
+                bandera=true;
+            }
+            if(bandera==true){
         if (matriculaCorrecta == true && dniCorrecto == true && telefonoCorrecto == true) {
+         
             VentaCoches.motor = Ficheros.ventas.get(VentaCoches.eliminar).getMotor();
               VentaCoches.cilindrada = Ficheros.ventas.get(VentaCoches.eliminar).getCilindrada();
               VentaCoches.caballos = Ficheros.ventas.get(VentaCoches.eliminar).getCaballos();
@@ -179,7 +192,7 @@ public class ClientesVentas extends javax.swing.JFrame {
             dispose();
               }
             
-        } else {
+            } else {
             JOptionPane.showMessageDialog(null, "Datos erroneos");
             if (matriculaCorrecta == false) {
                 textoMatricula.setForeground(Color.red);
@@ -197,9 +210,10 @@ public class ClientesVentas extends javax.swing.JFrame {
                 textoTelefono.setForeground(Color.black);
             }
 
+        
         }
-
-
+            }
+            
     }//GEN-LAST:event_botonOkMouseClicked
 
     /**

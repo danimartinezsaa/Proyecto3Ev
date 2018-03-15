@@ -13,10 +13,7 @@ import com.tallerplus.objetos.Cita;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author dani_
- */
+
 public class Facturas extends javax.swing.JFrame {
 
     DefaultTableModel tabla = new DefaultTableModel();
@@ -325,7 +322,14 @@ public class Facturas extends javax.swing.JFrame {
             String descripcion = finalizadas.get(seleccionado).getDescripcion();
             Float precio = finalizadas.get(seleccionado).getPrecio();
             GestionFacturas.generarFactura(matricula, descripcion, precio);
-            Ficheros.citas.get(seleccionado).setEstado("Cerrado");
+            for(int i=0;i<Ficheros.citas.size();i++){ // recirremos el array de citas para poder modificar el estado de la cita cuya matricula coincida, y asi cerrarla 
+                if (Ficheros.citas.get(i).getMatricula().equalsIgnoreCase(matricula)){ // si la matricula es la seleccionada
+                    Ficheros.citas.get(i).setEstado("Cerrado"); // cerramos la cita 
+                }
+            }
+            GestionTabla.borrarTabla(tabla);
+             mostrarTabla(finalizadas);
+            
         }
     }//GEN-LAST:event_bgenerarMouseClicked
 

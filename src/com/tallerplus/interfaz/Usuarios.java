@@ -265,7 +265,10 @@ public class Usuarios extends javax.swing.JFrame {
         }
         edicion = false;
     }//GEN-LAST:event_bborrarusuarioMouseClicked
-
+    /**
+     * Botón editar usuario, saca los datos al formulario para añadirlo con los nuevos.
+     * @param evt 
+     */
     private void beditarusuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_beditarusuarioMouseClicked
         int editar = tablausuarios.getSelectedRow();
         if (editar >= 0) {

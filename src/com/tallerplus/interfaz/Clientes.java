@@ -6,12 +6,14 @@
 package com.tallerplus.interfaz;
 
 import Validaciones.ValidarFormatos;
+import VentanasEmergentes.Mensajes;
 import com.tallerplus.files.Ficheros;
 import com.tallerplus.gestion.GestionClientes;
 import com.tallerplus.gestion.GestionTabla;
 import com.tallerplus.objetos.Coche;
 import java.awt.Color;
 import javax.swing.JOptionPane;
+import static javax.swing.JOptionPane.YES_OPTION;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -39,7 +41,7 @@ public class Clientes extends javax.swing.JFrame {
         tablaCliente.addColumn("nombre");
         tablaCliente.addColumn("DNI");
         tablaCliente.addColumn("telefono");
-
+        edicion = false;
         // añadimos los coches a la tabla
         mostrarTabla();
     }
@@ -374,6 +376,7 @@ public class Clientes extends javax.swing.JFrame {
                     GestionTabla.borrarTabla(tablaCliente);
                     mostrarTabla();
                 }
+                edicion = false;
                 textoMatricula.setText("");
                 textoCilindrada.setText("");
                 textoCaballos.setText("");
@@ -421,16 +424,22 @@ public class Clientes extends javax.swing.JFrame {
      * @param evt
      */
     private void botonEliminarClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonEliminarClienteMouseClicked
-        String eb = "eliminar";
-        int eliminar = tablaClientes.getSelectedRow();
+        if (edicion == false) {
+            String eb = "eliminar";
+            int eliminar = tablaClientes.getSelectedRow();
+            if (eliminar >= 0) {
+                int confirmado = JOptionPane.showConfirmDialog(null, "¿Seguro que deseas eliminar este cliente?");
+                if (confirmado == YES_OPTION) {
+                    GestionClientes.borrarCliente(Ficheros.coches.get(eliminar).getMatricula(), eb);
+                    tablaCliente.removeRow(eliminar);
+                }
 
-        if (eliminar >= 0) {
-            GestionClientes.borrarCliente(Ficheros.coches.get(eliminar).getMatricula(), eb);
-            tablaCliente.removeRow(eliminar);
+            } else {
+                JOptionPane.showMessageDialog(null, "No hay usuarios para eliminar.", "Error", 0);
+            }
         } else {
-            JOptionPane.showMessageDialog(null, "No hay usuarios para eliminar.", "Error", 0);
+            Mensajes.ventanaError("No puedes eliminar un cliente mientras editas", "Edición");
         }
-
     }//GEN-LAST:event_botonEliminarClienteMouseClicked
 
     /**
@@ -467,7 +476,7 @@ public class Clientes extends javax.swing.JFrame {
             }
         });
     }
-    
+
     /**
      * Muestra la tabla actualizada.
      */

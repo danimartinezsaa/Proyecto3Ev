@@ -397,8 +397,8 @@ public class Clientes extends javax.swing.JFrame {
             textoCilindrada.setText(tablaClientes.getValueAt(editar, 2).toString());
             textoCaballos.setText(tablaClientes.getValueAt(editar, 3).toString());
             textoNombre.setText(tablaClientes.getValueAt(editar, 4).toString());
-            textoDni.setText(tablaClientes.getValueAt(editar, 5).toString());
-            textoTelefono.setText(tablaClientes.getValueAt(editar, 6).toString());
+            textoDni.setText(tablaClientes.getValueAt(editar, 6).toString());
+            textoTelefono.setText(tablaClientes.getValueAt(editar, 5).toString());
 
             if (tablaCliente.getValueAt(editar, 1).equals("Diesel")) {
                 textoMotor.setSelectedIndex(0);

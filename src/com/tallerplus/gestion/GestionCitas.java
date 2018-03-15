@@ -109,7 +109,6 @@ public class GestionCitas {
 
         if (encontrado == false) {
             Mensajes.ventanaError("Cita no encontrada.", "Búsqueda.");
-            JOptionPane.showMessageDialog(null, "Cita no encontrada", "Búsqueda", 0);
         }
         return encontradas;
     }

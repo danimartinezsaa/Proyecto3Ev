@@ -19,7 +19,8 @@ import javax.swing.table.DefaultTableModel;
  * @author dani_
  */
 public class VerCitas extends javax.swing.JFrame {
-
+    ArrayList<Cita> encontradas = new ArrayList();
+    ArrayList<Cita> mostradas = new ArrayList();
     DefaultTableModel tabla = new DefaultTableModel();
 
     /**
@@ -36,33 +37,9 @@ public class VerCitas extends javax.swing.JFrame {
         tabla.addColumn("Descripción");
         tabla.addColumn("Precio");
         tabla.addColumn("Estado");
-
-        ArrayList<Cita> citas = new ArrayList();
-
-        citas = Ficheros.citas;
-        Collections.sort(citas);
-        Iterator<Cita> it = citas.iterator();
-        while (it.hasNext()) {
-            Cita cita = it.next();
-            if (!(cita.getEstado().equalsIgnoreCase("pendiente") || cita.getEstado().equalsIgnoreCase("en proceso"))) {
-                it.remove();
-            }
-        }
-        for (Cita elemento : citas) {
-            String anadir[] = new String[5];
-            anadir[0] = elemento.getMatricula();
-            anadir[1] = elemento.getFechaHora();
-            anadir[2] = elemento.getDescripcion();
-            anadir[3] = Float.toString(elemento.getPrecio());
-            anadir[4] = elemento.getEstado();
-
-            tabla.addRow(anadir);
-        }
-        this.tablabusqueda.setModel(tabla);
+        mostrarTabla();
     }
 
-    //Añadimos las citas encontadas a la tabla
-    //Recibimos la citas encontradas que no esten cerradas o finalizadas
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -278,83 +255,36 @@ public class VerCitas extends javax.swing.JFrame {
     }//GEN-LAST:event_inmatriculaActionPerformed
     /**
      * Botón búsqueda por fecha
-     *
      * @param evt
      */
     private void bbuscarfechaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bbuscarfechaMouseClicked
-        ArrayList<Cita> encontradas = new ArrayList();
+
         String fecha = infecha.getText();
 
         //Recibimos la citas encontradas que no esten cerradas o finalizadas
         encontradas = GestionCitas.consultarCitaFecha(fecha);
 
-        // borramos las citas que no esten en estado pendiente o en proceso
-        Iterator<Cita> it = encontradas.iterator();
-        while (it.hasNext()) {
-            Cita cita = it.next();
-            if (!(cita.getEstado().equalsIgnoreCase("pendiente") || cita.getEstado().equalsIgnoreCase("en proceso"))) {
-                it.remove();
-            }
-        }
-        //Borramos contanido anterior de la tabla
-        for (int i = 0; i < tabla.getRowCount(); i++) {
-            tabla.removeRow(i);
-            i -= 1;
-        }
-
-        //Añadimos las citas encontadas a la tabla
-        Collections.sort(encontradas);
-        for (Cita elemento : encontradas) {
-            String anadir[] = new String[5];
-            anadir[0] = elemento.getMatricula();
-            anadir[1] = elemento.getFechaHora();
-            anadir[2] = elemento.getDescripcion();
-            anadir[3] = Float.toString(elemento.getPrecio());
-            anadir[4] = elemento.getEstado();
-            tabla.addRow(anadir);
-        }
-        this.tablabusqueda.setModel(tabla);
+        borrarCitasPendientesProceso();
+        borrarTabla();
+        mostrarTablaEncontradas(encontradas);
         infecha.setText("");
     }//GEN-LAST:event_bbuscarfechaMouseClicked
     /**
      * Botón búsqueda por matrícula
-     *
      * @param evt
      */
     private void bbuscarmatriculaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bbuscarmatriculaMouseClicked
-        ArrayList<Cita> encontradas = new ArrayList();
+
         String matricula = inmatricula.getText();
 
         //Recibimos la citas encontradas
         encontradas = GestionCitas.consultarCitaMatricula(matricula);
 
-        // borramos las citas que no esten pendientes o en proceso
-        Iterator<Cita> it = encontradas.iterator();
-        while (it.hasNext()) {
-            Cita cita = it.next();
-            if (!(cita.getEstado().equalsIgnoreCase("pendiente") || cita.getEstado().equalsIgnoreCase("en proceso"))) {
-                it.remove();
-            }
-        }
 
-        //Borramos contenido anterior de la tabla
-        for (int i = 0; i < tabla.getRowCount(); i++) {
-            tabla.removeRow(i);
-            i -= 1;
-        }
+        borrarCitasPendientesProceso();
+        borrarTabla();
+        mostrarTablaEncontradas(encontradas);
 
-        //Añadimos las citas encontadas a la tabla
-        Collections.sort(encontradas);
-        for (Cita elemento : encontradas) {
-            String anadir[] = new String[5];
-            anadir[0] = elemento.getMatricula();
-            anadir[1] = elemento.getFechaHora();
-            anadir[2] = elemento.getDescripcion();
-            anadir[3] = Float.toString(elemento.getPrecio());
-            anadir[4] = elemento.getEstado();
-            tabla.addRow(anadir);
-        }
-        this.tablabusqueda.setModel(tabla);
         inmatricula.setText("");
     }//GEN-LAST:event_bbuscarmatriculaMouseClicked
 
@@ -366,39 +296,15 @@ public class VerCitas extends javax.swing.JFrame {
         int seleccion = tablabusqueda.getSelectedRow();
         if (seleccion >= 0) {
             String estado = (String) inestado.getSelectedItem();
-            GestionCitas.modificarEstado(Ficheros.citas.get(seleccion).getMatricula(),
-                    Ficheros.citas.get(seleccion).getFechaHora(),
-                    estado);
+            String matricula = mostradas.get(seleccion).getMatricula();
+            String fechahora = mostradas.get(seleccion).getFechaHora();
+            GestionCitas.modificarEstado(matricula, fechahora, estado);
         } else {
             JOptionPane.showMessageDialog(null, "Seleccione una cita", "Error", 0);
         }
-        //Borramos contenido anterior de la tabla
-        for (int i = 0; i < tabla.getRowCount(); i++) {
-            tabla.removeRow(i);
-            i -= 1;
-        }
-        ArrayList<Cita> citas = new ArrayList();
 
-        citas = Ficheros.citas;
-        Collections.sort(citas);
-        Iterator<Cita> it = citas.iterator();
-        while (it.hasNext()) {
-            Cita cita = it.next();
-            if (!(cita.getEstado().equalsIgnoreCase("pendiente") || cita.getEstado().equalsIgnoreCase("en proceso"))) {
-                it.remove();
-            }
-        }
-        for (Cita elemento : citas) {
-            String anadir[] = new String[5];
-            anadir[0] = elemento.getMatricula();
-            anadir[1] = elemento.getFechaHora();
-            anadir[2] = elemento.getDescripcion();
-            anadir[3] = Float.toString(elemento.getPrecio());
-            anadir[4] = elemento.getEstado();
-
-            tabla.addRow(anadir);
-        }
-        this.tablabusqueda.setModel(tabla);
+        borrarTabla();
+        mostrarTabla();
     }//GEN-LAST:event_botoncomboMouseClicked
 
     /**
@@ -435,6 +341,63 @@ public class VerCitas extends javax.swing.JFrame {
                 new VerCitas().setVisible(true);
             }
         });
+    }
+
+    /**
+     * Método que borra el contenido de la tabla.
+     */
+    private void borrarTabla() {
+        for (int i = 0; i < tabla.getRowCount(); i++) {
+            tabla.removeRow(i);
+            i -= 1;
+        }
+    }
+    /**
+     * Método que muestra en la tabla todas las citas pendientes y en proceso.
+     */
+    private void mostrarTabla() {
+        Collections.sort(Ficheros.citas);
+
+        for (Cita elemento : Ficheros.citas) {
+            if ((elemento.getEstado().equalsIgnoreCase("pendiente") || elemento.getEstado().equalsIgnoreCase("en proceso"))) {
+                String anadir[] = new String[5];
+                anadir[0] = elemento.getMatricula();
+                anadir[1] = elemento.getFechaHora();
+                anadir[2] = elemento.getDescripcion();
+                anadir[3] = Float.toString(elemento.getPrecio());
+                anadir[4] = elemento.getEstado();
+                mostradas.add(new Cita(anadir[0], anadir[1], anadir[2], Float.parseFloat(anadir[3]), anadir[4]));
+                tabla.addRow(anadir);
+            }
+        }
+        this.tablabusqueda.setModel(tabla);
+    }
+    /**
+     * Método que muestra en la tabla las citas del array que recibe
+     * @param encontradas Array con las citas que queremos mostrar
+     */
+    private void mostrarTablaEncontradas(ArrayList<Cita> encontradas){
+        Collections.sort(encontradas);
+        for (Cita elemento : encontradas) {
+            String anadir[] = new String[5];
+            anadir[0] = elemento.getMatricula();
+            anadir[1] = elemento.getFechaHora();
+            anadir[2] = elemento.getDescripcion();
+            anadir[3] = Float.toString(elemento.getPrecio());
+            anadir[4] = elemento.getEstado();
+            tabla.addRow(anadir);
+        }
+        this.tablabusqueda.setModel(tabla);        
+    }
+    
+    private void borrarCitasPendientesProceso(){
+        Iterator<Cita> it = encontradas.iterator();
+        while (it.hasNext()) {
+            Cita cita = it.next();
+            if (!(cita.getEstado().equalsIgnoreCase("pendiente") || cita.getEstado().equalsIgnoreCase("en proceso"))) {
+                it.remove();
+            }
+        }        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

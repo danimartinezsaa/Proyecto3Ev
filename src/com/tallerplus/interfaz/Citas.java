@@ -39,6 +39,7 @@ public class Citas extends javax.swing.JFrame {
             anadir[2] = elemento.getDescripcion();
             anadir[3]=Float.toString(elemento.getPrecio());
             anadir[4]=elemento.getEstado();
+            System.out.println(anadir[0]);
             tabla.addRow(anadir);
         }
 

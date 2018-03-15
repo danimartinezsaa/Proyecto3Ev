@@ -12,7 +12,7 @@ import Validaciones.ValidarFormatos;
 import com.tallerplus.files.Ficheros;
 import com.tallerplus.gestion.GestionVentas;
 import static com.tallerplus.interfaz.VentaCoches.eliminar;
-import static com.tallerplus.interfaz.VentaCoches.motor;
+
 
 /**
  *
@@ -23,7 +23,10 @@ public class ClientesVentas extends javax.swing.JFrame {
     /**
      * Creates new form ClientesVentas
      */
+    boolean correcto=false;
     String telefono;
+          
+
 
     public ClientesVentas() {
         initComponents();
@@ -164,16 +167,17 @@ public class ClientesVentas extends javax.swing.JFrame {
         boolean dniCorrecto = ValidarFormatos.validarDni(textoDni.getText());
         boolean telefonoCorrecto = ValidarFormatos.validarTelefono(textoTelefono.getText());
         if (matriculaCorrecta == true && dniCorrecto == true && telefonoCorrecto == true) {
-            VentaCoches.motor = Ficheros.ventas.get(eliminar).getMotor();
-              VentaCoches.cilindrada = Ficheros.ventas.get(eliminar).getCilindrada();
-              VentaCoches.caballos = Ficheros.ventas.get(eliminar).getCaballos();
-              VentaCoches.correcto = GestionVentas.borrarVenta(eliminar, true);
+            VentaCoches.motor = Ficheros.ventas.get(VentaCoches.eliminar).getMotor();
+              VentaCoches.cilindrada = Ficheros.ventas.get(VentaCoches.eliminar).getCilindrada();
+              VentaCoches.caballos = Ficheros.ventas.get(VentaCoches.eliminar).getCaballos();
+              correcto = GestionVentas.borrarVenta(VentaCoches.eliminar, true);
+              if (correcto==true){
               GestionClientes.anadirCliente(textoMatricula.getText(), VentaCoches.motor, VentaCoches.cilindrada,
                     VentaCoches.caballos, textoNombre.getText(), textoDni.getText(), textoTelefono.getText());
-              
-           
+              VentaCoches.tabla.removeRow(VentaCoches.tablabusqueda.getSelectedRow());
+              VentaCoches.tablabusqueda.setModel(VentaCoches.tabla);
             dispose();
-            
+              }
             
         } else {
             JOptionPane.showMessageDialog(null, "Datos erroneos");

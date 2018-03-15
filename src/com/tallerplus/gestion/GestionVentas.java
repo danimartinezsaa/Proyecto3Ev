@@ -53,9 +53,7 @@ public class GestionVentas {
             if (confirmado == YES_OPTION) {
                 borrado = true;
             }
-            Ficheros.escribirFicheroVentas();
-            
-            borrado = true;
+          
         }
         if (borrado == true) {
             Ficheros.ventas.remove(posicion);

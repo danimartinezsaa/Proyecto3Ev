@@ -13,8 +13,8 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import Validaciones.ValidarFormatos; // importamos la libreria que creamos
+import com.tallerplus.gestion.GestionTabla;
 import java.awt.Color;
-
 
 /**
  * Interfaz venta de coches.
@@ -25,11 +25,12 @@ public class VentaCoches extends javax.swing.JFrame {
 
     DefaultTableModel tabla = new DefaultTableModel();
     ArrayList<Venta> enventa = new ArrayList();
-      static String motor;
-      static String caballos;
-      static String cilindrada;
-      static boolean correcto;
-      static int eliminar;
+    static String motor;
+    static String caballos;
+    static String cilindrada;
+    static boolean correcto;
+    static int eliminar;
+
     public VentaCoches() {
         initComponents();
         setLocationRelativeTo(null);
@@ -41,22 +42,11 @@ public class VentaCoches extends javax.swing.JFrame {
         tabla.addColumn("Motor");
         tabla.addColumn("Cilindrada");
         tabla.addColumn("Caballos");
-       
 
         //Recibimos los coches encontrados
         enventa = Ficheros.ventas;
-
-        //Añadimos los coches encontados a la tabla
-        for (Venta elemento : enventa) {
-            String anadir[] = new String[5];
-            anadir[0] = elemento.getModelo();
-            anadir[1] = elemento.getPrecio().toString();
-            anadir[2] = elemento.getMotor();
-            anadir[3] = elemento.getCilindrada();
-            anadir[4] = elemento.getCaballos();
-            tabla.addRow(anadir);
-        }
-        this.tablabusqueda.setModel(tabla);
+        
+        mostrarTabla();
     }
 
     /**
@@ -294,64 +284,53 @@ public class VentaCoches extends javax.swing.JFrame {
      * @param evt
      */
     private void bañadirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bañadirMouseClicked
-        boolean caballosValidos=ValidarFormatos.isNumeric(incaballos.getText()); // comprobacion de que los datos esten validados correctamente 
-        boolean precioValido=ValidarFormatos.validarPrecio(inprecio.getText());
-        boolean cilindradaValida=ValidarFormatos.validarPrecio(incilindrada.getText());
+        boolean caballosValidos = ValidarFormatos.isNumeric(incaballos.getText()); // comprobacion de que los datos esten validados correctamente 
+        boolean precioValido = ValidarFormatos.validarPrecio(inprecio.getText());
+        boolean cilindradaValida = ValidarFormatos.validarPrecio(incilindrada.getText());
         if (Login.getUsuarioLogueado().equals("admin")) {
-        if(caballosValidos==true && precioValido==true && cilindradaValida==true){ // si se cumplen que todos los datos esten validados correctamente 
+            if (caballosValidos == true && precioValido == true && cilindradaValida == true) { // si se cumplen que todos los datos esten validados correctamente 
                 incaballos.setForeground(Color.black); // marcamos que todos los campos tengan color de letra negra, porque si se introducieron datos erroneos antes, el color que aparece es rojo 
                 incilindrada.setForeground(Color.black);
                 inprecio.setForeground(Color.black);
-                
-            String modelo = inmodelo.getText(); // guardamos en una variable cada uno de los campos que introducimos en la interfaz 
-            String motor = (String) inmotor.getSelectedItem();
-            String cilindrada = incilindrada.getText();
-            String caballos = incaballos.getText();
-            Float precio = Float.parseFloat(inprecio.getText());
 
-            GestionVentas.anadirVenta(modelo, precio, motor, cilindrada, caballos); // llamamos al metodo añadir ventas para poder insertar un coche en venta 
+                String modelo = inmodelo.getText(); // guardamos en una variable cada uno de los campos que introducimos en la interfaz 
+                String motor = (String) inmotor.getSelectedItem();
+                String cilindrada = incilindrada.getText();
+                String caballos = incaballos.getText();
+                Float precio = Float.parseFloat(inprecio.getText());
 
-            inmodelo.setText(""); // una vez ya insertamos el coche marcamos todos los campos de entrada de texto en blanco 
-            incilindrada.setText("");
-            incaballos.setText("");
-            inprecio.setText("");
+                GestionVentas.anadirVenta(modelo, precio, motor, cilindrada, caballos); // llamamos al metodo añadir ventas para poder insertar un coche en venta 
 
-            //Borramos contanido anterior de la tabla
-            for (int i = 0; i < tabla.getRowCount(); i++) {
-                tabla.removeRow(i);
-                i -= 1;
-            }
+                inmodelo.setText(""); // una vez ya insertamos el coche marcamos todos los campos de entrada de texto en blanco 
+                incilindrada.setText("");
+                incaballos.setText("");
+                inprecio.setText("");
 
-            //Recibimos los coches encontrados
-            enventa = Ficheros.ventas;
+                //Borramos contanido anterior de la tabla
+                GestionTabla.borrarTabla(tabla);
 
-            //Añadimos los coches encontados a la tabla
-            for (Venta elemento : enventa) {
-                String anadir[] = new String[5];
-                anadir[0] = elemento.getModelo();
-                anadir[1] = elemento.getPrecio().toString();
-                anadir[2] = elemento.getMotor();
-                anadir[3] = elemento.getCilindrada();
-                anadir[4] = elemento.getCaballos();
-                tabla.addRow(anadir);
-            }
-            this.tablabusqueda.setModel(tabla);
-            }
-            else{ // en caso de que no se cumpla que los campos no esten validados con exito 
-                JOptionPane.showMessageDialog(null,"datos erroneos"); // mostramos un mensaje de error al usuario 
-                if(caballosValidos==false)
+                //Recibimos los coches encontrados
+                enventa = Ficheros.ventas;
+
+                mostrarTabla();
+            } else { // en caso de que no se cumpla que los campos no esten validados con exito 
+                JOptionPane.showMessageDialog(null, "datos erroneos"); // mostramos un mensaje de error al usuario 
+                if (caballosValidos == false) {
                     incaballos.setForeground(Color.red); // en caso de que este mal validado marcamos el campo con letra de color rojo 
-                else
+                } else {
                     incaballos.setForeground(Color.black); // en caso contrario ponemos la letra en negro, por si en un intento anterior se haya puesto en rojo 
-                if(cilindradaValida==false)
+                }
+                if (cilindradaValida == false) {
                     incilindrada.setForeground(Color.red);
-                else
+                } else {
                     incilindrada.setForeground(Color.black);
-                if(precioValido==false)
+                }
+                if (precioValido == false) {
                     inprecio.setForeground(Color.red);
-                else
+                } else {
                     inprecio.setForeground(Color.black);
-                
+                }
+
             }
         } else { // en caso de que el usuario que intenta realizar la operacion no tenga permisos suficientes 
             JOptionPane.showMessageDialog(null, "No tienes permisos para realizar esta operación", "Error", 0); // mostramos un mensaje de error
@@ -360,7 +339,7 @@ public class VentaCoches extends javax.swing.JFrame {
             incaballos.setText("");
             inprecio.setText("");
         }
-    
+
     }//GEN-LAST:event_bañadirMouseClicked
 
     /**
@@ -373,21 +352,29 @@ public class VentaCoches extends javax.swing.JFrame {
         if (Login.getUsuarioLogueado().equals("admin")) {
             int eliminar = tablabusqueda.getSelectedRow();
             if (eliminar >= 0) {
-                 boolean correcto = GestionVentas.borrarVenta(eliminar, false);
-               
+                boolean correcto = GestionVentas.borrarVenta(eliminar, false);
+                if(correcto==true){
+                    GestionTabla.borrarTabla(tabla);
+                    mostrarTabla();
+                }
             }
         } else {
             JOptionPane.showMessageDialog(null, "No tienes permisos para realizar esta operación", "Error", 0);
         }
     }//GEN-LAST:event_bborrarMouseClicked
-
+    /**
+     * Botón para vender un coche.
+     * @param evt 
+     */
     private void bvenderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bvenderMouseClicked
-         eliminar = tablabusqueda.getSelectedRow();
+        eliminar = tablabusqueda.getSelectedRow();
         if (eliminar >= 0) {
-             
-             ClientesVentas clienteventas=new ClientesVentas();
-             
-        }else System.out.println("errror");
+
+            ClientesVentas clienteventas = new ClientesVentas();
+
+        } else {
+            System.out.println("errror");
+        }
     }//GEN-LAST:event_bvenderMouseClicked
 
     /**
@@ -424,6 +411,22 @@ public class VentaCoches extends javax.swing.JFrame {
                 new VentaCoches().setVisible(true);
             }
         });
+    }
+    
+    /**
+     * Método que muestra la tabla actualizada
+     */
+    private void mostrarTabla() {
+        for (Venta elemento : enventa) {
+            String anadir[] = new String[5];
+            anadir[0] = elemento.getModelo();
+            anadir[1] = elemento.getPrecio().toString();
+            anadir[2] = elemento.getMotor();
+            anadir[3] = elemento.getCilindrada();
+            anadir[4] = elemento.getCaballos();
+            tabla.addRow(anadir);
+        }
+        this.tablabusqueda.setModel(tabla);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

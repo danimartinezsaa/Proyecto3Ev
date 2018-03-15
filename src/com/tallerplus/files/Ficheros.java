@@ -34,10 +34,10 @@ public class Ficheros {
     static String[] atributosventas=new String[5];
 
     //Ficheros
-    static File ficherocoches = new File("src\\com\\tallerplus\\files\\coche.txt");
-    static File ficherousuarios = new File("src\\com\\tallerplus\\files\\usuario.txt");
-    static File ficherocitas = new File("src\\com\\tallerplus\\files\\cita.txt");
-    static File ficheroventas = new File("src\\com\\tallerplus\\files\\ventas.txt");
+    static File ficherocoches = new File("C:\\Users\\jose\\Documents\\NetBeansProjects\\Taller-Plus\\src\\com\\tallerplus\\files\\coche.txt");
+    static File ficherousuarios = new File("C:\\Users\\jose\\Documents\\NetBeansProjects\\Taller-Plus\\src\\com\\tallerplus\\files\\usuario.txt");
+    static File ficherocitas = new File("C:\\Users\\jose\\Documents\\NetBeansProjects\\Taller-Plus\\src\\com\\tallerplus\\files\\cita.txt");
+    static File ficheroventas = new File("C:\\Users\\jose\\Documents\\NetBeansProjects\\Taller-Plus\\src\\com\\tallerplus\\files\\ventas.txt");
 
     static String linea;
 

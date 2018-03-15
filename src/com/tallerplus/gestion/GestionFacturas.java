@@ -33,7 +33,7 @@ public class GestionFacturas {
         
         try {
             FileWriter escribir;
-            escribir = new FileWriter("src/com/tallerplus/facturas/factura.txt");
+            escribir = new FileWriter("C:\\Users\\jose\\Documents\\NetBeansProjects\\Taller-Plus\\src\\com\\tallerplus\\facturasfactura.txt");
             escribir.write(
                     "Fecha factura: "+cadenaFecha+"         "+"Matricula: "+matricula+"         \n"+
                     "         \n"+
@@ -45,7 +45,7 @@ public class GestionFacturas {
             System.out.println("Error al escribir");
         }
         
-        File fichero=new File("src/com/tallerplus/facturas/factura.txt");
+        File fichero=new File("C:\\Users\\jose\\Documents\\NetBeansProjects\\Taller-Plus\\src\\com\\tallerplus\\facturasfactura.txt");
         try {
             Desktop.getDesktop().open(fichero);
         } catch (IOException ex) {

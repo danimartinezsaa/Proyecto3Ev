@@ -23,7 +23,7 @@ import java.awt.Color;
  */
 public class VentaCoches extends javax.swing.JFrame {
 
-    DefaultTableModel tabla = new DefaultTableModel();
+    static DefaultTableModel tabla = new DefaultTableModel();
     ArrayList<Venta> enventa = new ArrayList();
     static String motor;
     static String caballos;
@@ -31,6 +31,7 @@ public class VentaCoches extends javax.swing.JFrame {
     static boolean correcto;
     static int eliminar;
 
+     
     public VentaCoches() {
         initComponents();
         setLocationRelativeTo(null);
@@ -350,7 +351,7 @@ public class VentaCoches extends javax.swing.JFrame {
     private void bborrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bborrarMouseClicked
 
         if (Login.getUsuarioLogueado().equals("admin")) {
-            int eliminar = tablabusqueda.getSelectedRow();
+             eliminar = tablabusqueda.getSelectedRow();
             if (eliminar >= 0) {
                 boolean correcto = GestionVentas.borrarVenta(eliminar, false);
                 if(correcto==true){
@@ -447,7 +448,7 @@ public class VentaCoches extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tablabusqueda;
+    public static javax.swing.JTable tablabusqueda;
     private javax.swing.JLabel titulousuarios;
     private javax.swing.JLabel titulousuarios1;
     private javax.swing.JLabel titulousuarios2;

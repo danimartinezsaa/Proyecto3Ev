@@ -3,8 +3,6 @@ package com.tallerplus.gestion;
 import VentanasEmergentes.Mensajes;
 import com.tallerplus.files.Ficheros;
 import com.tallerplus.objetos.Coche;
-import java.util.ArrayList;
-import javax.swing.JOptionPane;
 
 public class GestionClientes {
 

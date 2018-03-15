@@ -19,7 +19,7 @@ public class GestionClientes {
      * @param dni numero de identificacion personal del dueño del vehiculo
      * @param telefono telefono de contacto del dueño del vehiculo
      */
-    public static boolean anadirCliente(String matricula, String motor, String cilindrada, String caballos, String nombreDueño, String dni, String telefono) {
+    public static boolean anadirCliente(String matricula, String motor, String cilindrada, String caballos, String nombreDueño, String telefono, String dni) {
         boolean encontrado = false;
         for (int i = 0; i < Ficheros.coches.size(); i++) {
             if (Ficheros.coches.get(i).getMatricula().equals(matricula)) {

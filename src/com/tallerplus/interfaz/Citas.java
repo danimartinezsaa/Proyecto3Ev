@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.tallerplus.interfaz;
 
 import Validaciones.ValidarFormatos;
@@ -14,13 +9,21 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
+ * Ventana Citas, dónde se pueden ver, añadir y borrar citas. Consta de un
+ * formulario y una tabla, para añadir contenido y visualizarlo. Hay un botón
+ * para volver a la pantalla principal y al cerrar la ventana se cierra el
+ * programa.
  *
  * @author dani_
  */
 public class Citas extends javax.swing.JFrame {
-    DefaultTableModel tabla=new DefaultTableModel();
+
+    DefaultTableModel tabla = new DefaultTableModel();
+
     /**
-     * Creates new form Citas
+     * Constructor en dónde se inicializan los componentes, se centra en la
+     * pantalla, no permite redimensionar y se hace visible la ventana. Se
+     * inicializa la tabla con los valores del ArrayList Ficheros.citas.
      */
     public Citas() {
         initComponents();
@@ -39,25 +42,33 @@ public class Citas extends javax.swing.JFrame {
             anadir[0] = elemento.getMatricula();
             anadir[1] = elemento.getFechaHora();
             anadir[2] = elemento.getDescripcion();
-            anadir[3]=Float.toString(elemento.getPrecio());
-            anadir[4]=elemento.getEstado();
+            anadir[3] = Float.toString(elemento.getPrecio());
+            anadir[4] = elemento.getEstado();
             tabla.addRow(anadir);
         }
 
         this.tablacitas.setModel(tabla);
     }
-     private boolean validarDatos( String matricula,  String precio) {
+
+    /**
+     * Clase que valida que los datos de matrícula y precio son correctos.
+     *
+     * @param matricula Matrícula a introducir en la cita.
+     * @param precio Precio a introducir en la cita.
+     * @return
+     */
+    private boolean validarDatos(String matricula, String precio) {
         boolean validado = false;
         boolean matriculaValida = ValidarFormatos.validarMatricula(inmatricula.getText());
         boolean preciovalido = ValidarFormatos.validarPrecio(inprecio.getText());
-        if ( matriculaValida == true && preciovalido == true) {
+        if (matriculaValida == true && preciovalido == true) {
             inmatricula.setForeground(Color.black);
             inprecio.setForeground(Color.black);
             validado = true;
         } else {
 
             JOptionPane.showMessageDialog(null, "datos erroneos");
-           
+
             if (matriculaValida == false) {
                 inmatricula.setForeground(Color.red);
             } else {
@@ -68,13 +79,12 @@ public class Citas extends javax.swing.JFrame {
             } else {
                 inprecio.setForeground(Color.black);
             }
-           
+
             validado = false;
 
         }
         return validado;
     }
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -311,11 +321,19 @@ public class Citas extends javax.swing.JFrame {
         VentanaPrincipal venanaprincipal = new VentanaPrincipal();
         dispose();
     }//GEN-LAST:event_batrasMouseClicked
-
+    /**
+     * Campo de texto para introducir el precio.
+     *
+     * @param evt
+     */
     private void inprecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inprecioActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_inprecioActionPerformed
-
+    /**
+     * Botón para eliminar la cita seleccionada.
+     *
+     * @param evt
+     */
     private void bborrarcitaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bborrarcitaMouseClicked
         int eliminar = tablacitas.getSelectedRow();
         if (eliminar >= 0) {
@@ -325,47 +343,65 @@ public class Citas extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_bborrarcitaMouseClicked
-
+    /**
+     * Campo de texto para introducir la descripción.
+     *
+     * @param evt
+     */
     private void indescripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_indescripcionActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_indescripcionActionPerformed
-
+    /**
+     * Campo de texto para introducir la fecha y la hora.
+     *
+     * @param evt
+     */
     private void infechahoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_infechahoraActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_infechahoraActionPerformed
-
+    /**
+     * Función que al pulsar en el campo de introducir fecha y hora borra el
+     * texto predefinido y deja el campo en blanco.
+     *
+     * @param evt
+     */
     private void infechahoraFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_infechahoraFocusGained
         infechahora.setText("");
     }//GEN-LAST:event_infechahoraFocusGained
-
+    /**
+     * Campo de texto para introducir la matrícula.
+     * @param evt
+     */
     private void inmatriculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inmatriculaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_inmatriculaActionPerformed
-
+    /**
+     *Botón para añadir una cita al ArrayList Ficheros.citas.
+     * @param evt
+     */
     private void bañadircitaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bañadircitaMouseClicked
-        String matricula=inmatricula.getText();
-        String precio=inprecio.getText();
-        boolean validado=validarDatos(matricula,precio);
-        if(validado==true){
-        try {
-
-            String anadir[] = new String[5];
-            anadir[0] = inmatricula.getText();
-            anadir[1] = infechahora.getText();
-            anadir[2] = indescripcion.getText();
-            anadir[3]=inprecio.getText();
-            anadir[4]=(String) comboestado.getSelectedItem();
-            GestionCitas.anadirCita(anadir[0], anadir[1], anadir[2], Float.parseFloat(anadir[3]),anadir[4]);
-            tabla.addRow(anadir);
-        } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(null, "Valor de precio erróneo", "Error", 0);
-        } finally {
-            inmatricula.setText("");
-            infechahora.setText("DD/MM/AAAA HH:MM");
-            inprecio.setText("");
-            indescripcion.setText("");
+        String matricula = inmatricula.getText();
+        String precio = inprecio.getText();
+        boolean validado = validarDatos(matricula, precio);
+        if (validado == true) {
+            try {
+                String anadir[] = new String[5];
+                anadir[0] = inmatricula.getText();
+                anadir[1] = infechahora.getText();
+                anadir[2] = indescripcion.getText();
+                anadir[3] = inprecio.getText();
+                anadir[4] = (String) comboestado.getSelectedItem();
+                GestionCitas.anadirCita(anadir[0], anadir[1], anadir[2], Float.parseFloat(anadir[3]), anadir[4]);
+                tabla.addRow(anadir);
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(null, "Valor de precio erróneo", "Error", 0);
+            } finally {
+                inmatricula.setText("");
+                infechahora.setText("DD/MM/AAAA HH:MM");
+                inprecio.setText("");
+                indescripcion.setText("");
+            }
         }
-        }   
     }//GEN-LAST:event_bañadircitaMouseClicked
 
     /**

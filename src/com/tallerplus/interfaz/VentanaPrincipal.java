@@ -1,21 +1,17 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.tallerplus.interfaz;
 
 import com.tallerplus.gestion.Login;
 import javax.swing.JOptionPane;
 
 /**
- *
+ * Clase que gestiona la Ventana Principal, que tiene iconos que te dan acceso a las demás ventanas del programa. Si se presiona el botón de cerrar cierra el programa.
  * @author dani_
  */
 public class VentanaPrincipal extends javax.swing.JFrame {
 
     /**
-     * Creates new form VentanaPrincipal
+     * Constructor que inicializa componentes, centra la ventana en la pantalla, la hace visible y evita que sea redimensionable.
      */
     public VentanaPrincipal() {
         initComponents();
@@ -49,7 +45,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
-        banadircita = new javax.swing.JLabel();
+        bcitas = new javax.swing.JLabel();
         bcoches = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
 
@@ -137,10 +133,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jLabel20.setForeground(new java.awt.Color(240, 240, 240));
         jLabel20.setText("Historial cliente");
 
-        banadircita.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tallerplus/icon/calendario.png"))); // NOI18N
-        banadircita.addMouseListener(new java.awt.event.MouseAdapter() {
+        bcitas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tallerplus/icon/calendario.png"))); // NOI18N
+        bcitas.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                banadircitaMouseClicked(evt);
+                bcitasMouseClicked(evt);
             }
         });
 
@@ -184,7 +180,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                             .addGroup(panelprincipalLayout.createSequentialGroup()
                                 .addGroup(panelprincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel14)
-                                    .addComponent(banadircita))
+                                    .addComponent(bcitas))
                                 .addGap(238, 238, 238)))
                         .addGap(45, 45, 45)
                         .addGroup(panelprincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -234,7 +230,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                     .addComponent(jLabel20))
                 .addGap(18, 18, 18)
                 .addGroup(panelprincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(banadircita)
+                    .addComponent(bcitas)
                     .addComponent(bbuscarcita)
                     .addComponent(bhistorialcliente))
                 .addGap(31, 31, 31))
@@ -255,8 +251,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     /**
-     * Evento al clickar foto "Buscar Cita"
-     *
+     * Evento al clickar foto "Buscar Cita". Lanza la ventana Buscar Citas.
      * @param evt
      */
     private void bbuscarcitaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bbuscarcitaMouseClicked
@@ -265,8 +260,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_bbuscarcitaMouseClicked
 
     /**
-     * Evento al clickar foto "Historial Cliente"
-     *
+     * Evento al clickar foto "Historial Cliente". Lanza la ventana Historial Cliente.
      * @param evt
      */
     private void bhistorialclienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bhistorialclienteMouseClicked
@@ -274,8 +268,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_bhistorialclienteMouseClicked
     /**
-     * Evento al clickar foto "Usuarios"
-     *
+     * Evento al clickar foto "Usuarios". Lanza la ventana Usuarios.
      * @param evt
      */
     private void busuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_busuarioMouseClicked
@@ -286,8 +279,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null,"No tienes permisos para acceder aquí", "Error",0);
     }//GEN-LAST:event_busuarioMouseClicked
     /**
-     * Evento al clickar foto "Clientes"
-     *
+     * Evento al clickar foto "Clientes". Lanza la ventana Clientes.
      * @param evt
      */
     private void bclienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bclienteMouseClicked
@@ -298,8 +290,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null,"No tienes permisos para acceder aquí", "Error",0);
     }//GEN-LAST:event_bclienteMouseClicked
     /**
-     * Evento al clickar foto "Facturas"
-     *
+     * Evento al clickar foto "Facturas". Lanza la ventana Facturas.
      * @param evt
      */
     private void bfacturaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bfacturaMouseClicked
@@ -310,17 +301,20 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null,"No tienes permisos para acceder aquí", "Error",0);
     }//GEN-LAST:event_bfacturaMouseClicked
     /**
-     * Evento al clickar foto "Añadir Citas"
+     * Evento al clickar foto "Añadir Citas". Lanza la ventana Citas.
      * @param evt 
      */
-    private void banadircitaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_banadircitaMouseClicked
+    private void bcitasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bcitasMouseClicked
         if(!Login.getUsuarioLogueado().equals("mecanico")){    
             Citas ventanaCitas = new Citas();
             dispose();
         }else
             JOptionPane.showMessageDialog(null,"No tienes permisos para acceder aquí", "Error",0);
-    }//GEN-LAST:event_banadircitaMouseClicked
-
+    }//GEN-LAST:event_bcitasMouseClicked
+    /**
+     * Evento al clickar la foto "Coches en venta". Lanza la ventana Ventas.
+     * @param evt 
+     */
     private void bcochesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bcochesMouseClicked
         if(!Login.getUsuarioLogueado().equals("mecanico")){
                 VentaCoches ventanaVentas = new VentaCoches();
@@ -368,8 +362,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         setVisible(true);
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel banadircita;
     private javax.swing.JLabel bbuscarcita;
+    private javax.swing.JLabel bcitas;
     private javax.swing.JLabel bcliente;
     private javax.swing.JLabel bcoches;
     private javax.swing.JLabel bfactura;

@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.tallerplus.interfaz;
 
 import com.tallerplus.files.Ficheros;
@@ -17,8 +13,9 @@ import com.tallerplus.gestion.GestionTabla;
 import java.awt.Color;
 
 /**
- * Interfaz venta de coches.
- *
+ * Clase que gestiona la ventana Venta de Coches, incluye un formulario para añadir o eliminar ventas.
+ * Contiene una tabla que muestra el contenido del ArrayList Ficheros.ventas.
+ * Cierra el programa al presionar el botón cerrar.
  * @author dani_
  */
 public class VentaCoches extends javax.swing.JFrame {
@@ -31,7 +28,10 @@ public class VentaCoches extends javax.swing.JFrame {
     static boolean correcto;
     static int eliminar;
 
-     
+    /**
+     * Constructor que inicializa los componentes, centra la ventana, la hace visible y evita que sea redimensionarla.
+     * Añade contenido a la tabla.
+     */
     public VentaCoches() {
         initComponents();
         setLocationRelativeTo(null);
@@ -273,7 +273,10 @@ public class VentaCoches extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    /**
+     * Botón que devuelve al usuario a la ventana principal.
+     * @param evt 
+     */
     private void batrasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_batrasMouseClicked
         VentanaPrincipal venanaprincipal = new VentanaPrincipal();
         dispose();
@@ -281,7 +284,7 @@ public class VentaCoches extends javax.swing.JFrame {
 
     /**
      * Botón para añadir un coche nuevo a la venta.
-     *
+     * Valida que los datos introducidos sean correctos.
      * @param evt
      */
     private void bañadirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bañadirMouseClicked
@@ -345,7 +348,7 @@ public class VentaCoches extends javax.swing.JFrame {
 
     /**
      * Botón para borrar un coche de las ventas.
-     *
+     * Actualiza el contenido de la tabla.
      * @param evt
      */
     private void bborrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bborrarMouseClicked
@@ -365,6 +368,7 @@ public class VentaCoches extends javax.swing.JFrame {
     }//GEN-LAST:event_bborrarMouseClicked
     /**
      * Botón para vender un coche.
+     * Lanza el formulario de ventas.
      * @param evt 
      */
     private void bvenderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bvenderMouseClicked

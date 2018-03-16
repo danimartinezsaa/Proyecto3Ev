@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.tallerplus.interfaz;
 
 import com.tallerplus.files.Ficheros;
@@ -13,7 +8,12 @@ import com.tallerplus.objetos.Cita;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
-
+/**
+ * Clase que gestiona el funcionamiento de la ventana de Facturas. 
+ * Contiene una tabla que muestra las citas Finalizadas y borradas. Genera la factura de la cita seleccionada y la abre en un editor de texto.
+ * Cierra el programa al presionar el botón cerrar.
+ * @author dani_
+ */
 public class Facturas extends javax.swing.JFrame {
 
     DefaultTableModel tabla = new DefaultTableModel();
@@ -21,7 +21,9 @@ public class Facturas extends javax.swing.JFrame {
     ArrayList<Cita> finalizadas = new ArrayList();
 
     /**
-     * Creates new form Facturas
+     * Constructor que inicializa los componentes, evita redimensión, centra la
+     * ventana y la hace visible. Inicializa la tabla con datos del ArrayList
+     * Ficheros.Citas. Estas citas tienen que estar cerradas o finalizadas.
      */
     public Facturas() {
         initComponents();
@@ -260,9 +262,8 @@ public class Facturas extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-/**
+    /*
      * Botón para volver a la pantalla principal.
-     *
      * @param evt
      */
     private void batras1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_batras1MouseClicked
@@ -271,7 +272,6 @@ public class Facturas extends javax.swing.JFrame {
     }//GEN-LAST:event_batras1MouseClicked
     /**
      * Introdución de fecha para búsqueda
-     *
      * @param evt
      */
     private void infechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_infechaActionPerformed
@@ -279,7 +279,6 @@ public class Facturas extends javax.swing.JFrame {
     }//GEN-LAST:event_infechaActionPerformed
     /**
      * Botón buscar cita por fecha
-     *
      * @param evt
      */
     private void bbuscarfechaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bbuscarfechaMouseClicked
@@ -293,7 +292,6 @@ public class Facturas extends javax.swing.JFrame {
     }//GEN-LAST:event_bbuscarfechaMouseClicked
     /**
      * Introdución de texto para buscar por matrícula.
-     *
      * @param evt
      */
     private void inmatriculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inmatriculaActionPerformed
@@ -301,7 +299,6 @@ public class Facturas extends javax.swing.JFrame {
     }//GEN-LAST:event_inmatriculaActionPerformed
     /**
      * Botón de buscar por matrícula.
-     *
      * @param evt
      */
     private void bbuscarmatriculaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bbuscarmatriculaMouseClicked
@@ -313,7 +310,11 @@ public class Facturas extends javax.swing.JFrame {
         GestionTabla.borrarTabla(tabla);
         mostrarTabla(encontradas);
     }//GEN-LAST:event_bbuscarmatriculaMouseClicked
-
+    /**
+     * Botón para generar la factura de una cita, la abre en el editor de texto y Cierra la cita, si esta todavía no lo está.
+     * Refresca el contenido de la tabla.
+     * @param evt 
+     */
     private void bgenerarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bgenerarMouseClicked
         int seleccionado = tablabusqueda.getSelectedRow();
 
@@ -322,14 +323,14 @@ public class Facturas extends javax.swing.JFrame {
             String descripcion = finalizadas.get(seleccionado).getDescripcion();
             Float precio = finalizadas.get(seleccionado).getPrecio();
             GestionFacturas.generarFactura(matricula, descripcion, precio);
-            for(int i=0;i<Ficheros.citas.size();i++){ // recirremos el array de citas para poder modificar el estado de la cita cuya matricula coincida, y asi cerrarla 
-                if (Ficheros.citas.get(i).getMatricula().equalsIgnoreCase(matricula)){ // si la matricula es la seleccionada
+            for (int i = 0; i < Ficheros.citas.size(); i++) { // recirremos el array de citas para poder modificar el estado de la cita cuya matricula coincida, y asi cerrarla 
+                if (Ficheros.citas.get(i).getMatricula().equalsIgnoreCase(matricula)) { // si la matricula es la seleccionada
                     Ficheros.citas.get(i).setEstado("Cerrado"); // cerramos la cita 
                 }
             }
             GestionTabla.borrarTabla(tabla);
-             mostrarTabla(finalizadas);
-            
+            mostrarTabla(finalizadas);
+
         }
     }//GEN-LAST:event_bgenerarMouseClicked
 
@@ -372,7 +373,7 @@ public class Facturas extends javax.swing.JFrame {
      * Método que muestra el contenido un ArrayList en la tabla.
      * @param contenido ArrayList con el contenido a mostrar en la tabla.
      */
-    private void mostrarTabla(ArrayList<Cita> contenido){
+    private void mostrarTabla(ArrayList<Cita> contenido) {
         for (Cita elemento : contenido) {
             String anadir[] = new String[4];
             anadir[0] = elemento.getMatricula();
@@ -381,7 +382,7 @@ public class Facturas extends javax.swing.JFrame {
             anadir[3] = elemento.getEstado();
             tabla.addRow(anadir);
         }
-        this.tablabusqueda.setModel(tabla);        
+        this.tablabusqueda.setModel(tabla);
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel batras1;

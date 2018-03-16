@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.tallerplus.interfaz;
 
 import Validaciones.ValidarFormatos;
@@ -17,7 +13,9 @@ import static javax.swing.JOptionPane.YES_OPTION;
 import javax.swing.table.DefaultTableModel;
 
 /**
- *
+ * Clase que gestiona el funcionamiento de la vetana Clientes, en dónde se pueden añadir, editar o eliminar clientes.
+ * Hay una tabla dónde se muestra el contenido del ArrayList Ficheros.coches.
+ * Cierra el programa al presionar el botón cerrar.
  * @author dani_
  */
 public class Clientes extends javax.swing.JFrame {
@@ -27,7 +25,8 @@ public class Clientes extends javax.swing.JFrame {
     DefaultTableModel tablaCliente = new DefaultTableModel();
 
     /**
-     * Creates new form Clientes
+     * Constructor en dónde se inicializan los componentes, se centra la ventana en la pantalla, se evita que sea redimensionable y se hace visible.
+     * Se añade el contenido del ArrayList Ficheros.coches a la tabla.
      */
     public Clientes() {
         initComponents();
@@ -332,7 +331,6 @@ public class Clientes extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     /**
      * Botón para volver a la pantalla anterior.
-     *
      * @param evt
      */
     private void batras1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_batras1MouseClicked
@@ -341,7 +339,6 @@ public class Clientes extends javax.swing.JFrame {
     }//GEN-LAST:event_batras1MouseClicked
     /**
      * Botón para añadir un cliente.
-     *
      * @param evt
      */
     private void botonAnadirClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAnadirClienteMouseClicked
@@ -388,7 +385,6 @@ public class Clientes extends javax.swing.JFrame {
     }//GEN-LAST:event_botonAnadirClienteMouseClicked
     /**
      * Botón para editar un cliente seleccionado en la tabla.
-     *
      * @param evt
      */
     private void botonEditarClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonEditarClienteMouseClicked
@@ -420,7 +416,6 @@ public class Clientes extends javax.swing.JFrame {
     }//GEN-LAST:event_botonEditarClienteMouseClicked
     /**
      * botón para eliminar al cliente seleccionado en la tabla.
-     *
      * @param evt
      */
     private void botonEliminarClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonEliminarClienteMouseClicked

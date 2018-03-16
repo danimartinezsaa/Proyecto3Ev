@@ -16,7 +16,7 @@ import javax.swing.JOptionPane;
 
 /**
  * Clase con un método que genera una factura con los parámetros de una cita recibida
- * @author dani_
+ * 
  */
 public class GestionFacturas {
     /**
@@ -29,10 +29,10 @@ public class GestionFacturas {
     public static void generarFactura(String matricula, String descripcion, float precio){
         Date fecha=new Date();
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-        String cadenaFecha = formato.format(fecha);
+        String cadenaFecha = formato.format(fecha); // almacenamos la fecha de la cita en el formato que nos interesa 
         
         try {
-            FileWriter escribir;
+            FileWriter escribir; // escribimos en el fichero factura la informacion necesaria 
             escribir = new FileWriter("src/com/tallerplus/facturas/factura.txt");
             escribir.write(
                     "Fecha factura: "+cadenaFecha+"         "+"Matricula: "+matricula+"         \n"+
@@ -40,16 +40,16 @@ public class GestionFacturas {
                     "Descripcion: \n"+descripcion+"\n"+"\n         "+
                     "Total ---> "+precio+"€"
             );
-            escribir.close();
-        } catch (IOException ex) {
+            escribir.close(); // cerramos el fichero 
+        } catch (IOException ex) { // si salta la excepcion informamos con un mensaje de error
             System.out.println("Error al escribir");
         }
         
         File fichero=new File("src/com/tallerplus/facturas/factura.txt");
         try {
-            Desktop.getDesktop().open(fichero);
+            Desktop.getDesktop().open(fichero); // abrimos automaticamente la factura generada para que pueda ser imprimida
         } catch (IOException ex) {
-            Mensajes.ventanaError("Error al abrir la factura.", "Error");
+            Mensajes.ventanaError("Error al abrir la factura.", "Error"); // en caso de que no se pueda abrir mostramos un mensaje derror 
             JOptionPane.showMessageDialog(null,"Error al abrir la factura","Error",0);
         }
     }

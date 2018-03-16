@@ -13,7 +13,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class GestionTabla {
     /**
-     * Método que borra el contenido de la tabla.
+     * Método que borra el contenido de la tabla, para evitar codigo redundante
      */    
     public static void borrarTabla(DefaultTableModel tabla) {
         for (int i = 0; i < tabla.getRowCount(); i++) {

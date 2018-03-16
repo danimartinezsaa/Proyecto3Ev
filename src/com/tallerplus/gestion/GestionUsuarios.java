@@ -3,7 +3,7 @@ package com.tallerplus.gestion;
 import VentanasEmergentes.Mensajes;
 import com.tallerplus.files.Ficheros;
 import com.tallerplus.objetos.Usuario;
-import javax.swing.JOptionPane;
+
 
 public class GestionUsuarios {
 
@@ -18,19 +18,19 @@ public class GestionUsuarios {
      */
     public static boolean anadirUsuario(String usuario, String contrasena, String tipo) {
         boolean repetido = false;
-        for (Usuario elemento : Ficheros.usuarios) {
+        for (Usuario elemento : Ficheros.usuarios) { // recorremos la lista de usuarios para saber si el usuario que buscamos ya existe 
             if (elemento.getUsuario().equals(usuario)) {
                 repetido = true;
             }
         }
-        if (repetido == false) {
+        if (repetido == false) { // si el usuario que buscamos no existe lo añadimos, en caso contrario, informamos que ya existe un usuario con ese nombre 
             Ficheros.usuarios.add(new Usuario(usuario, contrasena, tipo));
             Ficheros.escribirFicheroUsuarios();
         } else {
             Mensajes.ventanaError("Ya existe un usuario con ese nombre.","Añadir usuario");
         }
 
-        return repetido;
+        return repetido; // retornamos si el usuario existia o no, que sera usado en la interfaz 
     }
 
     /**
@@ -42,23 +42,23 @@ public class GestionUsuarios {
      */
     public static boolean borrarUsuario(String usuario) {
         boolean bandera = true;
-        if (!usuario.equals("admin")) {
+        if (!usuario.equals("admin")) { // si el usuario es el administrador "admin" no puede ser borrado 
             boolean borrado = false;
-            for (int i = 0; i < Ficheros.usuarios.size(); i++) {
+            for (int i = 0; i < Ficheros.usuarios.size(); i++) { // en caso de que no sea este, buscamos el usuario concreto y se elimina 
                 if (Ficheros.usuarios.get(i).getUsuario().equals(usuario)) {
                     Ficheros.usuarios.remove(i);
-                    borrado = true;
+                    borrado = true; 
                     break;
                 }
             }
-            if (borrado == true) {
+            if (borrado == true) { // en caso de borrar el usuario sobreescribimos el fichero
                 Ficheros.escribirFicheroUsuarios();
             }
         } else {
-            bandera = false;
+            bandera = false; // en caso contrario mandamos un mensaje de error
             Mensajes.ventanaError("No se puede borrar 'ADMIN'","Error");
         }
-        return bandera;
+        return bandera; // retornamos si el usuario ha sido borrado o no 
     }
 
     /**
@@ -71,7 +71,7 @@ public class GestionUsuarios {
      */
     public static boolean editarUsuario(int numero,String usuario, String contrasena, String tipo) {
         boolean editado = false;
-        Ficheros.usuarios.set(numero, new Usuario(usuario, contrasena, tipo));
+        Ficheros.usuarios.set(numero, new Usuario(usuario, contrasena, tipo)); // seleccionamos el usuario en cuestion y le enviamos los nuevos valores 
         editado = true;
 
         Ficheros.escribirFicheroUsuarios();

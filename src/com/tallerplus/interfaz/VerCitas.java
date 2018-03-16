@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.tallerplus.interfaz;
 
 import com.tallerplus.files.Ficheros;
@@ -16,7 +12,9 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
- *
+ * Clase que gestiona la ventana Ver Citas. Tiene un formulario para buscarlas por fecha o matrícula. Permite cambiar el estado.
+ * Contiene una tabla que muestra las citas no cerradas o finalizadas.
+ * Cierra el programa al presionar el botón cerrar.
  * @author dani_
  */
 public class VerCitas extends javax.swing.JFrame {
@@ -25,7 +23,8 @@ public class VerCitas extends javax.swing.JFrame {
     DefaultTableModel tabla = new DefaultTableModel();
 
     /**
-     * Creates new form BuscarCita
+     * Constructor que inicializa los componentes, centra la ventana, la hace visible y evita que sea redimensionable.
+     * Inicializa el contenido de la tabla.
      */
     public VerCitas() {
         initComponents();
@@ -241,16 +240,25 @@ public class VerCitas extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    /**
+     * Botón que devuelve al usuario a la pantalla principal.
+     * @param evt 
+     */
     private void batrasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_batrasMouseClicked
         VentanaPrincipal venanaprincipal = new VentanaPrincipal();
         dispose();
     }//GEN-LAST:event_batrasMouseClicked
-
+    /**
+     * Campo de texto para introducir la fecha.
+     * @param evt 
+     */
     private void infechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_infechaActionPerformed
 
     }//GEN-LAST:event_infechaActionPerformed
-
+    /**
+     * Campo de texto para introducir la matrícula.
+     * @param evt 
+     */
     private void inmatriculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inmatriculaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_inmatriculaActionPerformed
@@ -288,11 +296,18 @@ public class VerCitas extends javax.swing.JFrame {
 
         inmatricula.setText("");
     }//GEN-LAST:event_bbuscarmatriculaMouseClicked
-
+    /**
+     * Combobox para cambiar el estado de una cita seleccionada en la tabla.
+     * @param evt 
+     */
     private void inestadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_inestadoMouseClicked
 
     }//GEN-LAST:event_inestadoMouseClicked
-
+    /**
+     * Botón que confirma el cambio de estado de la cita seleccionada por el estado seleccionado en el combobox.
+     * Actualiza la tabla.
+     * @param evt 
+     */
     private void botoncomboMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botoncomboMouseClicked
         int seleccion = tablabusqueda.getSelectedRow();
         if (seleccion >= 0) {

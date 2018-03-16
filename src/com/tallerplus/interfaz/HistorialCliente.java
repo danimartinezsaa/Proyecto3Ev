@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.tallerplus.interfaz;
 
 import com.tallerplus.gestion.GestionCitas;
@@ -12,13 +8,16 @@ import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
 /**
- *
+ * Clase que gestiona la ventana Historial Cliente en la que hay un formulario para buscar las citas de un determinado cliente introduciendo su matrícula.
+ * La información se muestra en una tabla.
+ * Cierra el programa al presionar el botón cerrar.
  * @author dani_
  */
 public class HistorialCliente extends javax.swing.JFrame {
     DefaultTableModel tabla=new DefaultTableModel();
     /**
-     * Creates new form HistorialCliente
+     * Constructor que inicializa componentes, centra la ventana en la pantalla, evita redimensionarla y la hace visible.
+     * Crea las columnas de la tabla.
      */
     public HistorialCliente() {
         initComponents();
@@ -162,16 +161,25 @@ public class HistorialCliente extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    /**
+     * Botón que devuelve a la ventana principal.
+     * @param evt 
+     */
     private void batras1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_batras1MouseClicked
         VentanaPrincipal venanaprincipal=new VentanaPrincipal();
         dispose();
     }//GEN-LAST:event_batras1MouseClicked
-
+    /**
+     * Campo de texto para introducir la matrícula.
+     * @param evt 
+     */
     private void inmatriculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inmatriculaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_inmatriculaActionPerformed
-
+    /**
+     * Botón que envía el formulario y refresca el contenido de la tabla.
+     * @param evt 
+     */
     private void bbuscarmatriculaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bbuscarmatriculaMouseClicked
         ArrayList<Cita> encontradas=new ArrayList();
         String matricula=inmatricula.getText();
@@ -193,7 +201,10 @@ public class HistorialCliente extends javax.swing.JFrame {
         }
         this.tablabusqueda.setModel(tabla);
     }//GEN-LAST:event_bbuscarmatriculaMouseClicked
-
+    /**
+     * Evento que al clickar en el campo de texto para introducir la matrícula elimina el contenido anterior.
+     * @param evt 
+     */
     private void inmatriculaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_inmatriculaFocusGained
         inmatricula.setText("");
     }//GEN-LAST:event_inmatriculaFocusGained

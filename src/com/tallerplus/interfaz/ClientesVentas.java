@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.tallerplus.interfaz;
 
 import com.tallerplus.gestion.GestionClientes;
@@ -12,23 +7,20 @@ import Validaciones.ValidarFormatos;
 import VentanasEmergentes.Mensajes;
 import com.tallerplus.files.Ficheros;
 import com.tallerplus.gestion.GestionVentas;
-import static com.tallerplus.interfaz.VentaCoches.eliminar;
-
 
 /**
- *
+ * Clase que gestiona la ventana para introducir los datos de la venta de un coche, contiene un formulario.
+ * Cierra el programa al presionar el botón cerrar.
  * @author jose
  */
 public class ClientesVentas extends javax.swing.JFrame {
 
+    private boolean correcto = false;
+    private String telefono;
+
     /**
-     * Creates new form ClientesVentas
+     * Constructor que inicializa los componentes, lo centra en la pantalla, evita que sea redimensionable y la hace visible.
      */
-    boolean correcto=false;
-    String telefono;
-          
-
-
     public ClientesVentas() {
         initComponents();
         setLocationRelativeTo(null);
@@ -157,63 +149,69 @@ public class ClientesVentas extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    /**
+     * Campo de entrada de texto Teléfono.
+     *
+     * @param evt
+     */
     private void textoTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textoTelefonoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_textoTelefonoActionPerformed
-
+    /**
+     * Botón para enviar los datos del formulario.
+     *
+     * @param evt
+     */
     private void botonOkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonOkMouseClicked
 
         boolean matriculaCorrecta = ValidarFormatos.validarMatricula(textoMatricula.getText());
         boolean dniCorrecto = ValidarFormatos.validarDni(textoDni.getText());
         boolean telefonoCorrecto = ValidarFormatos.validarTelefono(textoTelefono.getText());
-        boolean bandera=false;
-        
-            for (int i = 0; i < Ficheros.coches.size(); i++) {
+        boolean bandera = false;
+
+        for (int i = 0; i < Ficheros.coches.size(); i++) {
             if (Ficheros.coches.get(i).getMatricula().equals(textoMatricula.getText())) {
                 Mensajes.ventanaError("El cliente introducido ya existe.", "Gestión de clientes.");
-               bandera=false;
-               break; 
-            }else
-                bandera=true;
-            }
-            if(bandera==true){
-        if (matriculaCorrecta == true && dniCorrecto == true && telefonoCorrecto == true) {
-         
-            VentaCoches.motor = Ficheros.ventas.get(VentaCoches.eliminar).getMotor();
-              VentaCoches.cilindrada = Ficheros.ventas.get(VentaCoches.eliminar).getCilindrada();
-              VentaCoches.caballos = Ficheros.ventas.get(VentaCoches.eliminar).getCaballos();
-              correcto = GestionVentas.borrarVenta(VentaCoches.eliminar, true);
-              if (correcto==true){
-              GestionClientes.anadirCliente(textoMatricula.getText(), VentaCoches.motor, VentaCoches.cilindrada,
-                    VentaCoches.caballos, textoNombre.getText(), textoDni.getText(), textoTelefono.getText());
-              VentaCoches.tabla.removeRow(VentaCoches.tablabusqueda.getSelectedRow());
-              VentaCoches.tablabusqueda.setModel(VentaCoches.tabla);
-            dispose();
-              }
-            
+                bandera = false;
+                break;
             } else {
-            JOptionPane.showMessageDialog(null, "Datos erroneos");
-            if (matriculaCorrecta == false) {
-                textoMatricula.setForeground(Color.red);
-            } else {
-                textoMatricula.setForeground(Color.black);
+                bandera = true;
             }
-            if (dniCorrecto == false) {
-                textoDni.setForeground(Color.red);
-            } else {
-                textoDni.setForeground(Color.black);
-            }
-            if (telefonoCorrecto == false) {
-                textoTelefono.setForeground(Color.red);
-            } else {
-                textoTelefono.setForeground(Color.black);
-            }
-
-        
         }
+        if (bandera == true) {
+            if (matriculaCorrecta == true && dniCorrecto == true && telefonoCorrecto == true) {
+
+                VentaCoches.motor = Ficheros.ventas.get(VentaCoches.eliminar).getMotor();
+                VentaCoches.cilindrada = Ficheros.ventas.get(VentaCoches.eliminar).getCilindrada();
+                VentaCoches.caballos = Ficheros.ventas.get(VentaCoches.eliminar).getCaballos();
+                correcto = GestionVentas.borrarVenta(VentaCoches.eliminar, true);
+                if (correcto == true) {
+                    GestionClientes.anadirCliente(textoMatricula.getText(), VentaCoches.motor, VentaCoches.cilindrada,
+                            VentaCoches.caballos, textoNombre.getText(), textoDni.getText(), textoTelefono.getText());
+                    VentaCoches.tabla.removeRow(VentaCoches.tablabusqueda.getSelectedRow());
+                    VentaCoches.tablabusqueda.setModel(VentaCoches.tabla);
+                    dispose();
+                }
+
+            } else {
+                JOptionPane.showMessageDialog(null, "Datos erroneos");
+                if (matriculaCorrecta == false) {
+                    textoMatricula.setForeground(Color.red);
+                } else {
+                    textoMatricula.setForeground(Color.black);
+                }
+                if (dniCorrecto == false) {
+                    textoDni.setForeground(Color.red);
+                } else {
+                    textoDni.setForeground(Color.black);
+                }
+                if (telefonoCorrecto == false) {
+                    textoTelefono.setForeground(Color.red);
+                } else {
+                    textoTelefono.setForeground(Color.black);
+                }
             }
-            
+        }
     }//GEN-LAST:event_botonOkMouseClicked
 
     /**

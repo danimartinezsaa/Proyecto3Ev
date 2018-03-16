@@ -6,8 +6,16 @@ import com.tallerplus.gestion.Login;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
+/**
+ * Clase que gestiona la ventana para introducir el usuario y la contraseña, contiene un formulario.
+ * Cierra el programa al presionar el botón cerrar.
+ * @author dani_
+ */
 public class LoginUsers extends javax.swing.JFrame {
-
+    /**
+     * Constructor que inicializa componentes, centra la ventana, evita redimensionarla y la hace visible.
+     * Se activa la escucha activa en los campos de texto y el botón para enviar el formulario si se pulsa la tecla ENTER.
+     */
     public LoginUsers() {
         initComponents();
         setLocationRelativeTo(null);
@@ -122,7 +130,10 @@ public class LoginUsers extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    /**
+     * Campo de texto para introducir el usuario.
+     * @param evt 
+     */
     private void inusuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inusuarioActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_inusuarioActionPerformed
@@ -132,7 +143,7 @@ public class LoginUsers extends javax.swing.JFrame {
     }//GEN-LAST:event_entrarActionPerformed
 
     /**
-     * Botón que recoge la información del formulario de Login.
+     * Botón que recoge la información del formulario de Login y cierra la ventana si los datos son correctos..
      * @param evt 
      */
     private void entrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_entrarMouseClicked
@@ -146,6 +157,9 @@ public class LoginUsers extends javax.swing.JFrame {
             //Si el usuario y la contraseña son correctos cierro ventana login.
             dispose();
     }//GEN-LAST:event_entrarMouseClicked
+    /**
+     * InnerClass para que lanze la función entrarMouseClicked si se presiona la tecla Enter.
+     */
     public class PresionarTecla extends KeyAdapter{ // inner class para poder usar el enter en el boton enviar
         @Override
         public void keyPressed(KeyEvent e){

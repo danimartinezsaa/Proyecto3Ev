@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.tallerplus.interfaz;
 
 import VentanasEmergentes.Mensajes;
@@ -15,7 +10,8 @@ import static javax.swing.JOptionPane.YES_OPTION;
 import javax.swing.table.DefaultTableModel;
 
 /**
- *
+ * Clase que gestiona la ventana de Usuarios, contiene un formulario para añadir, editar o borrar usuarios y una tabla que muestra el contenido del ArrayList Ficheros.usuarios.
+ * Cierra el programa al presionar el botón cerrar.
  * @author dani_
  */
 public class Usuarios extends javax.swing.JFrame {
@@ -25,7 +21,8 @@ public class Usuarios extends javax.swing.JFrame {
     int usuario_editar;
 
     /**
-     * Creates new form Usuarios
+     * Constructor que inicializa los componentes, centra la ventana, evita
+     * redimensionarla y la hace visible. Inicializa el contenido de la tabla.
      */
     public Usuarios() {
         initComponents();
@@ -38,15 +35,8 @@ public class Usuarios extends javax.swing.JFrame {
         tabla.addColumn("Contraseña");
         tabla.addColumn("Tipo");
         //Filas de la tabla
-        for (Usuario elemento : Ficheros.usuarios) {
-            String anadir[] = new String[3];
-            anadir[0] = elemento.getUsuario();
-            anadir[1] = elemento.getContrasena();
-            anadir[2] = elemento.getTipo();
-            tabla.addRow(anadir);
-        }
+        mostrarTabla();
 
-        this.tablausuarios.setModel(tabla);
     }
 
     /**
@@ -207,13 +197,18 @@ public class Usuarios extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    /**
+     * Botón que devuelve al usuario a la ventana principal.
+     *
+     * @param evt
+     */
     private void batrasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_batrasMouseClicked
         VentanaPrincipal venanaprincipal = new VentanaPrincipal();
         dispose();
     }//GEN-LAST:event_batrasMouseClicked
     /**
-     * Botón añadir usuario.
+     * Botón añadir usuario. Añade un nuevo usuario y confirma la acción de
+     * editar un usuario existente. Refresca la tabla.
      *
      * @param evt
      */
@@ -241,14 +236,7 @@ public class Usuarios extends javax.swing.JFrame {
 
             GestionTabla.borrarTabla(tabla);
             //Filas de la tabla
-            for (Usuario elemento : Ficheros.usuarios) {
-                String anadir[] = new String[3];
-                anadir[0] = elemento.getUsuario();
-                anadir[1] = elemento.getContrasena();
-                anadir[2] = elemento.getTipo();
-                tabla.addRow(anadir);
-            }
-            this.tablausuarios.setModel(tabla);
+            mostrarTabla();
             edicion = false;
         }
         inusuario.setText("");
@@ -337,7 +325,19 @@ public class Usuarios extends javax.swing.JFrame {
             }
         });
     }
-
+    /**
+     * Clase que muestra el contenido de la tabla actualizado.
+     */
+    private void mostrarTabla() {
+        for (Usuario elemento : Ficheros.usuarios) {
+            String anadir[] = new String[3];
+            anadir[0] = elemento.getUsuario();
+            anadir[1] = elemento.getContrasena();
+            anadir[2] = elemento.getTipo();
+            tabla.addRow(anadir);
+        }
+        this.tablausuarios.setModel(tabla);
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel banadirusuario;
     private javax.swing.JLabel batras;

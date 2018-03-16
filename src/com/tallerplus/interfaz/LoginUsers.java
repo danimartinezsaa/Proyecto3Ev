@@ -1,4 +1,3 @@
-
 package com.tallerplus.interfaz;
 
 import com.tallerplus.files.Ficheros;
@@ -7,14 +6,18 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 /**
- * Clase que gestiona la ventana para introducir el usuario y la contraseña, contiene un formulario.
- * Cierra el programa al presionar el botón cerrar.
+ * Clase que gestiona la ventana para introducir el usuario y la contraseña,
+ * contiene un formulario. Cierra el programa al presionar el botón cerrar.
+ *
  * @author dani_
  */
 public class LoginUsers extends javax.swing.JFrame {
+
     /**
-     * Constructor que inicializa componentes, centra la ventana, evita redimensionarla y la hace visible.
-     * Se activa la escucha activa en los campos de texto y el botón para enviar el formulario si se pulsa la tecla ENTER.
+     * Constructor que inicializa componentes, centra la ventana, evita
+     * redimensionarla y la hace visible. Se activa la escucha activa en los
+     * campos de texto y el botón para enviar el formulario si se pulsa la tecla
+     * ENTER.
      */
     public LoginUsers() {
         initComponents();
@@ -24,6 +27,7 @@ public class LoginUsers extends javax.swing.JFrame {
         entrar.addKeyListener(new PresionarTecla()); // escuchador en el boton entrar para poder utilizar el enter indistantemente del mouse click, cuando estemos sobre el boton
         inusuario.addKeyListener(new PresionarTecla());// escuchador para que funcione el boton intro cuando estemos dentro de insertar usuario
         incontrasena.addKeyListener(new PresionarTecla()); // escuchador para cuando estemos ubicados en insertar contraseña
+    
     }
 
     @SuppressWarnings("unchecked")
@@ -40,6 +44,8 @@ public class LoginUsers extends javax.swing.JFrame {
         labelcontraseña = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Login");
+        setIconImage(getIconImage());
 
         panellogin.setBackground(new java.awt.Color(109, 132, 180));
 
@@ -132,7 +138,8 @@ public class LoginUsers extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     /**
      * Campo de texto para introducir el usuario.
-     * @param evt 
+     *
+     * @param evt
      */
     private void inusuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inusuarioActionPerformed
         // TODO add your handling code here:
@@ -143,32 +150,37 @@ public class LoginUsers extends javax.swing.JFrame {
     }//GEN-LAST:event_entrarActionPerformed
 
     /**
-     * Botón que recoge la información del formulario de Login y cierra la ventana si los datos son correctos..
-     * @param evt 
+     * Botón que recoge la información del formulario de Login y cierra la
+     * ventana si los datos son correctos..
+     *
+     * @param evt
      */
     private void entrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_entrarMouseClicked
-        
+
         //Guardo usuario y contraseña
-        String contrasena=new String(incontrasena.getPassword());
-        String usuario=new String(inusuario.getText());
+        String contrasena = new String(incontrasena.getPassword());
+        String usuario = new String(inusuario.getText());
         //Lo mando al método que lo gestiona en la clase Login.
-        boolean correcto=Login.comprobarUsuario(usuario, contrasena, Ficheros.usuarios);
-        if(correcto==true)
-            //Si el usuario y la contraseña son correctos cierro ventana login.
+        boolean correcto = Login.comprobarUsuario(usuario, contrasena, Ficheros.usuarios);
+        if (correcto == true) //Si el usuario y la contraseña son correctos cierro ventana login.
+        {
             dispose();
+        }
     }//GEN-LAST:event_entrarMouseClicked
     /**
-     * InnerClass para que lanze la función entrarMouseClicked si se presiona la tecla Enter.
+     * InnerClass para que lanze la función entrarMouseClicked si se presiona la
+     * tecla Enter.
      */
-    public class PresionarTecla extends KeyAdapter{ // inner class para poder usar el enter en el boton enviar
+    public class PresionarTecla extends KeyAdapter { // inner class para poder usar el enter en el boton enviar
+
         @Override
-        public void keyPressed(KeyEvent e){
-            if(e.getKeyCode()==KeyEvent.VK_ENTER){
+        public void keyPressed(KeyEvent e) {
+            if (e.getKeyCode() == KeyEvent.VK_ENTER) {
                 entrarMouseClicked(null);
             }
         }
     }
-    
+
     /**
      * @param args the command line arguments
      */

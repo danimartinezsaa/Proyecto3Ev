@@ -50,6 +50,7 @@ public class ClientesVentas extends javax.swing.JFrame {
         botonOk = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Venta");
 
         jPanel1.setBackground(new java.awt.Color(109, 132, 180));
 

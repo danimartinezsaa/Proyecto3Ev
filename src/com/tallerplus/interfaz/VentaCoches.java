@@ -82,7 +82,7 @@ public class VentaCoches extends javax.swing.JFrame {
         bvender = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Cerrar Cita");
+        setTitle("Venta");
         setAutoRequestFocus(false);
         setBackground(new java.awt.Color(109, 132, 180));
         setMinimumSize(new java.awt.Dimension(900, 500));

@@ -1,29 +1,38 @@
-
 package com.tallerplus.interfaz;
 
 import com.tallerplus.gestion.GestionCitas;
 import com.tallerplus.gestion.GestionTabla;
 import com.tallerplus.objetos.Cita;
+import java.awt.Image;
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
 import javax.swing.table.DefaultTableModel;
 
 /**
- * Clase que gestiona la ventana Historial Cliente en la que hay un formulario para buscar las citas de un determinado cliente introduciendo su matrícula.
- * La información se muestra en una tabla.
- * Cierra el programa al presionar el botón cerrar.
+ * Clase que gestiona la ventana Historial Cliente en la que hay un formulario
+ * para buscar las citas de un determinado cliente introduciendo su matrícula.
+ * La información se muestra en una tabla. Cierra el programa al presionar el
+ * botón cerrar.
+ *
  * @author dani_
  */
 public class HistorialCliente extends javax.swing.JFrame {
-    DefaultTableModel tabla=new DefaultTableModel();
+
+    DefaultTableModel tabla = new DefaultTableModel();
+
     /**
-     * Constructor que inicializa componentes, centra la ventana en la pantalla, evita redimensionarla y la hace visible.
-     * Crea las columnas de la tabla.
+     * Constructor que inicializa componentes, centra la ventana en la pantalla,
+     * evita redimensionarla y la hace visible. Crea las columnas de la tabla.
      */
     public HistorialCliente() {
         initComponents();
         setLocationRelativeTo(null);
         setVisible(true);
         setResizable(false);
+        //Cambiamos icono
+        ImageIcon ImageIcon = new ImageIcon(getClass().getResource("/com/tallerplus/icon/LogoT+.png"));
+        Image Image = ImageIcon.getImage();
+        this.setIconImage(Image);
         //Columnas de la tabla
         tabla.addColumn("Matrícula");
         tabla.addColumn("Fecha y hora");
@@ -52,6 +61,7 @@ public class HistorialCliente extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Historial Cliente");
+        setIconImage(getIconImage());
         setMinimumSize(new java.awt.Dimension(900, 500));
         setResizable(false);
         setSize(new java.awt.Dimension(900, 500));
@@ -163,47 +173,52 @@ public class HistorialCliente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     /**
      * Botón que devuelve a la ventana principal.
-     * @param evt 
+     *
+     * @param evt
      */
     private void batras1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_batras1MouseClicked
-        VentanaPrincipal venanaprincipal=new VentanaPrincipal();
+        VentanaPrincipal venanaprincipal = new VentanaPrincipal();
         dispose();
     }//GEN-LAST:event_batras1MouseClicked
     /**
      * Campo de texto para introducir la matrícula.
-     * @param evt 
+     *
+     * @param evt
      */
     private void inmatriculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inmatriculaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_inmatriculaActionPerformed
     /**
      * Botón que envía el formulario y refresca el contenido de la tabla.
-     * @param evt 
+     *
+     * @param evt
      */
     private void bbuscarmatriculaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bbuscarmatriculaMouseClicked
-        ArrayList<Cita> encontradas=new ArrayList();
-        String matricula=inmatricula.getText();
+        ArrayList<Cita> encontradas = new ArrayList();
+        String matricula = inmatricula.getText();
 
         //Recibimos la citas encontradas
-        encontradas=GestionCitas.consultarCitaMatricula(matricula);
+        encontradas = GestionCitas.consultarCitaMatricula(matricula);
 
         GestionTabla.borrarTabla(tabla);
 
         //Añadimos las citas encontadas a la tabla
-        for(Cita elemento: encontradas){
-            String anadir[]=new String [5];
-            anadir[0]=elemento.getMatricula();
-            anadir[1]=elemento.getFechaHora();
-            anadir[2]=elemento.getDescripcion();
-            anadir[3]=Float.toString(elemento.getPrecio());
-            anadir[4]=elemento.getEstado();
+        for (Cita elemento : encontradas) {
+            String anadir[] = new String[5];
+            anadir[0] = elemento.getMatricula();
+            anadir[1] = elemento.getFechaHora();
+            anadir[2] = elemento.getDescripcion();
+            anadir[3] = Float.toString(elemento.getPrecio());
+            anadir[4] = elemento.getEstado();
             tabla.addRow(anadir);
         }
         this.tablabusqueda.setModel(tabla);
     }//GEN-LAST:event_bbuscarmatriculaMouseClicked
     /**
-     * Evento que al clickar en el campo de texto para introducir la matrícula elimina el contenido anterior.
-     * @param evt 
+     * Evento que al clickar en el campo de texto para introducir la matrícula
+     * elimina el contenido anterior.
+     *
+     * @param evt
      */
     private void inmatriculaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_inmatriculaFocusGained
         inmatricula.setText("");

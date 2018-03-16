@@ -1,36 +1,45 @@
-
 package com.tallerplus.interfaz;
 
 import com.tallerplus.files.Ficheros;
 import com.tallerplus.gestion.GestionCitas;
 import com.tallerplus.gestion.GestionTabla;
 import com.tallerplus.objetos.Cita;
+import java.awt.Image;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
- * Clase que gestiona la ventana Ver Citas. Tiene un formulario para buscarlas por fecha o matrícula. Permite cambiar el estado.
- * Contiene una tabla que muestra las citas no cerradas o finalizadas.
- * Cierra el programa al presionar el botón cerrar.
+ * Clase que gestiona la ventana Ver Citas. Tiene un formulario para buscarlas
+ * por fecha o matrícula. Permite cambiar el estado. Contiene una tabla que
+ * muestra las citas no cerradas o finalizadas. Cierra el programa al presionar
+ * el botón cerrar.
+ *
  * @author dani_
  */
 public class VerCitas extends javax.swing.JFrame {
+
     ArrayList<Cita> encontradas = new ArrayList();
     ArrayList<Cita> mostradas = new ArrayList();
     DefaultTableModel tabla = new DefaultTableModel();
 
     /**
-     * Constructor que inicializa los componentes, centra la ventana, la hace visible y evita que sea redimensionable.
-     * Inicializa el contenido de la tabla.
+     * Constructor que inicializa los componentes, centra la ventana, la hace
+     * visible y evita que sea redimensionable. Inicializa el contenido de la
+     * tabla.
      */
     public VerCitas() {
         initComponents();
         setLocationRelativeTo(null);
         setVisible(true);
         setResizable(false);
+        //Cambiamos icono
+        ImageIcon ImageIcon = new ImageIcon(getClass().getResource("/com/tallerplus/icon/LogoT+.png"));
+        Image Image = ImageIcon.getImage();
+        this.setIconImage(Image);
         //Columnas de la tabla
         tabla.addColumn("Matrícula");
         tabla.addColumn("Fecha y hora");
@@ -66,6 +75,7 @@ public class VerCitas extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Citas");
+        setIconImage(getIconImage());
         setMinimumSize(new java.awt.Dimension(900, 500));
         setResizable(false);
         setSize(new java.awt.Dimension(900, 500));
@@ -242,7 +252,8 @@ public class VerCitas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     /**
      * Botón que devuelve al usuario a la pantalla principal.
-     * @param evt 
+     *
+     * @param evt
      */
     private void batrasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_batrasMouseClicked
         VentanaPrincipal venanaprincipal = new VentanaPrincipal();
@@ -250,20 +261,23 @@ public class VerCitas extends javax.swing.JFrame {
     }//GEN-LAST:event_batrasMouseClicked
     /**
      * Campo de texto para introducir la fecha.
-     * @param evt 
+     *
+     * @param evt
      */
     private void infechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_infechaActionPerformed
 
     }//GEN-LAST:event_infechaActionPerformed
     /**
      * Campo de texto para introducir la matrícula.
-     * @param evt 
+     *
+     * @param evt
      */
     private void inmatriculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inmatriculaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_inmatriculaActionPerformed
     /**
      * Botón búsqueda por fecha
+     *
      * @param evt
      */
     private void bbuscarfechaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bbuscarfechaMouseClicked
@@ -280,6 +294,7 @@ public class VerCitas extends javax.swing.JFrame {
     }//GEN-LAST:event_bbuscarfechaMouseClicked
     /**
      * Botón búsqueda por matrícula
+     *
      * @param evt
      */
     private void bbuscarmatriculaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bbuscarmatriculaMouseClicked
@@ -289,7 +304,6 @@ public class VerCitas extends javax.swing.JFrame {
         //Recibimos la citas encontradas
         encontradas = GestionCitas.consultarCitaMatricula(matricula);
 
-
         borrarCitasPendientesProceso();
         GestionTabla.borrarTabla(tabla);
         mostrarTablaEncontradas(encontradas);
@@ -298,15 +312,17 @@ public class VerCitas extends javax.swing.JFrame {
     }//GEN-LAST:event_bbuscarmatriculaMouseClicked
     /**
      * Combobox para cambiar el estado de una cita seleccionada en la tabla.
-     * @param evt 
+     *
+     * @param evt
      */
     private void inestadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_inestadoMouseClicked
 
     }//GEN-LAST:event_inestadoMouseClicked
     /**
-     * Botón que confirma el cambio de estado de la cita seleccionada por el estado seleccionado en el combobox.
-     * Actualiza la tabla.
-     * @param evt 
+     * Botón que confirma el cambio de estado de la cita seleccionada por el
+     * estado seleccionado en el combobox. Actualiza la tabla.
+     *
+     * @param evt
      */
     private void botoncomboMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botoncomboMouseClicked
         int seleccion = tablabusqueda.getSelectedRow();
@@ -379,11 +395,13 @@ public class VerCitas extends javax.swing.JFrame {
         }
         this.tablabusqueda.setModel(tabla);
     }
+
     /**
      * Método que muestra en la tabla las citas del array que recibe
+     *
      * @param encontradas Array con las citas que queremos mostrar
      */
-    private void mostrarTablaEncontradas(ArrayList<Cita> encontradas){
+    private void mostrarTablaEncontradas(ArrayList<Cita> encontradas) {
         Collections.sort(encontradas);
         for (Cita elemento : encontradas) {
             String anadir[] = new String[5];
@@ -394,17 +412,17 @@ public class VerCitas extends javax.swing.JFrame {
             anadir[4] = elemento.getEstado();
             tabla.addRow(anadir);
         }
-        this.tablabusqueda.setModel(tabla);        
+        this.tablabusqueda.setModel(tabla);
     }
-    
-    private void borrarCitasPendientesProceso(){
+
+    private void borrarCitasPendientesProceso() {
         Iterator<Cita> it = encontradas.iterator();
         while (it.hasNext()) {
             Cita cita = it.next();
             if (!(cita.getEstado().equalsIgnoreCase("pendiente") || cita.getEstado().equalsIgnoreCase("en proceso"))) {
                 it.remove();
             }
-        }        
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

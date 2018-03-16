@@ -7,10 +7,14 @@ import Validaciones.ValidarFormatos;
 import VentanasEmergentes.Mensajes;
 import com.tallerplus.files.Ficheros;
 import com.tallerplus.gestion.GestionVentas;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 
 /**
- * Clase que gestiona la ventana para introducir los datos de la venta de un coche, contiene un formulario.
- * Cierra el programa al presionar el botón cerrar.
+ * Clase que gestiona la ventana para introducir los datos de la venta de un
+ * coche, contiene un formulario. Cierra el programa al presionar el botón
+ * cerrar.
+ *
  * @author jose
  */
 public class ClientesVentas extends javax.swing.JFrame {
@@ -19,13 +23,18 @@ public class ClientesVentas extends javax.swing.JFrame {
     private String telefono;
 
     /**
-     * Constructor que inicializa los componentes, lo centra en la pantalla, evita que sea redimensionable y la hace visible.
+     * Constructor que inicializa los componentes, lo centra en la pantalla,
+     * evita que sea redimensionable y la hace visible.
      */
     public ClientesVentas() {
         initComponents();
         setLocationRelativeTo(null);
         setVisible(true);
         setResizable(false);
+        //Cambiamos icono
+        ImageIcon ImageIcon = new ImageIcon(getClass().getResource("/com/tallerplus/icon/LogoT+.png"));
+        Image Image = ImageIcon.getImage();
+        this.setIconImage(Image);
 
     }
 
@@ -51,6 +60,7 @@ public class ClientesVentas extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Venta");
+        setIconImage(getIconImage());
 
         jPanel1.setBackground(new java.awt.Color(109, 132, 180));
 

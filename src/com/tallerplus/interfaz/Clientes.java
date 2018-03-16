@@ -1,4 +1,3 @@
-
 package com.tallerplus.interfaz;
 
 import Validaciones.ValidarFormatos;
@@ -8,14 +7,18 @@ import com.tallerplus.gestion.GestionClientes;
 import com.tallerplus.gestion.GestionTabla;
 import com.tallerplus.objetos.Coche;
 import java.awt.Color;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.YES_OPTION;
 import javax.swing.table.DefaultTableModel;
 
 /**
- * Clase que gestiona el funcionamiento de la vetana Clientes, en dónde se pueden añadir, editar o eliminar clientes.
- * Hay una tabla dónde se muestra el contenido del ArrayList Ficheros.coches.
- * Cierra el programa al presionar el botón cerrar.
+ * Clase que gestiona el funcionamiento de la vetana Clientes, en dónde se
+ * pueden añadir, editar o eliminar clientes. Hay una tabla dónde se muestra el
+ * contenido del ArrayList Ficheros.coches. Cierra el programa al presionar el
+ * botón cerrar.
+ *
  * @author dani_
  */
 public class Clientes extends javax.swing.JFrame {
@@ -25,14 +28,20 @@ public class Clientes extends javax.swing.JFrame {
     DefaultTableModel tablaCliente = new DefaultTableModel();
 
     /**
-     * Constructor en dónde se inicializan los componentes, se centra la ventana en la pantalla, se evita que sea redimensionable y se hace visible.
-     * Se añade el contenido del ArrayList Ficheros.coches a la tabla.
+     * Constructor en dónde se inicializan los componentes, se centra la ventana
+     * en la pantalla, se evita que sea redimensionable y se hace visible. Se
+     * añade el contenido del ArrayList Ficheros.coches a la tabla.
      */
     public Clientes() {
         initComponents();
         setLocationRelativeTo(null);
         setVisible(true);
         setResizable(false);
+        //Cambiamos icono
+        ImageIcon ImageIcon = new ImageIcon(getClass().getResource("/com/tallerplus/icon/LogoT+.png"));
+        Image Image = ImageIcon.getImage();
+        this.setIconImage(Image);
+        
         tablaCliente.addColumn("Matrícula");
         tablaCliente.addColumn("Motor");
         tablaCliente.addColumn("cilindrada");
@@ -143,6 +152,7 @@ public class Clientes extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Clientes");
+        setIconImage(getIconImage());
         setMinimumSize(new java.awt.Dimension(900, 500));
         setResizable(false);
         setSize(new java.awt.Dimension(900, 500));
@@ -331,6 +341,7 @@ public class Clientes extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     /**
      * Botón para volver a la pantalla anterior.
+     *
      * @param evt
      */
     private void batras1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_batras1MouseClicked
@@ -339,6 +350,7 @@ public class Clientes extends javax.swing.JFrame {
     }//GEN-LAST:event_batras1MouseClicked
     /**
      * Botón para añadir un cliente.
+     *
      * @param evt
      */
     private void botonAnadirClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAnadirClienteMouseClicked
@@ -385,6 +397,7 @@ public class Clientes extends javax.swing.JFrame {
     }//GEN-LAST:event_botonAnadirClienteMouseClicked
     /**
      * Botón para editar un cliente seleccionado en la tabla.
+     *
      * @param evt
      */
     private void botonEditarClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonEditarClienteMouseClicked
@@ -416,6 +429,7 @@ public class Clientes extends javax.swing.JFrame {
     }//GEN-LAST:event_botonEditarClienteMouseClicked
     /**
      * botón para eliminar al cliente seleccionado en la tabla.
+     *
      * @param evt
      */
     private void botonEliminarClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonEliminarClienteMouseClicked

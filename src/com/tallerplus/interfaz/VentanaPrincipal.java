@@ -1,23 +1,32 @@
-
 package com.tallerplus.interfaz;
 
 import com.tallerplus.gestion.Login;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
- * Clase que gestiona la Ventana Principal, que tiene iconos que te dan acceso a las demás ventanas del programa. Si se presiona el botón de cerrar cierra el programa.
+ * Clase que gestiona la Ventana Principal, que tiene iconos que te dan acceso a
+ * las demás ventanas del programa. Si se presiona el botón de cerrar cierra el
+ * programa.
+ *
  * @author dani_
  */
 public class VentanaPrincipal extends javax.swing.JFrame {
 
     /**
-     * Constructor que inicializa componentes, centra la ventana en la pantalla, la hace visible y evita que sea redimensionable.
+     * Constructor que inicializa componentes, centra la ventana en la pantalla,
+     * la hace visible y evita que sea redimensionable.
      */
     public VentanaPrincipal() {
         initComponents();
         setLocationRelativeTo(null);
         setVisible(true);
         setResizable(false);
+        //Cambiamos icono
+        ImageIcon ImageIcon = new ImageIcon(getClass().getResource("/com/tallerplus/icon/LogoT+.png"));
+        Image Image = ImageIcon.getImage();
+        this.setIconImage(Image);
     }
 
     /**
@@ -59,6 +68,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Ventana principal");
+        setIconImage(getIconImage());
         setMinimumSize(new java.awt.Dimension(900, 500));
         setSize(new java.awt.Dimension(900, 500));
 
@@ -252,6 +262,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     /**
      * Evento al clickar foto "Buscar Cita". Lanza la ventana Buscar Citas.
+     *
      * @param evt
      */
     private void bbuscarcitaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bbuscarcitaMouseClicked
@@ -260,7 +271,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_bbuscarcitaMouseClicked
 
     /**
-     * Evento al clickar foto "Historial Cliente". Lanza la ventana Historial Cliente.
+     * Evento al clickar foto "Historial Cliente". Lanza la ventana Historial
+     * Cliente.
+     *
      * @param evt
      */
     private void bhistorialclienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bhistorialclienteMouseClicked
@@ -269,58 +282,68 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_bhistorialclienteMouseClicked
     /**
      * Evento al clickar foto "Usuarios". Lanza la ventana Usuarios.
+     *
      * @param evt
      */
     private void busuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_busuarioMouseClicked
-        if(Login.getUsuarioLogueado().equals("admin")){
-                Usuarios ventanaUsuarios = new Usuarios();
-                dispose();
-        }else
-            JOptionPane.showMessageDialog(null,"No tienes permisos para acceder aquí", "Error",0);
+        if (Login.getUsuarioLogueado().equals("admin")) {
+            Usuarios ventanaUsuarios = new Usuarios();
+            dispose();
+        } else {
+            JOptionPane.showMessageDialog(null, "No tienes permisos para acceder aquí", "Error", 0);
+        }
     }//GEN-LAST:event_busuarioMouseClicked
     /**
      * Evento al clickar foto "Clientes". Lanza la ventana Clientes.
+     *
      * @param evt
      */
     private void bclienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bclienteMouseClicked
-        if(!Login.getUsuarioLogueado().equals("mecanico")){
+        if (!Login.getUsuarioLogueado().equals("mecanico")) {
             Clientes ventanaClientes = new Clientes();
             dispose();
-        }else
-            JOptionPane.showMessageDialog(null,"No tienes permisos para acceder aquí", "Error",0);
+        } else {
+            JOptionPane.showMessageDialog(null, "No tienes permisos para acceder aquí", "Error", 0);
+        }
     }//GEN-LAST:event_bclienteMouseClicked
     /**
      * Evento al clickar foto "Facturas". Lanza la ventana Facturas.
+     *
      * @param evt
      */
     private void bfacturaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bfacturaMouseClicked
-        if(!Login.getUsuarioLogueado().equals("mecanico")){    
+        if (!Login.getUsuarioLogueado().equals("mecanico")) {
             Facturas ventanaFacturas = new Facturas();
             dispose();
-        }else
-            JOptionPane.showMessageDialog(null,"No tienes permisos para acceder aquí", "Error",0);
+        } else {
+            JOptionPane.showMessageDialog(null, "No tienes permisos para acceder aquí", "Error", 0);
+        }
     }//GEN-LAST:event_bfacturaMouseClicked
     /**
      * Evento al clickar foto "Añadir Citas". Lanza la ventana Citas.
-     * @param evt 
+     *
+     * @param evt
      */
     private void bcitasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bcitasMouseClicked
-        if(!Login.getUsuarioLogueado().equals("mecanico")){    
+        if (!Login.getUsuarioLogueado().equals("mecanico")) {
             Citas ventanaCitas = new Citas();
             dispose();
-        }else
-            JOptionPane.showMessageDialog(null,"No tienes permisos para acceder aquí", "Error",0);
+        } else {
+            JOptionPane.showMessageDialog(null, "No tienes permisos para acceder aquí", "Error", 0);
+        }
     }//GEN-LAST:event_bcitasMouseClicked
     /**
      * Evento al clickar la foto "Coches en venta". Lanza la ventana Ventas.
-     * @param evt 
+     *
+     * @param evt
      */
     private void bcochesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bcochesMouseClicked
-        if(!Login.getUsuarioLogueado().equals("mecanico")){
-                VentaCoches ventanaVentas = new VentaCoches();
-                dispose();
-        }else
-            JOptionPane.showMessageDialog(null,"No tienes permisos para acceder aquí", "Error",0);        
+        if (!Login.getUsuarioLogueado().equals("mecanico")) {
+            VentaCoches ventanaVentas = new VentaCoches();
+            dispose();
+        } else {
+            JOptionPane.showMessageDialog(null, "No tienes permisos para acceder aquí", "Error", 0);
+        }
     }//GEN-LAST:event_bcochesMouseClicked
 
     /**

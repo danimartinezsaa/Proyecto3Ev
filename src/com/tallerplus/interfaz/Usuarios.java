@@ -5,13 +5,17 @@ import com.tallerplus.files.Ficheros;
 import com.tallerplus.gestion.GestionTabla;
 import com.tallerplus.gestion.GestionUsuarios;
 import com.tallerplus.objetos.Usuario;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.YES_OPTION;
 import javax.swing.table.DefaultTableModel;
 
 /**
- * Clase que gestiona la ventana de Usuarios, contiene un formulario para añadir, editar o borrar usuarios y una tabla que muestra el contenido del ArrayList Ficheros.usuarios.
- * Cierra el programa al presionar el botón cerrar.
+ * Clase que gestiona la ventana de Usuarios, contiene un formulario para
+ * añadir, editar o borrar usuarios y una tabla que muestra el contenido del
+ * ArrayList Ficheros.usuarios. Cierra el programa al presionar el botón cerrar.
+ *
  * @author dani_
  */
 public class Usuarios extends javax.swing.JFrame {
@@ -30,6 +34,10 @@ public class Usuarios extends javax.swing.JFrame {
         setVisible(true);
         setResizable(false);
         edicion = false;
+        //Cambiamos icono
+        ImageIcon ImageIcon = new ImageIcon(getClass().getResource("/com/tallerplus/icon/LogoT+.png"));
+        Image Image = ImageIcon.getImage();
+        this.setIconImage(Image);
         //Columnas de la tabla
         tabla.addColumn("Usuario");
         tabla.addColumn("Contraseña");
@@ -65,6 +73,7 @@ public class Usuarios extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Usuarios");
+        setIconImage(getIconImage());
         setMinimumSize(new java.awt.Dimension(900, 500));
         setResizable(false);
         setSize(new java.awt.Dimension(900, 500));
@@ -325,6 +334,7 @@ public class Usuarios extends javax.swing.JFrame {
             }
         });
     }
+
     /**
      * Clase que muestra el contenido de la tabla actualizado.
      */

@@ -5,6 +5,8 @@ import com.tallerplus.files.Ficheros;
 import com.tallerplus.gestion.GestionCitas;
 import com.tallerplus.objetos.Cita;
 import java.awt.Color;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -30,6 +32,10 @@ public class Citas extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setVisible(true);
         setResizable(false);
+        //Cambiamos icono
+        ImageIcon ImageIcon = new ImageIcon(getClass().getResource("/com/tallerplus/icon/LogoT+.png"));
+        Image Image = ImageIcon.getImage();
+        this.setIconImage(Image);
         //Columnas de la tabla
         tabla.addColumn("Matrícula");
         tabla.addColumn("Fecha y hora");
@@ -116,6 +122,7 @@ public class Citas extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Citas");
+        setIconImage(getIconImage());
         setMinimumSize(new java.awt.Dimension(900, 500));
         setResizable(false);
         setSize(new java.awt.Dimension(900, 500));
@@ -371,13 +378,15 @@ public class Citas extends javax.swing.JFrame {
     }//GEN-LAST:event_infechahoraFocusGained
     /**
      * Campo de texto para introducir la matrícula.
+     *
      * @param evt
      */
     private void inmatriculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inmatriculaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_inmatriculaActionPerformed
     /**
-     *Botón para añadir una cita al ArrayList Ficheros.citas.
+     * Botón para añadir una cita al ArrayList Ficheros.citas.
+     *
      * @param evt
      */
     private void bañadircitaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bañadircitaMouseClicked

@@ -1,4 +1,3 @@
-
 package com.tallerplus.interfaz;
 
 import com.tallerplus.files.Ficheros;
@@ -11,11 +10,14 @@ import javax.swing.table.DefaultTableModel;
 import Validaciones.ValidarFormatos; // importamos la libreria que creamos
 import com.tallerplus.gestion.GestionTabla;
 import java.awt.Color;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 
 /**
- * Clase que gestiona la ventana Venta de Coches, incluye un formulario para añadir o eliminar ventas.
- * Contiene una tabla que muestra el contenido del ArrayList Ficheros.ventas.
- * Cierra el programa al presionar el botón cerrar.
+ * Clase que gestiona la ventana Venta de Coches, incluye un formulario para
+ * añadir o eliminar ventas. Contiene una tabla que muestra el contenido del
+ * ArrayList Ficheros.ventas. Cierra el programa al presionar el botón cerrar.
+ *
  * @author dani_
  */
 public class VentaCoches extends javax.swing.JFrame {
@@ -29,14 +31,18 @@ public class VentaCoches extends javax.swing.JFrame {
     static int eliminar;
 
     /**
-     * Constructor que inicializa los componentes, centra la ventana, la hace visible y evita que sea redimensionarla.
-     * Añade contenido a la tabla.
+     * Constructor que inicializa los componentes, centra la ventana, la hace
+     * visible y evita que sea redimensionarla. Añade contenido a la tabla.
      */
     public VentaCoches() {
         initComponents();
         setLocationRelativeTo(null);
         setVisible(true);
         setResizable(false);
+        //Cambiamos icono
+        ImageIcon ImageIcon = new ImageIcon(getClass().getResource("/com/tallerplus/icon/LogoT+.png"));
+        Image Image = ImageIcon.getImage();
+        this.setIconImage(Image);
         //Columnas de la tabla
         tabla.addColumn("Modelo");
         tabla.addColumn("Precio");
@@ -46,7 +52,7 @@ public class VentaCoches extends javax.swing.JFrame {
 
         //Recibimos los coches encontrados
         enventa = Ficheros.ventas;
-        
+
         mostrarTabla();
     }
 
@@ -85,6 +91,7 @@ public class VentaCoches extends javax.swing.JFrame {
         setTitle("Venta");
         setAutoRequestFocus(false);
         setBackground(new java.awt.Color(109, 132, 180));
+        setIconImage(getIconImage());
         setMinimumSize(new java.awt.Dimension(900, 500));
         setResizable(false);
         setSize(new java.awt.Dimension(900, 500));
@@ -275,7 +282,8 @@ public class VentaCoches extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     /**
      * Botón que devuelve al usuario a la ventana principal.
-     * @param evt 
+     *
+     * @param evt
      */
     private void batrasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_batrasMouseClicked
         VentanaPrincipal venanaprincipal = new VentanaPrincipal();
@@ -283,8 +291,9 @@ public class VentaCoches extends javax.swing.JFrame {
     }//GEN-LAST:event_batrasMouseClicked
 
     /**
-     * Botón para añadir un coche nuevo a la venta.
-     * Valida que los datos introducidos sean correctos.
+     * Botón para añadir un coche nuevo a la venta. Valida que los datos
+     * introducidos sean correctos.
+     *
      * @param evt
      */
     private void bañadirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bañadirMouseClicked
@@ -347,17 +356,18 @@ public class VentaCoches extends javax.swing.JFrame {
     }//GEN-LAST:event_bañadirMouseClicked
 
     /**
-     * Botón para borrar un coche de las ventas.
-     * Actualiza el contenido de la tabla.
+     * Botón para borrar un coche de las ventas. Actualiza el contenido de la
+     * tabla.
+     *
      * @param evt
      */
     private void bborrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bborrarMouseClicked
 
         if (Login.getUsuarioLogueado().equals("admin")) {
-             eliminar = tablabusqueda.getSelectedRow();
+            eliminar = tablabusqueda.getSelectedRow();
             if (eliminar >= 0) {
                 boolean correcto = GestionVentas.borrarVenta(eliminar, false);
-                if(correcto==true){
+                if (correcto == true) {
                     GestionTabla.borrarTabla(tabla);
                     mostrarTabla();
                 }
@@ -367,9 +377,9 @@ public class VentaCoches extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_bborrarMouseClicked
     /**
-     * Botón para vender un coche.
-     * Lanza el formulario de ventas.
-     * @param evt 
+     * Botón para vender un coche. Lanza el formulario de ventas.
+     *
+     * @param evt
      */
     private void bvenderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bvenderMouseClicked
         eliminar = tablabusqueda.getSelectedRow();
@@ -417,7 +427,7 @@ public class VentaCoches extends javax.swing.JFrame {
             }
         });
     }
-    
+
     /**
      * Método que muestra la tabla actualizada
      */

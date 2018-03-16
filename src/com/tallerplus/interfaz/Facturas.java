@@ -5,13 +5,17 @@ import com.tallerplus.gestion.GestionCitas;
 import com.tallerplus.gestion.GestionFacturas;
 import com.tallerplus.gestion.GestionTabla;
 import com.tallerplus.objetos.Cita;
+import java.awt.Image;
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
 import javax.swing.table.DefaultTableModel;
 
 /**
- * Clase que gestiona el funcionamiento de la ventana de Facturas. 
- * Contiene una tabla que muestra las citas Finalizadas y borradas. Genera la factura de la cita seleccionada y la abre en un editor de texto.
- * Cierra el programa al presionar el botón cerrar.
+ * Clase que gestiona el funcionamiento de la ventana de Facturas. Contiene una
+ * tabla que muestra las citas Finalizadas y borradas. Genera la factura de la
+ * cita seleccionada y la abre en un editor de texto. Cierra el programa al
+ * presionar el botón cerrar.
+ *
  * @author dani_
  */
 public class Facturas extends javax.swing.JFrame {
@@ -30,6 +34,10 @@ public class Facturas extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setVisible(true);
         setResizable(false);
+        //Cambiamos icono
+        ImageIcon ImageIcon = new ImageIcon(getClass().getResource("/com/tallerplus/icon/LogoT+.png"));
+        Image Image = ImageIcon.getImage();
+        this.setIconImage(Image);
         //Columnas de la tabla
         tabla.addColumn("Matrícula");
         tabla.addColumn("Descripción");
@@ -75,6 +83,7 @@ public class Facturas extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Facturas");
+        setIconImage(getIconImage());
         setMinimumSize(new java.awt.Dimension(900, 500));
         setResizable(false);
         setSize(new java.awt.Dimension(900, 500));
@@ -272,6 +281,7 @@ public class Facturas extends javax.swing.JFrame {
     }//GEN-LAST:event_batras1MouseClicked
     /**
      * Introdución de fecha para búsqueda
+     *
      * @param evt
      */
     private void infechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_infechaActionPerformed
@@ -279,6 +289,7 @@ public class Facturas extends javax.swing.JFrame {
     }//GEN-LAST:event_infechaActionPerformed
     /**
      * Botón buscar cita por fecha
+     *
      * @param evt
      */
     private void bbuscarfechaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bbuscarfechaMouseClicked
@@ -292,6 +303,7 @@ public class Facturas extends javax.swing.JFrame {
     }//GEN-LAST:event_bbuscarfechaMouseClicked
     /**
      * Introdución de texto para buscar por matrícula.
+     *
      * @param evt
      */
     private void inmatriculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inmatriculaActionPerformed
@@ -299,6 +311,7 @@ public class Facturas extends javax.swing.JFrame {
     }//GEN-LAST:event_inmatriculaActionPerformed
     /**
      * Botón de buscar por matrícula.
+     *
      * @param evt
      */
     private void bbuscarmatriculaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bbuscarmatriculaMouseClicked
@@ -311,9 +324,11 @@ public class Facturas extends javax.swing.JFrame {
         mostrarTabla(encontradas);
     }//GEN-LAST:event_bbuscarmatriculaMouseClicked
     /**
-     * Botón para generar la factura de una cita, la abre en el editor de texto y Cierra la cita, si esta todavía no lo está.
-     * Refresca el contenido de la tabla.
-     * @param evt 
+     * Botón para generar la factura de una cita, la abre en el editor de texto
+     * y Cierra la cita, si esta todavía no lo está. Refresca el contenido de la
+     * tabla.
+     *
+     * @param evt
      */
     private void bgenerarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bgenerarMouseClicked
         int seleccionado = tablabusqueda.getSelectedRow();
@@ -371,6 +386,7 @@ public class Facturas extends javax.swing.JFrame {
 
     /**
      * Método que muestra el contenido un ArrayList en la tabla.
+     *
      * @param contenido ArrayList con el contenido a mostrar en la tabla.
      */
     private void mostrarTabla(ArrayList<Cita> contenido) {

@@ -2,8 +2,10 @@ package com.tallerplus.interfaz;
 
 import com.tallerplus.files.Ficheros;
 import com.tallerplus.gestion.Login;
+import java.awt.Image;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import javax.swing.ImageIcon;
 
 /**
  * Clase que gestiona la ventana para introducir el usuario y la contraseña,
@@ -27,7 +29,10 @@ public class LoginUsers extends javax.swing.JFrame {
         entrar.addKeyListener(new PresionarTecla()); // escuchador en el boton entrar para poder utilizar el enter indistantemente del mouse click, cuando estemos sobre el boton
         inusuario.addKeyListener(new PresionarTecla());// escuchador para que funcione el boton intro cuando estemos dentro de insertar usuario
         incontrasena.addKeyListener(new PresionarTecla()); // escuchador para cuando estemos ubicados en insertar contraseña
-    
+        //Cambiamos icono
+        ImageIcon ImageIcon = new ImageIcon(getClass().getResource("/com/tallerplus/icon/LogoT+.png"));
+        Image Image = ImageIcon.getImage();
+        this.setIconImage(Image);
     }
 
     @SuppressWarnings("unchecked")

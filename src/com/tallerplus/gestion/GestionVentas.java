@@ -13,7 +13,7 @@ import static javax.swing.JOptionPane.YES_OPTION;
 
 /**
  *
- * @author dani_
+ * clase para la gestion de ventas de vehiculos 
  */
 public class GestionVentas {
 
@@ -27,9 +27,9 @@ public class GestionVentas {
      * @param caballos parámetro "caballos" del coche en venta
      */
     public static void anadirVenta(String modelo, Float precio, String motor, String cilindrada, String caballos) {
-        Ficheros.ventas.add(new Venta(modelo, precio, motor, cilindrada, caballos));
-        Mensajes.ventanaInfo("Coche añadido con éxito.","Ventas");
-        Ficheros.escribirFicheroVentas();
+        Ficheros.ventas.add(new Venta(modelo, precio, motor, cilindrada, caballos)); 
+        Mensajes.ventanaInfo("Coche añadido con éxito.","Ventas"); // al añadir un coche mostramos un mensaje
+        Ficheros.escribirFicheroVentas(); // sobreescribimos el fichero con la informacion concreta 
     }
 
     /**
@@ -43,19 +43,19 @@ public class GestionVentas {
     public static boolean borrarVenta(int posicion, boolean vendido) {
         boolean borrado = false;
 
-        if (vendido == false) {
+        if (vendido == false) { // si el coche se borra por ser una borrado y no una venta , se manda el mensaje oportuno y si el cliente confirma la operacion se elimina de la lista 
             int confirmado = JOptionPane.showConfirmDialog(null, "¿Seguro que deseas borrar este coche de Ventas?");
             if (confirmado == YES_OPTION) {
                 borrado = true;
             }
         } else {
-            int confirmado = JOptionPane.showConfirmDialog(null, "¿Seguro que deseas vender este coche de Ventas?");
+            int confirmado = JOptionPane.showConfirmDialog(null, "¿Seguro que deseas vender este coche de Ventas?"); // si se elimina tras una venta, se envia el mensaje oportuno y si se confirma la operacion se borra
             if (confirmado == YES_OPTION) {
                 borrado = true;
             }
           
         }
-        if (borrado == true) {
+        if (borrado == true) { // si el usuario confirmo la operacion se borra 
             Ficheros.ventas.remove(posicion);
             Ficheros.escribirFicheroVentas();
         }

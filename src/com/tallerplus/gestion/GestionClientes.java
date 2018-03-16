@@ -17,23 +17,23 @@ public class GestionClientes {
      * @param dni numero de identificacion personal del dueño del vehiculo
      * @param telefono telefono de contacto del dueño del vehiculo
      */
-    public static boolean anadirCliente(String matricula, String motor, String cilindrada, String caballos, String nombreDueño, String dni, String telefono) {
+    public static boolean anadirCliente(String matricula, String motor, String cilindrada, String caballos, String nombreDueño, String dni, String telefono) { // pasamos al metodo todos los datos del cliente
         boolean encontrado = false;
-        for (int i = 0; i < Ficheros.coches.size(); i++) {
-            if (Ficheros.coches.get(i).getMatricula().equals(matricula)) {
+        for (int i = 0; i < Ficheros.coches.size(); i++) { // comprobamos que el ciente introducido no exista ya , para eso usamos el campo matricula dado que no pueden existir dos coches con la misma matricula
+            if (Ficheros.coches.get(i).getMatricula().equals(matricula)) { // si ya existe retornamos un mensaje de error y marcamos como true nuestra bandera 
                 Mensajes.ventanaError("El cliente introducido ya existe.", "Gestión de clientes.");
                 encontrado = true;
                 break;
             }
         }
 
-        if (encontrado == false) {
+        if (encontrado == false) { // si no existe añadimos el coche como un cliente nuevo 
             Ficheros.coches.add(new Coche(matricula, motor, cilindrada, caballos, nombreDueño, telefono, dni));
             Mensajes.ventanaInfo("Cliente introducido con éxito", "Gestión de clientes.");
             Ficheros.escribirFicheroCoches();
         }
 
-        return encontrado;
+        return encontrado; // retornamos true si habia un cliente con esa matricula introducido, o false en caso contrario
     }
 
     /**
@@ -42,17 +42,17 @@ public class GestionClientes {
      * @param matricula matricula del vehiculo a eliminar
      * @param eb le indica si estamos modificando o borrando al cliente
      */
-    public static void borrarCliente(String matricula, String eb) {
+    public static void borrarCliente(String matricula, String eb) { 
         boolean borrado = false; // indicador de borrado que solo salta a true en caso de que se encuentre el coche, posteriormente trataremos que no se encuentre con el 
-        for (int i = 0; i < Ficheros.coches.size(); i++) {
-            if (Ficheros.coches.get(i).getMatricula().equals(matricula)) {
+        for (int i = 0; i < Ficheros.coches.size(); i++) { //recorremos la lista de clientes para localizar exactamente al que queremos eliminar 
+            if (Ficheros.coches.get(i).getMatricula().equals(matricula)) { //si lo encontramos lo eliminamos 
                 Ficheros.coches.remove(i);
                 borrado = true;
                 break;
             }
 
         }
-        if (borrado == true) {
+        if (borrado == true) { // si no lo encontramos retornamos un mensaje de error, si lo encontramos retornamos un mensaje conforme la operacion se ha realizado correctamente 
             Ficheros.escribirFicheroCoches();
             if (eb.equals("borrar")) {
                 Mensajes.ventanaInfo("Cliente borrado", "Gestión de clientes.");
@@ -76,10 +76,10 @@ public class GestionClientes {
      */
     public static boolean editarCliente(int numero, String matricula, String motor, String cilindrada, String caballos, String nombreDueño, String telefono, String dni) {
         boolean editado = false;
-        Ficheros.coches.set(numero, new Coche(matricula, motor, cilindrada, caballos, nombreDueño, telefono, dni));
+        Ficheros.coches.set(numero, new Coche(matricula, motor, cilindrada, caballos, nombreDueño, telefono, dni)); // realizamos la modificacion con los datos nuevos introducidos
         editado = true;
 
-        Ficheros.escribirFicheroUsuarios();
+        Ficheros.escribirFicheroUsuarios(); // realizamos la escritura en el fichero para acutalizar los datos
 
         return editado;
     }

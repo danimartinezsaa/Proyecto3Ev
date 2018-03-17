@@ -114,10 +114,26 @@ public class Cita implements Comparable {
     @Override
     public int compareTo(Object o) {
         Cita cita=(Cita)o;
+        String[] fechain = cita.fechaHora.split("/");
+        String[] fecha=this.fechaHora.split("/");
         
-        if(this.fechaHora.compareTo(cita.fechaHora)==0)
-            return 0;
-        else if(this.fechaHora.compareTo(cita.fechaHora)>0)
+        //si tienen el mismo año
+        if(fecha[2].compareTo(fechain[2])==0){
+            //si tienen el mismo mes
+            if(fecha[1].compareTo(fechain[1])==0){
+                //si tienen el mismo día
+                if(fecha[0].compareTo(fechain[0])==0){
+                    return 0;
+                }else if(fecha[0].compareTo(fechain[0])>0)
+                    return 1;
+                else
+                    return -1;
+            }else if(fecha[1].compareTo(fechain[1])>0)
+                return 1;
+            else
+                return -1;
+                
+        }else if(fecha[2].compareTo(fechain[2])>0)
             return 1;
         else
             return -1;

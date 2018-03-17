@@ -74,7 +74,7 @@ public class GestionClientes {
      * @param telefono Teléfono a insertar en el cliente indicado.
      * @return true si se ha editado el cliente.
      */
-    public static boolean editarCliente(int numero, String matricula, String motor, String cilindrada, String caballos, String nombreDueño, String telefono, String dni) {
+    public static boolean editarCliente(int numero, String matricula, String motor, String cilindrada, String caballos, String nombreDueño, String dni, String telefono) {
         boolean editado = false;
         Ficheros.coches.set(numero, new Coche(matricula, motor, cilindrada, caballos, nombreDueño, telefono, dni)); // realizamos la modificacion con los datos nuevos introducidos
         editado = true;

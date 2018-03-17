@@ -1,0 +1,7 @@
+Seat Leon,18000.0,Diesel,1.6,110
+Renault Megane,17000.0,Diesel,1.6,110
+Opel Astra,16000.0,Gasolina,1.7,140
+Hyunday ix35,22000.0,Gasolina,1.7,140
+Peugeot 508,25000.0,Diesel,1.6,120
+Renault Talisman,26000.0,Gasolina,1.7,140
+Audi A4,28000.0,Diesel,1.6,120

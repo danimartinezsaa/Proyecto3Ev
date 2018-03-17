@@ -1,6 +1,6 @@
-Fecha factura: 13/03/2018         Matricula: 2566         
+Fecha factura: 15/03/2018         Matricula: 3232DFD         
          
 Descripcion: 
-lkj
+Cambio de aceite
 
-         Total ---> 85.0€
+         Total ---> 80.0€

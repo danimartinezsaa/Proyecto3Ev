@@ -363,11 +363,11 @@ public class Clientes extends javax.swing.JFrame {
         nombre = textoNombre.getText();
         dni = textoDni.getText();
         telefono = textoTelefono.getText();
-        boolean validado = validarDatos(caballos, matricula, cilindrada, telefono, dni);
+        boolean validado = validarDatos(caballos, matricula, cilindrada, dni, telefono);
         if (validado == true) {
 
             // metemos los datos en un array para despues insertarlos en la tabla
-            String[] datos = {matricula, motor, cilindrada, caballos, nombre, telefono, dni};
+            String[] datos = {matricula, motor, cilindrada, caballos, nombre, dni, telefono};
 
             // comprobamos que esten todos los datos introducidos
             if ("".equals(matricula) || "".equals(cilindrada) || "".equals(caballos) || "".equals(nombre) || "".equals(dni) || "".equals(telefono)) {
@@ -376,12 +376,12 @@ public class Clientes extends javax.swing.JFrame {
             } else {
                 if (edicion == false) {
                     // si se han introducido todos los campos
-                    boolean encontrado = GestionClientes.anadirCliente(matricula, motor, cilindrada, caballos, nombre, telefono, dni);
+                    boolean encontrado = GestionClientes.anadirCliente(matricula, motor, cilindrada, caballos, nombre, dni, telefono);
                     if (encontrado == false) {
                         tablaCliente.addRow(datos); // lo añadimos en la lista que tenemos en pantalla
                     }            // ponemos todos los campos a null
                 } else {
-                    GestionClientes.editarCliente(cliente_editar, matricula, motor, cilindrada, caballos, nombre, telefono, dni);
+                    GestionClientes.editarCliente(cliente_editar, matricula, motor, cilindrada, caballos, nombre, dni, telefono);
                     GestionTabla.borrarTabla(tablaCliente);
                     mostrarTabla();
                 }

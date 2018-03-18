@@ -1,6 +1,8 @@
 package com.tallerplus.objetos;
 // objeto para cada una de las citas que tiene un coche en el taller
+
 public class Cita implements Comparable {
+
     private String matricula;
     private String fechaHora;
     private String descripcion;
@@ -11,19 +13,22 @@ public class Cita implements Comparable {
     }
 
     /**
-     *constructor por defecto 
+     * constructor por defecto
+     *
      * @return matricula
      */
     public String getMatricula() {
         return matricula;
     }
+
     /**
-     * constructor con cada uno de los parametros 
+     * constructor con cada uno de los parametros
+     *
      * @param matricula
      * @param fechaHora
      * @param descripcion
      * @param precio
-     * @param estado 
+     * @param estado
      */
 
     public Cita(String matricula, String fechaHora, String descripcion, float precio, String estado) {
@@ -33,112 +38,146 @@ public class Cita implements Comparable {
         this.precio = precio;
         this.estado = estado;
     }
-/**
- * metodo set para devolver el valor de la matricula
- * @param matricula matricula del coche 
- */
+
+    /**
+     * metodo set para devolver el valor de la matricula
+     *
+     * @param matricula matricula del coche
+     */
     public void setMatricula(String matricula) {
         this.matricula = matricula;
     }
+
     /**
      * metodo para devolver la feca y hora de la cita en cuestion
-     * @return fechaHora en la cual se ha citado al cliente 
+     *
+     * @return fechaHora en la cual se ha citado al cliente
      */
 
     public String getFechaHora() {
         return fechaHora;
     }
-/**
- * metodo para cambiar el valor de la fecha en la que se cito al cliente 
- * @param fechaHora fehca y hora en la que se cito al cliente 
- */
+
+    /**
+     * metodo para cambiar el valor de la fecha en la que se cito al cliente
+     *
+     * @param fechaHora fehca y hora en la que se cito al cliente
+     */
     public void setFechaHora(String fechaHora) {
         this.fechaHora = fechaHora;
     }
-/**
- * metodo para devolver la descripcion de la averia o actuacion necesaria en el vehiculo
- * @return descripcion descripcion de lo que hay que hacer al coche 
- */
+
+    /**
+     * metodo para devolver la descripcion de la averia o actuacion necesaria en
+     * el vehiculo
+     *
+     * @return descripcion descripcion de lo que hay que hacer al coche
+     */
     public String getDescripcion() {
         return descripcion;
     }
-/**
- * metodo para poder cambiar la descripcion de la cita 
- * @param descripcion descripcion de la cita en cuestion 
- */
+
+    /**
+     * metodo para poder cambiar la descripcion de la cita
+     *
+     * @param descripcion descripcion de la cita en cuestion
+     */
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
+
     /**
      * metodo para devolver el precio que va a tener la reparacion del vehiculo
+     *
      * @return precio de la reparacion del vehiculo
      */
 
     public float getPrecio() {
         return precio;
     }
-/**
- * metodo para cambiar el precio de la reparacion 
- * @param precio 
- */
+
+    /**
+     * metodo para cambiar el precio de la reparacion
+     *
+     * @param precio
+     */
     public void setPrecio(float precio) {
         this.precio = precio;
     }
-/**
- * metodo para devolver el estado de la averia
- * @return estado 
- */
+
+    /**
+     * metodo para devolver el estado de la averia
+     *
+     * @return estado
+     */
     public String getEstado() {
         return estado;
     }
-/**
- * metodo para modificar el estado de la averia
- * @param estado 
- */
+
+    /**
+     * metodo para modificar el estado de la averia
+     *
+     * @param estado
+     */
     public void setEstado(String estado) {
         this.estado = estado;
     }
-/**
- * toString
- * @return String con la descripcion de la cita 
- */
+
+    /**
+     * toString
+     *
+     * @return String con la descripcion de la cita
+     */
     @Override
     public String toString() {
-        return "cita del vehiculo "+matricula+" para el "+fechaHora+"con precio de reparacion "+precio+" y estado de reparacion "+estado;
+        return "cita del vehiculo " + matricula + " para el " + fechaHora + "con precio de reparacion " + precio + " y estado de reparacion " + estado;
     }
-/**
- * metodo para poder ordenar la cita por el campo fechaHora 
- * @param o
- * @return 0,1,-1 dependiendo de la condicion de comparacion 
- */
+
+    /**
+     * metodo para poder ordenar la cita por el campo fechaHora
+     *
+     * @param o
+     * @return 0,1,-1 dependiendo de la condicion de comparacion
+     */
     @Override
     public int compareTo(Object o) {
-        Cita cita=(Cita)o;
+        Cita cita = (Cita) o;
+        //Separamos la fecha completa
         String[] fechain = cita.fechaHora.split("/");
-        String[] fecha=this.fechaHora.split("/");
-        
+        String[] fecha = this.fechaHora.split("/");
+        //Separamos año de hora
+        String[] anohorain = fechain[2].split(" ");
+        String[] anohora = fecha[2].split(" ");
+
         //si tienen el mismo año
-        if(fecha[2].compareTo(fechain[2])==0){
+        if (anohora[0].compareTo(anohorain[0]) == 0) {
             //si tienen el mismo mes
-            if(fecha[1].compareTo(fechain[1])==0){
+            if (fecha[1].compareTo(fechain[1]) == 0) {
                 //si tienen el mismo día
-                if(fecha[0].compareTo(fechain[0])==0){
-                    return 0;
-                }else if(fecha[0].compareTo(fechain[0])>0)
-                    return 1;
-                else
+                if (fecha[0].compareTo(fechain[0]) == 0) {
+                    //si tienen la misma hora
+                    if (anohora[1].compareTo(anohorain[1]) == 0) {
+                        return 0;
+                    } else if (anohora[1].compareTo(anohorain[1]) > 0) {
+                        return -1;
+                    } else {
+                        return 1;
+                    }
+                } else if (fecha[0].compareTo(fechain[0]) > 0) {
                     return -1;
-            }else if(fecha[1].compareTo(fechain[1])>0)
-                return 1;
-            else
+                } else {
+                    return 1;
+                }
+            } else if (fecha[1].compareTo(fechain[1]) > 0) {
                 return -1;
-                
-        }else if(fecha[2].compareTo(fechain[2])>0)
-            return 1;
-        else
+            } else {
+                return 1;
+            }
+        } else if (anohora[0].compareTo(anohorain[0]) > 0) {
             return -1;
+        } else {
+            return 1;
+        }
     }
-    
-    
-    
+
 }

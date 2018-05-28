@@ -2,18 +2,20 @@ package com.tallerplus.gestion;
 
 import VentanasEmergentes.Mensajes;
 import com.tallerplus.files.Conexion;
+import static com.tallerplus.gestion.GestionCitas.citas;
+import com.tallerplus.interfaz.Usuarios;
+import com.tallerplus.objetos.Cita;
 import com.tallerplus.objetos.Usuario;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
+public class GestionUsuarios extends Conexion {
 
-public class GestionUsuarios extends Conexion{
-    
-    public static ArrayList<Usuario> usuarios=new ArrayList();
+    public static ArrayList<Usuario> usuarios = new ArrayList();
 
-    public GestionUsuarios(){
+    public GestionUsuarios() {
     }
-    
-    
+
     /**
      * Añade un usuario al ArrayList que recibe y lo devuelve.
      *
@@ -23,18 +25,30 @@ public class GestionUsuarios extends Conexion{
      * @return repetido - indica si se ha añadido el usuario o no cumple los
      * requisitos.
      */
-    public static boolean anadirUsuario(String usuario, String contrasena, String tipo) {
+    public boolean anadirUsuario(String usuario, String contrasena, String tipo) {
         boolean repetido = false;
-        for (Usuario elemento : Ficheros.usuarios) { // recorremos la lista de usuarios para saber si el usuario que buscamos ya existe 
+        for (Usuario elemento : usuarios) { // recorremos la lista de usuarios para saber si el usuario que buscamos ya existe 
             if (elemento.getUsuario().equals(usuario)) {
                 repetido = true;
             }
         }
         if (repetido == false) { // si el usuario que buscamos no existe lo añadimos, en caso contrario, informamos que ya existe un usuario con ese nombre 
-            Ficheros.usuarios.add(new Usuario(usuario, contrasena, tipo));
-            Ficheros.escribirFicheroUsuarios();
+            connect();
+            try {
+                st = conexion.prepareStatement("insert into usuario values('" + usuario + "'"
+                        + "," + "'" + contrasena + "'"
+                        + "," + "'" + tipo + "'" + ");");
+
+                st.execute();
+                select();
+                Mensajes.ventanaInfo("Usuario introducido con éxito", "Gestión de usuarios.");
+            } catch (SQLException ex) {
+                System.out.println("Error al insertar en la base de datos.");
+            }
+            close();
+
         } else {
-            Mensajes.ventanaError("Ya existe un usuario con ese nombre.","Añadir usuario");
+            Mensajes.ventanaError("Ya existe un usuario con ese nombre.", "Añadir usuario");
         }
 
         return repetido; // retornamos si el usuario existia o no, que sera usado en la interfaz 
@@ -47,47 +61,74 @@ public class GestionUsuarios extends Conexion{
      * @param usuario Nombre del usuario que se desea borrar
      * @return Indica si se ha borrado el usuario.
      */
-    public static boolean borrarUsuario(String usuario) {
+    public boolean borrarUsuario(String usuario) {
         boolean bandera = true;
         if (!usuario.equals("admin")) { // si el usuario es el administrador "admin" no puede ser borrado 
             boolean borrado = false;
-            for (int i = 0; i < Ficheros.usuarios.size(); i++) { // en caso de que no sea este, buscamos el usuario concreto y se elimina 
-                if (Ficheros.usuarios.get(i).getUsuario().equals(usuario)) {
-                    Ficheros.usuarios.remove(i);
-                    borrado = true; 
-                    break;
-                }
+            connect();
+            try {
+                st = conexion.prepareStatement("delte from usuario where usuario='" + usuario + "'");
+                st.executeUpdate();
+                borrado = true;
+                select();
+            } catch (SQLException ex) {
+                Mensajes.ventanaError("No se ha encontrado al usuario a eliminar.", "Gestión de usuarios.");
             }
-            if (borrado == true) { // en caso de borrar el usuario sobreescribimos el fichero
-                Ficheros.escribirFicheroUsuarios();
-            }
+            close();
+
         } else {
             bandera = false; // en caso contrario mandamos un mensaje de error
-            Mensajes.ventanaError("No se puede borrar 'ADMIN'","Error");
+            Mensajes.ventanaError("No se puede borrar 'ADMIN'", "Error");
         }
         return bandera; // retornamos si el usuario ha sido borrado o no 
     }
 
     /**
      * Edita los parámetros de un usuario en concreto
-     * @param numero Número de la posición del array que ocupa el usuario a editar.
+     *
+     * @param lastUser nombre de usuario antes de la modificacion 
      * @param usuario Nuevo usuario a insertar.
      * @param contrasena Nueva contraseña a insertar.
      * @param tipo Nuevo tipo a insertar.
      * @return true si se ha editado el usuario.
      */
-    public static boolean editarUsuario(int numero,String usuario, String contrasena, String tipo) {
+    public boolean editarUsuario(String lastUser, String usuario, String contrasena, String tipo) {
         boolean editado = false;
-        Ficheros.usuarios.set(numero, new Usuario(usuario, contrasena, tipo)); // seleccionamos el usuario en cuestion y le enviamos los nuevos valores 
-        editado = true;
+        connect();
+        try {
+            st = conexion.prepareStatement("update usuario set usuario="
+                    + ", usuario=" + "'" + usuario + "'"
+                    + ", contrasena=" + "'" + contrasena + "'"
+                    + ", tipo=" + "'" + tipo + "'"
+                    + " where usuario=" + "'" + lastUser + "'" + ";");
+            st.executeUpdate();
+            editado = true;
+            select();
+        } catch (SQLException ex) {
+            System.out.println("Error al actualizar");
+        }
+        close();
 
-        Ficheros.escribirFicheroUsuarios();
- 
         return editado;
     }
+    /**
+     * metodo para recoger toda la información de la tabla en el arrayList
+     */
 
     @Override
-    public void select(){
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void select() {
+        connect();
+
+        try {
+            st = conexion.prepareStatement("select * from usuario");
+            resultado = st.executeQuery();
+            usuarios.clear();
+            while (resultado.next()) {
+                usuarios.add(new Usuario(resultado.getString("usuario"), resultado.getString("contrasena"), resultado.getString("tipo")));
+            }
+        } catch (SQLException ex) {
+            System.out.println("Error al ejecutar la consulta");
+        }
+        close();
     }
 }

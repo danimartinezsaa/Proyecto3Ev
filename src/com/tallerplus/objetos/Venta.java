@@ -8,6 +8,7 @@ package com.tallerplus.objetos;
 
 public class Venta {
     // atributos de las ventas 
+    private int id;
     private String modelo,motor,cilindrada,caballos;
     Float precio;
 /**
@@ -18,13 +19,24 @@ public class Venta {
  * @param cilindrada
  * @param caballos 
  */
-    public Venta(String modelo, Float precio, String motor, String cilindrada, String caballos) {
+    public Venta(int id,String modelo, Float precio, String motor, String cilindrada, String caballos) {
+        this.id=id;
         this.modelo = modelo;
         this.precio = precio;
         this.motor = motor;
         this.cilindrada = cilindrada;
         this.caballos = caballos;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
+    
 /**
  * metodo para optener el modelo del coche en venta 
  * @return modelo

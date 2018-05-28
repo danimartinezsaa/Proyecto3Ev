@@ -4,6 +4,7 @@ import VentanasEmergentes.Mensajes;
 import com.tallerplus.files.Conexion;
 
 import com.tallerplus.objetos.Cita;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.YES_OPTION;
@@ -22,21 +23,31 @@ public class GestionCitas extends Conexion{
      * @param estado estado de la reparacion.
      */
     public void anadirCita(String matricula, String fechaHora, String descripcion, float precio, String estado){
-        connect();
         boolean encontrado=false; // bandera que, cuando es true indica que el vehiculo ya existe en el fichero a esa hora, y false cuando no existe 
-        for(int i=0; i<citas.size(); i++){ // realizamos un bucle para saber si alguna de las matriculas + horas existentes coincidde con la que queremos añadir 
+        for(int i=0; i<citas.size(); i++){ // realizamos un bucle para saber si alguna de las matriculas + horas existentes coincide con la que queremos añadir 
             if(citas.get(i).getMatricula().equals(matricula)&&citas.get(i).getFechaHora().equals(fechaHora)){ // si coincide
                 Mensajes.ventanaError("La cita ya existe en el sistema.", "Cita no válida."); // indicamos que no es valida
                 encontrado=true;
                 break;
             }else;
         }
-        
+
         if(encontrado==false){ // si no se encuentra añadimos la cita 
-            Ficheros.citas.add(new Cita(matricula, fechaHora, descripcion, precio, estado));
-            Ficheros.escribirFicheroCitas();
+            connect();
+            try{
+                st=conexion.prepareStatement("insert into cita values('"+matricula+"'"
+                        +","+"'"+fechaHora+"'"
+                        +","+"'"+precio+"'"
+                        +","+"'"+estado+"'"
+                        +","+"'"+descripcion+"'"+");");
+
+                st.execute();
+                select();
+            }catch(SQLException ex){
+                System.out.println("Error al insertar en la base de datos.");
+            }
+            close();
         }
-        close();
     }
 
     /**
@@ -46,24 +57,21 @@ public class GestionCitas extends Conexion{
      * @param fechaHora momento de la cita.
      *
      */
-    public static boolean borrarCita(String matricula, String fechaHora){
+    public boolean borrarCita(String matricula, String fechaHora){
         int confirmado=0; // indicador para la ventana emergente sobre si borrar la cita o no 
         boolean borrado=false; // indicador de borrado que solo cambia a true si se encuentra la cita en cuestion
-        for(int i=0; i<Ficheros.citas.size(); i++){
-            if(Ficheros.citas.get(i).getMatricula().equals(matricula)&&Ficheros.citas.get(i).getFechaHora().equals(fechaHora)){
-                confirmado=JOptionPane.showConfirmDialog(null, "¿Seguro que deseas borrar esta cita?");
-                if(confirmado==YES_OPTION){ // si el cliente confirma la operacion borramos la cita 
-                    Ficheros.citas.remove(i);
-                    borrado=true;
-                }
-                break;
-            }
-        }
 
-        if(borrado==true&&confirmado==YES_OPTION){ // si se confirma la operacion borramos la cita del fichero
-            Ficheros.escribirFicheroCitas();
-        }else if(confirmado!=YES_OPTION);else{
-            Mensajes.ventanaError("Cita no encontrada.", "Gestión de citas.");
+        confirmado=JOptionPane.showConfirmDialog(null, "¿Seguro que deseas borrar esta cita?");
+        if(confirmado==YES_OPTION){ // si el cliente confirma la operacion borramos la cita 
+            connect();
+            try{
+                st=conexion.prepareStatement("DELETE FROM cita WHERE matricula='"+matricula+"'"+" and fechaHora='"+fechaHora+"';");
+                st.executeUpdate();
+                borrado=true;
+            }catch(SQLException ex){
+                Mensajes.ventanaError("Cita no encontrada.", "Gestión de citas.");
+            }
+            close();
         }
 
         return borrado;
@@ -78,21 +86,21 @@ public class GestionCitas extends Conexion{
      * ser modificado.
      * @param estado estado de la reparacion, modificada o no.
      */
-    public static boolean modificarEstado(String matricula, String fechaHora, String estado){ // no se pueden modificar los campo clave matricula y fecha, en caso de que esos datos esten mal hay que borrar la cita y generar una nueva
+    public boolean modificarEstado(String matricula, String fechaHora, String estado){ // no se pueden modificar los campo clave matricula y fecha, en caso de que esos datos esten mal hay que borrar la cita y generar una nueva
         boolean modificado=false; // bandera que cuando es true indica que se realizo la operacion de modificacion y si es false indica que no se ha podido realizar 
-        for(int i=0; i<Ficheros.citas.size(); i++){ // buscamos entre todas las citas la que coincide con la que tenemos seleccionada
-            if(Ficheros.citas.get(i).getMatricula().equals(matricula)&&Ficheros.citas.get(i).getFechaHora().equals(fechaHora)){
-                Ficheros.citas.get(i).setEstado(estado); // cambiamos el estado por el estado que nos interesa 
-                modificado=true; // indicamos que hemos encontrado la cita y modificado el estado 
-                break;
-            }
-        }
+        connect();
 
-        if(modificado==true){ // si se realiza la operacion correctamente añadimos la cita modificada al fichero 
-            Ficheros.escribirFicheroCitas();
-        }else{
+        try{
+            st=conexion.prepareStatement("update cita set estado='"+estado+"'"
+                    +" where matricula="+"'"+matricula+"'"+" and fechaHora='"+fechaHora+"';");
+            st.executeUpdate();
+            modificado=true; // indicamos que hemos encontrado la cita y modificado el estado 
+            select();
+        }catch(SQLException ex){
             Mensajes.ventanaError("Cita no encontrada, no se ha podido modificar.", "Modificación de citas."); // en caso contrario mostramos un mensaje de error 
         }
+        select();
+        close();
 
         return modificado; // retornamos si fue modificado o no 
     }
@@ -101,45 +109,71 @@ public class GestionCitas extends Conexion{
      * consulta la cita de una determinada hora de un determinado dia.
      *
      * @param fechaHora dato de fecha y hora para realizar la consulta.
-     * @return encontradas Lista de citas encontradas en esa fecha.
      */
-    public static ArrayList<Cita> consultarCitaFecha(String fechaHora){ // podemos consultar una cita segun su hora, si no se sabe la hora de una cita de una determinada matricula se debe usar el historial del vehiculo
-        ArrayList<Cita> encontradas=new ArrayList(); // creamos una lista para poder almacenar las citas que hemos encontrado 
-        boolean encontrado=false; // indicador que si es true indica que se ha encontrado alguna cita que coincida con la busqueda 
-        for(int i=0; i<Ficheros.citas.size(); i++){ // recorremos todas las citas para hacer la busqueda 
-            if(Ficheros.citas.get(i).getFechaHora().equals(fechaHora)){ // si la comparacion coincide añadimos la cita a la lista y ponemos el indicador a true 
-                encontradas.add(Ficheros.citas.get(i));
-                encontrado=true;
+    public void consultarCitaFecha(String fechaHora){ // podemos consultar una cita segun su hora, si no se sabe la hora de una cita de una determinada matricula se debe usar el historial del vehiculo
+        int encontrados=0;
+        connect();
+        try{
+            st=conexion.prepareStatement("select * from cita where fechaHora="+"'"+fechaHora+"'"+";");
+            resultado=st.executeQuery();
+            citas.clear();
+            while(resultado.next()){
+                citas.add(new Cita(resultado.getString("matricula"),resultado.getString("fechaHora"),resultado.getString("descripcion"),Float.parseFloat(resultado.getString("precio")),resultado.getString("estado")));
+                encontrados++;
             }
+        }catch(SQLException ex){
+            System.out.println("Error al buscar");
         }
+        close();
 
-        if(encontrado==false){ // si no se encuentra ninguna cita que coincida mostramos un mensaje de error
+        if(encontrados>0){ // si no se encuentra coincidencia retornamos un mensaje de error
             Mensajes.ventanaError("Cita no encontrada.", "Búsqueda.");
         }
-        return encontradas;
     }
 
     /**
      * Consulta las citas con una matrícula determinada..
      *
      * @param matricula dato matrícula para realizar la búsqueda.
-     * @return encontradas Lista de citas encontradas con esa matrícula.
      */
-    public static ArrayList<Cita> consultarCitaMatricula(String matricula){ // podemos consultar una cita segun su hora, si no se sabe la hora de una cita de una determinada matricula se debe usar el historial del vehiculo
-        ArrayList<Cita> encontradas=new ArrayList(); // los mismos casos que en metodo anterior, almacenamos en este array las citas coincidentes despues de buscar coincidencias con el bucle for y devolvemos true en caso de que se encuentre 
-        boolean encontrado=false;
-        Cita citaConsultada=new Cita();
-        for(int i=0; i<Ficheros.citas.size(); i++){
-            if(Ficheros.citas.get(i).getMatricula().equals(matricula)){
-                citaConsultada=Ficheros.citas.get(i);
-                encontradas.add(citaConsultada);
-                encontrado=true;
+    public void consultarCitaMatricula(String matricula){ // podemos consultar una cita segun su hora, si no se sabe la hora de una cita de una determinada matricula se debe usar el historial del vehiculo
+        int encontrados=0;
+        connect();
+        try{
+            st=conexion.prepareStatement("select * from cita where matricula="+"'"+matricula+"'"+";");
+            resultado=st.executeQuery();
+            citas.clear();
+            while(resultado.next()){
+                citas.add(new Cita(resultado.getString("matricula"),resultado.getString("fechaHora"),resultado.getString("descripcion"),Float.parseFloat(resultado.getString("precio")),resultado.getString("estado")));
+                encontrados++;
             }
+        }catch(SQLException ex){
+            System.out.println("Error al buscar");
         }
+        close();
 
-        if(encontrado==false){ // si no se encuentra coincidencia retornamos un mensaje de error
+        if(encontrados>0){ // si no se encuentra coincidencia retornamos un mensaje de error
             Mensajes.ventanaError("Cita no encontrada.", "Búsqueda.");
         }
-        return encontradas;
+    }
+
+    @Override
+    public void select(){
+
+        connect();
+
+        try{
+            st=conexion.prepareStatement("select * from cita");
+            resultado=st.executeQuery();
+
+            citas.clear();
+            while(resultado.next()){
+                citas.add(new Cita(resultado.getString("matricula"), resultado.getString("fechaHora"), resultado.getString("descripcion"), Float.parseFloat(resultado.getString("precio")), resultado.getString("estado")));
+            }
+        }catch(SQLException ex){
+            System.out.println("Error al ejecutar la consulta");
+        }
+
+        close();
     }
 }

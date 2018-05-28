@@ -3,12 +3,13 @@ package com.tallerplus.gestion;
 import VentanasEmergentes.Mensajes;
 import com.tallerplus.files.Conexion;
 import com.tallerplus.objetos.Coche;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class GestionClientes extends Conexion{
 
-    
     public static ArrayList<Coche> coches=new ArrayList();
+
     /**
      * Añade un cliente al ArrayList de clientes que recibe y lo devuelve
      *
@@ -20,22 +21,35 @@ public class GestionClientes extends Conexion{
      * @param dni numero de identificacion personal del dueño del vehiculo
      * @param telefono telefono de contacto del dueño del vehiculo
      */
-    public static boolean anadirCliente(String matricula, String motor, String cilindrada, String caballos, String nombreDueño, String dni, String telefono) { // pasamos al metodo todos los datos del cliente
-        boolean encontrado = false;
-        connect();
-        
-        for (int i = 0; i < Ficheros.coches.size(); i++) { // comprobamos que el ciente introducido no exista ya , para eso usamos el campo matricula dado que no pueden existir dos coches con la misma matricula
-            if (Ficheros.coches.get(i).getMatricula().equals(matricula)) { // si ya existe retornamos un mensaje de error y marcamos como true nuestra bandera 
+    public boolean anadirCliente(String matricula, String motor, String cilindrada, String caballos, String nombreDueño, String dni, String telefono){ // pasamos al metodo todos los datos del cliente
+        boolean encontrado=false;
+
+        for(int i=0; i<coches.size(); i++){ // comprobamos que el ciente introducido no exista ya , para eso usamos el campo matricula dado que no pueden existir dos coches con la misma matricula
+            if(coches.get(i).getMatricula().equals(matricula)){ // si ya existe retornamos un mensaje de error y marcamos como true nuestra bandera 
                 Mensajes.ventanaError("El cliente introducido ya existe.", "Gestión de clientes.");
-                encontrado = true;
+                encontrado=true;
                 break;
             }
         }
 
-        if (encontrado == false) { // si no existe añadimos el coche como un cliente nuevo 
-            Ficheros.coches.add(new Coche(matricula, motor, cilindrada, caballos, nombreDueño, telefono, dni));
-            Mensajes.ventanaInfo("Cliente introducido con éxito", "Gestión de clientes.");
-            Ficheros.escribirFicheroCoches();
+        if(encontrado==false){ // si no existe añadimos el coche como un cliente nuevo 
+            connect();
+            try{
+                st=conexion.prepareStatement("insert into coche values('"+matricula+"'"
+                        +","+"'"+motor+"'"
+                        +","+"'"+cilindrada+"'"
+                        +","+"'"+caballos+"'"
+                        +","+"'"+nombreDueño+"'"
+                        +","+"'"+dni+"'"
+                        +","+"'"+telefono+"'"+");");
+
+                st.execute();
+                select();
+                Mensajes.ventanaInfo("Cliente introducido con éxito", "Gestión de clientes.");
+            }catch(SQLException ex){
+                System.out.println("Error al insertar en la base de datos.");
+            }
+            close();
         }
 
         return encontrado; // retornamos true si habia un cliente con esa matricula introducido, o false en caso contrario
@@ -47,29 +61,31 @@ public class GestionClientes extends Conexion{
      * @param matricula matricula del vehiculo a eliminar
      * @param eb le indica si estamos modificando o borrando al cliente
      */
-    public static void borrarCliente(String matricula, String eb) { 
-        boolean borrado = false; // indicador de borrado que solo salta a true en caso de que se encuentre el coche, posteriormente trataremos que no se encuentre con el 
-        for (int i = 0; i < Ficheros.coches.size(); i++) { //recorremos la lista de clientes para localizar exactamente al que queremos eliminar 
-            if (Ficheros.coches.get(i).getMatricula().equals(matricula)) { //si lo encontramos lo eliminamos 
-                Ficheros.coches.remove(i);
-                borrado = true;
-                break;
-            }
+    public void borrarCliente(String matricula, String eb){
+        boolean borrado=false; // indicador de borrado que solo salta a true en caso de que se encuentre el coche, posteriormente trataremos que no se encuentre con el 
 
-        }
-        if (borrado == true) { // si no lo encontramos retornamos un mensaje de error, si lo encontramos retornamos un mensaje conforme la operacion se ha realizado correctamente 
-            Ficheros.escribirFicheroCoches();
-            if (eb.equals("borrar")) {
-                Mensajes.ventanaInfo("Cliente borrado", "Gestión de clientes.");
-            }
-        } else {
+        connect();
+
+        try{
+            st=conexion.prepareStatement("DELETE FROM coche WHERE matricula='"+matricula+"'");
+            st.executeUpdate();
+            borrado=true;
+            select();
+        }catch(SQLException ex){
             Mensajes.ventanaError("No se ha encontrado al cliente a eliminar.", "Gestión de clientes.");
         }
+        
+        close();
+
+        if(eb.equals("borrar")){
+            Mensajes.ventanaInfo("Cliente borrado", "Gestión de clientes.");
+        }
     }
-    
+
     /**
      * Edita los parámetros de un cliente en concreto.
-     * @param numero Número de la posición del cliente en el ArrayList coches.
+     *
+     * @param editar Matrícula del elemento a editar.
      * @param matricula Matrícula a insertar en el cliente indicado.
      * @param motor Motor a insertar en el cliente indicado.
      * @param cilindrada Cilindrada a insertar en el cliente indicado.
@@ -79,14 +95,41 @@ public class GestionClientes extends Conexion{
      * @param telefono Teléfono a insertar en el cliente indicado.
      * @return true si se ha editado el cliente.
      */
-    public static boolean editarCliente(int numero, String matricula, String motor, String cilindrada, String caballos, String nombreDueño, String dni, String telefono) {
-        boolean editado = false;
-        Ficheros.coches.set(numero, new Coche(matricula, motor, cilindrada, caballos, nombreDueño, telefono, dni)); // realizamos la modificacion con los datos nuevos introducidos
-        editado = true;
+    public boolean editarCliente(String editar, String matricula, String motor, String cilindrada, String caballos, String nombreDueño, String dni, String telefono){
+        boolean editado=false;
+        connect();
 
-        Ficheros.escribirFicheroUsuarios(); // realizamos la escritura en el fichero para acutalizar los datos
-
+        try{
+            st=conexion.prepareStatement("update coches set matricula="
+                    +"'"+matricula+"'"
+                    +", motor="+"'"+motor+"'"+", cilindrada="+"'"+cilindrada+"'"
+                    +", caballos="+"'"+caballos+"'"+", nombreDueno="+"'"+nombreDueño+"'"
+                    +", dni="+"'"+dni+"'"+", telefono="+"'"+telefono+"'"
+                    +" where matricula="+"'"+matricula+"'"+";");
+            st.executeUpdate();
+            editado=true;
+            select();
+        }catch(SQLException ex){
+            System.out.println("Error al actualizar la tabla");
+        }    
+        close();
+        
         return editado;
+    }
+
+    @Override
+    public void select(){
+        try{
+            st=conexion.prepareStatement("select * from coche");
+            resultado=st.executeQuery();
+
+            coches.clear();
+            while(resultado.next()){
+                coches.add(new Coche(resultado.getString("matricula"), resultado.getString("motor"), resultado.getString("cilindrada"), resultado.getString("caballos"), resultado.getString("nombreDueno"), resultado.getString("dni"), resultado.getString("telefono")));
+            }
+        }catch(SQLException ex){
+            System.out.println("Error al ejecutar la consulta");
+        }
     }
 
 }

@@ -21,6 +21,9 @@ import static javax.swing.JOptionPane.YES_OPTION;
 public class GestionVentas extends Conexion{
 
     public static ArrayList <Venta> ventas=new ArrayList();
+
+    public GestionVentas(){
+    }
     
     /**
      * Añade coche al ArrayList de ventas.
@@ -65,6 +68,11 @@ public class GestionVentas extends Conexion{
             Ficheros.escribirFicheroVentas();
         }
         return borrado;
+    }
+
+    @Override
+    public void select(){
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

@@ -9,6 +9,10 @@ import java.util.ArrayList;
 public class GestionUsuarios extends Conexion{
     
     public static ArrayList<Usuario> usuarios=new ArrayList();
+
+    public GestionUsuarios(){
+    }
+    
     
     /**
      * Añade un usuario al ArrayList que recibe y lo devuelve.
@@ -80,5 +84,10 @@ public class GestionUsuarios extends Conexion{
         Ficheros.escribirFicheroUsuarios();
  
         return editado;
+    }
+
+    @Override
+    public void select(){
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

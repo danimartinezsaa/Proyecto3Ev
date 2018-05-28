@@ -11,6 +11,9 @@ import static javax.swing.JOptionPane.YES_OPTION;
 
 public class GestionCitas extends Conexion{
 
+    public GestionCitas(){
+    }
+    
     public static ArrayList<Cita> citas=new ArrayList();
 
     /**

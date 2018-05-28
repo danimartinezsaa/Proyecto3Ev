@@ -10,6 +10,10 @@ public class GestionClientes extends Conexion{
 
     public static ArrayList<Coche> coches=new ArrayList();
 
+    public GestionClientes(){
+    }
+
+    
     /**
      * Añade un cliente al ArrayList de clientes que recibe y lo devuelve
      *

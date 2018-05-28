@@ -1,7 +1,6 @@
 package com.tallerplus.gestion;
 
 import VentanasEmergentes.Mensajes;
-import com.tallerplus.files.Ficheros;
 import com.tallerplus.objetos.Cita;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -9,6 +8,10 @@ import static javax.swing.JOptionPane.YES_OPTION;
 
 public class GestionCitas {
 
+    
+    public static ArrayList <Cita> citas=new ArrayList();
+
+        
     /**
      * añade una cita para un vehiculo en la lista de citas que le pasamos .
      *

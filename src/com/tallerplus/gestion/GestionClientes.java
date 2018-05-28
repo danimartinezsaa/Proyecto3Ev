@@ -1,11 +1,13 @@
 package com.tallerplus.gestion;
 
 import VentanasEmergentes.Mensajes;
-import com.tallerplus.files.Ficheros;
 import com.tallerplus.objetos.Coche;
+import java.util.ArrayList;
 
 public class GestionClientes {
 
+    
+    public static ArrayList<Coche> coches=new ArrayList();
     /**
      * Añade un cliente al ArrayList de clientes que recibe y lo devuelve
      *

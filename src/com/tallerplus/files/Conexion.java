@@ -5,16 +5,12 @@
  */
 package com.tallerplus.files;
 
-import com.tallerplus.objetos.Cita;
 import com.tallerplus.objetos.Coche;
-import com.tallerplus.objetos.Usuario;
-import com.tallerplus.objetos.Venta;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 /**
  *
@@ -25,10 +21,6 @@ public class Conexion{
     private static ResultSet resultado;
     private static Connection conexion;
     
-    public static ArrayList<Usuario> usuarios=new ArrayList();
-    public static ArrayList<Coche> coches=new ArrayList();
-    public static ArrayList <Cita> citas=new ArrayList();
-    public static ArrayList <Venta> ventas=new ArrayList();
 /**
  * Método para conectarse a la base de datos.
  */

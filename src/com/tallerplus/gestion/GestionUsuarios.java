@@ -1,12 +1,14 @@
 package com.tallerplus.gestion;
 
 import VentanasEmergentes.Mensajes;
-import com.tallerplus.files.Ficheros;
 import com.tallerplus.objetos.Usuario;
+import java.util.ArrayList;
 
 
 public class GestionUsuarios {
-
+    
+    public static ArrayList<Usuario> usuarios=new ArrayList();
+    
     /**
      * Añade un usuario al ArrayList que recibe y lo devuelve.
      *

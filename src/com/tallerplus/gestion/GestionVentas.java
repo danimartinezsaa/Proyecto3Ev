@@ -6,10 +6,12 @@
 package com.tallerplus.gestion;
 
 import VentanasEmergentes.Mensajes;
-import com.tallerplus.files.Ficheros;
 import com.tallerplus.objetos.Venta;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.YES_OPTION;
+
+
 
 /**
  *
@@ -17,6 +19,8 @@ import static javax.swing.JOptionPane.YES_OPTION;
  */
 public class GestionVentas {
 
+    public static ArrayList <Venta> ventas=new ArrayList();
+    
     /**
      * Añade coche al ArrayList de ventas.
      *

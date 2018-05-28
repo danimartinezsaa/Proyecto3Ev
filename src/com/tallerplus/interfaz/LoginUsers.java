@@ -1,6 +1,6 @@
 package com.tallerplus.interfaz;
 
-import com.tallerplus.files.Ficheros;
+import com.tallerplus.gestion.GestionUsuarios;
 import com.tallerplus.gestion.Login;
 import java.awt.Image;
 import java.awt.event.KeyAdapter;
@@ -166,7 +166,7 @@ public class LoginUsers extends javax.swing.JFrame {
         String contrasena = new String(incontrasena.getPassword());
         String usuario = new String(inusuario.getText());
         //Lo mando al método que lo gestiona en la clase Login.
-        boolean correcto = Login.comprobarUsuario(usuario, contrasena, Ficheros.usuarios);
+        boolean correcto = Login.comprobarUsuario(usuario, contrasena, GestionUsuarios.usuarios);
         if (correcto == true) //Si el usuario y la contraseña son correctos cierro ventana login.
         {
             dispose();

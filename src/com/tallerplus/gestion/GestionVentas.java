@@ -6,6 +6,7 @@
 package com.tallerplus.gestion;
 
 import VentanasEmergentes.Mensajes;
+import com.tallerplus.files.Conexion;
 import com.tallerplus.objetos.Venta;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -17,7 +18,7 @@ import static javax.swing.JOptionPane.YES_OPTION;
  *
  * clase para la gestion de ventas de vehiculos 
  */
-public class GestionVentas {
+public class GestionVentas extends Conexion{
 
     public static ArrayList <Venta> ventas=new ArrayList();
     

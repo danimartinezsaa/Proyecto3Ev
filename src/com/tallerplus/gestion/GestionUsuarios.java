@@ -1,11 +1,12 @@
 package com.tallerplus.gestion;
 
 import VentanasEmergentes.Mensajes;
+import com.tallerplus.files.Conexion;
 import com.tallerplus.objetos.Usuario;
 import java.util.ArrayList;
 
 
-public class GestionUsuarios {
+public class GestionUsuarios extends Conexion{
     
     public static ArrayList<Usuario> usuarios=new ArrayList();
     

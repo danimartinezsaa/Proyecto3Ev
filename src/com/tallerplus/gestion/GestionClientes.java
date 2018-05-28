@@ -1,10 +1,11 @@
 package com.tallerplus.gestion;
 
 import VentanasEmergentes.Mensajes;
+import com.tallerplus.files.Conexion;
 import com.tallerplus.objetos.Coche;
 import java.util.ArrayList;
 
-public class GestionClientes {
+public class GestionClientes extends Conexion{
 
     
     public static ArrayList<Coche> coches=new ArrayList();
@@ -21,6 +22,8 @@ public class GestionClientes {
      */
     public static boolean anadirCliente(String matricula, String motor, String cilindrada, String caballos, String nombreDueño, String dni, String telefono) { // pasamos al metodo todos los datos del cliente
         boolean encontrado = false;
+        connect();
+        
         for (int i = 0; i < Ficheros.coches.size(); i++) { // comprobamos que el ciente introducido no exista ya , para eso usamos el campo matricula dado que no pueden existir dos coches con la misma matricula
             if (Ficheros.coches.get(i).getMatricula().equals(matricula)) { // si ya existe retornamos un mensaje de error y marcamos como true nuestra bandera 
                 Mensajes.ventanaError("El cliente introducido ya existe.", "Gestión de clientes.");

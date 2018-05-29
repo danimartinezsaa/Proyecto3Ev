@@ -5,7 +5,6 @@ import java.awt.Color;
 import javax.swing.JOptionPane;
 import Validaciones.ValidarFormatos;
 import VentanasEmergentes.Mensajes;
-import com.tallerplus.files.Ficheros;
 import com.tallerplus.gestion.GestionVentas;
 import java.awt.Image;
 import javax.swing.ImageIcon;
@@ -21,6 +20,7 @@ public class ClientesVentas extends javax.swing.JFrame {
 
     private boolean correcto = false;
     private String telefono;
+    GestionClientes clientes=new GestionClientes();
 
     /**
      * Constructor que inicializa los componentes, lo centra en la pantalla,
@@ -180,15 +180,13 @@ public class ClientesVentas extends javax.swing.JFrame {
         boolean telefonoCorrecto = ValidarFormatos.validarTelefono(textoTelefono.getText());
         boolean bandera = false;
 
-        for (int i = 0; i < Ficheros.coches.size(); i++) {
-            if (Ficheros.coches.get(i).getMatricula().equals(textoMatricula.getText())) {
-                Mensajes.ventanaError("El cliente introducido ya existe.", "Gestión de clientes.");
+       clientes.anadirCliente(matriculaCorrecta,textoMotor.getText(),dniCorrecto,telefonoCorrecto);
                 bandera = false;
-                break;
-            } else {
+
+          
                 bandera = true;
-            }
-        }
+            
+        
         if (bandera == true) {
             if (matriculaCorrecta == true && dniCorrecto == true && telefonoCorrecto == true) {
 

@@ -1,6 +1,5 @@
 package com.tallerplus.interfaz;
 
-import com.tallerplus.files.Ficheros;
 import com.tallerplus.gestion.GestionVentas;
 import com.tallerplus.gestion.Login;
 import com.tallerplus.objetos.Venta;
@@ -29,6 +28,7 @@ public class VentaCoches extends javax.swing.JFrame {
     static String cilindrada;
     static boolean correcto;
     static int eliminar;
+    GestionVentas ventas=new GestionVentas();
 
     /**
      * Constructor que inicializa los componentes, centra la ventana, la hace
@@ -51,7 +51,7 @@ public class VentaCoches extends javax.swing.JFrame {
         tabla.addColumn("Caballos");
 
         //Recibimos los coches encontrados
-        enventa = Ficheros.ventas;
+        ventas.select();
 
         mostrarTabla();
     }
@@ -323,7 +323,7 @@ public class VentaCoches extends javax.swing.JFrame {
                 GestionTabla.borrarTabla(tabla);
 
                 //Recibimos los coches encontrados
-                enventa = Ficheros.ventas;
+                ventas.select();
 
                 mostrarTabla();
             } else { // en caso de que no se cumpla que los campos no esten validados con exito 
@@ -432,7 +432,7 @@ public class VentaCoches extends javax.swing.JFrame {
      * Método que muestra la tabla actualizada
      */
     private void mostrarTabla() {
-        for (Venta elemento : enventa) {
+        for (Venta elemento : GestionVentas.ventas) {
             String anadir[] = new String[5];
             anadir[0] = elemento.getModelo();
             anadir[1] = elemento.getPrecio().toString();

@@ -168,7 +168,7 @@ public class GestionCitas extends Conexion{
         try{
             st=conexion.prepareStatement("select * from cita");
             resultado=st.executeQuery();
-
+            
             citas.clear();
             while(resultado.next()){
                 citas.add(new Cita(resultado.getString("matricula"), resultado.getString("fechaHora"), resultado.getString("descripcion"), Float.parseFloat(resultado.getString("precio")), resultado.getString("estado")));
@@ -176,6 +176,9 @@ public class GestionCitas extends Conexion{
         }catch(SQLException ex){
             System.out.println("Error al ejecutar la consulta");
             Mensajes.ventanaError("Error al ejecutar la consulta.", "Error.");
+        }catch(NullPointerException error){
+            System.out.println("No existen datos en la tabla citas");
+            
         }
 
         close();

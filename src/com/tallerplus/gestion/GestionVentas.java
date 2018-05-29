@@ -101,6 +101,9 @@ public  boolean borrarVenta(boolean vendido, int id) {
             }
         } catch (SQLException ex) {
             Mensajes.ventanaError("Error al ejecutar la consulta.", "Error.");
+        }catch(NullPointerException error){
+            System.out.println("No existen datos en la tabla ventas");
+            
         }
         close();
     }

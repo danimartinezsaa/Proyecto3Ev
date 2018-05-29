@@ -133,6 +133,9 @@ public class GestionClientes extends Conexion{
             }
         }catch(SQLException ex){
             Mensajes.ventanaError("Error al ejecutar la consulta.", "Error.");
+        }catch(NullPointerException error){
+            System.out.println("No existen datos en la tabla clientes");
+            
         }
     }
 

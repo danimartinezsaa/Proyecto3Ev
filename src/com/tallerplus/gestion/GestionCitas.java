@@ -47,7 +47,7 @@ public class GestionCitas extends Conexion{
                 st.execute();
                 select();
             }catch(SQLException ex){
-                System.out.println("Error al insertar en la base de datos.");
+                Mensajes.ventanaError("Error al insertar en la base de datos.", "Error.");
             }
             close();
         }
@@ -125,7 +125,7 @@ public class GestionCitas extends Conexion{
                 encontrados++;
             }
         }catch(SQLException ex){
-            System.out.println("Error al buscar");
+            Mensajes.ventanaError("Error al ejecutar la consulta.", "Error.");
         }
         close();
 
@@ -151,7 +151,7 @@ public class GestionCitas extends Conexion{
                 encontrados++;
             }
         }catch(SQLException ex){
-            System.out.println("Error al buscar");
+            Mensajes.ventanaError("Error al ejecutar la consulta.", "Error.");
         }
         close();
 
@@ -175,6 +175,7 @@ public class GestionCitas extends Conexion{
             }
         }catch(SQLException ex){
             System.out.println("Error al ejecutar la consulta");
+            Mensajes.ventanaError("Error al ejecutar la consulta.", "Error.");
         }
 
         close();

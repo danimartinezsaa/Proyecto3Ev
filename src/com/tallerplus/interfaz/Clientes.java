@@ -2,7 +2,6 @@ package com.tallerplus.interfaz;
 
 import Validaciones.ValidarFormatos;
 import VentanasEmergentes.Mensajes;
-import com.tallerplus.files.Ficheros;
 import com.tallerplus.gestion.GestionClientes;
 import com.tallerplus.gestion.GestionTabla;
 import com.tallerplus.objetos.Coche;
@@ -23,9 +22,10 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Clientes extends javax.swing.JFrame {
 
-    int cliente_editar;
+    String cliente_editar;
     boolean edicion = false;
     DefaultTableModel tablaCliente = new DefaultTableModel();
+    GestionClientes cliente=new GestionClientes();
 
     /**
      * Constructor en dónde se inicializan los componentes, se centra la ventana
@@ -376,12 +376,12 @@ public class Clientes extends javax.swing.JFrame {
             } else {
                 if (edicion == false) {
                     // si se han introducido todos los campos
-                    boolean encontrado = GestionClientes.anadirCliente(matricula, motor, cilindrada, caballos, nombre, dni, telefono);
+                    boolean encontrado = cliente.anadirCliente(matricula, motor, cilindrada, caballos, nombre, dni, telefono);
                     if (encontrado == false) {
-                        tablaCliente.addRow(datos); // lo añadimos en la lista que tenemos en pantalla
+                        mostrarTabla();
                     }            // ponemos todos los campos a null
                 } else {
-                    GestionClientes.editarCliente(cliente_editar, matricula, motor, cilindrada, caballos, nombre, dni, telefono);
+                    cliente.editarCliente(cliente_editar, matricula, motor, cilindrada, caballos, nombre, dni, telefono);
                     GestionTabla.borrarTabla(tablaCliente);
                     mostrarTabla();
                 }
@@ -405,6 +405,7 @@ public class Clientes extends javax.swing.JFrame {
         int editar = tablaClientes.getSelectedRow();
         if (editar >= 0) {
             textoMatricula.setText(tablaClientes.getValueAt(editar, 0).toString());
+            cliente_editar=tablaClientes.getValueAt(editar, 0).toString();
             textoMotor.setSelectedItem(tablaClientes.getValueAt(editar, 1).toString());
             textoCilindrada.setText(tablaClientes.getValueAt(editar, 2).toString());
             textoCaballos.setText(tablaClientes.getValueAt(editar, 3).toString());
@@ -421,7 +422,6 @@ public class Clientes extends javax.swing.JFrame {
             } else {
                 textoMotor.setSelectedIndex(3);
             }
-            cliente_editar = editar;
             edicion = true;
         } else {
             JOptionPane.showMessageDialog(null, "Seleccione un usuario", "Error", 1);
@@ -439,8 +439,8 @@ public class Clientes extends javax.swing.JFrame {
             if (eliminar >= 0) {
                 int confirmado = JOptionPane.showConfirmDialog(null, "¿Seguro que deseas eliminar este cliente?");
                 if (confirmado == YES_OPTION) {
-                    GestionClientes.borrarCliente(Ficheros.coches.get(eliminar).getMatricula(), eb);
-                    tablaCliente.removeRow(eliminar);
+                    cliente.borrarCliente(cliente.coches.get(eliminar).getMatricula(), eb);
+                    mostrarTabla();
                 }
 
             } else {
@@ -490,7 +490,8 @@ public class Clientes extends javax.swing.JFrame {
      * Muestra la tabla actualizada.
      */
     private void mostrarTabla() {
-        for (Coche elemento : Ficheros.coches) {
+        GestionTabla.borrarTabla(tablaCliente);
+        for (Coche elemento : cliente.coches) {
             String anadir[] = new String[7];
             anadir[0] = elemento.getMatricula();
             anadir[1] = elemento.getMotor();

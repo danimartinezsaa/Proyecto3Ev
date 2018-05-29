@@ -1,7 +1,6 @@
 package com.tallerplus.interfaz;
 
 import Validaciones.ValidarFormatos;
-import com.tallerplus.files.Ficheros;
 import com.tallerplus.gestion.GestionCitas;
 import com.tallerplus.objetos.Cita;
 import java.awt.Color;
@@ -18,23 +17,24 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author dani_
  */
-public class Citas extends javax.swing.JFrame {
+public class Citas extends javax.swing.JFrame{
 
-    DefaultTableModel tabla = new DefaultTableModel();
+    DefaultTableModel tabla=new DefaultTableModel();
+    GestionCitas cita=new GestionCitas();
 
     /**
      * Constructor en dónde se inicializan los componentes, se centra en la
      * pantalla, no permite redimensionar y se hace visible la ventana. Se
      * inicializa la tabla con los valores del ArrayList Ficheros.citas.
      */
-    public Citas() {
+    public Citas(){
         initComponents();
         setLocationRelativeTo(null);
         setVisible(true);
         setResizable(false);
         //Cambiamos icono
-        ImageIcon ImageIcon = new ImageIcon(getClass().getResource("/com/tallerplus/icon/LogoT+.png"));
-        Image Image = ImageIcon.getImage();
+        ImageIcon ImageIcon=new ImageIcon(getClass().getResource("/com/tallerplus/icon/LogoT+.png"));
+        Image Image=ImageIcon.getImage();
         this.setIconImage(Image);
         //Columnas de la tabla
         tabla.addColumn("Matrícula");
@@ -42,18 +42,8 @@ public class Citas extends javax.swing.JFrame {
         tabla.addColumn("Descripción");
         tabla.addColumn("Precio");
         tabla.addColumn("Estado");
-        //Añadimos todas las citas existentes
-        for (Cita elemento : Ficheros.citas) {
-            String anadir[] = new String[5];
-            anadir[0] = elemento.getMatricula();
-            anadir[1] = elemento.getFechaHora();
-            anadir[2] = elemento.getDescripcion();
-            anadir[3] = Float.toString(elemento.getPrecio());
-            anadir[4] = elemento.getEstado();
-            tabla.addRow(anadir);
-        }
 
-        this.tablacitas.setModel(tabla);
+        mostrarTabla();
     }
 
     /**
@@ -63,30 +53,30 @@ public class Citas extends javax.swing.JFrame {
      * @param precio Precio a introducir en la cita.
      * @return
      */
-    private boolean validarDatos(String matricula, String precio) {
-        boolean validado = false;
-        boolean matriculaValida = ValidarFormatos.validarMatricula(inmatricula.getText());
-        boolean preciovalido = ValidarFormatos.validarPrecio(inprecio.getText());
-        if (matriculaValida == true && preciovalido == true) {
+    private boolean validarDatos(String matricula, String precio){
+        boolean validado=false;
+        boolean matriculaValida=ValidarFormatos.validarMatricula(inmatricula.getText());
+        boolean preciovalido=ValidarFormatos.validarPrecio(inprecio.getText());
+        if(matriculaValida==true&&preciovalido==true){
             inmatricula.setForeground(Color.black);
             inprecio.setForeground(Color.black);
-            validado = true;
-        } else {
+            validado=true;
+        }else{
 
             JOptionPane.showMessageDialog(null, "datos erroneos");
 
-            if (matriculaValida == false) {
+            if(matriculaValida==false){
                 inmatricula.setForeground(Color.red);
-            } else {
+            }else{
                 inmatricula.setForeground(Color.black);
             }
-            if (preciovalido == false) {
+            if(preciovalido==false){
                 inprecio.setForeground(Color.red);
-            } else {
+            }else{
                 inprecio.setForeground(Color.black);
             }
 
-            validado = false;
+            validado=false;
 
         }
         return validado;
@@ -326,7 +316,7 @@ public class Citas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void batrasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_batrasMouseClicked
-        VentanaPrincipal venanaprincipal = new VentanaPrincipal();
+        VentanaPrincipal venanaprincipal=new VentanaPrincipal();
         dispose();
     }//GEN-LAST:event_batrasMouseClicked
     /**
@@ -343,10 +333,10 @@ public class Citas extends javax.swing.JFrame {
      * @param evt
      */
     private void bborrarcitaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bborrarcitaMouseClicked
-        int eliminar = tablacitas.getSelectedRow();
-        if (eliminar >= 0) {
-            boolean correcto = GestionCitas.borrarCita(Ficheros.citas.get(eliminar).getMatricula(), Ficheros.citas.get(eliminar).getFechaHora());
-            if (correcto != false) {
+        int eliminar=tablacitas.getSelectedRow();
+        if(eliminar>=0){
+            boolean correcto=cita.borrarCita(cita.citas.get(eliminar).getMatricula(), cita.citas.get(eliminar).getFechaHora());
+            if(correcto!=false){
                 tabla.removeRow(eliminar);
             }
         }
@@ -390,22 +380,22 @@ public class Citas extends javax.swing.JFrame {
      * @param evt
      */
     private void bañadircitaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bañadircitaMouseClicked
-        String matricula = inmatricula.getText();
-        String precio = inprecio.getText();
-        boolean validado = validarDatos(matricula, precio);
-        if (validado == true) {
-            try {
-                String anadir[] = new String[5];
-                anadir[0] = inmatricula.getText();
-                anadir[1] = infechahora.getText();
-                anadir[2] = indescripcion.getText();
-                anadir[3] = inprecio.getText();
-                anadir[4] = (String) comboestado.getSelectedItem();
-                GestionCitas.anadirCita(anadir[0], anadir[1], anadir[2], Float.parseFloat(anadir[3]), anadir[4]);
+        String matricula=inmatricula.getText();
+        String precio=inprecio.getText();
+        boolean validado=validarDatos(matricula, precio);
+        if(validado==true){
+            try{
+                String anadir[]=new String[5];
+                anadir[0]=inmatricula.getText();
+                anadir[1]=infechahora.getText();
+                anadir[2]=indescripcion.getText();
+                anadir[3]=inprecio.getText();
+                anadir[4]=(String) comboestado.getSelectedItem();
+                cita.anadirCita(anadir[0], anadir[1], anadir[2], Float.parseFloat(anadir[3]), anadir[4]);
                 tabla.addRow(anadir);
-            } catch (NumberFormatException ex) {
+            }catch(NumberFormatException ex){
                 JOptionPane.showMessageDialog(null, "Valor de precio erróneo", "Error", 0);
-            } finally {
+            }finally{
                 inmatricula.setText("");
                 infechahora.setText("DD/MM/AAAA HH:MM");
                 inprecio.setText("");
@@ -417,33 +407,33 @@ public class Citas extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String args[]){
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+        try{
+            for(javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()){
+                if("Nimbus".equals(info.getName())){
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
+        }catch(ClassNotFoundException ex){
             java.util.logging.Logger.getLogger(Citas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
+        }catch(InstantiationException ex){
             java.util.logging.Logger.getLogger(Citas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
+        }catch(IllegalAccessException ex){
             java.util.logging.Logger.getLogger(Citas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        }catch(javax.swing.UnsupportedLookAndFeelException ex){
             java.util.logging.Logger.getLogger(Citas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
+        java.awt.EventQueue.invokeLater(new Runnable(){
+            public void run(){
                 new Citas().setVisible(true);
             }
         });
@@ -469,4 +459,19 @@ public class Citas extends javax.swing.JFrame {
     private javax.swing.JLabel labelfechahora;
     private javax.swing.JTable tablacitas;
     // End of variables declaration//GEN-END:variables
+
+    public void mostrarTabla(){
+        //Añadimos todas las citas existentes
+        for(Cita elemento : cita.citas){
+            String anadir[]=new String[5];
+            anadir[0]=elemento.getMatricula();
+            anadir[1]=elemento.getFechaHora();
+            anadir[2]=elemento.getDescripcion();
+            anadir[3]=Float.toString(elemento.getPrecio());
+            anadir[4]=elemento.getEstado();
+            tabla.addRow(anadir);
+        }
+
+        this.tablacitas.setModel(tabla);
+    }
 }

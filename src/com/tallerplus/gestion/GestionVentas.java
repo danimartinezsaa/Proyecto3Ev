@@ -7,8 +7,6 @@ package com.tallerplus.gestion;
 
 import VentanasEmergentes.Mensajes;
 import com.tallerplus.files.Conexion;
-import static com.tallerplus.gestion.GestionUsuarios.usuarios;
-import com.tallerplus.objetos.Usuario;
 import com.tallerplus.objetos.Venta;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -49,7 +47,7 @@ public class GestionVentas extends Conexion {
             select();
             Mensajes.ventanaInfo("venta introducida con éxito", "Gestión de ventas.");
         } catch (SQLException ex) {
-            System.out.println("Error al insertar en la base de datos.");
+            Mensajes.ventanaError("Error al insertar en la base de datos.", "Error.");
         }
         close();
 }
@@ -102,7 +100,7 @@ public  boolean borrarVenta(boolean vendido, int id) {
                 ventas.add(new Venta(resultado.getInt("id"), resultado.getString("modelo"), resultado.getFloat("precio"), resultado.getString("motor"), resultado.getString("cilindrada"), resultado.getString("caballos")));
             }
         } catch (SQLException ex) {
-            System.out.println("Error al ejecutar la consulta");
+            Mensajes.ventanaError("Error al ejecutar la consulta.", "Error.");
         }
         close();
     }

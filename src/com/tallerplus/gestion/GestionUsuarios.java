@@ -2,9 +2,6 @@ package com.tallerplus.gestion;
 
 import VentanasEmergentes.Mensajes;
 import com.tallerplus.files.Conexion;
-import static com.tallerplus.gestion.GestionCitas.citas;
-import com.tallerplus.interfaz.Usuarios;
-import com.tallerplus.objetos.Cita;
 import com.tallerplus.objetos.Usuario;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -43,7 +40,7 @@ public class GestionUsuarios extends Conexion {
                 select();
                 Mensajes.ventanaInfo("Usuario introducido con éxito", "Gestión de usuarios.");
             } catch (SQLException ex) {
-                System.out.println("Error al insertar en la base de datos.");
+                Mensajes.ventanaError("Error al insertar en la base de datos.", "Error.");
             }
             close();
 
@@ -105,7 +102,7 @@ public class GestionUsuarios extends Conexion {
             editado = true;
             select();
         } catch (SQLException ex) {
-            System.out.println("Error al actualizar");
+            Mensajes.ventanaError("Error al actualizar usuario.", "Error.");
         }
         close();
 
@@ -127,7 +124,7 @@ public class GestionUsuarios extends Conexion {
                 usuarios.add(new Usuario(resultado.getString("usuario"), resultado.getString("contrasena"), resultado.getString("tipo")));
             }
         } catch (SQLException ex) {
-            System.out.println("Error al ejecutar la consulta");
+            Mensajes.ventanaError("Error al ejecutar la consulta.", "Error.");
         }
         close();
     }

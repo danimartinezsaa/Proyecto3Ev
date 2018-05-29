@@ -25,7 +25,7 @@ public abstract class Conexion{
  */
     public void connect(){
         try{
-            conexion=DriverManager.getConnection("jdbc:sqlite:"+"src/com/tallerplus/files/base");
+            conexion=DriverManager.getConnection("jdbc:sqlite:"+"/src/com/tallerplus/files/base");
             if(conexion!=null){
                 System.out.println("Conectado");
             }

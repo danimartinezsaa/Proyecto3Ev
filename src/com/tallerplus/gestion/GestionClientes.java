@@ -51,7 +51,7 @@ public class GestionClientes extends Conexion{
                 select();
                 Mensajes.ventanaInfo("Cliente introducido con éxito", "Gestión de clientes.");
             }catch(SQLException ex){
-                System.out.println("Error al insertar en la base de datos.");
+                Mensajes.ventanaError("Error al insertar en la base de datos.", "Error.");
             }
             close();
         }
@@ -109,12 +109,12 @@ public class GestionClientes extends Conexion{
                     +", motor="+"'"+motor+"'"+", cilindrada="+"'"+cilindrada+"'"
                     +", caballos="+"'"+caballos+"'"+", nombreDueno="+"'"+nombreDueño+"'"
                     +", dni="+"'"+dni+"'"+", telefono="+"'"+telefono+"'"
-                    +" where matricula="+"'"+matricula+"'"+";");
+                    +" where matricula="+"'"+editar+"'"+";");
             st.executeUpdate();
             editado=true;
             select();
         }catch(SQLException ex){
-            System.out.println("Error al actualizar la tabla");
+            Mensajes.ventanaError("Error al actualizar la tabla.", "Error.");
         }    
         close();
         
@@ -132,7 +132,7 @@ public class GestionClientes extends Conexion{
                 coches.add(new Coche(resultado.getString("matricula"), resultado.getString("motor"), resultado.getString("cilindrada"), resultado.getString("caballos"), resultado.getString("nombreDueno"), resultado.getString("dni"), resultado.getString("telefono")));
             }
         }catch(SQLException ex){
-            System.out.println("Error al ejecutar la consulta");
+            Mensajes.ventanaError("Error al ejecutar la consulta.", "Error.");
         }
     }
 

@@ -64,7 +64,7 @@ public class GestionUsuarios extends Conexion {
             boolean borrado = false;
             connect();
             try {
-                st = conexion.prepareStatement("delte from usuario where usuario='" + usuario + "'");
+                st = conexion.prepareStatement("delete from usuario where usuario='" + usuario + "'");
                 st.executeUpdate();
                 borrado = true;
                 select();

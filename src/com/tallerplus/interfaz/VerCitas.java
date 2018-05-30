@@ -1,6 +1,5 @@
 package com.tallerplus.interfaz;
 
-import com.tallerplus.files.Ficheros;
 import com.tallerplus.gestion.GestionCitas;
 import com.tallerplus.gestion.GestionTabla;
 import com.tallerplus.objetos.Cita;
@@ -25,7 +24,8 @@ public class VerCitas extends javax.swing.JFrame {
     ArrayList<Cita> encontradas = new ArrayList();
     ArrayList<Cita> mostradas = new ArrayList();
     DefaultTableModel tabla = new DefaultTableModel();
-
+    GestionCitas cita=new GestionCitas();
+    
     /**
      * Constructor que inicializa los componentes, centra la ventana, la hace
      * visible y evita que sea redimensionable. Inicializa el contenido de la
@@ -285,7 +285,7 @@ public class VerCitas extends javax.swing.JFrame {
         String fecha = infecha.getText();
 
         //Recibimos la citas encontradas que no esten cerradas o finalizadas
-        encontradas = GestionCitas.consultarCitaFecha(fecha);
+        cita.consultarCitaFecha(fecha);
 
         borrarCitasPendientesProceso();
         GestionTabla.borrarTabla(tabla);
@@ -302,7 +302,7 @@ public class VerCitas extends javax.swing.JFrame {
         String matricula = inmatricula.getText();
 
         //Recibimos la citas encontradas
-        encontradas = GestionCitas.consultarCitaMatricula(matricula);
+        cita.consultarCitaMatricula(matricula);
 
         borrarCitasPendientesProceso();
         GestionTabla.borrarTabla(tabla);
@@ -330,7 +330,7 @@ public class VerCitas extends javax.swing.JFrame {
             String estado = (String) inestado.getSelectedItem();
             String matricula = mostradas.get(seleccion).getMatricula();
             String fechahora = mostradas.get(seleccion).getFechaHora();
-            GestionCitas.modificarEstado(matricula, fechahora, estado);
+            cita.modificarEstado(matricula, fechahora, estado);
         } else {
             JOptionPane.showMessageDialog(null, "Seleccione una cita", "Error", 0);
         }
@@ -379,9 +379,9 @@ public class VerCitas extends javax.swing.JFrame {
      * Método que muestra en la tabla todas las citas pendientes y en proceso.
      */
     private void mostrarTabla() {
-        Collections.sort(Ficheros.citas);
-
-        for (Cita elemento : Ficheros.citas) {
+        cita.select();
+        Collections.sort(cita.citas);
+        for (Cita elemento : cita.citas) {
             if ((elemento.getEstado().equalsIgnoreCase("pendiente") || elemento.getEstado().equalsIgnoreCase("en proceso"))) {
                 String anadir[] = new String[5];
                 anadir[0] = elemento.getMatricula();

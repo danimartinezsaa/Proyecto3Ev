@@ -1,7 +1,6 @@
 package com.tallerplus.interfaz;
 
 import VentanasEmergentes.Mensajes;
-import com.tallerplus.files.Ficheros;
 import com.tallerplus.gestion.GestionTabla;
 import com.tallerplus.gestion.GestionUsuarios;
 import com.tallerplus.objetos.Usuario;
@@ -18,25 +17,26 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author dani_
  */
-public class Usuarios extends javax.swing.JFrame {
+public class Usuarios extends javax.swing.JFrame{
 
-    DefaultTableModel tabla = new DefaultTableModel();
-    boolean edicion = false;
-    int usuario_editar;
+    DefaultTableModel tabla=new DefaultTableModel();
+    boolean edicion=false;
+    String usuario_editar;
+    GestionUsuarios us=new GestionUsuarios();
 
     /**
      * Constructor que inicializa los componentes, centra la ventana, evita
      * redimensionarla y la hace visible. Inicializa el contenido de la tabla.
      */
-    public Usuarios() {
+    public Usuarios(){
         initComponents();
         setLocationRelativeTo(null);
         setVisible(true);
         setResizable(false);
-        edicion = false;
+        edicion=false;
         //Cambiamos icono
-        ImageIcon ImageIcon = new ImageIcon(getClass().getResource("/com/tallerplus/icon/LogoT+.png"));
-        Image Image = ImageIcon.getImage();
+        ImageIcon ImageIcon=new ImageIcon(getClass().getResource("/com/tallerplus/icon/LogoT+.png"));
+        Image Image=ImageIcon.getImage();
         this.setIconImage(Image);
         //Columnas de la tabla
         tabla.addColumn("Usuario");
@@ -212,7 +212,7 @@ public class Usuarios extends javax.swing.JFrame {
      * @param evt
      */
     private void batrasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_batrasMouseClicked
-        VentanaPrincipal venanaprincipal = new VentanaPrincipal();
+        VentanaPrincipal venanaprincipal=new VentanaPrincipal();
         dispose();
     }//GEN-LAST:event_batrasMouseClicked
     /**
@@ -222,34 +222,34 @@ public class Usuarios extends javax.swing.JFrame {
      * @param evt
      */
     private void banadirusuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_banadirusuarioMouseClicked
-        if (edicion == false) {
-            if (!inusuario.getText().equals("") || !incontrasena.getText().equals("")) {
-                String anadir[] = new String[3];
-                anadir[0] = inusuario.getText();
-                anadir[1] = incontrasena.getText();
-                anadir[2] = (String) combotipo.getSelectedItem();
-                boolean repetido = GestionUsuarios.anadirUsuario(anadir[0], anadir[1], anadir[2]);
-                if (repetido == false) {
-                    tabla.addRow(anadir);
+        if(edicion==false){
+            if(!inusuario.getText().equals("")||!incontrasena.getText().equals("")){
+                String anadir[]=new String[3];
+                anadir[0]=inusuario.getText();
+                anadir[1]=incontrasena.getText();
+                anadir[2]=(String) combotipo.getSelectedItem();
+                boolean repetido=us.anadirUsuario(anadir[0], anadir[1], anadir[2]);
+                if(repetido==false){
+                    mostrarTabla();
                 }
-            } else {
+            }else{
                 Mensajes.ventanaError("Debes cubrir todos los campos.", "Error.");
             }
-        } else {
-            if (usuario_editar == 0) {
-                GestionUsuarios.editarUsuario(usuario_editar, "admin", incontrasena.getText(), "admin");
+        }else{
+            if(usuario_editar=="admin"){
+                us.editarUsuario(usuario_editar, "admin", incontrasena.getText(), "admin");
                 JOptionPane.showMessageDialog(null, "Al usuario Admin sólo se le puede cambiar la contraseña, contraseña cambiada", "Información", 1);
-            } else {
-                GestionUsuarios.editarUsuario(usuario_editar, inusuario.getText(), incontrasena.getText(), (String) combotipo.getSelectedItem());
+            }else{
+                us.editarUsuario(usuario_editar, inusuario.getText(), incontrasena.getText(), (String) combotipo.getSelectedItem());
             }
 
-            GestionTabla.borrarTabla(tabla);
-            //Filas de la tabla
-            mostrarTabla();
-            edicion = false;
+            edicion=false;
         }
         inusuario.setText("");
         incontrasena.setText("");
+
+        //Filas de la tabla
+        mostrarTabla();
     }//GEN-LAST:event_banadirusuarioMouseClicked
     /**
      * Botón para eliminar un usuario.
@@ -257,21 +257,23 @@ public class Usuarios extends javax.swing.JFrame {
      * @param evt
      */
     private void bborrarusuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bborrarusuarioMouseClicked
-        if (edicion == false) {
-            int eliminar = tablausuarios.getSelectedRow();
-            if (eliminar >= 0) {
+        if(edicion==false){
+            int eliminart=tablausuarios.getSelectedRow();
+            int eliminarc=tablausuarios.getSelectedColumn();
+            String usuario=String.valueOf(tabla.getValueAt(tablausuarios.getSelectedRow(), 0));
+            if(eliminart>=0){
 
-                int confirmado = JOptionPane.showConfirmDialog(null, "¿Seguro que deseas eliminar este usuario?");
-                if (confirmado == YES_OPTION) {
-                    boolean correcto = GestionUsuarios.borrarUsuario(Ficheros.usuarios.get(eliminar).getUsuario());
-                    if (correcto != false) {
-                        tabla.removeRow(eliminar);
+                int confirmado=JOptionPane.showConfirmDialog(null, "¿Seguro que deseas eliminar este usuario?");
+                if(confirmado==YES_OPTION){
+                    boolean correcto=us.borrarUsuario(usuario);
+                    if(correcto!=false){
+                        mostrarTabla();
                     }
                 }
-            } else {
-                JOptionPane.showMessageDialog(null, "No hay usuarios para eliminar.", "Error", 0);
+            }else{
+                Mensajes.ventanaError("No hay usuarios para eliminar.", "Error.");
             }
-        } else {
+        }else{
             Mensajes.ventanaError("No puedes borrar a un usuario mientras editas.", "Usuarios.");
         }
     }//GEN-LAST:event_bborrarusuarioMouseClicked
@@ -282,20 +284,20 @@ public class Usuarios extends javax.swing.JFrame {
      * @param evt
      */
     private void beditarusuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_beditarusuarioMouseClicked
-        int editar = tablausuarios.getSelectedRow();
-        if (editar >= 0) {
+        int editar=tablausuarios.getSelectedRow();
+        if(editar>=0){
             inusuario.setText(tablausuarios.getValueAt(editar, 0).toString());
             incontrasena.setText(tablausuarios.getValueAt(editar, 1).toString());
-            if (tablausuarios.getValueAt(editar, 2).equals("admin")) {
+            if(tablausuarios.getValueAt(editar, 2).equals("admin")){
                 combotipo.setSelectedIndex(2);
-            } else if (tablausuarios.getValueAt(editar, 2).equals("recepcion")) {
+            }else if(tablausuarios.getValueAt(editar, 2).equals("recepcion")){
                 combotipo.setSelectedIndex(1);
-            } else {
+            }else{
                 combotipo.setSelectedIndex(0);
             }
-            usuario_editar = editar;
-            edicion = true;
-        } else {
+            usuario_editar=tablausuarios.getValueAt(editar, 0).toString();
+            edicion=true;
+        }else{
             JOptionPane.showMessageDialog(null, "Seleccione un usuario", "Error", 1);
         }
     }//GEN-LAST:event_beditarusuarioMouseClicked
@@ -303,33 +305,33 @@ public class Usuarios extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String args[]){
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+        try{
+            for(javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()){
+                if("Nimbus".equals(info.getName())){
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
+        }catch(ClassNotFoundException ex){
             java.util.logging.Logger.getLogger(Usuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
+        }catch(InstantiationException ex){
             java.util.logging.Logger.getLogger(Usuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
+        }catch(IllegalAccessException ex){
             java.util.logging.Logger.getLogger(Usuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        }catch(javax.swing.UnsupportedLookAndFeelException ex){
             java.util.logging.Logger.getLogger(Usuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
+        java.awt.EventQueue.invokeLater(new Runnable(){
+            public void run(){
                 new Usuarios().setVisible(true);
             }
         });
@@ -338,12 +340,13 @@ public class Usuarios extends javax.swing.JFrame {
     /**
      * Clase que muestra el contenido de la tabla actualizado.
      */
-    private void mostrarTabla() {
-        for (Usuario elemento : Ficheros.usuarios) {
-            String anadir[] = new String[3];
-            anadir[0] = elemento.getUsuario();
-            anadir[1] = elemento.getContrasena();
-            anadir[2] = elemento.getTipo();
+    private void mostrarTabla(){
+        GestionTabla.borrarTabla(tabla);
+        for(Usuario elemento : us.usuarios){
+            String anadir[]=new String[3];
+            anadir[0]=elemento.getUsuario();
+            anadir[1]=elemento.getContrasena();
+            anadir[2]=elemento.getTipo();
             tabla.addRow(anadir);
         }
         this.tablausuarios.setModel(tabla);

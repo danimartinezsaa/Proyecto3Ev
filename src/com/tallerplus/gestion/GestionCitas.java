@@ -13,7 +13,7 @@ public class GestionCitas extends Conexion{
 
     public GestionCitas(){
     }
-    
+
     public static ArrayList<Cita> citas=new ArrayList();
 
     /**
@@ -40,9 +40,9 @@ public class GestionCitas extends Conexion{
             try{
                 st=conexion.prepareStatement("insert into cita values('"+matricula+"'"
                         +","+"'"+fechaHora+"'"
+                        +","+"'"+descripcion+"'"
                         +","+"'"+precio+"'"
-                        +","+"'"+estado+"'"
-                        +","+"'"+descripcion+"'"+");");
+                        +","+"'"+estado+"'"+");");
 
                 st.execute();
                 select();
@@ -109,6 +109,33 @@ public class GestionCitas extends Conexion{
     }
 
     /**
+     * consulta la cita de una determinada hora de un determinado dia y con una matrícula determinada.
+     *
+     * @param fechaHora dato de fecha y hora para realizar la consulta.
+     * @param matricula dato de matrícula para realizar la consulta.
+     */
+    public void consultarCitaMatriculaFecha(String fechaHora, String matricula){ // podemos consultar una cita segun su hora, si no se sabe la hora de una cita de una determinada matricula se debe usar el historial del vehiculo
+        int encontrados=0;
+        connect();
+        try{
+            st=conexion.prepareStatement("select * from cita where fechaHora="+"'"+fechaHora+"'"+" and matricula='"+matricula+"';");
+            resultado=st.executeQuery();
+            citas.clear();
+            while(resultado.next()){
+                citas.add(new Cita(resultado.getString("matricula"), resultado.getString("fechaHora"), resultado.getString("descripcion"), Float.parseFloat(resultado.getString("precio")), resultado.getString("estado")));
+                encontrados++;
+            }
+        }catch(SQLException ex){
+            Mensajes.ventanaError("Error al ejecutar la consulta.", "Error.");
+        }
+        close();
+
+        if(encontrados>0){ // si no se encuentra coincidencia retornamos un mensaje de error
+            Mensajes.ventanaError("Cita no encontrada.", "Búsqueda.");
+        }
+    }
+
+    /**
      * consulta la cita de una determinada hora de un determinado dia.
      *
      * @param fechaHora dato de fecha y hora para realizar la consulta.
@@ -121,7 +148,7 @@ public class GestionCitas extends Conexion{
             resultado=st.executeQuery();
             citas.clear();
             while(resultado.next()){
-                citas.add(new Cita(resultado.getString("matricula"),resultado.getString("fechaHora"),resultado.getString("descripcion"),Float.parseFloat(resultado.getString("precio")),resultado.getString("estado")));
+                citas.add(new Cita(resultado.getString("matricula"), resultado.getString("fechaHora"), resultado.getString("descripcion"), Float.parseFloat(resultado.getString("precio")), resultado.getString("estado")));
                 encontrados++;
             }
         }catch(SQLException ex){
@@ -147,7 +174,7 @@ public class GestionCitas extends Conexion{
             resultado=st.executeQuery();
             citas.clear();
             while(resultado.next()){
-                citas.add(new Cita(resultado.getString("matricula"),resultado.getString("fechaHora"),resultado.getString("descripcion"),Float.parseFloat(resultado.getString("precio")),resultado.getString("estado")));
+                citas.add(new Cita(resultado.getString("matricula"), resultado.getString("fechaHora"), resultado.getString("descripcion"), Float.parseFloat(resultado.getString("precio")), resultado.getString("estado")));
                 encontrados++;
             }
         }catch(SQLException ex){
@@ -168,7 +195,7 @@ public class GestionCitas extends Conexion{
         try{
             st=conexion.prepareStatement("select * from cita");
             resultado=st.executeQuery();
-            
+
             citas.clear();
             while(resultado.next()){
                 citas.add(new Cita(resultado.getString("matricula"), resultado.getString("fechaHora"), resultado.getString("descripcion"), Float.parseFloat(resultado.getString("precio")), resultado.getString("estado")));
@@ -178,7 +205,7 @@ public class GestionCitas extends Conexion{
             Mensajes.ventanaError("Error al ejecutar la consulta.", "Error.");
         }catch(NullPointerException error){
             System.out.println("No existen datos en la tabla citas");
-            
+
         }
 
         close();

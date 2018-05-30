@@ -1,6 +1,7 @@
 package com.tallerplus.interfaz;
 
 import com.tallerplus.gestion.GestionCitas;
+import com.tallerplus.gestion.GestionClientes;
 import com.tallerplus.gestion.GestionTabla;
 import com.tallerplus.objetos.Cita;
 import java.awt.Image;
@@ -19,6 +20,7 @@ import javax.swing.table.DefaultTableModel;
 public class HistorialCliente extends javax.swing.JFrame {
 
     DefaultTableModel tabla = new DefaultTableModel();
+    GestionCitas cita=new GestionCitas();
 
     /**
      * Constructor que inicializa componentes, centra la ventana en la pantalla,
@@ -39,6 +41,7 @@ public class HistorialCliente extends javax.swing.JFrame {
         tabla.addColumn("Descripción");
         tabla.addColumn("Precio");
         tabla.addColumn("Estado");
+        cita.select();
     }
 
     /**
@@ -198,7 +201,7 @@ public class HistorialCliente extends javax.swing.JFrame {
         String matricula = inmatricula.getText();
 
         //Recibimos la citas encontradas
-        encontradas = GestionCitas.consultarCitaMatricula(matricula);
+        cita.consultarCitaMatricula(matricula);
 
         GestionTabla.borrarTabla(tabla);
 

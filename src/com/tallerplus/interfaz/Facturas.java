@@ -1,6 +1,5 @@
 package com.tallerplus.interfaz;
 
-import com.tallerplus.files.Ficheros;
 import com.tallerplus.gestion.GestionCitas;
 import com.tallerplus.gestion.GestionFacturas;
 import com.tallerplus.gestion.GestionTabla;
@@ -23,6 +22,7 @@ public class Facturas extends javax.swing.JFrame {
     DefaultTableModel tabla = new DefaultTableModel();
     ArrayList<Cita> encontradas = new ArrayList();
     ArrayList<Cita> finalizadas = new ArrayList();
+    GestionCitas cita=new GestionCitas();
 
     /**
      * Constructor que inicializa los componentes, evita redimensión, centra la
@@ -45,7 +45,7 @@ public class Facturas extends javax.swing.JFrame {
         tabla.addColumn("Estado");
 
         //Recibimos la citas encontradas
-        encontradas = Ficheros.citas;
+        encontradas = cita.citas;
         //Desechamos las cerradas
         for (int i = 0; i < encontradas.size(); i++) {
             if (encontradas.get(i).getEstado().equals("Finalizado") || encontradas.get(i).getEstado().equals("Cerrado")) {
@@ -295,11 +295,10 @@ public class Facturas extends javax.swing.JFrame {
     private void bbuscarfechaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bbuscarfechaMouseClicked
         String fecha = infecha.getText();
 
-        //Recibimos la citas encontradas
-        encontradas = GestionCitas.consultarCitaFecha(fecha);
+        cita.consultarCitaFecha(fecha);
 
         GestionTabla.borrarTabla(tabla);
-        mostrarTabla(encontradas);
+        mostrarTabla(cita.citas);
     }//GEN-LAST:event_bbuscarfechaMouseClicked
     /**
      * Introdución de texto para buscar por matrícula.
@@ -318,10 +317,10 @@ public class Facturas extends javax.swing.JFrame {
         String matricula = inmatricula.getText();
 
         //Recibimos la citas encontradas
-        encontradas = GestionCitas.consultarCitaMatricula(matricula);
+        cita.consultarCitaMatricula(matricula);
 
         GestionTabla.borrarTabla(tabla);
-        mostrarTabla(encontradas);
+        mostrarTabla(cita.citas);
     }//GEN-LAST:event_bbuscarmatriculaMouseClicked
     /**
      * Botón para generar la factura de una cita, la abre en el editor de texto
@@ -332,17 +331,14 @@ public class Facturas extends javax.swing.JFrame {
      */
     private void bgenerarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bgenerarMouseClicked
         int seleccionado = tablabusqueda.getSelectedRow();
-
+        
         if (seleccionado >= 0) {
             String matricula = finalizadas.get(seleccionado).getMatricula();
             String descripcion = finalizadas.get(seleccionado).getDescripcion();
             Float precio = finalizadas.get(seleccionado).getPrecio();
+            String fechaHora=finalizadas.get(seleccionado).getFechaHora();
             GestionFacturas.generarFactura(matricula, descripcion, precio);
-            for (int i = 0; i < Ficheros.citas.size(); i++) { // recirremos el array de citas para poder modificar el estado de la cita cuya matricula coincida, y asi cerrarla 
-                if (Ficheros.citas.get(i).getMatricula().equalsIgnoreCase(matricula)) { // si la matricula es la seleccionada
-                    Ficheros.citas.get(i).setEstado("Cerrado"); // cerramos la cita 
-                }
-            }
+            cita.modificarEstado(matricula, fechaHora, "cerrado");
             GestionTabla.borrarTabla(tabla);
             mostrarTabla(finalizadas);
 

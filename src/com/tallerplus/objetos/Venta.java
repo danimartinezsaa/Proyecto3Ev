@@ -19,7 +19,15 @@ public class Venta {
  * @param cilindrada
  * @param caballos 
  */
-    public Venta(int id,String modelo, Float precio, String motor, String cilindrada, String caballos) {
+    public Venta(String modelo, Float precio, String motor, String cilindrada, String caballos) {
+
+        this.modelo = modelo;
+        this.precio = precio;
+        this.motor = motor;
+        this.cilindrada = cilindrada;
+        this.caballos = caballos;
+    }
+     public Venta(int id,String modelo, Float precio, String motor, String cilindrada, String caballos) {
         this.id=id;
         this.modelo = modelo;
         this.precio = precio;
@@ -28,14 +36,16 @@ public class Venta {
         this.caballos = caballos;
     }
 
-    public int getId() {
+    public int getId()
+    {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(int id)
+    {
         this.id = id;
     }
-    
+     
     
 /**
  * metodo para optener el modelo del coche en venta 

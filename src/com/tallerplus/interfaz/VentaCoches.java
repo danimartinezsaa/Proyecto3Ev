@@ -47,6 +47,7 @@ public class VentaCoches extends javax.swing.JFrame {
         Image Image = ImageIcon.getImage();
         this.setIconImage(Image);
         //Columnas de la tabla
+        tabla.addColumn("id");
         tabla.addColumn("Modelo");
         tabla.addColumn("Precio");
         tabla.addColumn("Motor");
@@ -439,13 +440,15 @@ public class VentaCoches extends javax.swing.JFrame {
      */
     private void mostrarTabla() {
         ventas.select();
+        
         for (Venta elemento : GestionVentas.ventas) {
             String anadir[] = new String[5];
-            anadir[0] = elemento.getModelo();
-            anadir[1] = elemento.getPrecio().toString();
-            anadir[2] = elemento.getMotor();
-            anadir[3] = elemento.getCilindrada();
-            anadir[4] = elemento.getCaballos();
+            anadir[0] = String.valueOf(elemento.getId());
+            anadir[1] = elemento.getModelo();
+            anadir[2] = elemento.getPrecio().toString();
+            anadir[3] = elemento.getMotor();
+            anadir[4] = elemento.getCilindrada();
+            anadir[5] = elemento.getCaballos();
             tabla.addRow(anadir);
         }
         this.tablabusqueda.setModel(tabla);

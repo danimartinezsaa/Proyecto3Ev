@@ -23,9 +23,12 @@ public class VentaCoches extends javax.swing.JFrame {
 
     static DefaultTableModel tabla = new DefaultTableModel();
     ArrayList<Venta> enventa = new ArrayList();
+    static int id;
+    static String modelo;
     static String motor;
     static String caballos;
     static String cilindrada;
+    static float precio;
     static boolean correcto;
     static int eliminar;
     GestionVentas ventas=new GestionVentas();
@@ -115,13 +118,13 @@ public class VentaCoches extends javax.swing.JFrame {
 
         tablabusqueda.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Modelo", "Precio", "Motor", "Cilindrada", "Caballos"
+                "ID", "Modelo", "Precio", "Motor", "Cilindrada", "Caballos"
             }
         ));
         jScrollPane1.setViewportView(tablabusqueda);
@@ -312,7 +315,7 @@ public class VentaCoches extends javax.swing.JFrame {
                 String caballos = incaballos.getText();
                 Float precio = Float.parseFloat(inprecio.getText());
 
-                GestionVentas.anadirVenta(modelo, precio, motor, cilindrada, caballos); // llamamos al metodo añadir ventas para poder insertar un coche en venta 
+                ventas.anadirVenta(id,modelo, precio, motor, cilindrada, caballos); // llamamos al metodo añadir ventas para poder insertar un coche en venta 
 
                 inmodelo.setText(""); // una vez ya insertamos el coche marcamos todos los campos de entrada de texto en blanco 
                 incilindrada.setText("");
@@ -364,9 +367,9 @@ public class VentaCoches extends javax.swing.JFrame {
     private void bborrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bborrarMouseClicked
 
         if (Login.getUsuarioLogueado().equals("admin")) {
-            eliminar = tablabusqueda.getSelectedRow();
+            eliminar=Integer.parseInt((String) tablabusqueda.getValueAt(tablabusqueda.getSelectedRow(), 0)); // metemos el valor de la celda id de la fila que tenemos seleccionada en una variable de tipo int
             if (eliminar >= 0) {
-                boolean correcto = GestionVentas.borrarVenta(eliminar, false);
+                boolean correcto = ventas.borrarVenta(false,eliminar);
                 if (correcto == true) {
                     GestionTabla.borrarTabla(tabla);
                     mostrarTabla();
@@ -384,8 +387,8 @@ public class VentaCoches extends javax.swing.JFrame {
     private void bvenderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bvenderMouseClicked
         eliminar = tablabusqueda.getSelectedRow();
         if (eliminar >= 0) {
-
-            ClientesVentas clienteventas = new ClientesVentas();
+            modelo=tablabusqueda.getValueAt(tablabusqueda.getSelectedRow(), 1);
+            ClientesVentas clienteventas = new ClientesVentas(modelo,motor,cilindrada,caballos,precio);
 
         } else {
             System.out.println("errror");

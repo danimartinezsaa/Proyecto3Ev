@@ -20,13 +20,18 @@ public class ClientesVentas extends javax.swing.JFrame {
 
     private boolean correcto = false;
     private String telefono;
+    private String modelo;
+    private String motor;
+    private String cilindrada;
+    private String caballos;
+    private float precio;
     GestionClientes clientes=new GestionClientes();
 
     /**
      * Constructor que inicializa los componentes, lo centra en la pantalla,
      * evita que sea redimensionable y la hace visible.
      */
-    public ClientesVentas() {
+    public ClientesVentas(String modelo,String motor,String cilindrada,String caballos,float precio) {
         initComponents();
         setLocationRelativeTo(null);
         setVisible(true);
@@ -35,6 +40,11 @@ public class ClientesVentas extends javax.swing.JFrame {
         ImageIcon ImageIcon = new ImageIcon(getClass().getResource("/com/tallerplus/icon/LogoT+.png"));
         Image Image = ImageIcon.getImage();
         this.setIconImage(Image);
+        this.modelo=modelo;
+        this.motor=motor;
+        this.cilindrada=cilindrada;
+        this.caballos=caballos;
+        this.precio=precio;
 
     }
 

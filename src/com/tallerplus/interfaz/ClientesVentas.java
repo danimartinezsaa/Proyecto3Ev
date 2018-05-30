@@ -19,19 +19,20 @@ import javax.swing.ImageIcon;
 public class ClientesVentas extends javax.swing.JFrame {
 
     private boolean correcto = false;
-    private String telefono;
-    private String modelo;
+    private int id;
     private String motor;
     private String cilindrada;
     private String caballos;
     private float precio;
     GestionClientes clientes=new GestionClientes();
+    GestionVentas ventas=new GestionVentas();
 
     /**
      * Constructor que inicializa los componentes, lo centra en la pantalla,
      * evita que sea redimensionable y la hace visible.
      */
-    public ClientesVentas(String modelo,String motor,String cilindrada,String caballos,float precio) {
+    
+    public ClientesVentas(int id,String motor,String cilindrada,String caballos) {
         initComponents();
         setLocationRelativeTo(null);
         setVisible(true);
@@ -40,12 +41,22 @@ public class ClientesVentas extends javax.swing.JFrame {
         ImageIcon ImageIcon = new ImageIcon(getClass().getResource("/com/tallerplus/icon/LogoT+.png"));
         Image Image = ImageIcon.getImage();
         this.setIconImage(Image);
-        this.modelo=modelo;
+        this.id=id;
         this.motor=motor;
         this.cilindrada=cilindrada;
         this.caballos=caballos;
-        this.precio=precio;
+    
 
+    }
+    public ClientesVentas() {
+        initComponents();
+        setLocationRelativeTo(null);
+        setVisible(true);
+        setResizable(false);
+        //Cambiamos icono
+        ImageIcon ImageIcon = new ImageIcon(getClass().getResource("/com/tallerplus/icon/LogoT+.png"));
+        Image Image = ImageIcon.getImage();
+        this.setIconImage(Image);
     }
 
     /**
@@ -190,27 +201,19 @@ public class ClientesVentas extends javax.swing.JFrame {
         boolean telefonoCorrecto = ValidarFormatos.validarTelefono(textoTelefono.getText());
         boolean bandera = false;
 
-       clientes.anadirCliente(matriculaCorrecta,textoMotor.getText(),dniCorrecto,telefonoCorrecto);
-                bandera = false;
-
-          
-                bandera = true;
-            
-        
-        if (bandera == true) {
+      
             if (matriculaCorrecta == true && dniCorrecto == true && telefonoCorrecto == true) {
 
-                VentaCoches.motor = Ficheros.ventas.get(VentaCoches.eliminar).getMotor();
-                VentaCoches.cilindrada = Ficheros.ventas.get(VentaCoches.eliminar).getCilindrada();
-                VentaCoches.caballos = Ficheros.ventas.get(VentaCoches.eliminar).getCaballos();
-                correcto = GestionVentas.borrarVenta(VentaCoches.eliminar, true);
+               
+                correcto = ventas.borrarVenta(true,id);
                 if (correcto == true) {
-                    GestionClientes.anadirCliente(textoMatricula.getText(), VentaCoches.motor, VentaCoches.cilindrada,
-                            VentaCoches.caballos, textoNombre.getText(), textoDni.getText(), textoTelefono.getText());
+                    clientes.anadirCliente(textoMatricula.getText(),motor,cilindrada,caballos,textoNombre.getText(),
+                            textoDni.getText(),textoTelefono.getText());
+                           
                     VentaCoches.tabla.removeRow(VentaCoches.tablabusqueda.getSelectedRow());
                     VentaCoches.tablabusqueda.setModel(VentaCoches.tabla);
                     dispose();
-                }
+                
 
             } else {
                 JOptionPane.showMessageDialog(null, "Datos erroneos");

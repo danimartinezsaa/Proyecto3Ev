@@ -308,14 +308,14 @@ public class VentaCoches extends javax.swing.JFrame {
                 incaballos.setForeground(Color.black); // marcamos que todos los campos tengan color de letra negra, porque si se introducieron datos erroneos antes, el color que aparece es rojo 
                 incilindrada.setForeground(Color.black);
                 inprecio.setForeground(Color.black);
-
+                
                 String modelo = inmodelo.getText(); // guardamos en una variable cada uno de los campos que introducimos en la interfaz 
                 String motor = (String) inmotor.getSelectedItem();
                 String cilindrada = incilindrada.getText();
                 String caballos = incaballos.getText();
                 Float precio = Float.parseFloat(inprecio.getText());
 
-                ventas.anadirVenta(id,modelo, precio, motor, cilindrada, caballos); // llamamos al metodo añadir ventas para poder insertar un coche en venta 
+                ventas.anadirVenta(modelo, precio, motor, cilindrada, caballos); // llamamos al metodo añadir ventas para poder insertar un coche en venta 
 
                 inmodelo.setText(""); // una vez ya insertamos el coche marcamos todos los campos de entrada de texto en blanco 
                 incilindrada.setText("");
@@ -387,8 +387,11 @@ public class VentaCoches extends javax.swing.JFrame {
     private void bvenderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bvenderMouseClicked
         eliminar = tablabusqueda.getSelectedRow();
         if (eliminar >= 0) {
-            modelo=tablabusqueda.getValueAt(tablabusqueda.getSelectedRow(), 1);
-            ClientesVentas clienteventas = new ClientesVentas(modelo,motor,cilindrada,caballos,precio);
+            id=Integer.parseInt((String) tablabusqueda.getValueAt(tablabusqueda.getSelectedRow(), 0));
+            motor=String.valueOf(tablabusqueda.getValueAt(tablabusqueda.getSelectedRow(), 2));
+            cilindrada=String.valueOf(tablabusqueda.getValueAt(tablabusqueda.getSelectedRow(), 3));
+            caballos=String.valueOf(tablabusqueda.getValueAt(tablabusqueda.getSelectedRow(), 4));
+            ClientesVentas clienteventas = new ClientesVentas(id,motor,cilindrada,caballos);
 
         } else {
             System.out.println("errror");
@@ -435,6 +438,7 @@ public class VentaCoches extends javax.swing.JFrame {
      * Método que muestra la tabla actualizada
      */
     private void mostrarTabla() {
+        ventas.select();
         for (Venta elemento : GestionVentas.ventas) {
             String anadir[] = new String[5];
             anadir[0] = elemento.getModelo();

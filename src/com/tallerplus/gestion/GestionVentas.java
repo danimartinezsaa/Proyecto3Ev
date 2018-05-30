@@ -33,11 +33,10 @@ public class GestionVentas extends Conexion {
      * @param cilindrada parámetro "cilindrada" del coche en venta.
      * @param caballos parámetro "caballos" del coche en venta
      */
-    public void anadirVenta(int id,String modelo, Float precio, String motor, String cilindrada, String caballos) {
+    public void anadirVenta(String modelo, Float precio, String motor, String cilindrada, String caballos) {
         connect();
         try {
-            st = conexion.prepareStatement("insert into venta values('" + id + "'"
-                    + "," + "'" + modelo + "'"
+            st = conexion.prepareStatement("insert into venta values('" + modelo + "'"
                     + "," + "'" + precio + "'"
                     + "," + "'" + motor + "'"
                     + "," + "'" + cilindrada + "'"

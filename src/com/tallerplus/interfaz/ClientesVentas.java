@@ -23,16 +23,18 @@ public class ClientesVentas extends javax.swing.JFrame {
     private String motor;
     private String cilindrada;
     private String caballos;
-    private float precio;
+    private int indice; // numero de la linea donde estaba el coche a vender en la tabla para despues poder eliminarla
     GestionClientes clientes=new GestionClientes();
     GestionVentas ventas=new GestionVentas();
+    VentaCoches ventac=new VentaCoches();
+    
 
     /**
      * Constructor que inicializa los componentes, lo centra en la pantalla,
      * evita que sea redimensionable y la hace visible.
      */
     
-    public ClientesVentas(int id,String motor,String cilindrada,String caballos) {
+    public ClientesVentas(int indice,int id,String motor,String cilindrada,String caballos) {
         initComponents();
         setLocationRelativeTo(null);
         setVisible(true);
@@ -40,6 +42,7 @@ public class ClientesVentas extends javax.swing.JFrame {
         //Cambiamos icono
         ImageIcon ImageIcon = new ImageIcon(getClass().getResource("/com/tallerplus/icon/LogoT+.png"));
         Image Image = ImageIcon.getImage();
+        this.indice=indice;
         this.setIconImage(Image);
         this.id=id;
         this.motor=motor;
@@ -210,8 +213,8 @@ public class ClientesVentas extends javax.swing.JFrame {
                     clientes.anadirCliente(textoMatricula.getText(),motor,cilindrada,caballos,textoNombre.getText(),
                             textoDni.getText(),textoTelefono.getText());
                            
-                    VentaCoches.tabla.removeRow(VentaCoches.tablabusqueda.getSelectedRow());
-                    VentaCoches.tablabusqueda.setModel(VentaCoches.tabla);
+                    ventac.tabla.removeRow(indice);
+                    ventac.tablabusqueda.setModel(ventac.tabla);
                     dispose();
                 
 

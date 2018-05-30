@@ -234,6 +234,15 @@ public class Clientes extends javax.swing.JFrame {
         tablaClientes.setColumnSelectionAllowed(true);
         jScrollPane1.setViewportView(tablaClientes);
         tablaClientes.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+        if (tablaClientes.getColumnModel().getColumnCount() > 0) {
+            tablaClientes.getColumnModel().getColumn(0).setHeaderValue("Matricula");
+            tablaClientes.getColumnModel().getColumn(1).setHeaderValue("Motor ");
+            tablaClientes.getColumnModel().getColumn(2).setHeaderValue("Cilindrada");
+            tablaClientes.getColumnModel().getColumn(3).setHeaderValue("Caballos");
+            tablaClientes.getColumnModel().getColumn(4).setHeaderValue("Nombre");
+            tablaClientes.getColumnModel().getColumn(5).setHeaderValue("DNI");
+            tablaClientes.getColumnModel().getColumn(6).setHeaderValue("Telefono");
+        }
 
         textoMotor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Diesel", "Gasolina", "Hibrido", "Electrico" }));
 

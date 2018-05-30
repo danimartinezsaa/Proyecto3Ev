@@ -27,7 +27,7 @@ public class GestionClientes extends Conexion{
      */
     public boolean anadirCliente(String matricula, String motor, String cilindrada, String caballos, String nombreDueño, String dni, String telefono){ // pasamos al metodo todos los datos del cliente
         boolean encontrado=false;
-
+        select();
         for(int i=0; i<coches.size(); i++){ // comprobamos que el ciente introducido no exista ya , para eso usamos el campo matricula dado que no pueden existir dos coches con la misma matricula
             if(coches.get(i).getMatricula().equals(matricula)){ // si ya existe retornamos un mensaje de error y marcamos como true nuestra bandera 
                 Mensajes.ventanaError("El cliente introducido ya existe.", "Gestión de clientes.");

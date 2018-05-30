@@ -17,13 +17,14 @@ import javax.swing.ImageIcon;
  * añadir o eliminar ventas. Contiene una tabla que muestra el contenido del
  * ArrayList Ficheros.ventas. Cierra el programa al presionar el botón cerrar.
  *
- * @author dani_
+ * 
  */
 public class VentaCoches extends javax.swing.JFrame {
 
-    static DefaultTableModel tabla = new DefaultTableModel();
+    DefaultTableModel tabla = new DefaultTableModel();
     ArrayList<Venta> enventa = new ArrayList();
     static int id;
+    static int indice;
     static String modelo;
     static String motor;
     static String caballos;
@@ -128,6 +129,7 @@ public class VentaCoches extends javax.swing.JFrame {
                 "ID", "Modelo", "Precio", "Motor", "Cilindrada", "Caballos"
             }
         ));
+        tablabusqueda.setColumnSelectionAllowed(true);
         jScrollPane1.setViewportView(tablabusqueda);
 
         bañadir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tallerplus/icon/exito-p.png"))); // NOI18N
@@ -316,7 +318,7 @@ public class VentaCoches extends javax.swing.JFrame {
                 String caballos = incaballos.getText();
                 Float precio = Float.parseFloat(inprecio.getText());
 
-                ventas.anadirVenta(modelo, precio, motor, cilindrada, caballos); // llamamos al metodo añadir ventas para poder insertar un coche en venta 
+                ventas.anadirVenta(modelo, motor, cilindrada, caballos, precio); // llamamos al metodo añadir ventas para poder insertar un coche en venta 
 
                 inmodelo.setText(""); // una vez ya insertamos el coche marcamos todos los campos de entrada de texto en blanco 
                 incilindrada.setText("");
@@ -368,9 +370,9 @@ public class VentaCoches extends javax.swing.JFrame {
     private void bborrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bborrarMouseClicked
 
         if (Login.getUsuarioLogueado().equals("admin")) {
-            eliminar=Integer.parseInt((String) tablabusqueda.getValueAt(tablabusqueda.getSelectedRow(), 0)); // metemos el valor de la celda id de la fila que tenemos seleccionada en una variable de tipo int
+             int eliminar = tablabusqueda.getSelectedRow(); // metemos el valor de la fila del elemento que queremos eliminar
             if (eliminar >= 0) {
-                boolean correcto = ventas.borrarVenta(false,eliminar);
+                boolean correcto = ventas.borrarVenta(false,GestionVentas.ventas.get(eliminar).getId());
                 if (correcto == true) {
                     GestionTabla.borrarTabla(tabla);
                     mostrarTabla();
@@ -388,11 +390,13 @@ public class VentaCoches extends javax.swing.JFrame {
     private void bvenderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bvenderMouseClicked
         eliminar = tablabusqueda.getSelectedRow();
         if (eliminar >= 0) {
+            indice=tablabusqueda.getSelectedRow();
             id=Integer.parseInt((String) tablabusqueda.getValueAt(tablabusqueda.getSelectedRow(), 0));
             motor=String.valueOf(tablabusqueda.getValueAt(tablabusqueda.getSelectedRow(), 2));
             cilindrada=String.valueOf(tablabusqueda.getValueAt(tablabusqueda.getSelectedRow(), 3));
             caballos=String.valueOf(tablabusqueda.getValueAt(tablabusqueda.getSelectedRow(), 4));
-            ClientesVentas clienteventas = new ClientesVentas(id,motor,cilindrada,caballos);
+            ClientesVentas clienteventas = new ClientesVentas(indice,id,motor,cilindrada,caballos);
+           dispose();
 
         } else {
             System.out.println("errror");
@@ -439,13 +443,14 @@ public class VentaCoches extends javax.swing.JFrame {
      * Método que muestra la tabla actualizada
      */
     private void mostrarTabla() {
+        GestionTabla.borrarTabla(tabla);
         ventas.select();
         
         for (Venta elemento : GestionVentas.ventas) {
-            String anadir[] = new String[5];
+            String anadir[] = new String[6];
             anadir[0] = String.valueOf(elemento.getId());
             anadir[1] = elemento.getModelo();
-            anadir[2] = elemento.getPrecio().toString();
+            anadir[2] = String.valueOf(elemento.getPrecio());
             anadir[3] = elemento.getMotor();
             anadir[4] = elemento.getCilindrada();
             anadir[5] = elemento.getCaballos();

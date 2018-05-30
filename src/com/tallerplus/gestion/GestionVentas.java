@@ -33,14 +33,14 @@ public class GestionVentas extends Conexion {
      * @param cilindrada parámetro "cilindrada" del coche en venta.
      * @param caballos parámetro "caballos" del coche en venta
      */
-    public void anadirVenta(String modelo, Float precio, String motor, String cilindrada, String caballos) {
+    public void anadirVenta(String modelo, String motor, String cilindrada, String caballos, Float precio) {
         connect();
         try {
-            st = conexion.prepareStatement("insert into venta values('" + modelo + "'"
-                    + "," + "'" + precio + "'"
+            st = conexion.prepareStatement("insert into venta (modelo, motor, cilindrada, caballos, precio) values('" + modelo + "'"
                     + "," + "'" + motor + "'"
                     + "," + "'" + cilindrada + "'"
-                    + "," + "'" + caballos + "'" + ");");
+                    + "," + "'" + caballos + "'"
+                    + "," + "'" + precio + "'" + ");");
 
             st.execute();
             select();
@@ -58,7 +58,7 @@ public class GestionVentas extends Conexion {
  * @param vendido indica si estamos vendiendo el coche o no.
  * @return devuelve true si se ha borrado la venta o false si no lo ha hecho.
  */
-public  boolean borrarVenta(boolean vendido, int id) {
+public  boolean borrarVenta(boolean vendido, int ids) {
         boolean borrado = false;
 
         if (vendido == false) { // si el coche se borra por ser una borrado y no una venta , se manda el mensaje oportuno y si el cliente confirma la operacion se elimina de la lista 
@@ -76,7 +76,7 @@ public  boolean borrarVenta(boolean vendido, int id) {
         if (borrado == true) { // si el usuario confirmo la operacion se borra 
           connect();
             try {
-                st = conexion.prepareStatement("delte from venta where id='" + id + "'");
+                st = conexion.prepareStatement("delete from venta where id='" + ids + "'");
                 st.executeUpdate();
                 select();
             } catch (SQLException ex) {

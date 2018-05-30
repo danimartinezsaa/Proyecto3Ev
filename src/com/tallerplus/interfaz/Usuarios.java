@@ -87,6 +87,14 @@ public class Usuarios extends javax.swing.JFrame{
             }
         });
 
+        tablausuarios.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
         tablausuarios.setColumnSelectionAllowed(true);
         jScrollPane1.setViewportView(tablausuarios);
         tablausuarios.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);

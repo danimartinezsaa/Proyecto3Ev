@@ -19,27 +19,27 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author dani_
  */
-public class VerCitas extends javax.swing.JFrame {
+public class VerCitas extends javax.swing.JFrame{
 
-    ArrayList<Cita> encontradas = new ArrayList();
-    ArrayList<Cita> mostradas = new ArrayList();
-    DefaultTableModel tabla = new DefaultTableModel();
+    ArrayList<Cita> encontradas=new ArrayList();
+    DefaultTableModel tabla=new DefaultTableModel();
     GestionCitas cita=new GestionCitas();
-    
+
     /**
      * Constructor que inicializa los componentes, centra la ventana, la hace
      * visible y evita que sea redimensionable. Inicializa el contenido de la
      * tabla.
      */
-    public VerCitas() {
+    public VerCitas(){
         initComponents();
         setLocationRelativeTo(null);
         setVisible(true);
         setResizable(false);
         //Cambiamos icono
-        ImageIcon ImageIcon = new ImageIcon(getClass().getResource("/com/tallerplus/icon/LogoT+.png"));
-        Image Image = ImageIcon.getImage();
+        ImageIcon ImageIcon=new ImageIcon(getClass().getResource("/com/tallerplus/icon/LogoT+.png"));
+        Image Image=ImageIcon.getImage();
         this.setIconImage(Image);
+        cita.select();
         //Columnas de la tabla
         tabla.addColumn("Matrícula");
         tabla.addColumn("Fecha y hora");
@@ -256,7 +256,7 @@ public class VerCitas extends javax.swing.JFrame {
      * @param evt
      */
     private void batrasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_batrasMouseClicked
-        VentanaPrincipal venanaprincipal = new VentanaPrincipal();
+        VentanaPrincipal venanaprincipal=new VentanaPrincipal();
         dispose();
     }//GEN-LAST:event_batrasMouseClicked
     /**
@@ -282,14 +282,11 @@ public class VerCitas extends javax.swing.JFrame {
      */
     private void bbuscarfechaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bbuscarfechaMouseClicked
 
-        String fecha = infecha.getText();
+        String fecha=infecha.getText();
 
         //Recibimos la citas encontradas que no esten cerradas o finalizadas
         cita.consultarCitaFecha(fecha);
-
-        borrarCitasPendientesProceso();
-        GestionTabla.borrarTabla(tabla);
-        mostrarTablaEncontradas(encontradas);
+        mostrarTabla();
         infecha.setText("");
     }//GEN-LAST:event_bbuscarfechaMouseClicked
     /**
@@ -299,15 +296,11 @@ public class VerCitas extends javax.swing.JFrame {
      */
     private void bbuscarmatriculaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bbuscarmatriculaMouseClicked
 
-        String matricula = inmatricula.getText();
+        String matricula=inmatricula.getText();
 
         //Recibimos la citas encontradas
         cita.consultarCitaMatricula(matricula);
-
-        borrarCitasPendientesProceso();
-        GestionTabla.borrarTabla(tabla);
-        mostrarTablaEncontradas(encontradas);
-
+        mostrarTabla();
         inmatricula.setText("");
     }//GEN-LAST:event_bbuscarmatriculaMouseClicked
     /**
@@ -325,51 +318,50 @@ public class VerCitas extends javax.swing.JFrame {
      * @param evt
      */
     private void botoncomboMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botoncomboMouseClicked
-        int seleccion = tablabusqueda.getSelectedRow();
-        if (seleccion >= 0) {
-            String estado = (String) inestado.getSelectedItem();
-            String matricula = mostradas.get(seleccion).getMatricula();
-            String fechahora = mostradas.get(seleccion).getFechaHora();
+        int seleccion=tablabusqueda.getSelectedRow();
+        if(seleccion>=0){
+            String estado=(String) inestado.getSelectedItem();
+            String matricula=encontradas.get(seleccion).getMatricula();
+            String fechahora=encontradas.get(seleccion).getFechaHora();
             cita.modificarEstado(matricula, fechahora, estado);
-        } else {
+        }else{
             JOptionPane.showMessageDialog(null, "Seleccione una cita", "Error", 0);
         }
 
-        GestionTabla.borrarTabla(tabla);
         mostrarTabla();
     }//GEN-LAST:event_botoncomboMouseClicked
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String args[]){
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+        try{
+            for(javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()){
+                if("Nimbus".equals(info.getName())){
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
+        }catch(ClassNotFoundException ex){
             java.util.logging.Logger.getLogger(VerCitas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
+        }catch(InstantiationException ex){
             java.util.logging.Logger.getLogger(VerCitas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
+        }catch(IllegalAccessException ex){
             java.util.logging.Logger.getLogger(VerCitas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        }catch(javax.swing.UnsupportedLookAndFeelException ex){
             java.util.logging.Logger.getLogger(VerCitas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display thbbuscarfecha*/
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
+        java.awt.EventQueue.invokeLater(new Runnable(){
+            public void run(){
                 new VerCitas().setVisible(true);
             }
         });
@@ -378,52 +370,38 @@ public class VerCitas extends javax.swing.JFrame {
     /**
      * Método que muestra en la tabla todas las citas pendientes y en proceso.
      */
-    private void mostrarTabla() {
-        cita.select();
+    private void mostrarTabla(){
+        GestionTabla.borrarTabla(tabla);
+        encontradas.clear();
         Collections.sort(cita.citas);
-        for (Cita elemento : cita.citas) {
-            if ((elemento.getEstado().equalsIgnoreCase("pendiente") || elemento.getEstado().equalsIgnoreCase("en proceso"))) {
-                String anadir[] = new String[5];
-                anadir[0] = elemento.getMatricula();
-                anadir[1] = elemento.getFechaHora();
-                anadir[2] = elemento.getDescripcion();
-                anadir[3] = Float.toString(elemento.getPrecio());
-                anadir[4] = elemento.getEstado();
-                mostradas.add(new Cita(anadir[0], anadir[1], anadir[2], Float.parseFloat(anadir[3]), anadir[4]));
-                tabla.addRow(anadir);
+        for(Cita elemento : cita.citas){
+            if((elemento.getEstado().equalsIgnoreCase("pendiente")||elemento.getEstado().equalsIgnoreCase("en proceso"))){
+                String anadir[]=new String[5];
+                anadir[0]=elemento.getMatricula();
+                anadir[1]=elemento.getFechaHora();
+                anadir[2]=elemento.getDescripcion();
+                anadir[3]=Float.toString(elemento.getPrecio());
+                anadir[4]=elemento.getEstado();
+                encontradas.add(new Cita(anadir[0], anadir[1], anadir[2], Float.parseFloat(anadir[3]), anadir[4]));
+
             }
         }
-        this.tablabusqueda.setModel(tabla);
-    }
-
-    /**
-     * Método que muestra en la tabla las citas del array que recibe
-     *
-     * @param encontradas Array con las citas que queremos mostrar
-     */
-    private void mostrarTablaEncontradas(ArrayList<Cita> encontradas) {
+        
         Collections.sort(encontradas);
-        for (Cita elemento : encontradas) {
-            String anadir[] = new String[5];
-            anadir[0] = elemento.getMatricula();
-            anadir[1] = elemento.getFechaHora();
-            anadir[2] = elemento.getDescripcion();
-            anadir[3] = Float.toString(elemento.getPrecio());
-            anadir[4] = elemento.getEstado();
+
+        for(Cita elemento : encontradas){
+            String anadir[]=new String[5];
+            anadir[0]=elemento.getMatricula();
+            anadir[1]=elemento.getFechaHora();
+            anadir[2]=elemento.getDescripcion();
+            anadir[3]=Float.toString(elemento.getPrecio());
+            anadir[4]=elemento.getEstado();
             tabla.addRow(anadir);
         }
+
         this.tablabusqueda.setModel(tabla);
     }
 
-    private void borrarCitasPendientesProceso() {
-        Iterator<Cita> it = encontradas.iterator();
-        while (it.hasNext()) {
-            Cita cita = it.next();
-            if (!(cita.getEstado().equalsIgnoreCase("pendiente") || cita.getEstado().equalsIgnoreCase("en proceso"))) {
-                it.remove();
-            }
-        }
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel batras;

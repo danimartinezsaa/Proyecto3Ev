@@ -104,11 +104,11 @@ public class GestionClientes extends Conexion{
         connect();
 
         try{
-            st=conexion.prepareStatement("update coches set matricula="
-                    +"'"+matricula+"'"
-                    +", motor="+"'"+motor+"'"+", cilindrada="+"'"+cilindrada+"'"
-                    +", caballos="+"'"+caballos+"'"+", nombreDueno="+"'"+nombreDueño+"'"
-                    +", dni="+"'"+dni+"'"+", telefono="+"'"+telefono+"'"
+            st=conexion.prepareStatement("update coche set matricula="
+                    +"'"+matricula+"' "
+                    +", motor="+"'"+motor+"' "+", cilindrada="+"'"+cilindrada+"'"
+                    +" , caballos="+"'"+caballos+"'"+" , nombreDueno="+"'"+nombreDueño+"'"
+                    +" , dni="+"'"+dni+"'"+" , telefono="+"'"+telefono+"'"
                     +" where matricula="+"'"+editar+"'"+";");
             st.executeUpdate();
             editado=true;
@@ -123,8 +123,11 @@ public class GestionClientes extends Conexion{
 
     @Override
     public void select(){
+        
+        connect();
+                
         try{
-            st=conexion.prepareStatement("select * from coche");
+            st=conexion.prepareStatement("select * from coche;");
             resultado=st.executeQuery();
 
             coches.clear();
@@ -135,7 +138,7 @@ public class GestionClientes extends Conexion{
             Mensajes.ventanaError("Error al ejecutar la consulta.", "Error.");
         }catch(NullPointerException error){
             System.out.println("No existen datos en la tabla clientes");
-            
+            System.out.println(error.getMessage());
         }
     }
 

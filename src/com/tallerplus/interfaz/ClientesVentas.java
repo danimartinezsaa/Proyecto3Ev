@@ -16,9 +16,9 @@ import javax.swing.ImageIcon;
  *
  * @author jose
  */
-public class ClientesVentas extends javax.swing.JFrame {
+public class ClientesVentas extends javax.swing.JFrame{
 
-    private boolean correcto = false;
+    private boolean correcto=false;
     private int id;
     private String motor;
     private String cilindrada;
@@ -27,38 +27,36 @@ public class ClientesVentas extends javax.swing.JFrame {
     GestionClientes clientes=new GestionClientes();
     GestionVentas ventas=new GestionVentas();
     VentaCoches ventac=new VentaCoches();
-    
 
     /**
      * Constructor que inicializa los componentes, lo centra en la pantalla,
      * evita que sea redimensionable y la hace visible.
      */
-    
-    public ClientesVentas(int indice,int id,String motor,String cilindrada,String caballos) {
+    public ClientesVentas(int indice, int id, String motor, String cilindrada, String caballos){
         initComponents();
         setLocationRelativeTo(null);
         setVisible(true);
         setResizable(false);
         //Cambiamos icono
-        ImageIcon ImageIcon = new ImageIcon(getClass().getResource("/com/tallerplus/icon/LogoT+.png"));
-        Image Image = ImageIcon.getImage();
+        ImageIcon ImageIcon=new ImageIcon(getClass().getResource("/com/tallerplus/icon/LogoT+.png"));
+        Image Image=ImageIcon.getImage();
         this.indice=indice;
         this.setIconImage(Image);
         this.id=id;
         this.motor=motor;
         this.cilindrada=cilindrada;
         this.caballos=caballos;
-    
 
     }
-    public ClientesVentas() {
+
+    public ClientesVentas(){
         initComponents();
         setLocationRelativeTo(null);
         setVisible(true);
         setResizable(false);
         //Cambiamos icono
-        ImageIcon ImageIcon = new ImageIcon(getClass().getResource("/com/tallerplus/icon/LogoT+.png"));
-        Image Image = ImageIcon.getImage();
+        ImageIcon ImageIcon=new ImageIcon(getClass().getResource("/com/tallerplus/icon/LogoT+.png"));
+        Image Image=ImageIcon.getImage();
         this.setIconImage(Image);
     }
 
@@ -199,42 +197,40 @@ public class ClientesVentas extends javax.swing.JFrame {
      */
     private void botonOkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonOkMouseClicked
 
-        boolean matriculaCorrecta = ValidarFormatos.validarMatricula(textoMatricula.getText());
-        boolean dniCorrecto = ValidarFormatos.validarDni(textoDni.getText());
-        boolean telefonoCorrecto = ValidarFormatos.validarTelefono(textoTelefono.getText());
-        boolean bandera = false;
+        boolean matriculaCorrecta=ValidarFormatos.validarMatricula(textoMatricula.getText());
+        boolean dniCorrecto=ValidarFormatos.validarDni(textoDni.getText());
+        boolean telefonoCorrecto=ValidarFormatos.validarTelefono(textoTelefono.getText());
+        boolean bandera=false;
 
-      
-            if (matriculaCorrecta == true && dniCorrecto == true && telefonoCorrecto == true) {
+        if(matriculaCorrecta==true&&dniCorrecto==true&&telefonoCorrecto==true){
 
-               
-                correcto = ventas.borrarVenta(true,id);
-                if (correcto == true) {
-                    clientes.anadirCliente(textoMatricula.getText(),motor,cilindrada,caballos,textoNombre.getText(),
-                            textoDni.getText(),textoTelefono.getText());
-                           
-                    ventac.tabla.removeRow(indice);
-                    ventac.tablabusqueda.setModel(ventac.tabla);
-                    dispose();
-                
+            correcto=ventas.borrarVenta(true, id);
+            if(correcto==true){
+                clientes.anadirCliente(textoMatricula.getText(), motor, cilindrada, caballos, textoNombre.getText(),
+                        textoDni.getText(), textoTelefono.getText());
 
-            } else {
-                JOptionPane.showMessageDialog(null, "Datos erroneos");
-                if (matriculaCorrecta == false) {
-                    textoMatricula.setForeground(Color.red);
-                } else {
-                    textoMatricula.setForeground(Color.black);
-                }
-                if (dniCorrecto == false) {
-                    textoDni.setForeground(Color.red);
-                } else {
-                    textoDni.setForeground(Color.black);
-                }
-                if (telefonoCorrecto == false) {
-                    textoTelefono.setForeground(Color.red);
-                } else {
-                    textoTelefono.setForeground(Color.black);
-                }
+                ventac.tabla.removeRow(indice);
+                ventac.tablabusqueda.setModel(ventac.tabla);
+                dispose();
+
+            }
+
+        }else{
+            JOptionPane.showMessageDialog(null, "Datos erroneos");
+            if(matriculaCorrecta==false){
+                textoMatricula.setForeground(Color.red);
+            }else{
+                textoMatricula.setForeground(Color.black);
+            }
+            if(dniCorrecto==false){
+                textoDni.setForeground(Color.red);
+            }else{
+                textoDni.setForeground(Color.black);
+            }
+            if(telefonoCorrecto==false){
+                textoTelefono.setForeground(Color.red);
+            }else{
+                textoTelefono.setForeground(Color.black);
             }
         }
     }//GEN-LAST:event_botonOkMouseClicked
@@ -242,33 +238,33 @@ public class ClientesVentas extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String args[]){
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+        try{
+            for(javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()){
+                if("Nimbus".equals(info.getName())){
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
+        }catch(ClassNotFoundException ex){
             java.util.logging.Logger.getLogger(ClientesVentas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
+        }catch(InstantiationException ex){
             java.util.logging.Logger.getLogger(ClientesVentas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
+        }catch(IllegalAccessException ex){
             java.util.logging.Logger.getLogger(ClientesVentas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        }catch(javax.swing.UnsupportedLookAndFeelException ex){
             java.util.logging.Logger.getLogger(ClientesVentas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
+        java.awt.EventQueue.invokeLater(new Runnable(){
+            public void run(){
                 new ClientesVentas().setVisible(true);
             }
         });

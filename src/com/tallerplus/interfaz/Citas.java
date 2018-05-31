@@ -461,6 +461,7 @@ public class Citas extends javax.swing.JFrame{
     // End of variables declaration//GEN-END:variables
 
     public void mostrarTabla(){
+        cita.select();
         //Añadimos todas las citas existentes
         for(Cita elemento : cita.citas){
             String anadir[]=new String[5];

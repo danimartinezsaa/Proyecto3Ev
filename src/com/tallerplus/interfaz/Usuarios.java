@@ -244,7 +244,7 @@ public class Usuarios extends javax.swing.JFrame{
                 Mensajes.ventanaError("Debes cubrir todos los campos.", "Error.");
             }
         }else{
-            if(usuario_editar=="admin"){
+            if(usuario_editar.equalsIgnoreCase("admin")){
                 us.editarUsuario(usuario_editar, "admin", incontrasena.getText(), "admin");
                 JOptionPane.showMessageDialog(null, "Al usuario Admin sólo se le puede cambiar la contraseña, contraseña cambiada", "Información", 1);
             }else{

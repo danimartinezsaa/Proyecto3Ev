@@ -130,7 +130,7 @@ public class GestionCitas extends Conexion{
         }
         close();
 
-        if(encontrados>0){ // si no se encuentra coincidencia retornamos un mensaje de error
+        if(encontrados==0){ // si no se encuentra coincidencia retornamos un mensaje de error
             Mensajes.ventanaError("Cita no encontrada.", "Búsqueda.");
         }
     }
@@ -156,7 +156,7 @@ public class GestionCitas extends Conexion{
         }
         close();
 
-        if(encontrados>0){ // si no se encuentra coincidencia retornamos un mensaje de error
+        if(encontrados==0){ // si no se encuentra coincidencia retornamos un mensaje de error
             Mensajes.ventanaError("Cita no encontrada.", "Búsqueda.");
         }
     }
@@ -182,7 +182,7 @@ public class GestionCitas extends Conexion{
         }
         close();
 
-        if(encontrados>0){ // si no se encuentra coincidencia retornamos un mensaje de error
+        if(encontrados==0){ // si no se encuentra coincidencia retornamos un mensaje de error
             Mensajes.ventanaError("Cita no encontrada.", "Búsqueda.");
         }
     }

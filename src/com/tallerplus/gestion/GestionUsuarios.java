@@ -32,7 +32,7 @@ public class GestionUsuarios extends Conexion {
         if (repetido == false) { // si el usuario que buscamos no existe lo añadimos, en caso contrario, informamos que ya existe un usuario con ese nombre 
             connect();
             try {
-                st = conexion.prepareStatement("insert into usuario values('" + usuario + "'"
+                st = conexion.prepareStatement("insert into usuarios values('" + usuario + "'"
                         + "," + "'" + contrasena + "'"
                         + "," + "'" + tipo + "'" + ");");
 
@@ -64,7 +64,7 @@ public class GestionUsuarios extends Conexion {
             boolean borrado = false;
             connect();
             try {
-                st = conexion.prepareStatement("delete from usuario where usuario='" + usuario + "'");
+                st = conexion.prepareStatement("delete from usuarios where usuario='" + usuario + "'");
                 st.executeUpdate();
                 borrado = true;
                 select();
@@ -93,10 +93,10 @@ public class GestionUsuarios extends Conexion {
         boolean editado = false;
         connect();
         try {
-            st = conexion.prepareStatement("update usuario set usuario="
-                    + ", usuario=" + "'" + usuario + "'"
-                    + ", contrasena=" + "'" + contrasena + "'"
-                    + ", tipo=" + "'" + tipo + "'"
+            st = conexion.prepareStatement("update usuarios set"
+                    + " usuario=" + "'" + usuario + "' "
+                    + ", contrasena=" + "'" + contrasena + "' "
+                    + ", tipo=" + "'" + tipo + "' "
                     + " where usuario=" + "'" + lastUser + "'" + ";");
             st.executeUpdate();
             editado = true;
@@ -117,7 +117,7 @@ public class GestionUsuarios extends Conexion {
         connect();
 
         try {
-            st = conexion.prepareStatement("select * from usuario");
+            st = conexion.prepareStatement("select * from usuarios");
             resultado = st.executeQuery();
             usuarios.clear();
             while (resultado.next()) {

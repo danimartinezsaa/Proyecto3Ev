@@ -1,11 +1,9 @@
 package com.tallerplus.interfaz;
 
 import com.tallerplus.gestion.GestionCitas;
-import com.tallerplus.gestion.GestionClientes;
 import com.tallerplus.gestion.GestionTabla;
 import com.tallerplus.objetos.Cita;
 import java.awt.Image;
-import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.table.DefaultTableModel;
 
@@ -197,7 +195,7 @@ public class HistorialCliente extends javax.swing.JFrame {
      * @param evt
      */
     private void bbuscarmatriculaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bbuscarmatriculaMouseClicked
-        ArrayList<Cita> encontradas = new ArrayList();
+
         String matricula = inmatricula.getText();
 
         //Recibimos la citas encontradas
@@ -206,7 +204,7 @@ public class HistorialCliente extends javax.swing.JFrame {
         GestionTabla.borrarTabla(tabla);
 
         //Añadimos las citas encontadas a la tabla
-        for (Cita elemento : encontradas) {
+        for (Cita elemento : cita.citas) {
             String anadir[] = new String[5];
             anadir[0] = elemento.getMatricula();
             anadir[1] = elemento.getFechaHora();

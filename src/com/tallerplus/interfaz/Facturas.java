@@ -17,11 +17,10 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author dani_
  */
-public class Facturas extends javax.swing.JFrame {
+public class Facturas extends javax.swing.JFrame{
 
-    DefaultTableModel tabla = new DefaultTableModel();
-    ArrayList<Cita> encontradas = new ArrayList();
-    ArrayList<Cita> finalizadas = new ArrayList();
+    DefaultTableModel tabla=new DefaultTableModel();
+    ArrayList<Cita> encontradas=new ArrayList();
     GestionCitas cita=new GestionCitas();
 
     /**
@@ -29,31 +28,23 @@ public class Facturas extends javax.swing.JFrame {
      * ventana y la hace visible. Inicializa la tabla con datos del ArrayList
      * Ficheros.Citas. Estas citas tienen que estar cerradas o finalizadas.
      */
-    public Facturas() {
+    public Facturas(){
         initComponents();
         setLocationRelativeTo(null);
         setVisible(true);
         setResizable(false);
         //Cambiamos icono
-        ImageIcon ImageIcon = new ImageIcon(getClass().getResource("/com/tallerplus/icon/LogoT+.png"));
-        Image Image = ImageIcon.getImage();
+        ImageIcon ImageIcon=new ImageIcon(getClass().getResource("/com/tallerplus/icon/LogoT+.png"));
+        Image Image=ImageIcon.getImage();
         this.setIconImage(Image);
         //Columnas de la tabla
         tabla.addColumn("Matrícula");
         tabla.addColumn("Descripción");
         tabla.addColumn("Precio");
         tabla.addColumn("Estado");
+        tabla.addColumn("Fecha");
 
-        //Recibimos la citas encontradas
-        encontradas = cita.citas;
-        //Desechamos las cerradas
-        for (int i = 0; i < encontradas.size(); i++) {
-            if (encontradas.get(i).getEstado().equals("Finalizado") || encontradas.get(i).getEstado().equals("Cerrado")) {
-                finalizadas.add(encontradas.get(i));
-            }
-        }
-
-        mostrarTabla(finalizadas);
+        mostrarTabla();
     }
 
     /**
@@ -172,31 +163,27 @@ public class Facturas extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(34, 34, 34)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 802, Short.MAX_VALUE)
+                        .addComponent(titulousuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(batras1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel3)
-                                        .addComponent(inmatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGap(18, 18, 18)
-                                    .addComponent(bbuscarmatricula))
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel1)
-                                        .addComponent(infecha, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGap(18, 18, 18)
-                                    .addComponent(bbuscarfecha))
-                                .addComponent(jLabel5))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(titulousuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(3, 3, 3)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                                .addComponent(inmatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(bbuscarmatricula))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(infecha, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addComponent(bbuscarfecha))
+                            .addComponent(jLabel5))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(10, 10, 10)
@@ -204,14 +191,11 @@ public class Facturas extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(bgenerar))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 482, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 482, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel4))
+                                .addGap(0, 10, Short.MAX_VALUE)))))
                 .addGap(34, 34, 34))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                    .addContainerGap(394, Short.MAX_VALUE)
-                    .addComponent(jLabel4)
-                    .addGap(111, 111, 111)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -223,7 +207,9 @@ public class Facturas extends javax.swing.JFrame {
                 .addGap(15, 15, 15)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -231,13 +217,16 @@ public class Facturas extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(infecha, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(19, 19, 19)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(38, 38, 38)
+                                .addComponent(bbuscarfecha)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(inmatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(38, 38, 38)
-                                .addComponent(bbuscarfecha)
-                                .addGap(44, 44, 44)
+                                .addGap(3, 3, 3)
                                 .addComponent(bbuscarmatricula)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -251,11 +240,6 @@ public class Facturas extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(22, 22, 22))))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(121, 121, 121)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(340, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -276,7 +260,7 @@ public class Facturas extends javax.swing.JFrame {
      * @param evt
      */
     private void batras1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_batras1MouseClicked
-        VentanaPrincipal venanaprincipal = new VentanaPrincipal();
+        VentanaPrincipal venanaprincipal=new VentanaPrincipal();
         dispose();
     }//GEN-LAST:event_batras1MouseClicked
     /**
@@ -293,12 +277,12 @@ public class Facturas extends javax.swing.JFrame {
      * @param evt
      */
     private void bbuscarfechaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bbuscarfechaMouseClicked
-        String fecha = infecha.getText();
+        String fecha=infecha.getText();
 
         cita.consultarCitaFecha(fecha);
 
         GestionTabla.borrarTabla(tabla);
-        mostrarTabla(cita.citas);
+        mostrarTabla();
     }//GEN-LAST:event_bbuscarfechaMouseClicked
     /**
      * Introdución de texto para buscar por matrícula.
@@ -314,13 +298,13 @@ public class Facturas extends javax.swing.JFrame {
      * @param evt
      */
     private void bbuscarmatriculaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bbuscarmatriculaMouseClicked
-        String matricula = inmatricula.getText();
+        String matricula=inmatricula.getText();
 
         //Recibimos la citas encontradas
         cita.consultarCitaMatricula(matricula);
 
         GestionTabla.borrarTabla(tabla);
-        mostrarTabla(cita.citas);
+        mostrarTabla();
     }//GEN-LAST:event_bbuscarmatriculaMouseClicked
     /**
      * Botón para generar la factura de una cita, la abre en el editor de texto
@@ -330,17 +314,16 @@ public class Facturas extends javax.swing.JFrame {
      * @param evt
      */
     private void bgenerarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bgenerarMouseClicked
-        int seleccionado = tablabusqueda.getSelectedRow();
-        
-        if (seleccionado >= 0) {
-            String matricula = finalizadas.get(seleccionado).getMatricula();
-            String descripcion = finalizadas.get(seleccionado).getDescripcion();
-            Float precio = finalizadas.get(seleccionado).getPrecio();
-            String fechaHora=finalizadas.get(seleccionado).getFechaHora();
+        int seleccionado=tablabusqueda.getSelectedRow();
+
+        if(seleccionado>=0){
+            String matricula=tabla.getValueAt(seleccionado, 0).toString();
+            String descripcion=tabla.getValueAt(seleccionado, 1).toString();
+            Float precio=Float.parseFloat(tabla.getValueAt(seleccionado, 2).toString());
+            String fechaHora=tabla.getValueAt(seleccionado, 4).toString();
             GestionFacturas.generarFactura(matricula, descripcion, precio);
-            cita.modificarEstado(matricula, fechaHora, "cerrado");
-            GestionTabla.borrarTabla(tabla);
-            mostrarTabla(finalizadas);
+            cita.modificarEstado(matricula, fechaHora, "Cerrado");
+            mostrarTabla();
 
         }
     }//GEN-LAST:event_bgenerarMouseClicked
@@ -348,33 +331,33 @@ public class Facturas extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String args[]){
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+        try{
+            for(javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()){
+                if("Nimbus".equals(info.getName())){
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
+        }catch(ClassNotFoundException ex){
             java.util.logging.Logger.getLogger(Facturas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
+        }catch(InstantiationException ex){
             java.util.logging.Logger.getLogger(Facturas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
+        }catch(IllegalAccessException ex){
             java.util.logging.Logger.getLogger(Facturas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        }catch(javax.swing.UnsupportedLookAndFeelException ex){
             java.util.logging.Logger.getLogger(Facturas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
+        java.awt.EventQueue.invokeLater(new Runnable(){
+            public void run(){
                 new Facturas().setVisible(true);
             }
         });
@@ -385,14 +368,21 @@ public class Facturas extends javax.swing.JFrame {
      *
      * @param contenido ArrayList con el contenido a mostrar en la tabla.
      */
-    private void mostrarTabla(ArrayList<Cita> contenido) {
-        for (Cita elemento : contenido) {
-            String anadir[] = new String[4];
-            anadir[0] = elemento.getMatricula();
-            anadir[1] = elemento.getDescripcion();
-            anadir[2] = Float.toString(elemento.getPrecio());
-            anadir[3] = elemento.getEstado();
-            tabla.addRow(anadir);
+    private void mostrarTabla(){
+        GestionTabla.borrarTabla(tabla);
+        cita.select();
+
+        for(Cita elemento : cita.citas){
+            String anadir[]=new String[5];
+            anadir[0]=elemento.getMatricula();
+            anadir[1]=elemento.getDescripcion();
+            anadir[2]=Float.toString(elemento.getPrecio());
+            anadir[3]=elemento.getEstado();
+            anadir[4]=elemento.getFechaHora();
+
+            if(anadir[3].equalsIgnoreCase("finalizado")||anadir[3].equalsIgnoreCase("cerrado")){
+                tabla.addRow(anadir);
+            }
         }
         this.tablabusqueda.setModel(tabla);
     }

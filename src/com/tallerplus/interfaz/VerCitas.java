@@ -61,8 +61,6 @@ public class VerCitas extends javax.swing.JFrame{
         pbucita = new javax.swing.JPanel();
         batras = new javax.swing.JLabel();
         titulousuarios = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        infecha = new javax.swing.JTextField();
         bbuscarfecha = new javax.swing.JLabel();
         inmatricula = new javax.swing.JTextField();
         bbuscarmatricula = new javax.swing.JLabel();
@@ -72,6 +70,11 @@ public class VerCitas extends javax.swing.JFrame{
         jLabel4 = new javax.swing.JLabel();
         botoncombo = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        labelfechahora = new javax.swing.JLabel();
+        combodia = new javax.swing.JComboBox<>();
+        combomes = new javax.swing.JComboBox<>();
+        comboano = new javax.swing.JComboBox<>();
+        combohora = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Citas");
@@ -92,16 +95,6 @@ public class VerCitas extends javax.swing.JFrame{
         titulousuarios.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         titulousuarios.setForeground(new java.awt.Color(255, 255, 255));
         titulousuarios.setText("Citas");
-
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Búsqueda por fecha");
-
-        infecha.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                infechaActionPerformed(evt);
-            }
-        });
 
         bbuscarfecha.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tallerplus/icon/busqueda-p.png"))); // NOI18N
         bbuscarfecha.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -159,6 +152,18 @@ public class VerCitas extends javax.swing.JFrame{
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Búsqueda por matrícula");
 
+        labelfechahora.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        labelfechahora.setForeground(new java.awt.Color(255, 255, 255));
+        labelfechahora.setText("Fecha y Hora");
+
+        combodia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
+
+        combomes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octuble", "Noviembre", "Diciembre" }));
+
+        comboano.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025", "2026", "2027", "2028", "2029", "2030", "2031", "2032", "2033", "2034", "2035", "2036", "2037", "2038" }));
+
+        combohora.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "09:00", "09:15", "09:30", "09:45", "10:00", "10:15", "10:30", "10:45", "11:00", "11:15", "11:30", "11:45", "12:00", "12:15", "12:30", "12:45", "13:00", "13:15", "13:30", "13:45", "14:00", "14:15", "14:30", "15:45", "16:00", "16:15", "16:30", "16:45", "17:00", "17:15", "17:30", "18:45", "19:00", "19:15", "19:30", "20:45", "21:00", "22:15", "23:30", "23:45", "00:00", "00:15", "00:30", "00:45", "01:00", "01:15", "01:30", "01:45", "02:00", "02:15", "02:30", "02:45", "03:00", "03:15", "03:30", "03:45", "04:00", "04:15", "04:30", "04:45", "05:00", "05:15", "05:30", "05:45", "06:00", "06:15", "06:30", "06:45", "07:00", "07:15", "07:30", "07:45", "08:00", "08:15", "08:30", "08:45" }));
+
         javax.swing.GroupLayout pbucitaLayout = new javax.swing.GroupLayout(pbucita);
         pbucita.setLayout(pbucitaLayout);
         pbucitaLayout.setHorizontalGroup(
@@ -169,11 +174,22 @@ public class VerCitas extends javax.swing.JFrame{
                     .addComponent(titulousuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(pbucitaLayout.createSequentialGroup()
                         .addGroup(pbucitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(infecha, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(inmatricula, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(pbucitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(pbucitaLayout.createSequentialGroup()
+                                .addGap(1, 1, 1)
+                                .addComponent(inmatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(labelfechahora, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(pbucitaLayout.createSequentialGroup()
+                                .addGroup(pbucitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(combohora, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pbucitaLayout.createSequentialGroup()
+                                        .addComponent(combodia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(12, 12, 12)
+                                        .addComponent(combomes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(comboano, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(pbucitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(bbuscarmatricula)
                             .addComponent(bbuscarfecha))))
                 .addGroup(pbucitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -190,12 +206,7 @@ public class VerCitas extends javax.swing.JFrame{
                                 .addGap(18, 18, 18)
                                 .addComponent(botoncombo))
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(34, Short.MAX_VALUE))
-            .addGroup(pbucitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(pbucitaLayout.createSequentialGroup()
-                    .addGap(45, 45, 45)
-                    .addComponent(jLabel5)
-                    .addContainerGap(694, Short.MAX_VALUE)))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
         pbucitaLayout.setVerticalGroup(
             pbucitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -211,30 +222,33 @@ public class VerCitas extends javax.swing.JFrame{
                             .addComponent(batras))
                         .addGroup(pbucitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pbucitaLayout.createSequentialGroup()
-                                .addGap(80, 80, 80)
-                                .addComponent(bbuscarfecha)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(bbuscarmatricula))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pbucitaLayout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(pbucitaLayout.createSequentialGroup()
-                                .addGap(46, 46, 46)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(infecha, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(105, 105, 105)
-                                .addComponent(inmatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(44, 44, 44)
+                                .addComponent(labelfechahora)
+                                .addGap(18, 18, 18)
+                                .addGroup(pbucitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(pbucitaLayout.createSequentialGroup()
+                                        .addGroup(pbucitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(combodia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(combomes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(comboano, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(18, 18, 18)
+                                        .addComponent(combohora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(bbuscarfecha))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(pbucitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(bbuscarmatricula, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pbucitaLayout.createSequentialGroup()
+                                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(inmatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                         .addGap(18, 18, 18)
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(inestado, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(62, 62, 62))
-            .addGroup(pbucitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pbucitaLayout.createSequentialGroup()
-                    .addContainerGap(294, Short.MAX_VALUE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(193, 193, 193)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -259,15 +273,8 @@ public class VerCitas extends javax.swing.JFrame{
         VentanaPrincipal venanaprincipal=new VentanaPrincipal();
         dispose();
     }//GEN-LAST:event_batrasMouseClicked
-    /**
-     * Campo de texto para introducir la fecha.
-     *
-     * @param evt
-     */
-    private void infechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_infechaActionPerformed
 
-    }//GEN-LAST:event_infechaActionPerformed
-    /**
+   /**
      * Campo de texto para introducir la matrícula.
      *
      * @param evt
@@ -282,12 +289,10 @@ public class VerCitas extends javax.swing.JFrame{
      */
     private void bbuscarfechaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bbuscarfechaMouseClicked
 
-        String fecha=infecha.getText();
-
+        String fechaHora=(String) combodia.getSelectedItem()+"/"+combomes.getSelectedItem()+"/"+comboano.getSelectedItem()+" "+combohora.getSelectedItem();
         //Recibimos la citas encontradas que no esten cerradas o finalizadas
-        cita.consultarCitaFecha(fecha);
+        cita.consultarCitaFecha(fechaHora);
         mostrarTabla();
-        infecha.setText("");
     }//GEN-LAST:event_bbuscarfechaMouseClicked
     /**
      * Botón búsqueda por matrícula
@@ -408,13 +413,16 @@ public class VerCitas extends javax.swing.JFrame{
     private javax.swing.JLabel bbuscarfecha;
     private javax.swing.JLabel bbuscarmatricula;
     private javax.swing.JLabel botoncombo;
+    private javax.swing.JComboBox<String> comboano;
+    private javax.swing.JComboBox<String> combodia;
+    private javax.swing.JComboBox<String> combohora;
+    private javax.swing.JComboBox<String> combomes;
     private javax.swing.JComboBox<String> inestado;
-    private javax.swing.JTextField infecha;
     private javax.swing.JTextField inmatricula;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel labelfechahora;
     private javax.swing.JPanel pbucita;
     private javax.swing.JTable tablabusqueda;
     private javax.swing.JLabel titulousuarios;

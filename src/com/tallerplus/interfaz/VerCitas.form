@@ -57,17 +57,32 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="titulousuarios" alignment="0" min="-2" pref="250" max="-2" attributes="0"/>
-                      <Group type="102" alignment="0" attributes="0">
+                      <Component id="titulousuarios" min="-2" pref="250" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                              <Component id="infecha" min="-2" pref="222" max="-2" attributes="0"/>
-                              <Component id="inmatricula" alignment="1" min="-2" pref="221" max="-2" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+                                  <Component id="inmatricula" min="-2" pref="221" max="-2" attributes="0"/>
+                              </Group>
+                              <Component id="labelfechahora" alignment="0" min="-2" pref="136" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                      <Component id="combohora" alignment="0" max="32767" attributes="0"/>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="combodia" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                                          <Component id="combomes" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="comboano" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Component id="jLabel5" alignment="1" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="bbuscarmatricula" min="-2" max="-2" attributes="0"/>
-                              <Component id="bbuscarfecha" min="-2" max="-2" attributes="0"/>
+                              <Component id="bbuscarfecha" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -91,14 +106,7 @@
                           </Group>
                       </Group>
                   </Group>
-                  <EmptySpace pref="34" max="32767" attributes="0"/>
-              </Group>
-              <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
-                      <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="694" max="32767" attributes="0"/>
-                  </Group>
+                  <EmptySpace pref="53" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -118,22 +126,34 @@
                           </Group>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="1" attributes="0">
-                                  <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
-                                  <Component id="bbuscarfecha" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="bbuscarmatricula" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="1" attributes="0">
                                   <EmptySpace pref="32" max="32767" attributes="0"/>
                                   <Component id="jScrollPane2" min="-2" pref="250" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
-                                  <Component id="jLabel1" min="-2" pref="39" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="infecha" min="-2" pref="38" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="105" max="-2" attributes="0"/>
-                                  <Component id="inmatricula" min="-2" pref="38" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
+                                  <Component id="labelfechahora" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <Group type="103" groupAlignment="3" attributes="0">
+                                              <Component id="combodia" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="combomes" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="comboano" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Component id="combohora" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Component id="bbuscarfecha" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="bbuscarmatricula" alignment="1" min="-2" max="-2" attributes="0"/>
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <Component id="jLabel5" min="-2" pref="39" max="-2" attributes="0"/>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <Component id="inmatricula" min="-2" pref="38" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
                               </Group>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -143,13 +163,6 @@
                       </Group>
                   </Group>
                   <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
-              </Group>
-              <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace pref="294" max="32767" attributes="0"/>
-                      <Component id="jLabel5" min="-2" pref="39" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="193" max="-2" attributes="0"/>
-                  </Group>
               </Group>
           </Group>
         </DimensionLayout>
@@ -175,22 +188,6 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Citas"/>
           </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jLabel1">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="18" style="1"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="B&#xfa;squeda por fecha"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="infecha">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="infechaActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="bbuscarfecha">
           <Properties>
@@ -322,6 +319,201 @@
             </Property>
             <Property name="text" type="java.lang.String" value="B&#xfa;squeda por matr&#xed;cula"/>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="labelfechahora">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="18" style="1"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Fecha y Hora"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="combodia">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="31">
+                <StringItem index="0" value="01"/>
+                <StringItem index="1" value="02"/>
+                <StringItem index="2" value="03"/>
+                <StringItem index="3" value="04"/>
+                <StringItem index="4" value="05"/>
+                <StringItem index="5" value="06"/>
+                <StringItem index="6" value="07"/>
+                <StringItem index="7" value="08"/>
+                <StringItem index="8" value="09"/>
+                <StringItem index="9" value="10"/>
+                <StringItem index="10" value="11"/>
+                <StringItem index="11" value="12"/>
+                <StringItem index="12" value="13"/>
+                <StringItem index="13" value="14"/>
+                <StringItem index="14" value="15"/>
+                <StringItem index="15" value="16"/>
+                <StringItem index="16" value="17"/>
+                <StringItem index="17" value="18"/>
+                <StringItem index="18" value="19"/>
+                <StringItem index="19" value="20"/>
+                <StringItem index="20" value="21"/>
+                <StringItem index="21" value="22"/>
+                <StringItem index="22" value="23"/>
+                <StringItem index="23" value="24"/>
+                <StringItem index="24" value="25"/>
+                <StringItem index="25" value="26"/>
+                <StringItem index="26" value="27"/>
+                <StringItem index="27" value="28"/>
+                <StringItem index="28" value="29"/>
+                <StringItem index="29" value="30"/>
+                <StringItem index="30" value="31"/>
+              </StringArray>
+            </Property>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+          </AuxValues>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="combomes">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="12">
+                <StringItem index="0" value="Enero"/>
+                <StringItem index="1" value="Febrero"/>
+                <StringItem index="2" value="Marzo"/>
+                <StringItem index="3" value="Abril"/>
+                <StringItem index="4" value="Mayo"/>
+                <StringItem index="5" value="Junio"/>
+                <StringItem index="6" value="Julio"/>
+                <StringItem index="7" value="Agosto"/>
+                <StringItem index="8" value="Septiembre"/>
+                <StringItem index="9" value="Octuble"/>
+                <StringItem index="10" value="Noviembre"/>
+                <StringItem index="11" value="Diciembre"/>
+              </StringArray>
+            </Property>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+          </AuxValues>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="comboano">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="21">
+                <StringItem index="0" value="2018"/>
+                <StringItem index="1" value="2019"/>
+                <StringItem index="2" value="2020"/>
+                <StringItem index="3" value="2021"/>
+                <StringItem index="4" value="2022"/>
+                <StringItem index="5" value="2023"/>
+                <StringItem index="6" value="2024"/>
+                <StringItem index="7" value="2025"/>
+                <StringItem index="8" value="2026"/>
+                <StringItem index="9" value="2027"/>
+                <StringItem index="10" value="2028"/>
+                <StringItem index="11" value="2029"/>
+                <StringItem index="12" value="2030"/>
+                <StringItem index="13" value="2031"/>
+                <StringItem index="14" value="2032"/>
+                <StringItem index="15" value="2033"/>
+                <StringItem index="16" value="2034"/>
+                <StringItem index="17" value="2035"/>
+                <StringItem index="18" value="2036"/>
+                <StringItem index="19" value="2037"/>
+                <StringItem index="20" value="2038"/>
+              </StringArray>
+            </Property>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+          </AuxValues>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="combohora">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="76">
+                <StringItem index="0" value="09:00"/>
+                <StringItem index="1" value="09:15"/>
+                <StringItem index="2" value="09:30"/>
+                <StringItem index="3" value="09:45"/>
+                <StringItem index="4" value="10:00"/>
+                <StringItem index="5" value="10:15"/>
+                <StringItem index="6" value="10:30"/>
+                <StringItem index="7" value="10:45"/>
+                <StringItem index="8" value="11:00"/>
+                <StringItem index="9" value="11:15"/>
+                <StringItem index="10" value="11:30"/>
+                <StringItem index="11" value="11:45"/>
+                <StringItem index="12" value="12:00"/>
+                <StringItem index="13" value="12:15"/>
+                <StringItem index="14" value="12:30"/>
+                <StringItem index="15" value="12:45"/>
+                <StringItem index="16" value="13:00"/>
+                <StringItem index="17" value="13:15"/>
+                <StringItem index="18" value="13:30"/>
+                <StringItem index="19" value="13:45"/>
+                <StringItem index="20" value="14:00"/>
+                <StringItem index="21" value="14:15"/>
+                <StringItem index="22" value="14:30"/>
+                <StringItem index="23" value="15:45"/>
+                <StringItem index="24" value="16:00"/>
+                <StringItem index="25" value="16:15"/>
+                <StringItem index="26" value="16:30"/>
+                <StringItem index="27" value="16:45"/>
+                <StringItem index="28" value="17:00"/>
+                <StringItem index="29" value="17:15"/>
+                <StringItem index="30" value="17:30"/>
+                <StringItem index="31" value="18:45"/>
+                <StringItem index="32" value="19:00"/>
+                <StringItem index="33" value="19:15"/>
+                <StringItem index="34" value="19:30"/>
+                <StringItem index="35" value="20:45"/>
+                <StringItem index="36" value="21:00"/>
+                <StringItem index="37" value="22:15"/>
+                <StringItem index="38" value="23:30"/>
+                <StringItem index="39" value="23:45"/>
+                <StringItem index="40" value="00:00"/>
+                <StringItem index="41" value="00:15"/>
+                <StringItem index="42" value="00:30"/>
+                <StringItem index="43" value="00:45"/>
+                <StringItem index="44" value="01:00"/>
+                <StringItem index="45" value="01:15"/>
+                <StringItem index="46" value="01:30"/>
+                <StringItem index="47" value="01:45"/>
+                <StringItem index="48" value="02:00"/>
+                <StringItem index="49" value="02:15"/>
+                <StringItem index="50" value="02:30"/>
+                <StringItem index="51" value="02:45"/>
+                <StringItem index="52" value="03:00"/>
+                <StringItem index="53" value="03:15"/>
+                <StringItem index="54" value="03:30"/>
+                <StringItem index="55" value="03:45"/>
+                <StringItem index="56" value="04:00"/>
+                <StringItem index="57" value="04:15"/>
+                <StringItem index="58" value="04:30"/>
+                <StringItem index="59" value="04:45"/>
+                <StringItem index="60" value="05:00"/>
+                <StringItem index="61" value="05:15"/>
+                <StringItem index="62" value="05:30"/>
+                <StringItem index="63" value="05:45"/>
+                <StringItem index="64" value="06:00"/>
+                <StringItem index="65" value="06:15"/>
+                <StringItem index="66" value="06:30"/>
+                <StringItem index="67" value="06:45"/>
+                <StringItem index="68" value="07:00"/>
+                <StringItem index="69" value="07:15"/>
+                <StringItem index="70" value="07:30"/>
+                <StringItem index="71" value="07:45"/>
+                <StringItem index="72" value="08:00"/>
+                <StringItem index="73" value="08:15"/>
+                <StringItem index="74" value="08:30"/>
+                <StringItem index="75" value="08:45"/>
+              </StringArray>
+            </Property>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+          </AuxValues>
         </Component>
       </SubComponents>
     </Container>

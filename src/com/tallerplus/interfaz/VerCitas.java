@@ -6,7 +6,6 @@ import com.tallerplus.objetos.Cita;
 import java.awt.Image;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Iterator;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -289,8 +288,47 @@ public class VerCitas extends javax.swing.JFrame{
      */
     private void bbuscarfechaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bbuscarfechaMouseClicked
 
-        String fechaHora=(String) combodia.getSelectedItem()+"/"+combomes.getSelectedItem()+"/"+comboano.getSelectedItem()+" "+combohora.getSelectedItem();
-        //Recibimos la citas encontradas que no esten cerradas o finalizadas
+        String fechaHora;
+        
+        switch((String)combomes.getSelectedItem()){
+            case "Enero":
+                fechaHora=(String) combodia.getSelectedItem()+"/"+01+"/"+comboano.getSelectedItem()+" "+combohora.getSelectedItem();
+                break;
+            case "Febrero":
+                fechaHora=(String) combodia.getSelectedItem()+"/"+02+"/"+comboano.getSelectedItem()+" "+combohora.getSelectedItem();
+                break;
+            case "Marzo":
+                fechaHora=(String) combodia.getSelectedItem()+"/"+03+"/"+comboano.getSelectedItem()+" "+combohora.getSelectedItem();
+                break;
+            case "Abril":
+                fechaHora=(String) combodia.getSelectedItem()+"/"+04+"/"+comboano.getSelectedItem()+" "+combohora.getSelectedItem();
+                break;
+            case "Mayo":
+                fechaHora=(String) combodia.getSelectedItem()+"/"+05+"/"+comboano.getSelectedItem()+" "+combohora.getSelectedItem();
+                break;  
+            case "Junio":
+                fechaHora=(String) combodia.getSelectedItem()+"/"+06+"/"+comboano.getSelectedItem()+" "+combohora.getSelectedItem();
+                break;
+            case "Julio":
+                fechaHora=(String) combodia.getSelectedItem()+"/"+07+"/"+comboano.getSelectedItem()+" "+combohora.getSelectedItem();
+                break;
+            case "Agosto":
+                fechaHora=(String) combodia.getSelectedItem()+"/"+0+8+"/"+comboano.getSelectedItem()+" "+combohora.getSelectedItem();
+                break;
+            case "Septiembre":
+                fechaHora=(String) combodia.getSelectedItem()+"/"+0+9+"/"+comboano.getSelectedItem()+" "+combohora.getSelectedItem();
+                break;
+            case "Octubre":
+                fechaHora=(String) combodia.getSelectedItem()+"/"+10+"/"+comboano.getSelectedItem()+" "+combohora.getSelectedItem();
+                break;
+            case "Noviembre":
+                fechaHora=(String) combodia.getSelectedItem()+"/"+11+"/"+comboano.getSelectedItem()+" "+combohora.getSelectedItem();
+                break;
+            default:
+                fechaHora=(String) combodia.getSelectedItem()+"/"+12+"/"+comboano.getSelectedItem()+" "+combohora.getSelectedItem();
+                break;
+        }
+
         cita.consultarCitaFecha(fechaHora);
         mostrarTabla();
     }//GEN-LAST:event_bbuscarfechaMouseClicked

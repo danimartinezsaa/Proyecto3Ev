@@ -7,7 +7,6 @@ import java.awt.Color;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -44,7 +43,7 @@ public class Citas extends javax.swing.JFrame{
         tabla.addColumn("Descripción");
         tabla.addColumn("Precio");
         tabla.addColumn("Estado");
-
+        
         mostrarTabla();
     }
 
@@ -381,7 +380,47 @@ public class Citas extends javax.swing.JFrame{
      * @param evt
      */
     private void bañadircitaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bañadircitaMouseClicked
-        String fechaHora=(String) combodia.getSelectedItem()+"/"+combomes.getSelectedItem()+"/"+comboano.getSelectedItem()+" "+combohora.getSelectedItem();
+        String fechaHora;
+        
+        switch((String)combomes.getSelectedItem()){
+            case "Enero":
+                fechaHora=(String) combodia.getSelectedItem()+"/"+01+"/"+comboano.getSelectedItem()+" "+combohora.getSelectedItem();
+                break;
+            case "Febrero":
+                fechaHora=(String) combodia.getSelectedItem()+"/"+02+"/"+comboano.getSelectedItem()+" "+combohora.getSelectedItem();
+                break;
+            case "Marzo":
+                fechaHora=(String) combodia.getSelectedItem()+"/"+03+"/"+comboano.getSelectedItem()+" "+combohora.getSelectedItem();
+                break;
+            case "Abril":
+                fechaHora=(String) combodia.getSelectedItem()+"/"+04+"/"+comboano.getSelectedItem()+" "+combohora.getSelectedItem();
+                break;
+            case "Mayo":
+                fechaHora=(String) combodia.getSelectedItem()+"/"+05+"/"+comboano.getSelectedItem()+" "+combohora.getSelectedItem();
+                break;  
+            case "Junio":
+                fechaHora=(String) combodia.getSelectedItem()+"/"+06+"/"+comboano.getSelectedItem()+" "+combohora.getSelectedItem();
+                break;
+            case "Julio":
+                fechaHora=(String) combodia.getSelectedItem()+"/"+07+"/"+comboano.getSelectedItem()+" "+combohora.getSelectedItem();
+                break;
+            case "Agosto":
+                fechaHora=(String) combodia.getSelectedItem()+"/"+0+8+"/"+comboano.getSelectedItem()+" "+combohora.getSelectedItem();
+                break;
+            case "Septiembre":
+                fechaHora=(String) combodia.getSelectedItem()+"/"+0+9+"/"+comboano.getSelectedItem()+" "+combohora.getSelectedItem();
+                break;
+            case "Octubre":
+                fechaHora=(String) combodia.getSelectedItem()+"/"+10+"/"+comboano.getSelectedItem()+" "+combohora.getSelectedItem();
+                break;
+            case "Noviembre":
+                fechaHora=(String) combodia.getSelectedItem()+"/"+11+"/"+comboano.getSelectedItem()+" "+combohora.getSelectedItem();
+                break;
+            default:
+                fechaHora=(String) combodia.getSelectedItem()+"/"+12+"/"+comboano.getSelectedItem()+" "+combohora.getSelectedItem();
+                break;
+        }
+        
         String matricula=inmatricula.getText();
         String precio=inprecio.getText();
         boolean validado=validarDatos(matricula, precio);
@@ -489,7 +528,6 @@ public class Citas extends javax.swing.JFrame{
             anadir[4]=elemento.getEstado();
             tabla.addRow(anadir);
         }
-
         this.tablacitas.setModel(tabla);
     }
 }

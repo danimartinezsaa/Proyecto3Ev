@@ -1,5 +1,6 @@
 package com.tallerplus.interfaz;
 
+import com.tallerplus.gestion.GestionTiempo;
 import com.tallerplus.gestion.Login;
 import java.awt.Image;
 import javax.swing.ImageIcon;
@@ -13,7 +14,8 @@ import javax.swing.JOptionPane;
  * @author dani_
  */
 public class VentanaPrincipal extends javax.swing.JFrame {
-
+    
+    String tiempo;
     /**
      * Constructor que inicializa componentes, centra la ventana en la pantalla,
      * la hace visible y evita que sea redimensionable.
@@ -27,6 +29,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         ImageIcon ImageIcon = new ImageIcon(getClass().getResource("/com/tallerplus/icon/LogoT+.png"));
         Image Image = ImageIcon.getImage();
         this.setIconImage(Image);
+        
+        tiempo=GestionTiempo.pasarTiempo();
+        
+        jtiempo.setText(tiempo);
+        jiconotiempo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tallerplus/icon/cloudy.png")));
     }
 
     /**
@@ -58,6 +65,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         bcoches = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         bcambiousuario = new javax.swing.JLabel();
+        jtiempo = new javax.swing.JLabel();
+        jiconotiempo = new javax.swing.JLabel();
 
         jLabel17.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(240, 240, 240));
@@ -169,6 +178,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        jtiempo.setForeground(new java.awt.Color(255, 255, 255));
+
         javax.swing.GroupLayout panelprincipalLayout = new javax.swing.GroupLayout(panelprincipal);
         panelprincipal.setLayout(panelprincipalLayout);
         panelprincipalLayout.setHorizontalGroup(
@@ -189,28 +200,36 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                         .addGroup(panelprincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel20)
                             .addComponent(bhistorialcliente, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(panelprincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel9)
                             .addComponent(bcoches))
                         .addGap(59, 59, 59))
                     .addGroup(panelprincipalLayout.createSequentialGroup()
                         .addGroup(panelprincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(busuario)
-                            .addComponent(jLabel6))
-                        .addGroup(panelprincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelprincipalLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel8)
-                                .addGap(60, 60, 60))
                             .addGroup(panelprincipalLayout.createSequentialGroup()
+                                .addGroup(panelprincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(busuario)
+                                    .addComponent(jLabel6))
+                                .addGroup(panelprincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelprincipalLayout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel8)
+                                        .addGap(60, 60, 60))
+                                    .addGroup(panelprincipalLayout.createSequentialGroup()
+                                        .addGap(90, 90, 90)
+                                        .addComponent(bcliente)))
                                 .addGap(90, 90, 90)
-                                .addComponent(bcliente)))
-                        .addGap(90, 90, 90)
-                        .addGroup(panelprincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7)
-                            .addComponent(bfactura, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(panelprincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel7)
+                                    .addComponent(bfactura, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 173, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelprincipalLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jiconotiempo, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jtiempo, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
                         .addComponent(bcambiousuario)
                         .addGap(35, 35, 35))))
             .addGroup(panelprincipalLayout.createSequentialGroup()
@@ -226,8 +245,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addGap(21, 21, 21)
                 .addGroup(panelprincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelprincipalLayout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(panelprincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelprincipalLayout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jtiempo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jiconotiempo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(panelprincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(panelprincipalLayout.createSequentialGroup()
                                 .addGroup(panelprincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -428,6 +452,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jiconotiempo;
+    private javax.swing.JLabel jtiempo;
     public static javax.swing.JPanel panelprincipal;
     // End of variables declaration//GEN-END:variables
 }

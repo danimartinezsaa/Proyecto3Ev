@@ -382,7 +382,6 @@ public class Citas extends javax.swing.JFrame{
      */
     private void bañadircitaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bañadircitaMouseClicked
         String fechaHora=(String) combodia.getSelectedItem()+"/"+combomes.getSelectedItem()+"/"+comboano.getSelectedItem()+" "+combohora.getSelectedItem();
-        System.out.println(fechaHora);
         String matricula=inmatricula.getText();
         String precio=inprecio.getText();
         boolean validado=validarDatos(matricula, precio);

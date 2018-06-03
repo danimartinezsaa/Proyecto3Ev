@@ -108,6 +108,12 @@ public class VentaCoches extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 batrasMouseClicked(evt);
             }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                batrasMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                batrasMouseEntered(evt);
+            }
         });
 
         titulousuarios2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -136,6 +142,12 @@ public class VentaCoches extends javax.swing.JFrame {
         bañadir.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 bañadirMouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                bañadirMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                bañadirMouseEntered(evt);
             }
         });
 
@@ -174,12 +186,24 @@ public class VentaCoches extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 bborrarMouseClicked(evt);
             }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                bborrarMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                bborrarMouseEntered(evt);
+            }
         });
 
         bvender.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tallerplus/icon/euro.png"))); // NOI18N
         bvender.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 bvenderMouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                bvenderMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                bvenderMouseEntered(evt);
             }
         });
 
@@ -402,6 +426,54 @@ public class VentaCoches extends javax.swing.JFrame {
             System.out.println("errror");
         }
     }//GEN-LAST:event_bvenderMouseClicked
+
+    private void bañadirMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bañadirMouseEntered
+        for(int i=0;i<=5;i++){
+            bañadir.setLocation(bañadir.getX(),bañadir.getY()+1);          
+        }
+    }//GEN-LAST:event_bañadirMouseEntered
+
+    private void bañadirMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bañadirMouseExited
+        for(int i=0;i<=5;i++){
+            bañadir.setLocation(bañadir.getX(),bañadir.getY()-1);          
+        }
+    }//GEN-LAST:event_bañadirMouseExited
+
+    private void bborrarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bborrarMouseEntered
+        for(int i=0;i<=5;i++){
+            bborrar.setLocation(bborrar.getX(),bborrar.getY()+1);          
+        }
+    }//GEN-LAST:event_bborrarMouseEntered
+
+    private void bborrarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bborrarMouseExited
+        for(int i=0;i<=5;i++){
+            bborrar.setLocation(bborrar.getX(),bborrar.getY()-1);          
+        }
+    }//GEN-LAST:event_bborrarMouseExited
+
+    private void bvenderMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bvenderMouseEntered
+        for(int i=0;i<=5;i++){
+            bvender.setLocation(bvender.getX(),bvender.getY()+1);          
+        }
+    }//GEN-LAST:event_bvenderMouseEntered
+
+    private void bvenderMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bvenderMouseExited
+        for(int i=0;i<=5;i++){
+            bvender.setLocation(bvender.getX(),bvender.getY()-1);          
+        }
+    }//GEN-LAST:event_bvenderMouseExited
+
+    private void batrasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_batrasMouseEntered
+        for(int i=0;i<=5;i++){
+            batras.setLocation(batras.getX(),batras.getY()+1);          
+        }
+    }//GEN-LAST:event_batrasMouseEntered
+
+    private void batrasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_batrasMouseExited
+        for(int i=0;i<=5;i++){
+            batras.setLocation(batras.getX(),batras.getY()-1);          
+        }
+    }//GEN-LAST:event_batrasMouseExited
 
     /**
      * @param args the command line arguments

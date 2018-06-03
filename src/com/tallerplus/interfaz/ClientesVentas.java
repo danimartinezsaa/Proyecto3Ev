@@ -113,6 +113,12 @@ public class ClientesVentas extends javax.swing.JFrame{
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 botonOkMouseClicked(evt);
             }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                botonOkMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                botonOkMouseEntered(evt);
+            }
         });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -234,6 +240,18 @@ public class ClientesVentas extends javax.swing.JFrame{
             }
         }
     }//GEN-LAST:event_botonOkMouseClicked
+
+    private void botonOkMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonOkMouseEntered
+        for(int i=0;i<=5;i++){
+            botonOk.setLocation(botonOk.getX(),botonOk.getY()+1);          
+        }
+    }//GEN-LAST:event_botonOkMouseEntered
+
+    private void botonOkMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonOkMouseExited
+        for(int i=0;i<=5;i++){
+            botonOk.setLocation(botonOk.getX(),botonOk.getY()-1);          
+        }
+    }//GEN-LAST:event_botonOkMouseExited
 
     /**
      * @param args the command line arguments

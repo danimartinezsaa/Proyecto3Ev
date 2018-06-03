@@ -99,6 +99,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 busuarioMouseClicked(evt);
             }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                busuarioMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                busuarioMouseEntered(evt);
+            }
         });
 
         bcliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tallerplus/icon/007-chico.png"))); // NOI18N
@@ -106,12 +112,24 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 bclienteMouseClicked(evt);
             }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                bclienteMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                bclienteMouseEntered(evt);
+            }
         });
 
         bfactura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tallerplus/icon/recepcion.png"))); // NOI18N
         bfactura.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 bfacturaMouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                bfacturaMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                bfacturaMouseEntered(evt);
             }
         });
 
@@ -132,12 +150,24 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 bhistorialclienteMouseClicked(evt);
             }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                bhistorialclienteMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                bhistorialclienteMouseEntered(evt);
+            }
         });
 
         bbuscarcita.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tallerplus/icon/bloc.png"))); // NOI18N
         bbuscarcita.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 bbuscarcitaMouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                bbuscarcitaMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                bbuscarcitaMouseEntered(evt);
             }
         });
 
@@ -158,12 +188,24 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 bcitasMouseClicked(evt);
             }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                bcitasMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                bcitasMouseEntered(evt);
+            }
         });
 
         bcoches.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tallerplus/icon/coche.png"))); // NOI18N
         bcoches.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 bcochesMouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                bcochesMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                bcochesMouseEntered(evt);
             }
         });
 
@@ -175,6 +217,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         bcambiousuario.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 bcambiousuarioMouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                bcambiousuarioMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                bcambiousuarioMouseEntered(evt);
             }
         });
 
@@ -393,6 +441,102 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         LoginUsers login=new LoginUsers();
         dispose();
     }//GEN-LAST:event_bcambiousuarioMouseClicked
+
+    private void busuarioMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_busuarioMouseEntered
+        for(int i=0;i<=5;i++){
+            busuario.setLocation(busuario.getX(),busuario.getY()+1);          
+        }
+    }//GEN-LAST:event_busuarioMouseEntered
+
+    private void busuarioMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_busuarioMouseExited
+        for(int i=0;i<=5;i++){
+            busuario.setLocation(busuario.getX(),busuario.getY()-1);          
+        }
+    }//GEN-LAST:event_busuarioMouseExited
+
+    private void bclienteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bclienteMouseEntered
+        for(int i=0;i<=5;i++){
+            bcliente.setLocation(bcliente.getX(),bcliente.getY()+1);          
+        }
+    }//GEN-LAST:event_bclienteMouseEntered
+
+    private void bclienteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bclienteMouseExited
+        for(int i=0;i<=5;i++){
+            bcliente.setLocation(bcliente.getX(),bcliente.getY()-1);  
+        }
+    }//GEN-LAST:event_bclienteMouseExited
+
+    private void bfacturaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bfacturaMouseEntered
+        for(int i=0;i<=5;i++){
+            bfactura.setLocation(bfactura.getX(),bfactura.getY()+1);
+        }
+    }//GEN-LAST:event_bfacturaMouseEntered
+
+    private void bcambiousuarioMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bcambiousuarioMouseEntered
+        for(int i=0;i<=5;i++){
+            bcambiousuario.setLocation(bcambiousuario.getX(),bcambiousuario.getY()+1);          
+        }
+    }//GEN-LAST:event_bcambiousuarioMouseEntered
+
+    private void bcambiousuarioMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bcambiousuarioMouseExited
+        for(int i=0;i<=5;i++){
+            bcambiousuario.setLocation(bcambiousuario.getX(),bcambiousuario.getY()-1);          
+        }
+    }//GEN-LAST:event_bcambiousuarioMouseExited
+
+    private void bcitasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bcitasMouseEntered
+        for(int i=0;i<=5;i++){
+            bcitas.setLocation(bcitas.getX(),bcitas.getY()+1);          
+        }
+    }//GEN-LAST:event_bcitasMouseEntered
+
+    private void bcitasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bcitasMouseExited
+        for(int i=0;i<=5;i++){
+            bcitas.setLocation(bcitas.getX(),bcitas.getY()-1);          
+        }
+    }//GEN-LAST:event_bcitasMouseExited
+
+    private void bbuscarcitaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bbuscarcitaMouseEntered
+        for(int i=0;i<=5;i++){
+            bbuscarcita.setLocation(bbuscarcita.getX(),bbuscarcita.getY()+1);          
+        }
+    }//GEN-LAST:event_bbuscarcitaMouseEntered
+
+    private void bhistorialclienteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bhistorialclienteMouseEntered
+        for(int i=0;i<=5;i++){
+            bhistorialcliente.setLocation(bhistorialcliente.getX(),bhistorialcliente.getY()+1);          
+        }
+    }//GEN-LAST:event_bhistorialclienteMouseEntered
+
+    private void bbuscarcitaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bbuscarcitaMouseExited
+        for(int i=0;i<=5;i++){
+            bbuscarcita.setLocation(bbuscarcita.getX(),bbuscarcita.getY()-1);          
+        }
+    }//GEN-LAST:event_bbuscarcitaMouseExited
+
+    private void bhistorialclienteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bhistorialclienteMouseExited
+        for(int i=0;i<=5;i++){
+            bhistorialcliente.setLocation(bhistorialcliente.getX(),bhistorialcliente.getY()-1);          
+        }
+    }//GEN-LAST:event_bhistorialclienteMouseExited
+
+    private void bcochesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bcochesMouseEntered
+        for(int i=0;i<=5;i++){
+            bcoches.setLocation(bcoches.getX(),bcoches.getY()+1);          
+        }
+    }//GEN-LAST:event_bcochesMouseEntered
+
+    private void bcochesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bcochesMouseExited
+        for(int i=0;i<=5;i++){
+            bcoches.setLocation(bcoches.getX(),bcoches.getY()-1);          
+        }
+    }//GEN-LAST:event_bcochesMouseExited
+
+    private void bfacturaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bfacturaMouseExited
+        for(int i=0;i<=5;i++){
+            bfactura.setLocation(bfactura.getX(),bfactura.getY()-1);
+        }
+    }//GEN-LAST:event_bfacturaMouseExited
 
     /**
      * @param args the command line arguments

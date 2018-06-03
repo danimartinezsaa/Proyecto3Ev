@@ -164,6 +164,12 @@ public class Clientes extends javax.swing.JFrame{
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 batras1MouseClicked(evt);
             }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                batras1MouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                batras1MouseEntered(evt);
+            }
         });
 
         titulousuarios.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
@@ -203,6 +209,12 @@ public class Clientes extends javax.swing.JFrame{
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 botonAnadirClienteMouseClicked(evt);
             }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                botonAnadirClienteMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                botonAnadirClienteMouseEntered(evt);
+            }
         });
 
         botonEditarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tallerplus/icon/001-usuario-2.png"))); // NOI18N
@@ -210,12 +222,24 @@ public class Clientes extends javax.swing.JFrame{
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 botonEditarClienteMouseClicked(evt);
             }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                botonEditarClienteMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                botonEditarClienteMouseEntered(evt);
+            }
         });
 
         botonEliminarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tallerplus/icon/002-usuario-1.png"))); // NOI18N
         botonEliminarCliente.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 botonEliminarClienteMouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                botonEliminarClienteMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                botonEliminarClienteMouseEntered(evt);
             }
         });
 
@@ -459,6 +483,54 @@ public class Clientes extends javax.swing.JFrame{
             Mensajes.ventanaError("No puedes eliminar un cliente mientras editas", "Edición");
         }
     }//GEN-LAST:event_botonEliminarClienteMouseClicked
+
+    private void batras1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_batras1MouseEntered
+        for(int i=0;i<=5;i++){
+            batras1.setLocation(batras1.getX(),batras1.getY()+1);          
+        }
+    }//GEN-LAST:event_batras1MouseEntered
+
+    private void batras1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_batras1MouseExited
+        for(int i=0;i<=5;i++){
+            batras1.setLocation(batras1.getX(),batras1.getY()-1);          
+        }
+    }//GEN-LAST:event_batras1MouseExited
+
+    private void botonAnadirClienteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAnadirClienteMouseEntered
+        for(int i=0;i<=5;i++){
+            botonAnadirCliente.setLocation(botonAnadirCliente.getX(),botonAnadirCliente.getY()+1);          
+        }
+    }//GEN-LAST:event_botonAnadirClienteMouseEntered
+
+    private void botonAnadirClienteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAnadirClienteMouseExited
+        for(int i=0;i<=5;i++){
+            botonAnadirCliente.setLocation(botonAnadirCliente.getX(),botonAnadirCliente.getY()-1);          
+        }
+    }//GEN-LAST:event_botonAnadirClienteMouseExited
+
+    private void botonEditarClienteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonEditarClienteMouseEntered
+        for(int i=0;i<=5;i++){
+            botonEditarCliente.setLocation(botonEditarCliente.getX(),botonEditarCliente.getY()+1);          
+        }
+    }//GEN-LAST:event_botonEditarClienteMouseEntered
+
+    private void botonEditarClienteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonEditarClienteMouseExited
+        for(int i=0;i<=5;i++){
+            botonEditarCliente.setLocation(botonEditarCliente.getX(),botonEditarCliente.getY()-1);          
+        }
+    }//GEN-LAST:event_botonEditarClienteMouseExited
+
+    private void botonEliminarClienteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonEliminarClienteMouseEntered
+        for(int i=0;i<=5;i++){
+            botonEliminarCliente.setLocation(botonEliminarCliente.getX(),botonEliminarCliente.getY()+1);          
+        }
+    }//GEN-LAST:event_botonEliminarClienteMouseEntered
+
+    private void botonEliminarClienteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonEliminarClienteMouseExited
+        for(int i=0;i<=5;i++){
+            botonEliminarCliente.setLocation(botonEliminarCliente.getX(),botonEliminarCliente.getY()-1);          
+        }
+    }//GEN-LAST:event_botonEliminarClienteMouseExited
 
     /**
      * @param args the command line arguments

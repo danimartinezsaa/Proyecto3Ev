@@ -89,6 +89,12 @@ public class VerCitas extends javax.swing.JFrame{
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 batrasMouseClicked(evt);
             }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                batrasMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                batrasMouseEntered(evt);
+            }
         });
 
         titulousuarios.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
@@ -99,6 +105,12 @@ public class VerCitas extends javax.swing.JFrame{
         bbuscarfecha.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 bbuscarfechaMouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                bbuscarfechaMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                bbuscarfechaMouseEntered(evt);
             }
         });
 
@@ -112,6 +124,12 @@ public class VerCitas extends javax.swing.JFrame{
         bbuscarmatricula.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 bbuscarmatriculaMouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                bbuscarmatriculaMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                bbuscarmatriculaMouseEntered(evt);
             }
         });
 
@@ -144,6 +162,12 @@ public class VerCitas extends javax.swing.JFrame{
         botoncombo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 botoncomboMouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                botoncomboMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                botoncomboMouseEntered(evt);
             }
         });
 
@@ -292,25 +316,25 @@ public class VerCitas extends javax.swing.JFrame{
         
         switch((String)combomes.getSelectedItem()){
             case "Enero":
-                fechaHora=(String) combodia.getSelectedItem()+"/"+01+"/"+comboano.getSelectedItem()+" "+combohora.getSelectedItem();
+                fechaHora=(String) combodia.getSelectedItem()+"/"+0+1+"/"+comboano.getSelectedItem()+" "+combohora.getSelectedItem();
                 break;
             case "Febrero":
-                fechaHora=(String) combodia.getSelectedItem()+"/"+02+"/"+comboano.getSelectedItem()+" "+combohora.getSelectedItem();
+                fechaHora=(String) combodia.getSelectedItem()+"/"+0+2+"/"+comboano.getSelectedItem()+" "+combohora.getSelectedItem();
                 break;
             case "Marzo":
-                fechaHora=(String) combodia.getSelectedItem()+"/"+03+"/"+comboano.getSelectedItem()+" "+combohora.getSelectedItem();
+                fechaHora=(String) combodia.getSelectedItem()+"/"+0+3+"/"+comboano.getSelectedItem()+" "+combohora.getSelectedItem();
                 break;
             case "Abril":
-                fechaHora=(String) combodia.getSelectedItem()+"/"+04+"/"+comboano.getSelectedItem()+" "+combohora.getSelectedItem();
+                fechaHora=(String) combodia.getSelectedItem()+"/"+0+4+"/"+comboano.getSelectedItem()+" "+combohora.getSelectedItem();
                 break;
             case "Mayo":
-                fechaHora=(String) combodia.getSelectedItem()+"/"+05+"/"+comboano.getSelectedItem()+" "+combohora.getSelectedItem();
+                fechaHora=(String) combodia.getSelectedItem()+"/"+0+5+"/"+comboano.getSelectedItem()+" "+combohora.getSelectedItem();
                 break;  
             case "Junio":
-                fechaHora=(String) combodia.getSelectedItem()+"/"+06+"/"+comboano.getSelectedItem()+" "+combohora.getSelectedItem();
+                fechaHora=(String) combodia.getSelectedItem()+"/"+0+6+"/"+comboano.getSelectedItem()+" "+combohora.getSelectedItem();
                 break;
             case "Julio":
-                fechaHora=(String) combodia.getSelectedItem()+"/"+07+"/"+comboano.getSelectedItem()+" "+combohora.getSelectedItem();
+                fechaHora=(String) combodia.getSelectedItem()+"/"+0+7+"/"+comboano.getSelectedItem()+" "+combohora.getSelectedItem();
                 break;
             case "Agosto":
                 fechaHora=(String) combodia.getSelectedItem()+"/"+0+8+"/"+comboano.getSelectedItem()+" "+combohora.getSelectedItem();
@@ -374,6 +398,54 @@ public class VerCitas extends javax.swing.JFrame{
         mostrarTabla();
     }//GEN-LAST:event_botoncomboMouseClicked
 
+    private void bbuscarfechaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bbuscarfechaMouseEntered
+        for(int i=0;i<=5;i++){
+            bbuscarfecha.setLocation(bbuscarfecha.getX(),bbuscarfecha.getY()+1);          
+        }
+    }//GEN-LAST:event_bbuscarfechaMouseEntered
+
+    private void bbuscarfechaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bbuscarfechaMouseExited
+        for(int i=0;i<=5;i++){
+            bbuscarfecha.setLocation(bbuscarfecha.getX(),bbuscarfecha.getY()-1);          
+        }
+    }//GEN-LAST:event_bbuscarfechaMouseExited
+
+    private void bbuscarmatriculaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bbuscarmatriculaMouseEntered
+        for(int i=0;i<=5;i++){
+            bbuscarmatricula.setLocation(bbuscarmatricula.getX(),bbuscarmatricula.getY()+1);          
+        }
+    }//GEN-LAST:event_bbuscarmatriculaMouseEntered
+
+    private void bbuscarmatriculaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bbuscarmatriculaMouseExited
+        for(int i=0;i<=5;i++){
+            bbuscarmatricula.setLocation(bbuscarmatricula.getX(),bbuscarmatricula.getY()-1);          
+        }
+    }//GEN-LAST:event_bbuscarmatriculaMouseExited
+
+    private void botoncomboMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botoncomboMouseEntered
+        for(int i=0;i<=5;i++){
+            botoncombo.setLocation(botoncombo.getX(),botoncombo.getY()+1);          
+        }
+    }//GEN-LAST:event_botoncomboMouseEntered
+
+    private void botoncomboMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botoncomboMouseExited
+        for(int i=0;i<=5;i++){
+            botoncombo.setLocation(botoncombo.getX(),botoncombo.getY()-1);          
+        }
+    }//GEN-LAST:event_botoncomboMouseExited
+
+    private void batrasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_batrasMouseEntered
+        for(int i=0;i<=5;i++){
+            batras.setLocation(batras.getX(),batras.getY()+1);          
+        }
+    }//GEN-LAST:event_batrasMouseEntered
+
+    private void batrasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_batrasMouseExited
+        for(int i=0;i<=5;i++){
+            batras.setLocation(batras.getX(),batras.getY()-1);          
+        }
+    }//GEN-LAST:event_batrasMouseExited
+
     /**
      * @param args the command line arguments
      */
@@ -416,7 +488,6 @@ public class VerCitas extends javax.swing.JFrame{
     private void mostrarTabla(){
         GestionTabla.borrarTabla(tabla);
         encontradas.clear();
-        Collections.sort(cita.citas);
         for(Cita elemento : cita.citas){
             if((elemento.getEstado().equalsIgnoreCase("pendiente")||elemento.getEstado().equalsIgnoreCase("en proceso"))){
                 String anadir[]=new String[5];

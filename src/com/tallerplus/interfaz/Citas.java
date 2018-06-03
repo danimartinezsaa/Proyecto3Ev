@@ -152,12 +152,24 @@ public class Citas extends javax.swing.JFrame{
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 bañadircitaMouseClicked(evt);
             }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                bañadircitaMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                bañadircitaMouseEntered(evt);
+            }
         });
 
         bborrarcita.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tallerplus/icon/error.png"))); // NOI18N
         bborrarcita.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 bborrarcitaMouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                bborrarcitaMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                bborrarcitaMouseEntered(evt);
             }
         });
 
@@ -185,6 +197,12 @@ public class Citas extends javax.swing.JFrame{
         batras.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 batrasMouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                batrasMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                batrasMouseEntered(evt);
             }
         });
 
@@ -384,25 +402,25 @@ public class Citas extends javax.swing.JFrame{
         
         switch((String)combomes.getSelectedItem()){
             case "Enero":
-                fechaHora=(String) combodia.getSelectedItem()+"/"+01+"/"+comboano.getSelectedItem()+" "+combohora.getSelectedItem();
+                fechaHora=(String) combodia.getSelectedItem()+"/"+0+1+"/"+comboano.getSelectedItem()+" "+combohora.getSelectedItem();
                 break;
             case "Febrero":
-                fechaHora=(String) combodia.getSelectedItem()+"/"+02+"/"+comboano.getSelectedItem()+" "+combohora.getSelectedItem();
+                fechaHora=(String) combodia.getSelectedItem()+"/"+0+2+"/"+comboano.getSelectedItem()+" "+combohora.getSelectedItem();
                 break;
             case "Marzo":
-                fechaHora=(String) combodia.getSelectedItem()+"/"+03+"/"+comboano.getSelectedItem()+" "+combohora.getSelectedItem();
+                fechaHora=(String) combodia.getSelectedItem()+"/"+0+3+"/"+comboano.getSelectedItem()+" "+combohora.getSelectedItem();
                 break;
             case "Abril":
-                fechaHora=(String) combodia.getSelectedItem()+"/"+04+"/"+comboano.getSelectedItem()+" "+combohora.getSelectedItem();
+                fechaHora=(String) combodia.getSelectedItem()+"/"+0+4+"/"+comboano.getSelectedItem()+" "+combohora.getSelectedItem();
                 break;
             case "Mayo":
-                fechaHora=(String) combodia.getSelectedItem()+"/"+05+"/"+comboano.getSelectedItem()+" "+combohora.getSelectedItem();
+                fechaHora=(String) combodia.getSelectedItem()+"/"+0+5+"/"+comboano.getSelectedItem()+" "+combohora.getSelectedItem();
                 break;  
             case "Junio":
-                fechaHora=(String) combodia.getSelectedItem()+"/"+06+"/"+comboano.getSelectedItem()+" "+combohora.getSelectedItem();
+                fechaHora=(String) combodia.getSelectedItem()+"/"+0+6+"/"+comboano.getSelectedItem()+" "+combohora.getSelectedItem();
                 break;
             case "Julio":
-                fechaHora=(String) combodia.getSelectedItem()+"/"+07+"/"+comboano.getSelectedItem()+" "+combohora.getSelectedItem();
+                fechaHora=(String) combodia.getSelectedItem()+"/"+0+7+"/"+comboano.getSelectedItem()+" "+combohora.getSelectedItem();
                 break;
             case "Agosto":
                 fechaHora=(String) combodia.getSelectedItem()+"/"+0+8+"/"+comboano.getSelectedItem()+" "+combohora.getSelectedItem();
@@ -456,6 +474,42 @@ public class Citas extends javax.swing.JFrame{
     private void inmatriculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inmatriculaActionPerformed
 
     }//GEN-LAST:event_inmatriculaActionPerformed
+
+    private void bañadircitaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bañadircitaMouseEntered
+        for(int i=0;i<=5;i++){
+            bañadircita.setLocation(bañadircita.getX(),bañadircita.getY()+1);          
+        }
+    }//GEN-LAST:event_bañadircitaMouseEntered
+
+    private void bañadircitaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bañadircitaMouseExited
+        for(int i=0;i<=5;i++){
+            bañadircita.setLocation(bañadircita.getX(),bañadircita.getY()-1);          
+        }
+    }//GEN-LAST:event_bañadircitaMouseExited
+
+    private void bborrarcitaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bborrarcitaMouseEntered
+        for(int i=0;i<=5;i++){
+            bborrarcita.setLocation(bborrarcita.getX(),bborrarcita.getY()+1);          
+        }
+    }//GEN-LAST:event_bborrarcitaMouseEntered
+
+    private void bborrarcitaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bborrarcitaMouseExited
+        for(int i=0;i<=5;i++){
+            bborrarcita.setLocation(bborrarcita.getX(),bborrarcita.getY()-1);          
+        }
+    }//GEN-LAST:event_bborrarcitaMouseExited
+
+    private void batrasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_batrasMouseEntered
+        for(int i=0;i<=5;i++){
+            batras.setLocation(batras.getX(),batras.getY()+1);          
+        }
+    }//GEN-LAST:event_batrasMouseEntered
+
+    private void batrasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_batrasMouseExited
+        for(int i=0;i<=5;i++){
+            batras.setLocation(batras.getX(),batras.getY()-1);          
+        }
+    }//GEN-LAST:event_batrasMouseExited
 
     /**
      * @param args the command line arguments

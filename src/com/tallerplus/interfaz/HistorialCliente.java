@@ -74,6 +74,12 @@ public class HistorialCliente extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 batras1MouseClicked(evt);
             }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                batras1MouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                batras1MouseEntered(evt);
+            }
         });
 
         titulousuarios.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
@@ -96,6 +102,12 @@ public class HistorialCliente extends javax.swing.JFrame {
         bbuscarmatricula.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 bbuscarmatriculaMouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                bbuscarmatriculaMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                bbuscarmatriculaMouseEntered(evt);
             }
         });
 
@@ -224,6 +236,30 @@ public class HistorialCliente extends javax.swing.JFrame {
     private void inmatriculaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_inmatriculaFocusGained
         inmatricula.setText("");
     }//GEN-LAST:event_inmatriculaFocusGained
+
+    private void batras1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_batras1MouseEntered
+        for(int i=0;i<=5;i++){
+            batras1.setLocation(batras1.getX(),batras1.getY()+1);          
+        }
+    }//GEN-LAST:event_batras1MouseEntered
+
+    private void batras1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_batras1MouseExited
+        for(int i=0;i<=5;i++){
+            batras1.setLocation(batras1.getX(),batras1.getY()-1);          
+        }
+    }//GEN-LAST:event_batras1MouseExited
+
+    private void bbuscarmatriculaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bbuscarmatriculaMouseEntered
+        for(int i=0;i<=5;i++){
+            bbuscarmatricula.setLocation(bbuscarmatricula.getX(),bbuscarmatricula.getY()+1);          
+        }
+    }//GEN-LAST:event_bbuscarmatriculaMouseEntered
+
+    private void bbuscarmatriculaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bbuscarmatriculaMouseExited
+        for(int i=0;i<=5;i++){
+            bbuscarmatricula.setLocation(bbuscarmatricula.getX(),bbuscarmatricula.getY()-1);          
+        }
+    }//GEN-LAST:event_bbuscarmatriculaMouseExited
 
     /**
      * @param args the command line arguments

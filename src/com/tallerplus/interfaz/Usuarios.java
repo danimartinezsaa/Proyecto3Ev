@@ -85,6 +85,12 @@ public class Usuarios extends javax.swing.JFrame{
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 batrasMouseClicked(evt);
             }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                batrasMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                batrasMouseEntered(evt);
+            }
         });
 
         tablausuarios.setModel(new javax.swing.table.DefaultTableModel(
@@ -108,6 +114,12 @@ public class Usuarios extends javax.swing.JFrame{
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 bborrarusuarioMouseClicked(evt);
             }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                bborrarusuarioMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                bborrarusuarioMouseEntered(evt);
+            }
         });
 
         beditarusuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tallerplus/icon/001-usuario-2.png"))); // NOI18N
@@ -115,12 +127,24 @@ public class Usuarios extends javax.swing.JFrame{
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 beditarusuarioMouseClicked(evt);
             }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                beditarusuarioMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                beditarusuarioMouseEntered(evt);
+            }
         });
 
         banadirusuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tallerplus/icon/003-usuario.png"))); // NOI18N
         banadirusuario.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 banadirusuarioMouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                banadirusuarioMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                banadirusuarioMouseEntered(evt);
             }
         });
 
@@ -309,6 +333,54 @@ public class Usuarios extends javax.swing.JFrame{
             JOptionPane.showMessageDialog(null, "Seleccione un usuario", "Error", 1);
         }
     }//GEN-LAST:event_beditarusuarioMouseClicked
+
+    private void banadirusuarioMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_banadirusuarioMouseEntered
+        for(int i=0;i<=5;i++){
+            banadirusuario.setLocation(banadirusuario.getX(),banadirusuario.getY()+1);          
+        }
+    }//GEN-LAST:event_banadirusuarioMouseEntered
+
+    private void banadirusuarioMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_banadirusuarioMouseExited
+        for(int i=0;i<=5;i++){
+            banadirusuario.setLocation(banadirusuario.getX(),banadirusuario.getY()-1);          
+        }
+    }//GEN-LAST:event_banadirusuarioMouseExited
+
+    private void beditarusuarioMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_beditarusuarioMouseEntered
+        for(int i=0;i<=5;i++){
+            beditarusuario.setLocation(beditarusuario.getX(),beditarusuario.getY()+1);          
+        }
+    }//GEN-LAST:event_beditarusuarioMouseEntered
+
+    private void beditarusuarioMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_beditarusuarioMouseExited
+        for(int i=0;i<=5;i++){
+            beditarusuario.setLocation(beditarusuario.getX(),beditarusuario.getY()-1);          
+        }
+    }//GEN-LAST:event_beditarusuarioMouseExited
+
+    private void bborrarusuarioMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bborrarusuarioMouseEntered
+        for(int i=0;i<=5;i++){
+            bborrarusuario.setLocation(bborrarusuario.getX(),bborrarusuario.getY()+1);          
+        }
+    }//GEN-LAST:event_bborrarusuarioMouseEntered
+
+    private void bborrarusuarioMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bborrarusuarioMouseExited
+        for(int i=0;i<=5;i++){
+            bborrarusuario.setLocation(bborrarusuario.getX(),bborrarusuario.getY()-1);          
+        }
+    }//GEN-LAST:event_bborrarusuarioMouseExited
+
+    private void batrasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_batrasMouseEntered
+        for(int i=0;i<=5;i++){
+            batras.setLocation(batras.getX(),batras.getY()+1);          
+        }
+    }//GEN-LAST:event_batrasMouseEntered
+
+    private void batrasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_batrasMouseExited
+        for(int i=0;i<=5;i++){
+            batras.setLocation(batras.getX(),batras.getY()-1);          
+        }
+    }//GEN-LAST:event_batrasMouseExited
 
     /**
      * @param args the command line arguments

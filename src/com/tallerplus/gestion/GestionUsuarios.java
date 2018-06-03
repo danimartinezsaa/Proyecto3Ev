@@ -117,7 +117,7 @@ public class GestionUsuarios extends Conexion {
         connect();
 
         try {
-            st = conexion.prepareStatement("select * from usuarios");
+            st = conexion.prepareStatement("select * from usuario");
             resultado = st.executeQuery();
             usuarios.clear();
             while (resultado.next()) {

@@ -428,51 +428,43 @@ public class VentaCoches extends javax.swing.JFrame {
     }//GEN-LAST:event_bvenderMouseClicked
 
     private void bañadirMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bañadirMouseEntered
-        for(int i=0;i<=5;i++){
-            bañadir.setLocation(bañadir.getX(),bañadir.getY()+1);          
-        }
+
+            bañadir.setLocation(bañadir.getX(),bañadir.getY()+5);          
     }//GEN-LAST:event_bañadirMouseEntered
 
     private void bañadirMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bañadirMouseExited
-        for(int i=0;i<=5;i++){
-            bañadir.setLocation(bañadir.getX(),bañadir.getY()-1);          
-        }
+
+            bañadir.setLocation(bañadir.getX(),bañadir.getY()-5);          
     }//GEN-LAST:event_bañadirMouseExited
 
     private void bborrarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bborrarMouseEntered
-        for(int i=0;i<=5;i++){
-            bborrar.setLocation(bborrar.getX(),bborrar.getY()+1);          
-        }
+
+            bborrar.setLocation(bborrar.getX(),bborrar.getY()+5);          
     }//GEN-LAST:event_bborrarMouseEntered
 
     private void bborrarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bborrarMouseExited
-        for(int i=0;i<=5;i++){
-            bborrar.setLocation(bborrar.getX(),bborrar.getY()-1);          
-        }
+
+            bborrar.setLocation(bborrar.getX(),bborrar.getY()-5);          
     }//GEN-LAST:event_bborrarMouseExited
 
     private void bvenderMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bvenderMouseEntered
-        for(int i=0;i<=5;i++){
-            bvender.setLocation(bvender.getX(),bvender.getY()+1);          
-        }
+
+            bvender.setLocation(bvender.getX(),bvender.getY()+5);          
     }//GEN-LAST:event_bvenderMouseEntered
 
     private void bvenderMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bvenderMouseExited
-        for(int i=0;i<=5;i++){
-            bvender.setLocation(bvender.getX(),bvender.getY()-1);          
-        }
+
+            bvender.setLocation(bvender.getX(),bvender.getY()-5);          
     }//GEN-LAST:event_bvenderMouseExited
 
     private void batrasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_batrasMouseEntered
-        for(int i=0;i<=5;i++){
-            batras.setLocation(batras.getX(),batras.getY()+1);          
-        }
+
+            batras.setLocation(batras.getX(),batras.getY()+5);          
     }//GEN-LAST:event_batrasMouseEntered
 
     private void batrasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_batrasMouseExited
-        for(int i=0;i<=5;i++){
-            batras.setLocation(batras.getX(),batras.getY()-1);          
-        }
+
+            batras.setLocation(batras.getX(),batras.getY()-5);          
     }//GEN-LAST:event_batrasMouseExited
 
     /**

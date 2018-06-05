@@ -374,51 +374,43 @@ public class Usuarios extends javax.swing.JFrame{
     }//GEN-LAST:event_beditarusuarioMouseClicked
 
     private void banadirusuarioMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_banadirusuarioMouseEntered
-        for(int i=0; i<=5; i++){
-            banadirusuario.setLocation(banadirusuario.getX(), banadirusuario.getY()+1);
-        }
+
+            banadirusuario.setLocation(banadirusuario.getX(), banadirusuario.getY()+5);
     }//GEN-LAST:event_banadirusuarioMouseEntered
 
     private void banadirusuarioMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_banadirusuarioMouseExited
-        for(int i=0; i<=5; i++){
-            banadirusuario.setLocation(banadirusuario.getX(), banadirusuario.getY()-1);
-        }
+
+            banadirusuario.setLocation(banadirusuario.getX(), banadirusuario.getY()-5);
     }//GEN-LAST:event_banadirusuarioMouseExited
 
     private void beditarusuarioMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_beditarusuarioMouseEntered
-        for(int i=0; i<=5; i++){
-            beditarusuario.setLocation(beditarusuario.getX(), beditarusuario.getY()+1);
-        }
+
+            beditarusuario.setLocation(beditarusuario.getX(), beditarusuario.getY()+5);
     }//GEN-LAST:event_beditarusuarioMouseEntered
 
     private void beditarusuarioMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_beditarusuarioMouseExited
-        for(int i=0; i<=5; i++){
-            beditarusuario.setLocation(beditarusuario.getX(), beditarusuario.getY()-1);
-        }
+
+            beditarusuario.setLocation(beditarusuario.getX(), beditarusuario.getY()-5);
     }//GEN-LAST:event_beditarusuarioMouseExited
 
     private void bborrarusuarioMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bborrarusuarioMouseEntered
-        for(int i=0; i<=5; i++){
-            bborrarusuario.setLocation(bborrarusuario.getX(), bborrarusuario.getY()+1);
-        }
+
+            bborrarusuario.setLocation(bborrarusuario.getX(), bborrarusuario.getY()+5);
     }//GEN-LAST:event_bborrarusuarioMouseEntered
 
     private void bborrarusuarioMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bborrarusuarioMouseExited
-        for(int i=0; i<=5; i++){
-            bborrarusuario.setLocation(bborrarusuario.getX(), bborrarusuario.getY()-1);
-        }
+
+            bborrarusuario.setLocation(bborrarusuario.getX(), bborrarusuario.getY()-5);
     }//GEN-LAST:event_bborrarusuarioMouseExited
 
     private void batrasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_batrasMouseEntered
-        for(int i=0; i<=5; i++){
-            batras.setLocation(batras.getX(), batras.getY()+1);
-        }
+
+            batras.setLocation(batras.getX(), batras.getY()+5);
     }//GEN-LAST:event_batrasMouseEntered
 
     private void batrasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_batrasMouseExited
-        for(int i=0; i<=5; i++){
-            batras.setLocation(batras.getX(), batras.getY()-1);
-        }
+
+            batras.setLocation(batras.getX(), batras.getY()-5);
     }//GEN-LAST:event_batrasMouseExited
 
     /**

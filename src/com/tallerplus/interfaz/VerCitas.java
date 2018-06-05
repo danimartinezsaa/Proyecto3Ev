@@ -399,51 +399,43 @@ public class VerCitas extends javax.swing.JFrame{
     }//GEN-LAST:event_botoncomboMouseClicked
 
     private void bbuscarfechaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bbuscarfechaMouseEntered
-        for(int i=0;i<=5;i++){
-            bbuscarfecha.setLocation(bbuscarfecha.getX(),bbuscarfecha.getY()+1);          
-        }
+
+            bbuscarfecha.setLocation(bbuscarfecha.getX(),bbuscarfecha.getY()+5);          
     }//GEN-LAST:event_bbuscarfechaMouseEntered
 
     private void bbuscarfechaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bbuscarfechaMouseExited
-        for(int i=0;i<=5;i++){
-            bbuscarfecha.setLocation(bbuscarfecha.getX(),bbuscarfecha.getY()-1);          
-        }
+
+            bbuscarfecha.setLocation(bbuscarfecha.getX(),bbuscarfecha.getY()-5);          
     }//GEN-LAST:event_bbuscarfechaMouseExited
 
     private void bbuscarmatriculaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bbuscarmatriculaMouseEntered
-        for(int i=0;i<=5;i++){
-            bbuscarmatricula.setLocation(bbuscarmatricula.getX(),bbuscarmatricula.getY()+1);          
-        }
+
+            bbuscarmatricula.setLocation(bbuscarmatricula.getX(),bbuscarmatricula.getY()+5);          
     }//GEN-LAST:event_bbuscarmatriculaMouseEntered
 
     private void bbuscarmatriculaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bbuscarmatriculaMouseExited
-        for(int i=0;i<=5;i++){
-            bbuscarmatricula.setLocation(bbuscarmatricula.getX(),bbuscarmatricula.getY()-1);          
-        }
+
+            bbuscarmatricula.setLocation(bbuscarmatricula.getX(),bbuscarmatricula.getY()-5);          
     }//GEN-LAST:event_bbuscarmatriculaMouseExited
 
     private void botoncomboMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botoncomboMouseEntered
-        for(int i=0;i<=5;i++){
-            botoncombo.setLocation(botoncombo.getX(),botoncombo.getY()+1);          
-        }
+
+            botoncombo.setLocation(botoncombo.getX(),botoncombo.getY()+5);          
     }//GEN-LAST:event_botoncomboMouseEntered
 
     private void botoncomboMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botoncomboMouseExited
-        for(int i=0;i<=5;i++){
-            botoncombo.setLocation(botoncombo.getX(),botoncombo.getY()-1);          
-        }
+
+            botoncombo.setLocation(botoncombo.getX(),botoncombo.getY()-5);          
     }//GEN-LAST:event_botoncomboMouseExited
 
     private void batrasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_batrasMouseEntered
-        for(int i=0;i<=5;i++){
-            batras.setLocation(batras.getX(),batras.getY()+1);          
-        }
+
+            batras.setLocation(batras.getX(),batras.getY()+5);          
     }//GEN-LAST:event_batrasMouseEntered
 
     private void batrasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_batrasMouseExited
-        for(int i=0;i<=5;i++){
-            batras.setLocation(batras.getX(),batras.getY()-1);          
-        }
+
+            batras.setLocation(batras.getX(),batras.getY()-5);          
     }//GEN-LAST:event_batrasMouseExited
 
     /**

@@ -372,99 +372,83 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_bcambiousuarioMouseClicked
 
     private void busuarioMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_busuarioMouseEntered
-        for(int i=0;i<=5;i++){
-            busuario.setLocation(busuario.getX(),busuario.getY()+1);          
-        }
+
+            busuario.setLocation(busuario.getX(),busuario.getY()+5);          
     }//GEN-LAST:event_busuarioMouseEntered
 
     private void busuarioMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_busuarioMouseExited
-        for(int i=0;i<=5;i++){
-            busuario.setLocation(busuario.getX(),busuario.getY()-1);          
-        }
+
+            busuario.setLocation(busuario.getX(),busuario.getY()-5);          
     }//GEN-LAST:event_busuarioMouseExited
 
     private void bclienteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bclienteMouseEntered
-        for(int i=0;i<=5;i++){
-            bcliente.setLocation(bcliente.getX(),bcliente.getY()+1);          
-        }
+
+            bcliente.setLocation(bcliente.getX(),bcliente.getY()+5);          
     }//GEN-LAST:event_bclienteMouseEntered
 
     private void bclienteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bclienteMouseExited
-        for(int i=0;i<=5;i++){
-            bcliente.setLocation(bcliente.getX(),bcliente.getY()-1);  
-        }
+
+            bcliente.setLocation(bcliente.getX(),bcliente.getY()-5);  
     }//GEN-LAST:event_bclienteMouseExited
 
     private void bfacturaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bfacturaMouseEntered
-        for(int i=0;i<=5;i++){
-            bfactura.setLocation(bfactura.getX(),bfactura.getY()+1);
-        }
+
+            bfactura.setLocation(bfactura.getX(),bfactura.getY()+5);
     }//GEN-LAST:event_bfacturaMouseEntered
 
     private void bcambiousuarioMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bcambiousuarioMouseEntered
-        for(int i=0;i<=5;i++){
-            bcambiousuario.setLocation(bcambiousuario.getX(),bcambiousuario.getY()+1);          
-        }
+
+            bcambiousuario.setLocation(bcambiousuario.getX(),bcambiousuario.getY()+5);          
     }//GEN-LAST:event_bcambiousuarioMouseEntered
 
     private void bcambiousuarioMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bcambiousuarioMouseExited
-        for(int i=0;i<=5;i++){
-            bcambiousuario.setLocation(bcambiousuario.getX(),bcambiousuario.getY()-1);          
-        }
+
+            bcambiousuario.setLocation(bcambiousuario.getX(),bcambiousuario.getY()-5);          
     }//GEN-LAST:event_bcambiousuarioMouseExited
 
     private void bcitasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bcitasMouseEntered
-        for(int i=0;i<=5;i++){
-            bcitas.setLocation(bcitas.getX(),bcitas.getY()+1);          
-        }
+
+            bcitas.setLocation(bcitas.getX(),bcitas.getY()+5);          
     }//GEN-LAST:event_bcitasMouseEntered
 
     private void bcitasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bcitasMouseExited
-        for(int i=0;i<=5;i++){
-            bcitas.setLocation(bcitas.getX(),bcitas.getY()-1);          
-        }
+
+            bcitas.setLocation(bcitas.getX(),bcitas.getY()-5);          
+
     }//GEN-LAST:event_bcitasMouseExited
 
     private void bbuscarcitaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bbuscarcitaMouseEntered
-        for(int i=0;i<=5;i++){
-            bbuscarcita.setLocation(bbuscarcita.getX(),bbuscarcita.getY()+1);          
-        }
+
+            bbuscarcita.setLocation(bbuscarcita.getX(),bbuscarcita.getY()+5);          
     }//GEN-LAST:event_bbuscarcitaMouseEntered
 
     private void bhistorialclienteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bhistorialclienteMouseEntered
-        for(int i=0;i<=5;i++){
-            bhistorialcliente.setLocation(bhistorialcliente.getX(),bhistorialcliente.getY()+1);          
-        }
+
+            bhistorialcliente.setLocation(bhistorialcliente.getX(),bhistorialcliente.getY()+5);          
     }//GEN-LAST:event_bhistorialclienteMouseEntered
 
     private void bbuscarcitaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bbuscarcitaMouseExited
-        for(int i=0;i<=5;i++){
-            bbuscarcita.setLocation(bbuscarcita.getX(),bbuscarcita.getY()-1);          
-        }
+
+            bbuscarcita.setLocation(bbuscarcita.getX(),bbuscarcita.getY()-5);          
     }//GEN-LAST:event_bbuscarcitaMouseExited
 
     private void bhistorialclienteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bhistorialclienteMouseExited
-        for(int i=0;i<=5;i++){
-            bhistorialcliente.setLocation(bhistorialcliente.getX(),bhistorialcliente.getY()-1);          
-        }
+            bhistorialcliente.setLocation(bhistorialcliente.getX(),bhistorialcliente.getY()-5);          
     }//GEN-LAST:event_bhistorialclienteMouseExited
 
     private void bcochesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bcochesMouseEntered
-        for(int i=0;i<=5;i++){
-            bcoches.setLocation(bcoches.getX(),bcoches.getY()+1);          
-        }
+
+            bcoches.setLocation(bcoches.getX(),bcoches.getY()+5);          
     }//GEN-LAST:event_bcochesMouseEntered
 
     private void bcochesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bcochesMouseExited
-        for(int i=0;i<=5;i++){
-            bcoches.setLocation(bcoches.getX(),bcoches.getY()-1);          
-        }
+
+            bcoches.setLocation(bcoches.getX(),bcoches.getY()-5);          
     }//GEN-LAST:event_bcochesMouseExited
 
     private void bfacturaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bfacturaMouseExited
-        for(int i=0;i<=5;i++){
-            bfactura.setLocation(bfactura.getX(),bfactura.getY()-1);
-        }
+
+            bfactura.setLocation(bfactura.getX(),bfactura.getY()-5);
     }//GEN-LAST:event_bfacturaMouseExited
 
     /**

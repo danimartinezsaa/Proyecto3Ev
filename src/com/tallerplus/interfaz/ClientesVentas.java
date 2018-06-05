@@ -242,15 +242,13 @@ public class ClientesVentas extends javax.swing.JFrame{
     }//GEN-LAST:event_botonOkMouseClicked
 
     private void botonOkMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonOkMouseEntered
-        for(int i=0;i<=5;i++){
-            botonOk.setLocation(botonOk.getX(),botonOk.getY()+1);          
-        }
+
+            botonOk.setLocation(botonOk.getX(),botonOk.getY()+5);          
     }//GEN-LAST:event_botonOkMouseEntered
 
     private void botonOkMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonOkMouseExited
-        for(int i=0;i<=5;i++){
-            botonOk.setLocation(botonOk.getX(),botonOk.getY()-1);          
-        }
+
+            botonOk.setLocation(botonOk.getX(),botonOk.getY()-5);          
     }//GEN-LAST:event_botonOkMouseExited
 
     /**

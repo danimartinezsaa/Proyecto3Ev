@@ -521,51 +521,43 @@ public class Clientes extends javax.swing.JFrame{
     }//GEN-LAST:event_botonEliminarClienteMouseClicked
 
     private void batras1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_batras1MouseEntered
-        for(int i=0; i<=5; i++){
-            batras1.setLocation(batras1.getX(), batras1.getY()+1);
-        }
+
+            batras1.setLocation(batras1.getX(), batras1.getY()+5);
     }//GEN-LAST:event_batras1MouseEntered
 
     private void batras1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_batras1MouseExited
-        for(int i=0; i<=5; i++){
-            batras1.setLocation(batras1.getX(), batras1.getY()-1);
-        }
+
+            batras1.setLocation(batras1.getX(), batras1.getY()-5);
     }//GEN-LAST:event_batras1MouseExited
 
     private void botonAnadirClienteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAnadirClienteMouseEntered
-        for(int i=0; i<=5; i++){
-            botonAnadirCliente.setLocation(botonAnadirCliente.getX(), botonAnadirCliente.getY()+1);
-        }
+
+            botonAnadirCliente.setLocation(botonAnadirCliente.getX(), botonAnadirCliente.getY()+5);
     }//GEN-LAST:event_botonAnadirClienteMouseEntered
 
     private void botonAnadirClienteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAnadirClienteMouseExited
-        for(int i=0; i<=5; i++){
-            botonAnadirCliente.setLocation(botonAnadirCliente.getX(), botonAnadirCliente.getY()-1);
-        }
+
+            botonAnadirCliente.setLocation(botonAnadirCliente.getX(), botonAnadirCliente.getY()-5);
     }//GEN-LAST:event_botonAnadirClienteMouseExited
 
     private void botonEditarClienteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonEditarClienteMouseEntered
-        for(int i=0; i<=5; i++){
-            botonEditarCliente.setLocation(botonEditarCliente.getX(), botonEditarCliente.getY()+1);
-        }
+
+            botonEditarCliente.setLocation(botonEditarCliente.getX(), botonEditarCliente.getY()+5);
     }//GEN-LAST:event_botonEditarClienteMouseEntered
 
     private void botonEditarClienteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonEditarClienteMouseExited
-        for(int i=0; i<=5; i++){
-            botonEditarCliente.setLocation(botonEditarCliente.getX(), botonEditarCliente.getY()-1);
-        }
+
+            botonEditarCliente.setLocation(botonEditarCliente.getX(), botonEditarCliente.getY()-5);
     }//GEN-LAST:event_botonEditarClienteMouseExited
 
     private void botonEliminarClienteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonEliminarClienteMouseEntered
-        for(int i=0; i<=5; i++){
-            botonEliminarCliente.setLocation(botonEliminarCliente.getX(), botonEliminarCliente.getY()+1);
-        }
+
+            botonEliminarCliente.setLocation(botonEliminarCliente.getX(), botonEliminarCliente.getY()+5);
     }//GEN-LAST:event_botonEliminarClienteMouseEntered
 
     private void botonEliminarClienteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonEliminarClienteMouseExited
-        for(int i=0; i<=5; i++){
-            botonEliminarCliente.setLocation(botonEliminarCliente.getX(), botonEliminarCliente.getY()-1);
-        }
+
+            botonEliminarCliente.setLocation(botonEliminarCliente.getX(), botonEliminarCliente.getY()-5);
     }//GEN-LAST:event_botonEliminarClienteMouseExited
 
     /**

@@ -511,39 +511,32 @@ public class Citas extends javax.swing.JFrame{
     }//GEN-LAST:event_inmatriculaActionPerformed
 
     private void bañadircitaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bañadircitaMouseEntered
-        for(int i=0; i<=5; i++){
-            bañadircita.setLocation(bañadircita.getX(), bañadircita.getY()+1);
-        }
+
+            bañadircita.setLocation(bañadircita.getX(), bañadircita.getY()+5);
     }//GEN-LAST:event_bañadircitaMouseEntered
 
     private void bañadircitaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bañadircitaMouseExited
-        for(int i=0; i<=5; i++){
-            bañadircita.setLocation(bañadircita.getX(), bañadircita.getY()-1);
-        }
+
+            bañadircita.setLocation(bañadircita.getX(), bañadircita.getY()-5);
     }//GEN-LAST:event_bañadircitaMouseExited
 
     private void bborrarcitaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bborrarcitaMouseEntered
-        for(int i=0; i<=5; i++){
-            bborrarcita.setLocation(bborrarcita.getX(), bborrarcita.getY()+1);
-        }
+            bborrarcita.setLocation(bborrarcita.getX(), bborrarcita.getY()+5);
     }//GEN-LAST:event_bborrarcitaMouseEntered
 
     private void bborrarcitaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bborrarcitaMouseExited
-        for(int i=0; i<=5; i++){
-            bborrarcita.setLocation(bborrarcita.getX(), bborrarcita.getY()-1);
-        }
+
+            bborrarcita.setLocation(bborrarcita.getX(), bborrarcita.getY()-5);
     }//GEN-LAST:event_bborrarcitaMouseExited
 
     private void batrasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_batrasMouseEntered
-        for(int i=0; i<=5; i++){
-            batras.setLocation(batras.getX(), batras.getY()+1);
-        }
+
+            batras.setLocation(batras.getX(), batras.getY()+5);
     }//GEN-LAST:event_batrasMouseEntered
 
     private void batrasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_batrasMouseExited
-        for(int i=0; i<=5; i++){
-            batras.setLocation(batras.getX(), batras.getY()-1);
-        }
+
+            batras.setLocation(batras.getX(), batras.getY()-5);
     }//GEN-LAST:event_batrasMouseExited
 
     /**

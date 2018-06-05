@@ -238,27 +238,23 @@ public class HistorialCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_inmatriculaFocusGained
 
     private void batras1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_batras1MouseEntered
-        for(int i=0;i<=5;i++){
-            batras1.setLocation(batras1.getX(),batras1.getY()+1);          
-        }
+
+            batras1.setLocation(batras1.getX(),batras1.getY()+5);          
     }//GEN-LAST:event_batras1MouseEntered
 
     private void batras1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_batras1MouseExited
-        for(int i=0;i<=5;i++){
-            batras1.setLocation(batras1.getX(),batras1.getY()-1);          
-        }
+
+            batras1.setLocation(batras1.getX(),batras1.getY()-5);          
     }//GEN-LAST:event_batras1MouseExited
 
     private void bbuscarmatriculaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bbuscarmatriculaMouseEntered
-        for(int i=0;i<=5;i++){
-            bbuscarmatricula.setLocation(bbuscarmatricula.getX(),bbuscarmatricula.getY()+1);          
-        }
+
+            bbuscarmatricula.setLocation(bbuscarmatricula.getX(),bbuscarmatricula.getY()+5);          
     }//GEN-LAST:event_bbuscarmatriculaMouseEntered
 
     private void bbuscarmatriculaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bbuscarmatriculaMouseExited
-        for(int i=0;i<=5;i++){
-            bbuscarmatricula.setLocation(bbuscarmatricula.getX(),bbuscarmatricula.getY()-1);          
-        }
+
+            bbuscarmatricula.setLocation(bbuscarmatricula.getX(),bbuscarmatricula.getY()-5);          
     }//GEN-LAST:event_bbuscarmatriculaMouseExited
 
     /**

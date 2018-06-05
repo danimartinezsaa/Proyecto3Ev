@@ -49,7 +49,6 @@ public class GestionClientes extends Conexion{
 
                 st.execute();
                 select();
-                Mensajes.ventanaInfo("Cliente introducido con éxito", "Gestión de clientes.");
             }catch(SQLException ex){
                 Mensajes.ventanaError("Error al insertar en la base de datos.", "Error.");
             }

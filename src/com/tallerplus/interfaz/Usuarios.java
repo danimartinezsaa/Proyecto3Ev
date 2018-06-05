@@ -43,6 +43,8 @@ public class Usuarios extends javax.swing.JFrame{
         this.setIconImage(Image);
 
         aviso.setVisible(false);
+        iconosi.setVisible(false);
+        iconono.setVisible(false);
 
         //Columnas de la tabla
         tabla.addColumn("Usuario");
@@ -77,6 +79,8 @@ public class Usuarios extends javax.swing.JFrame{
         jLabel3 = new javax.swing.JLabel();
         combotipo = new javax.swing.JComboBox<>();
         aviso = new javax.swing.JLabel();
+        iconono = new javax.swing.JLabel();
+        iconosi = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Usuarios");
@@ -175,6 +179,10 @@ public class Usuarios extends javax.swing.JFrame{
 
         aviso.setForeground(new java.awt.Color(255, 0, 0));
 
+        iconono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tallerplus/icon/scared.png"))); // NOI18N
+
+        iconosi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tallerplus/icon/happy.png"))); // NOI18N
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -202,14 +210,16 @@ public class Usuarios extends javax.swing.JFrame{
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(combotipo, javax.swing.GroupLayout.Alignment.LEADING, 0, 131, Short.MAX_VALUE)
                                 .addComponent(incontrasena, javax.swing.GroupLayout.Alignment.LEADING)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 529, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(234, 234, 234)
-                                .addComponent(aviso, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 529, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(iconono)
+                                .addGap(18, 18, 18)
+                                .addComponent(aviso, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(iconosi)
+                                .addGap(157, 157, 157)))))
                 .addGap(30, 30, 30))
         );
         jPanel1Layout.setVerticalGroup(
@@ -240,8 +250,11 @@ public class Usuarios extends javax.swing.JFrame{
                             .addComponent(banadirusuario, javax.swing.GroupLayout.Alignment.TRAILING)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(aviso, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(aviso, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
+                            .addComponent(iconono, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(iconosi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(27, Short.MAX_VALUE))
         );
 
@@ -287,11 +300,13 @@ public class Usuarios extends javax.swing.JFrame{
                     mostrarTabla();
 
                     aviso.setText("Usuario añadido");
+                    iconosi.setVisible(true);
                     aviso.setVisible(true);
                     timer.schedule(new Aviso(), 3000, 1);
                     timer.purge();
                 }else{
                     aviso.setText("Error, nombre de usuario existente");
+                    iconono.setVisible(true);
                     aviso.setVisible(true);
 
                     timer.schedule(new Aviso(), 3000, 1);
@@ -308,6 +323,7 @@ public class Usuarios extends javax.swing.JFrame{
                 us.editarUsuario(usuario_editar, inusuario.getText(), incontrasena.getText(), (String) combotipo.getSelectedItem());
 
                 aviso.setText("Usuario editado");
+                iconosi.setVisible(true);
                 aviso.setVisible(true);
                 timer.schedule(new Aviso(), 3000, 1);
                 timer.purge();
@@ -340,6 +356,7 @@ public class Usuarios extends javax.swing.JFrame{
                         mostrarTabla();
 
                         aviso.setText("Usuario eliminado");
+                        iconosi.setVisible(true);
                         aviso.setVisible(true);
                         timer.schedule(new Aviso(), 3000, 1);
                         timer.purge();
@@ -372,6 +389,13 @@ public class Usuarios extends javax.swing.JFrame{
             }
             usuario_editar=tablausuarios.getValueAt(editar, 0).toString();
             edicion=true;
+
+            aviso.setText("Edición habilitada");
+            iconosi.setVisible(true);
+            aviso.setVisible(true);
+            timer.schedule(new Aviso(), 3000, 1);
+            timer.purge();
+            
         }else{
             JOptionPane.showMessageDialog(null, "Seleccione un usuario", "Error", 1);
         }
@@ -379,42 +403,42 @@ public class Usuarios extends javax.swing.JFrame{
 
     private void banadirusuarioMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_banadirusuarioMouseEntered
 
-            banadirusuario.setLocation(banadirusuario.getX(), banadirusuario.getY()+5);
+        banadirusuario.setLocation(banadirusuario.getX(), banadirusuario.getY()+5);
     }//GEN-LAST:event_banadirusuarioMouseEntered
 
     private void banadirusuarioMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_banadirusuarioMouseExited
 
-            banadirusuario.setLocation(banadirusuario.getX(), banadirusuario.getY()-5);
+        banadirusuario.setLocation(banadirusuario.getX(), banadirusuario.getY()-5);
     }//GEN-LAST:event_banadirusuarioMouseExited
 
     private void beditarusuarioMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_beditarusuarioMouseEntered
 
-            beditarusuario.setLocation(beditarusuario.getX(), beditarusuario.getY()+5);
+        beditarusuario.setLocation(beditarusuario.getX(), beditarusuario.getY()+5);
     }//GEN-LAST:event_beditarusuarioMouseEntered
 
     private void beditarusuarioMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_beditarusuarioMouseExited
 
-            beditarusuario.setLocation(beditarusuario.getX(), beditarusuario.getY()-5);
+        beditarusuario.setLocation(beditarusuario.getX(), beditarusuario.getY()-5);
     }//GEN-LAST:event_beditarusuarioMouseExited
 
     private void bborrarusuarioMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bborrarusuarioMouseEntered
 
-            bborrarusuario.setLocation(bborrarusuario.getX(), bborrarusuario.getY()+5);
+        bborrarusuario.setLocation(bborrarusuario.getX(), bborrarusuario.getY()+5);
     }//GEN-LAST:event_bborrarusuarioMouseEntered
 
     private void bborrarusuarioMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bborrarusuarioMouseExited
 
-            bborrarusuario.setLocation(bborrarusuario.getX(), bborrarusuario.getY()-5);
+        bborrarusuario.setLocation(bborrarusuario.getX(), bborrarusuario.getY()-5);
     }//GEN-LAST:event_bborrarusuarioMouseExited
 
     private void batrasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_batrasMouseEntered
 
-            batras.setLocation(batras.getX(), batras.getY()+5);
+        batras.setLocation(batras.getX(), batras.getY()+5);
     }//GEN-LAST:event_batrasMouseEntered
 
     private void batrasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_batrasMouseExited
 
-            batras.setLocation(batras.getX(), batras.getY()-5);
+        batras.setLocation(batras.getX(), batras.getY()-5);
     }//GEN-LAST:event_batrasMouseExited
 
     /**
@@ -472,6 +496,8 @@ public class Usuarios extends javax.swing.JFrame{
         @Override
         public void run(){
             aviso.setVisible(false);
+            iconono.setVisible(false);
+            iconosi.setVisible(false);
             cancel();
         }
 
@@ -483,6 +509,8 @@ public class Usuarios extends javax.swing.JFrame{
     private javax.swing.JLabel bborrarusuario;
     private javax.swing.JLabel beditarusuario;
     private javax.swing.JComboBox<String> combotipo;
+    private javax.swing.JLabel iconono;
+    private javax.swing.JLabel iconosi;
     private javax.swing.JTextField incontrasena;
     private javax.swing.JTextField inusuario;
     private javax.swing.JLabel jLabel1;

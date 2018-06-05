@@ -45,6 +45,8 @@ public class Clientes extends javax.swing.JFrame{
         Image Image=ImageIcon.getImage();
         this.setIconImage(Image);
         aviso.setVisible(false);
+        iconosi.setVisible(false);
+        iconono.setVisible(false);
 
         tablaCliente.addColumn("Matrícula");
         tablaCliente.addColumn("Motor");
@@ -85,10 +87,11 @@ public class Clientes extends javax.swing.JFrame{
         }else{
 
             aviso.setText("Datos erróneos");
+            iconono.setVisible(true);
             aviso.setVisible(true);
             timer.schedule(new Aviso(), 3000, 1);
             timer.purge();
-            
+
             if(caballosValidos==false){
                 textoCaballos.setForeground(Color.red);
             }else{
@@ -154,6 +157,8 @@ public class Clientes extends javax.swing.JFrame{
         tablaClientes = new javax.swing.JTable();
         textoMotor = new javax.swing.JComboBox<>();
         aviso = new javax.swing.JLabel();
+        iconono = new javax.swing.JLabel();
+        iconosi = new javax.swing.JLabel();
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -285,6 +290,10 @@ public class Clientes extends javax.swing.JFrame{
 
         aviso.setForeground(new java.awt.Color(255, 0, 0));
 
+        iconono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tallerplus/icon/scared.png"))); // NOI18N
+
+        iconosi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tallerplus/icon/happy.png"))); // NOI18N
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -327,8 +336,12 @@ public class Clientes extends javax.swing.JFrame{
                 .addGap(48, 48, 48))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(aviso, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(165, 165, 165))
+                .addComponent(iconono)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(aviso, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(iconosi)
+                .addGap(150, 150, 150))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -375,9 +388,16 @@ public class Clientes extends javax.swing.JFrame{
                         .addComponent(batras1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(aviso, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(iconosi))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(7, 7, 7)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(iconono)
+                            .addComponent(aviso, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -435,6 +455,7 @@ public class Clientes extends javax.swing.JFrame{
                         mostrarTabla();
 
                         aviso.setText("Cliente añadido");
+                        iconosi.setVisible(true);
                         aviso.setVisible(true);
                         timer.schedule(new Aviso(), 3000, 1);
                         timer.purge();
@@ -444,6 +465,7 @@ public class Clientes extends javax.swing.JFrame{
                     mostrarTabla();
 
                     aviso.setText("Cliente añadido");
+                    iconosi.setVisible(true);
                     aviso.setVisible(true);
                     timer.schedule(new Aviso(), 3000, 1);
                     timer.purge();
@@ -477,6 +499,7 @@ public class Clientes extends javax.swing.JFrame{
             textoDni.setText(tablaClientes.getValueAt(editar, 6).toString());
 
             aviso.setText("Edición de cliente activa");
+            iconosi.setVisible(true);
             aviso.setVisible(true);
             timer.schedule(new Aviso(), 3000, 1);
             timer.purge();
@@ -511,6 +534,7 @@ public class Clientes extends javax.swing.JFrame{
                     mostrarTabla();
 
                     aviso.setText("Cliente eliminado");
+                    iconosi.setVisible(true);
                     aviso.setVisible(true);
                     timer.schedule(new Aviso(), 3000, 1);
                     timer.purge();
@@ -526,42 +550,42 @@ public class Clientes extends javax.swing.JFrame{
 
     private void batras1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_batras1MouseEntered
 
-            batras1.setLocation(batras1.getX(), batras1.getY()+5);
+        batras1.setLocation(batras1.getX(), batras1.getY()+5);
     }//GEN-LAST:event_batras1MouseEntered
 
     private void batras1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_batras1MouseExited
 
-            batras1.setLocation(batras1.getX(), batras1.getY()-5);
+        batras1.setLocation(batras1.getX(), batras1.getY()-5);
     }//GEN-LAST:event_batras1MouseExited
 
     private void botonAnadirClienteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAnadirClienteMouseEntered
 
-            botonAnadirCliente.setLocation(botonAnadirCliente.getX(), botonAnadirCliente.getY()+5);
+        botonAnadirCliente.setLocation(botonAnadirCliente.getX(), botonAnadirCliente.getY()+5);
     }//GEN-LAST:event_botonAnadirClienteMouseEntered
 
     private void botonAnadirClienteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAnadirClienteMouseExited
 
-            botonAnadirCliente.setLocation(botonAnadirCliente.getX(), botonAnadirCliente.getY()-5);
+        botonAnadirCliente.setLocation(botonAnadirCliente.getX(), botonAnadirCliente.getY()-5);
     }//GEN-LAST:event_botonAnadirClienteMouseExited
 
     private void botonEditarClienteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonEditarClienteMouseEntered
 
-            botonEditarCliente.setLocation(botonEditarCliente.getX(), botonEditarCliente.getY()+5);
+        botonEditarCliente.setLocation(botonEditarCliente.getX(), botonEditarCliente.getY()+5);
     }//GEN-LAST:event_botonEditarClienteMouseEntered
 
     private void botonEditarClienteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonEditarClienteMouseExited
 
-            botonEditarCliente.setLocation(botonEditarCliente.getX(), botonEditarCliente.getY()-5);
+        botonEditarCliente.setLocation(botonEditarCliente.getX(), botonEditarCliente.getY()-5);
     }//GEN-LAST:event_botonEditarClienteMouseExited
 
     private void botonEliminarClienteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonEliminarClienteMouseEntered
 
-            botonEliminarCliente.setLocation(botonEliminarCliente.getX(), botonEliminarCliente.getY()+5);
+        botonEliminarCliente.setLocation(botonEliminarCliente.getX(), botonEliminarCliente.getY()+5);
     }//GEN-LAST:event_botonEliminarClienteMouseEntered
 
     private void botonEliminarClienteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonEliminarClienteMouseExited
 
-            botonEliminarCliente.setLocation(botonEliminarCliente.getX(), botonEliminarCliente.getY()-5);
+        botonEliminarCliente.setLocation(botonEliminarCliente.getX(), botonEliminarCliente.getY()-5);
     }//GEN-LAST:event_botonEliminarClienteMouseExited
 
     /**
@@ -624,6 +648,8 @@ public class Clientes extends javax.swing.JFrame{
         @Override
         public void run(){
             aviso.setVisible(false);
+            iconono.setVisible(false);
+            iconosi.setVisible(false);
             cancel();
         }
 
@@ -635,6 +661,8 @@ public class Clientes extends javax.swing.JFrame{
     private javax.swing.JLabel botonAnadirCliente;
     private javax.swing.JLabel botonEditarCliente;
     private javax.swing.JLabel botonEliminarCliente;
+    private javax.swing.JLabel iconono;
+    private javax.swing.JLabel iconosi;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

@@ -41,6 +41,8 @@ public class Citas extends javax.swing.JFrame{
         Image Image=ImageIcon.getImage();
         this.setIconImage(Image);
         aviso.setVisible(false);
+        iconosi.setVisible(false);
+        iconono.setVisible(false);
 
         //Columnas de la tabla
         tabla.addColumn("Matrícula");
@@ -70,6 +72,7 @@ public class Citas extends javax.swing.JFrame{
         }else{
 
             aviso.setText("Datos erróneos");
+            iconono.setVisible(true);
             aviso.setVisible(true);
             timer.schedule(new Aviso(), 3000, 1);
             timer.purge();
@@ -122,6 +125,8 @@ public class Citas extends javax.swing.JFrame{
         comboano = new javax.swing.JComboBox<>();
         combohora = new javax.swing.JComboBox<>();
         aviso = new javax.swing.JLabel();
+        iconono = new javax.swing.JLabel();
+        iconosi = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Citas");
@@ -258,6 +263,10 @@ public class Citas extends javax.swing.JFrame{
         aviso.setForeground(new java.awt.Color(255, 0, 0));
         aviso.setText("Cita añadida con éxito");
 
+        iconono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tallerplus/icon/scared.png"))); // NOI18N
+
+        iconosi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tallerplus/icon/happy.png"))); // NOI18N
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -310,8 +319,12 @@ public class Citas extends javax.swing.JFrame{
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 525, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(aviso, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(89, 89, 89)
+                        .addComponent(iconono)
+                        .addGap(18, 18, 18)
+                        .addComponent(aviso, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(iconosi)
+                        .addGap(128, 128, 128)
                         .addComponent(bborrarcita)))
                 .addGap(39, 39, 39))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -367,7 +380,12 @@ public class Citas extends javax.swing.JFrame{
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(bborrarcita, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(aviso, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(aviso, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(iconono)
+                            .addComponent(iconosi))))
                 .addGap(20, 20, 20))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
@@ -417,6 +435,7 @@ public class Citas extends javax.swing.JFrame{
                 mostrarTabla();
 
                 aviso.setText("Cita borrada con éxito");
+                iconosi.setVisible(true);
                 aviso.setVisible(true);
                 timer.schedule(new Aviso(), 3000, 1);
                 timer.purge();
@@ -486,6 +505,7 @@ public class Citas extends javax.swing.JFrame{
                 mostrarTabla();
 
                 aviso.setText("Cita añadida con éxito");
+                iconosi.setVisible(true);
                 aviso.setVisible(true);
                 timer.schedule(new Aviso(), 3000, 1);
                 timer.purge();
@@ -515,31 +535,31 @@ public class Citas extends javax.swing.JFrame{
 
     private void bañadircitaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bañadircitaMouseEntered
 
-            bañadircita.setLocation(bañadircita.getX(), bañadircita.getY()+5);
+        bañadircita.setLocation(bañadircita.getX(), bañadircita.getY()+5);
     }//GEN-LAST:event_bañadircitaMouseEntered
 
     private void bañadircitaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bañadircitaMouseExited
 
-            bañadircita.setLocation(bañadircita.getX(), bañadircita.getY()-5);
+        bañadircita.setLocation(bañadircita.getX(), bañadircita.getY()-5);
     }//GEN-LAST:event_bañadircitaMouseExited
 
     private void bborrarcitaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bborrarcitaMouseEntered
-            bborrarcita.setLocation(bborrarcita.getX(), bborrarcita.getY()+5);
+        bborrarcita.setLocation(bborrarcita.getX(), bborrarcita.getY()+5);
     }//GEN-LAST:event_bborrarcitaMouseEntered
 
     private void bborrarcitaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bborrarcitaMouseExited
 
-            bborrarcita.setLocation(bborrarcita.getX(), bborrarcita.getY()-5);
+        bborrarcita.setLocation(bborrarcita.getX(), bborrarcita.getY()-5);
     }//GEN-LAST:event_bborrarcitaMouseExited
 
     private void batrasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_batrasMouseEntered
 
-            batras.setLocation(batras.getX(), batras.getY()+5);
+        batras.setLocation(batras.getX(), batras.getY()+5);
     }//GEN-LAST:event_batrasMouseEntered
 
     private void batrasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_batrasMouseExited
 
-            batras.setLocation(batras.getX(), batras.getY()-5);
+        batras.setLocation(batras.getX(), batras.getY()-5);
     }//GEN-LAST:event_batrasMouseExited
 
     /**
@@ -587,6 +607,8 @@ public class Citas extends javax.swing.JFrame{
     private javax.swing.JComboBox<String> comboestado;
     private javax.swing.JComboBox<String> combohora;
     private javax.swing.JComboBox<String> combomes;
+    private javax.swing.JLabel iconono;
+    private javax.swing.JLabel iconosi;
     private javax.swing.JTextField indescripcion;
     private javax.swing.JTextField inmatricula;
     private javax.swing.JTextField inprecio;
@@ -623,6 +645,8 @@ public class Citas extends javax.swing.JFrame{
         @Override
         public void run(){
             aviso.setVisible(false);
+            iconono.setVisible(false);
+            iconosi.setVisible(false);
             cancel();
         }
 

@@ -10,6 +10,8 @@ import Validaciones.ValidarFormatos; // importamos la libreria que creamos
 import com.tallerplus.gestion.GestionTabla;
 import java.awt.Color;
 import java.awt.Image;
+import java.util.Timer;
+import java.util.TimerTask;
 import javax.swing.ImageIcon;
 
 /**
@@ -17,12 +19,12 @@ import javax.swing.ImageIcon;
  * añadir o eliminar ventas. Contiene una tabla que muestra el contenido del
  * ArrayList Ficheros.ventas. Cierra el programa al presionar el botón cerrar.
  *
- * 
+ *
  */
-public class VentaCoches extends javax.swing.JFrame {
+public class VentaCoches extends javax.swing.JFrame{
 
-    DefaultTableModel tabla = new DefaultTableModel();
-    ArrayList<Venta> enventa = new ArrayList();
+    DefaultTableModel tabla=new DefaultTableModel();
+    ArrayList<Venta> enventa=new ArrayList();
     static int id;
     static int indice;
     static String modelo;
@@ -33,19 +35,20 @@ public class VentaCoches extends javax.swing.JFrame {
     static boolean correcto;
     static int eliminar;
     GestionVentas ventas=new GestionVentas();
+    Timer timer=new Timer();
 
     /**
      * Constructor que inicializa los componentes, centra la ventana, la hace
      * visible y evita que sea redimensionarla. Añade contenido a la tabla.
      */
-    public VentaCoches() {
+    public VentaCoches(){
         initComponents();
         setLocationRelativeTo(null);
         setVisible(true);
         setResizable(false);
         //Cambiamos icono
-        ImageIcon ImageIcon = new ImageIcon(getClass().getResource("/com/tallerplus/icon/LogoT+.png"));
-        Image Image = ImageIcon.getImage();
+        ImageIcon ImageIcon=new ImageIcon(getClass().getResource("/com/tallerplus/icon/LogoT+.png"));
+        Image Image=ImageIcon.getImage();
         this.setIconImage(Image);
         //Columnas de la tabla
         tabla.addColumn("id");
@@ -57,6 +60,10 @@ public class VentaCoches extends javax.swing.JFrame {
 
         //Recibimos los coches encontrados
         ventas.select();
+
+        iconosi.setVisible(false);
+        iconono.setVisible(false);
+        aviso.setVisible(false);
 
         mostrarTabla();
     }
@@ -91,6 +98,9 @@ public class VentaCoches extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         bborrar = new javax.swing.JLabel();
         bvender = new javax.swing.JLabel();
+        aviso = new javax.swing.JLabel();
+        iconosi = new javax.swing.JLabel();
+        iconono = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Venta");
@@ -211,6 +221,12 @@ public class VentaCoches extends javax.swing.JFrame {
             }
         });
 
+        aviso.setForeground(new java.awt.Color(255, 0, 0));
+
+        iconosi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tallerplus/icon/happy.png"))); // NOI18N
+
+        iconono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tallerplus/icon/scared.png"))); // NOI18N
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -239,6 +255,12 @@ public class VentaCoches extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(iconono)
+                        .addGap(18, 18, 18)
+                        .addComponent(aviso, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(iconosi)
+                        .addGap(93, 93, 93)
                         .addComponent(bborrar)
                         .addGap(18, 18, 18)
                         .addComponent(bvender)
@@ -269,7 +291,11 @@ public class VentaCoches extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(bborrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(bvender, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(bvender, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(aviso, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(iconono, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(iconosi, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -320,7 +346,7 @@ public class VentaCoches extends javax.swing.JFrame {
      * @param evt
      */
     private void batrasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_batrasMouseClicked
-        VentanaPrincipal venanaprincipal = new VentanaPrincipal();
+        VentanaPrincipal venanaprincipal=new VentanaPrincipal();
         dispose();
     }//GEN-LAST:event_batrasMouseClicked
 
@@ -331,20 +357,20 @@ public class VentaCoches extends javax.swing.JFrame {
      * @param evt
      */
     private void bañadirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bañadirMouseClicked
-        boolean caballosValidos = ValidarFormatos.isNumeric(incaballos.getText()); // comprobacion de que los datos esten validados correctamente 
-        boolean precioValido = ValidarFormatos.validarPrecio(inprecio.getText());
-        boolean cilindradaValida = ValidarFormatos.validarPrecio(incilindrada.getText());
-        if (Login.getUsuarioLogueado().equals("admin")) {
-            if (caballosValidos == true && precioValido == true && cilindradaValida == true) { // si se cumplen que todos los datos esten validados correctamente 
+        boolean caballosValidos=ValidarFormatos.isNumeric(incaballos.getText()); // comprobacion de que los datos esten validados correctamente 
+        boolean precioValido=ValidarFormatos.validarPrecio(inprecio.getText());
+        boolean cilindradaValida=ValidarFormatos.validarPrecio(incilindrada.getText());
+        if(Login.getUsuarioLogueado().equals("admin")){
+            if(caballosValidos==true&&precioValido==true&&cilindradaValida==true){ // si se cumplen que todos los datos esten validados correctamente 
                 incaballos.setForeground(Color.black); // marcamos que todos los campos tengan color de letra negra, porque si se introducieron datos erroneos antes, el color que aparece es rojo 
                 incilindrada.setForeground(Color.black);
                 inprecio.setForeground(Color.black);
-                
-                String modelo = inmodelo.getText(); // guardamos en una variable cada uno de los campos que introducimos en la interfaz 
-                String motor = (String) inmotor.getSelectedItem();
-                String cilindrada = incilindrada.getText();
-                String caballos = incaballos.getText();
-                Float precio = Float.parseFloat(inprecio.getText());
+
+                String modelo=inmodelo.getText(); // guardamos en una variable cada uno de los campos que introducimos en la interfaz 
+                String motor=(String) inmotor.getSelectedItem();
+                String cilindrada=incilindrada.getText();
+                String caballos=incaballos.getText();
+                Float precio=Float.parseFloat(inprecio.getText());
 
                 ventas.anadirVenta(modelo, motor, cilindrada, caballos, precio); // llamamos al metodo añadir ventas para poder insertar un coche en venta 
 
@@ -353,6 +379,12 @@ public class VentaCoches extends javax.swing.JFrame {
                 incaballos.setText("");
                 inprecio.setText("");
 
+                aviso.setText("Coche añadido");
+                iconosi.setVisible(true);
+                aviso.setVisible(true);
+                timer.schedule(new Aviso(), 3000, 1);
+                timer.purge();
+
                 //Borramos contanido anterior de la tabla
                 GestionTabla.borrarTabla(tabla);
 
@@ -360,27 +392,39 @@ public class VentaCoches extends javax.swing.JFrame {
                 ventas.select();
 
                 mostrarTabla();
-            } else { // en caso de que no se cumpla que los campos no esten validados con exito 
-                JOptionPane.showMessageDialog(null, "datos erroneos"); // mostramos un mensaje de error al usuario 
-                if (caballosValidos == false) {
+            }else{ // en caso de que no se cumpla que los campos no esten validados con exito 
+
+                aviso.setText("Datos erróneos");
+                iconono.setVisible(true);
+                aviso.setVisible(true);
+                timer.schedule(new Aviso(), 3000, 1);
+                timer.purge();
+
+                if(caballosValidos==false){
                     incaballos.setForeground(Color.red); // en caso de que este mal validado marcamos el campo con letra de color rojo 
-                } else {
+                }else{
                     incaballos.setForeground(Color.black); // en caso contrario ponemos la letra en negro, por si en un intento anterior se haya puesto en rojo 
                 }
-                if (cilindradaValida == false) {
+                if(cilindradaValida==false){
                     incilindrada.setForeground(Color.red);
-                } else {
+                }else{
                     incilindrada.setForeground(Color.black);
                 }
-                if (precioValido == false) {
+                if(precioValido==false){
                     inprecio.setForeground(Color.red);
-                } else {
+                }else{
                     inprecio.setForeground(Color.black);
                 }
 
             }
-        } else { // en caso de que el usuario que intenta realizar la operacion no tenga permisos suficientes 
-            JOptionPane.showMessageDialog(null, "No tienes permisos para realizar esta operación", "Error", 0); // mostramos un mensaje de error
+        }else{ // en caso de que el usuario que intenta realizar la operacion no tenga permisos suficientes 
+
+            aviso.setText("Permisos insuficientes");
+            iconono.setVisible(true);
+            aviso.setVisible(true);
+            timer.schedule(new Aviso(), 3000, 1);
+            timer.purge();
+
             inmodelo.setText(""); // y ponemos de nuevo todos los campos en blanco 
             incilindrada.setText("");
             incaballos.setText("");
@@ -397,17 +441,27 @@ public class VentaCoches extends javax.swing.JFrame {
      */
     private void bborrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bborrarMouseClicked
 
-        if (Login.getUsuarioLogueado().equals("admin")) {
-             int eliminar = tablabusqueda.getSelectedRow(); // metemos el valor de la fila del elemento que queremos eliminar
-            if (eliminar >= 0) {
-                boolean correcto = ventas.borrarVenta(false,GestionVentas.ventas.get(eliminar).getId());
-                if (correcto == true) {
+        if(Login.getUsuarioLogueado().equals("admin")){
+            int eliminar=tablabusqueda.getSelectedRow(); // metemos el valor de la fila del elemento que queremos eliminar
+            if(eliminar>=0){
+                boolean correcto=ventas.borrarVenta(false, GestionVentas.ventas.get(eliminar).getId());
+                if(correcto==true){
                     GestionTabla.borrarTabla(tabla);
                     mostrarTabla();
+
+                    aviso.setText("Venta borrada");
+                    iconosi.setVisible(true);
+                    aviso.setVisible(true);
+                    timer.schedule(new Aviso(), 3000, 1);
+                    timer.purge();
                 }
             }
-        } else {
-            JOptionPane.showMessageDialog(null, "No tienes permisos para realizar esta operación", "Error", 0);
+        }else{
+            aviso.setText("Permisos insuficientes");
+            iconono.setVisible(true);
+            aviso.setVisible(true);
+            timer.schedule(new Aviso(), 3000, 1);
+            timer.purge();
         }
     }//GEN-LAST:event_bborrarMouseClicked
     /**
@@ -416,92 +470,92 @@ public class VentaCoches extends javax.swing.JFrame {
      * @param evt
      */
     private void bvenderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bvenderMouseClicked
-        eliminar = tablabusqueda.getSelectedRow();
-        if (eliminar >= 0) {
+        eliminar=tablabusqueda.getSelectedRow();
+        if(eliminar>=0){
             indice=tablabusqueda.getSelectedRow();
             id=Integer.parseInt((String) tablabusqueda.getValueAt(tablabusqueda.getSelectedRow(), 0));
             motor=String.valueOf(tablabusqueda.getValueAt(tablabusqueda.getSelectedRow(), 2));
             cilindrada=String.valueOf(tablabusqueda.getValueAt(tablabusqueda.getSelectedRow(), 3));
             caballos=String.valueOf(tablabusqueda.getValueAt(tablabusqueda.getSelectedRow(), 4));
-            ClientesVentas clienteventas = new ClientesVentas(indice,id,motor,cilindrada,caballos);
-           dispose();
+            ClientesVentas clienteventas=new ClientesVentas(indice, id, motor, cilindrada, caballos);
+            dispose();
 
-        } else {
-            System.out.println("errror");
+        }else{
+            System.out.println("error");
         }
     }//GEN-LAST:event_bvenderMouseClicked
 
     private void bañadirMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bañadirMouseEntered
 
-            bañadir.setLocation(bañadir.getX(),bañadir.getY()+5);          
+        bañadir.setLocation(bañadir.getX(), bañadir.getY()+5);
     }//GEN-LAST:event_bañadirMouseEntered
 
     private void bañadirMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bañadirMouseExited
 
-            bañadir.setLocation(bañadir.getX(),bañadir.getY()-5);          
+        bañadir.setLocation(bañadir.getX(), bañadir.getY()-5);
     }//GEN-LAST:event_bañadirMouseExited
 
     private void bborrarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bborrarMouseEntered
 
-            bborrar.setLocation(bborrar.getX(),bborrar.getY()+5);          
+        bborrar.setLocation(bborrar.getX(), bborrar.getY()+5);
     }//GEN-LAST:event_bborrarMouseEntered
 
     private void bborrarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bborrarMouseExited
 
-            bborrar.setLocation(bborrar.getX(),bborrar.getY()-5);          
+        bborrar.setLocation(bborrar.getX(), bborrar.getY()-5);
     }//GEN-LAST:event_bborrarMouseExited
 
     private void bvenderMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bvenderMouseEntered
 
-            bvender.setLocation(bvender.getX(),bvender.getY()+5);          
+        bvender.setLocation(bvender.getX(), bvender.getY()+5);
     }//GEN-LAST:event_bvenderMouseEntered
 
     private void bvenderMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bvenderMouseExited
 
-            bvender.setLocation(bvender.getX(),bvender.getY()-5);          
+        bvender.setLocation(bvender.getX(), bvender.getY()-5);
     }//GEN-LAST:event_bvenderMouseExited
 
     private void batrasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_batrasMouseEntered
 
-            batras.setLocation(batras.getX(),batras.getY()+5);          
+        batras.setLocation(batras.getX(), batras.getY()+5);
     }//GEN-LAST:event_batrasMouseEntered
 
     private void batrasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_batrasMouseExited
 
-            batras.setLocation(batras.getX(),batras.getY()-5);          
+        batras.setLocation(batras.getX(), batras.getY()-5);
     }//GEN-LAST:event_batrasMouseExited
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String args[]){
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+        try{
+            for(javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()){
+                if("Nimbus".equals(info.getName())){
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
+        }catch(ClassNotFoundException ex){
             java.util.logging.Logger.getLogger(VentaCoches.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
+        }catch(InstantiationException ex){
             java.util.logging.Logger.getLogger(VentaCoches.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
+        }catch(IllegalAccessException ex){
             java.util.logging.Logger.getLogger(VentaCoches.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        }catch(javax.swing.UnsupportedLookAndFeelException ex){
             java.util.logging.Logger.getLogger(VentaCoches.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
+        java.awt.EventQueue.invokeLater(new Runnable(){
+            public void run(){
                 new VentaCoches().setVisible(true);
             }
         });
@@ -510,28 +564,43 @@ public class VentaCoches extends javax.swing.JFrame {
     /**
      * Método que muestra la tabla actualizada
      */
-    private void mostrarTabla() {
+    private void mostrarTabla(){
         GestionTabla.borrarTabla(tabla);
         ventas.select();
-        
-        for (Venta elemento : GestionVentas.ventas) {
-            String anadir[] = new String[6];
-            anadir[0] = String.valueOf(elemento.getId());
-            anadir[1] = elemento.getModelo();
-            anadir[2] = String.valueOf(elemento.getPrecio());
-            anadir[3] = elemento.getMotor();
-            anadir[4] = elemento.getCilindrada();
-            anadir[5] = elemento.getCaballos();
+
+        for(Venta elemento : GestionVentas.ventas){
+            String anadir[]=new String[6];
+            anadir[0]=String.valueOf(elemento.getId());
+            anadir[1]=elemento.getModelo();
+            anadir[2]=String.valueOf(elemento.getPrecio());
+            anadir[3]=elemento.getMotor();
+            anadir[4]=elemento.getCilindrada();
+            anadir[5]=elemento.getCaballos();
             tabla.addRow(anadir);
         }
         this.tablabusqueda.setModel(tabla);
     }
 
+    public class Aviso extends TimerTask{
+
+        @Override
+        public void run(){
+            aviso.setVisible(false);
+            iconono.setVisible(false);
+            iconosi.setVisible(false);
+            cancel();
+        }
+
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel aviso;
     private javax.swing.JLabel batras;
     private javax.swing.JLabel bañadir;
     private javax.swing.JLabel bborrar;
     private javax.swing.JLabel bvender;
+    private javax.swing.JLabel iconono;
+    private javax.swing.JLabel iconosi;
     private javax.swing.JTextField incaballos;
     private javax.swing.JTextField incilindrada;
     private javax.swing.JTextField inmodelo;

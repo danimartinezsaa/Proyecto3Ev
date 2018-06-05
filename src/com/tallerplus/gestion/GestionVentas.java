@@ -17,11 +17,11 @@ import static javax.swing.JOptionPane.YES_OPTION;
  *
  * clase para la gestion de ventas de vehiculos
  */
-public class GestionVentas extends Conexion {
+public class GestionVentas extends Conexion{
 
-    public static ArrayList<Venta> ventas = new ArrayList();
+    public static ArrayList<Venta> ventas=new ArrayList();
 
-    public GestionVentas() {
+    public GestionVentas(){
     }
 
     /**
@@ -33,53 +33,53 @@ public class GestionVentas extends Conexion {
      * @param cilindrada parámetro "cilindrada" del coche en venta.
      * @param caballos parámetro "caballos" del coche en venta
      */
-    public void anadirVenta(String modelo, String motor, String cilindrada, String caballos, Float precio) {
+    public void anadirVenta(String modelo, String motor, String cilindrada, String caballos, Float precio){
         connect();
-        try {
-            st = conexion.prepareStatement("insert into venta (modelo, motor, cilindrada, caballos, precio) values('" + modelo + "'"
-                    + "," + "'" + motor + "'"
-                    + "," + "'" + cilindrada + "'"
-                    + "," + "'" + caballos + "'"
-                    + "," + "'" + precio + "'" + ");");
+        try{
+            st=conexion.prepareStatement("insert into venta (modelo, motor, cilindrada, caballos, precio) values('"+modelo+"'"
+                    +","+"'"+motor+"'"
+                    +","+"'"+cilindrada+"'"
+                    +","+"'"+caballos+"'"
+                    +","+"'"+precio+"'"+");");
 
             st.execute();
             select();
-            Mensajes.ventanaInfo("venta introducida con éxito", "Gestión de ventas.");
-        } catch (SQLException ex) {
+        }catch(SQLException ex){
             Mensajes.ventanaError("Error al insertar en la base de datos.", "Error.");
         }
         close();
-}
+    }
 
-/**
- * Borra un coche en venta si queremos eliminarlo o venderlo.
- *
- * 
- * @param vendido indica si estamos vendiendo el coche o no.
- * @return devuelve true si se ha borrado la venta o false si no lo ha hecho.
- */
-public  boolean borrarVenta(boolean vendido, int ids) {
-        boolean borrado = false;
+    /**
+     * Borra un coche en venta si queremos eliminarlo o venderlo.
+     *
+     *
+     * @param vendido indica si estamos vendiendo el coche o no.
+     * @return devuelve true si se ha borrado la venta o false si no lo ha
+     * hecho.
+     */
+    public boolean borrarVenta(boolean vendido, int ids){
+        boolean borrado=false;
 
-        if (vendido == false) { // si el coche se borra por ser una borrado y no una venta , se manda el mensaje oportuno y si el cliente confirma la operacion se elimina de la lista 
-            int confirmado = JOptionPane.showConfirmDialog(null, "¿Seguro que deseas borrar este coche de Ventas?");
-            if (confirmado == YES_OPTION) {
-                borrado = true;
+        if(vendido==false){ // si el coche se borra por ser una borrado y no una venta , se manda el mensaje oportuno y si el cliente confirma la operacion se elimina de la lista 
+            int confirmado=JOptionPane.showConfirmDialog(null, "¿Seguro que deseas borrar este coche de Ventas?");
+            if(confirmado==YES_OPTION){
+                borrado=true;
             }
-        } else {
-            int confirmado = JOptionPane.showConfirmDialog(null, "¿Seguro que deseas vender este coche de Ventas?"); // si se elimina tras una venta, se envia el mensaje oportuno y si se confirma la operacion se borra
-            if (confirmado == YES_OPTION) {
-                borrado = true;
+        }else{
+            int confirmado=JOptionPane.showConfirmDialog(null, "¿Seguro que deseas vender este coche de Ventas?"); // si se elimina tras una venta, se envia el mensaje oportuno y si se confirma la operacion se borra
+            if(confirmado==YES_OPTION){
+                borrado=true;
             }
 
         }
-        if (borrado == true) { // si el usuario confirmo la operacion se borra 
-          connect();
-            try {
-                st = conexion.prepareStatement("delete from venta where id='" + ids + "'");
+        if(borrado==true){ // si el usuario confirmo la operacion se borra 
+            connect();
+            try{
+                st=conexion.prepareStatement("delete from venta where id='"+ids+"'");
                 st.executeUpdate();
                 select();
-            } catch (SQLException ex) {
+            }catch(SQLException ex){
                 Mensajes.ventanaError("No se ha encontrado la venta  a eliminar.", "Gestión de ventas.");
             }
             close();
@@ -88,21 +88,21 @@ public  boolean borrarVenta(boolean vendido, int ids) {
     }
 
     @Override
-        public void select() {
-         connect();
+    public void select(){
+        connect();
 
-        try {
-            st = conexion.prepareStatement("select * from venta");
-            resultado = st.executeQuery();
+        try{
+            st=conexion.prepareStatement("select * from venta");
+            resultado=st.executeQuery();
             ventas.clear();
-            while (resultado.next()) {
+            while(resultado.next()){
                 ventas.add(new Venta(resultado.getInt("id"), resultado.getString("modelo"), resultado.getFloat("precio"), resultado.getString("motor"), resultado.getString("cilindrada"), resultado.getString("caballos")));
             }
-        } catch (SQLException ex) {
+        }catch(SQLException ex){
             Mensajes.ventanaError("Error al ejecutar la consulta.", "Error.");
         }catch(NullPointerException error){
             System.out.println("No existen datos en la tabla ventas");
-            
+
         }
         close();
     }

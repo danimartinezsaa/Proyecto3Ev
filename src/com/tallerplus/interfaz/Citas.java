@@ -2,12 +2,15 @@ package com.tallerplus.interfaz;
 
 import Validaciones.ValidarFormatos;
 import com.tallerplus.gestion.GestionCitas;
+import com.tallerplus.gestion.GestionTabla;
 import com.tallerplus.objetos.Cita;
 import java.awt.Color;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import java.util.TimerTask;
+import java.util.Timer;
 
 /**
  * Ventana Citas, dónde se pueden ver, añadir y borrar citas. Consta de un
@@ -21,6 +24,7 @@ public class Citas extends javax.swing.JFrame{
 
     DefaultTableModel tabla=new DefaultTableModel();
     GestionCitas cita=new GestionCitas();
+    Timer timer=new Timer();
 
     /**
      * Constructor en dónde se inicializan los componentes, se centra en la
@@ -36,6 +40,7 @@ public class Citas extends javax.swing.JFrame{
         ImageIcon ImageIcon=new ImageIcon(getClass().getResource("/com/tallerplus/icon/LogoT+.png"));
         Image Image=ImageIcon.getImage();
         this.setIconImage(Image);
+        aviso.setVisible(false);
 
         //Columnas de la tabla
         tabla.addColumn("Matrícula");
@@ -43,7 +48,7 @@ public class Citas extends javax.swing.JFrame{
         tabla.addColumn("Descripción");
         tabla.addColumn("Precio");
         tabla.addColumn("Estado");
-        
+
         mostrarTabla();
     }
 
@@ -113,6 +118,7 @@ public class Citas extends javax.swing.JFrame{
         combomes = new javax.swing.JComboBox<>();
         comboano = new javax.swing.JComboBox<>();
         combohora = new javax.swing.JComboBox<>();
+        aviso = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Citas");
@@ -220,7 +226,15 @@ public class Citas extends javax.swing.JFrame{
             new String [] {
                 "Matrícula", "Fecha y hora", "Descripcion", "Precio", "Estado"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                true, true, true, false, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(tablacitas);
         if (tablacitas.getColumnModel().getColumnCount() > 0) {
             tablacitas.getColumnModel().getColumn(1).setPreferredWidth(200);
@@ -234,6 +248,9 @@ public class Citas extends javax.swing.JFrame{
         comboano.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025", "2026", "2027", "2028", "2029", "2030", "2031", "2032", "2033", "2034", "2035", "2036", "2037", "2038" }));
 
         combohora.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "09:00", "09:15", "09:30", "09:45", "10:00", "10:15", "10:30", "10:45", "11:00", "11:15", "11:30", "11:45", "12:00", "12:15", "12:30", "12:45", "13:00", "13:15", "13:30", "13:45", "14:00", "14:15", "14:30", "15:45", "16:00", "16:15", "16:30", "16:45", "17:00", "17:15", "17:30", "18:45", "19:00", "19:15", "19:30", "20:45", "21:00", "22:15", "23:30", "23:45", "00:00", "00:15", "00:30", "00:45", "01:00", "01:15", "01:30", "01:45", "02:00", "02:15", "02:30", "02:45", "03:00", "03:15", "03:30", "03:45", "04:00", "04:15", "04:30", "04:45", "05:00", "05:15", "05:30", "05:45", "06:00", "06:15", "06:30", "06:45", "07:00", "07:15", "07:30", "07:45", "08:00", "08:15", "08:30", "08:45" }));
+
+        aviso.setForeground(new java.awt.Color(255, 0, 0));
+        aviso.setText("Cita añadida con éxito");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -260,7 +277,7 @@ public class Citas extends javax.swing.JFrame{
                                         .addComponent(combomes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(comboano, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 88, Short.MAX_VALUE))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(0, 25, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -286,7 +303,10 @@ public class Citas extends javax.swing.JFrame{
                                         .addComponent(comboestado, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 525, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bborrarcita, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(aviso, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(89, 89, 89)
+                        .addComponent(bborrarcita)))
                 .addGap(39, 39, 39))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -329,18 +349,19 @@ public class Citas extends javax.swing.JFrame{
                     .addComponent(comboano, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
-                        .addComponent(combohora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(82, 82, 82))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(combohora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(27, 27, 27)
-                        .addComponent(bañadircita)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(bañadircita)))
+                .addContainerGap(27, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(bborrarcita, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(bborrarcita, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(aviso, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
@@ -387,7 +408,12 @@ public class Citas extends javax.swing.JFrame{
         if(eliminar>=0){
             boolean correcto=cita.borrarCita(cita.citas.get(eliminar).getMatricula(), cita.citas.get(eliminar).getFechaHora());
             if(correcto!=false){
-                tabla.removeRow(eliminar);
+                mostrarTabla();
+
+                aviso.setText("Cita borrada con éxito");
+                aviso.setVisible(true);
+                timer.schedule(new Aviso(), 3000, 1);
+                timer.purge();
             }
         }
     }//GEN-LAST:event_bborrarcitaMouseClicked
@@ -399,8 +425,8 @@ public class Citas extends javax.swing.JFrame{
      */
     private void bañadircitaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bañadircitaMouseClicked
         String fechaHora;
-        
-        switch((String)combomes.getSelectedItem()){
+
+        switch((String) combomes.getSelectedItem()){
             case "Enero":
                 fechaHora=(String) combodia.getSelectedItem()+"/"+0+1+"/"+comboano.getSelectedItem()+" "+combohora.getSelectedItem();
                 break;
@@ -415,7 +441,7 @@ public class Citas extends javax.swing.JFrame{
                 break;
             case "Mayo":
                 fechaHora=(String) combodia.getSelectedItem()+"/"+0+5+"/"+comboano.getSelectedItem()+" "+combohora.getSelectedItem();
-                break;  
+                break;
             case "Junio":
                 fechaHora=(String) combodia.getSelectedItem()+"/"+0+6+"/"+comboano.getSelectedItem()+" "+combohora.getSelectedItem();
                 break;
@@ -438,7 +464,7 @@ public class Citas extends javax.swing.JFrame{
                 fechaHora=(String) combodia.getSelectedItem()+"/"+12+"/"+comboano.getSelectedItem()+" "+combohora.getSelectedItem();
                 break;
         }
-        
+
         String matricula=inmatricula.getText();
         String precio=inprecio.getText();
         boolean validado=validarDatos(matricula, precio);
@@ -451,7 +477,13 @@ public class Citas extends javax.swing.JFrame{
                 anadir[3]=inprecio.getText();
                 anadir[4]=(String) comboestado.getSelectedItem();
                 cita.anadirCita(anadir[0], anadir[1], anadir[2], Float.parseFloat(anadir[3]), anadir[4]);
-                tabla.addRow(anadir);
+                mostrarTabla();
+
+                aviso.setText("Cita añadida con éxito");
+                aviso.setVisible(true);
+                timer.schedule(new Aviso(), 3000, 1);
+                timer.purge();
+
             }catch(NumberFormatException ex){
                 JOptionPane.showMessageDialog(null, "Valor de precio erróneo", "Error", 0);
             }finally{
@@ -476,38 +508,38 @@ public class Citas extends javax.swing.JFrame{
     }//GEN-LAST:event_inmatriculaActionPerformed
 
     private void bañadircitaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bañadircitaMouseEntered
-        for(int i=0;i<=5;i++){
-            bañadircita.setLocation(bañadircita.getX(),bañadircita.getY()+1);          
+        for(int i=0; i<=5; i++){
+            bañadircita.setLocation(bañadircita.getX(), bañadircita.getY()+1);
         }
     }//GEN-LAST:event_bañadircitaMouseEntered
 
     private void bañadircitaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bañadircitaMouseExited
-        for(int i=0;i<=5;i++){
-            bañadircita.setLocation(bañadircita.getX(),bañadircita.getY()-1);          
+        for(int i=0; i<=5; i++){
+            bañadircita.setLocation(bañadircita.getX(), bañadircita.getY()-1);
         }
     }//GEN-LAST:event_bañadircitaMouseExited
 
     private void bborrarcitaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bborrarcitaMouseEntered
-        for(int i=0;i<=5;i++){
-            bborrarcita.setLocation(bborrarcita.getX(),bborrarcita.getY()+1);          
+        for(int i=0; i<=5; i++){
+            bborrarcita.setLocation(bborrarcita.getX(), bborrarcita.getY()+1);
         }
     }//GEN-LAST:event_bborrarcitaMouseEntered
 
     private void bborrarcitaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bborrarcitaMouseExited
-        for(int i=0;i<=5;i++){
-            bborrarcita.setLocation(bborrarcita.getX(),bborrarcita.getY()-1);          
+        for(int i=0; i<=5; i++){
+            bborrarcita.setLocation(bborrarcita.getX(), bborrarcita.getY()-1);
         }
     }//GEN-LAST:event_bborrarcitaMouseExited
 
     private void batrasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_batrasMouseEntered
-        for(int i=0;i<=5;i++){
-            batras.setLocation(batras.getX(),batras.getY()+1);          
+        for(int i=0; i<=5; i++){
+            batras.setLocation(batras.getX(), batras.getY()+1);
         }
     }//GEN-LAST:event_batrasMouseEntered
 
     private void batrasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_batrasMouseExited
-        for(int i=0;i<=5;i++){
-            batras.setLocation(batras.getX(),batras.getY()-1);          
+        for(int i=0; i<=5; i++){
+            batras.setLocation(batras.getX(), batras.getY()-1);
         }
     }//GEN-LAST:event_batrasMouseExited
 
@@ -547,6 +579,7 @@ public class Citas extends javax.swing.JFrame{
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel aviso;
     private javax.swing.JLabel batras;
     private javax.swing.JLabel bañadircita;
     private javax.swing.JLabel bborrarcita;
@@ -571,6 +604,7 @@ public class Citas extends javax.swing.JFrame{
     // End of variables declaration//GEN-END:variables
 
     public void mostrarTabla(){
+        GestionTabla.borrarTabla(tabla);
         cita.select();
         //Añadimos todas las citas existentes
         for(Cita elemento : cita.citas){
@@ -583,5 +617,15 @@ public class Citas extends javax.swing.JFrame{
             tabla.addRow(anadir);
         }
         this.tablacitas.setModel(tabla);
+    }
+
+    public class Aviso extends TimerTask{
+
+        @Override
+        public void run(){
+            aviso.setVisible(false);
+            cancel();
+        }
+
     }
 }

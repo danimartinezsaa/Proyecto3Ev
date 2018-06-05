@@ -11,6 +11,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.YES_OPTION;
 import javax.swing.table.DefaultTableModel;
+import java.util.TimerTask;
+import java.util.Timer;
 
 /**
  * Clase que gestiona el funcionamiento de la vetana Clientes, en dónde se
@@ -26,6 +28,7 @@ public class Clientes extends javax.swing.JFrame{
     boolean edicion=false;
     DefaultTableModel tablaCliente=new DefaultTableModel();
     GestionClientes cliente=new GestionClientes();
+    Timer timer=new Timer();
 
     /**
      * Constructor en dónde se inicializan los componentes, se centra la ventana
@@ -41,6 +44,7 @@ public class Clientes extends javax.swing.JFrame{
         ImageIcon ImageIcon=new ImageIcon(getClass().getResource("/com/tallerplus/icon/LogoT+.png"));
         Image Image=ImageIcon.getImage();
         this.setIconImage(Image);
+        aviso.setVisible(false);
 
         tablaCliente.addColumn("Matrícula");
         tablaCliente.addColumn("Motor");
@@ -145,6 +149,7 @@ public class Clientes extends javax.swing.JFrame{
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaClientes = new javax.swing.JTable();
         textoMotor = new javax.swing.JComboBox<>();
+        aviso = new javax.swing.JLabel();
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -270,6 +275,8 @@ public class Clientes extends javax.swing.JFrame{
 
         textoMotor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Diesel", "Gasolina", "Hibrido", "Electrico" }));
 
+        aviso.setForeground(new java.awt.Color(255, 0, 0));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -310,6 +317,10 @@ public class Clientes extends javax.swing.JFrame{
                     .addComponent(batras1, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(48, 48, 48))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(aviso, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(165, 165, 165))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -356,7 +367,9 @@ public class Clientes extends javax.swing.JFrame{
                         .addComponent(batras1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
-                .addContainerGap(64, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(aviso, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -412,11 +425,20 @@ public class Clientes extends javax.swing.JFrame{
                     boolean encontrado=cliente.anadirCliente(matricula, motor, cilindrada, caballos, nombre, dni, telefono);
                     if(encontrado==false){
                         mostrarTabla();
+
+                        aviso.setText("Cliente añadido");
+                        aviso.setVisible(true);
+                        timer.schedule(new Aviso(), 3000, 1);
+                        timer.purge();
                     }            // ponemos todos los campos a null
                 }else{
                     cliente.editarCliente(cliente_editar, matricula, motor, cilindrada, caballos, nombre, dni, telefono);
-                    GestionTabla.borrarTabla(tablaCliente);
                     mostrarTabla();
+
+                    aviso.setText("Cliente añadido");
+                    aviso.setVisible(true);
+                    timer.schedule(new Aviso(), 3000, 1);
+                    timer.purge();
                 }
                 edicion=false;
                 textoMatricula.setText("");
@@ -446,6 +468,11 @@ public class Clientes extends javax.swing.JFrame{
             textoTelefono.setText(tablaClientes.getValueAt(editar, 5).toString());
             textoDni.setText(tablaClientes.getValueAt(editar, 6).toString());
 
+            aviso.setText("Edición de cliente activa");
+            aviso.setVisible(true);
+            timer.schedule(new Aviso(), 3000, 1);
+            timer.purge();
+
             if(tablaCliente.getValueAt(editar, 1).equals("Diesel")){
                 textoMotor.setSelectedIndex(0);
             }else if(tablaCliente.getValueAt(editar, 1).equals("Gasolina")){
@@ -474,6 +501,11 @@ public class Clientes extends javax.swing.JFrame{
                 if(confirmado==YES_OPTION){
                     cliente.borrarCliente(cliente.coches.get(eliminar).getMatricula(), eb);
                     mostrarTabla();
+
+                    aviso.setText("Cliente eliminado");
+                    aviso.setVisible(true);
+                    timer.schedule(new Aviso(), 3000, 1);
+                    timer.purge();
                 }
 
             }else{
@@ -485,50 +517,50 @@ public class Clientes extends javax.swing.JFrame{
     }//GEN-LAST:event_botonEliminarClienteMouseClicked
 
     private void batras1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_batras1MouseEntered
-        for(int i=0;i<=5;i++){
-            batras1.setLocation(batras1.getX(),batras1.getY()+1);          
+        for(int i=0; i<=5; i++){
+            batras1.setLocation(batras1.getX(), batras1.getY()+1);
         }
     }//GEN-LAST:event_batras1MouseEntered
 
     private void batras1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_batras1MouseExited
-        for(int i=0;i<=5;i++){
-            batras1.setLocation(batras1.getX(),batras1.getY()-1);          
+        for(int i=0; i<=5; i++){
+            batras1.setLocation(batras1.getX(), batras1.getY()-1);
         }
     }//GEN-LAST:event_batras1MouseExited
 
     private void botonAnadirClienteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAnadirClienteMouseEntered
-        for(int i=0;i<=5;i++){
-            botonAnadirCliente.setLocation(botonAnadirCliente.getX(),botonAnadirCliente.getY()+1);          
+        for(int i=0; i<=5; i++){
+            botonAnadirCliente.setLocation(botonAnadirCliente.getX(), botonAnadirCliente.getY()+1);
         }
     }//GEN-LAST:event_botonAnadirClienteMouseEntered
 
     private void botonAnadirClienteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAnadirClienteMouseExited
-        for(int i=0;i<=5;i++){
-            botonAnadirCliente.setLocation(botonAnadirCliente.getX(),botonAnadirCliente.getY()-1);          
+        for(int i=0; i<=5; i++){
+            botonAnadirCliente.setLocation(botonAnadirCliente.getX(), botonAnadirCliente.getY()-1);
         }
     }//GEN-LAST:event_botonAnadirClienteMouseExited
 
     private void botonEditarClienteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonEditarClienteMouseEntered
-        for(int i=0;i<=5;i++){
-            botonEditarCliente.setLocation(botonEditarCliente.getX(),botonEditarCliente.getY()+1);          
+        for(int i=0; i<=5; i++){
+            botonEditarCliente.setLocation(botonEditarCliente.getX(), botonEditarCliente.getY()+1);
         }
     }//GEN-LAST:event_botonEditarClienteMouseEntered
 
     private void botonEditarClienteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonEditarClienteMouseExited
-        for(int i=0;i<=5;i++){
-            botonEditarCliente.setLocation(botonEditarCliente.getX(),botonEditarCliente.getY()-1);          
+        for(int i=0; i<=5; i++){
+            botonEditarCliente.setLocation(botonEditarCliente.getX(), botonEditarCliente.getY()-1);
         }
     }//GEN-LAST:event_botonEditarClienteMouseExited
 
     private void botonEliminarClienteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonEliminarClienteMouseEntered
-        for(int i=0;i<=5;i++){
-            botonEliminarCliente.setLocation(botonEliminarCliente.getX(),botonEliminarCliente.getY()+1);          
+        for(int i=0; i<=5; i++){
+            botonEliminarCliente.setLocation(botonEliminarCliente.getX(), botonEliminarCliente.getY()+1);
         }
     }//GEN-LAST:event_botonEliminarClienteMouseEntered
 
     private void botonEliminarClienteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonEliminarClienteMouseExited
-        for(int i=0;i<=5;i++){
-            botonEliminarCliente.setLocation(botonEliminarCliente.getX(),botonEliminarCliente.getY()-1);          
+        for(int i=0; i<=5; i++){
+            botonEliminarCliente.setLocation(botonEliminarCliente.getX(), botonEliminarCliente.getY()-1);
         }
     }//GEN-LAST:event_botonEliminarClienteMouseExited
 
@@ -587,7 +619,18 @@ public class Clientes extends javax.swing.JFrame{
         this.tablaClientes.setModel(tablaCliente);
     }
 
+    public class Aviso extends TimerTask{
+
+        @Override
+        public void run(){
+            aviso.setVisible(false);
+            cancel();
+        }
+
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel aviso;
     private javax.swing.JLabel batras1;
     private javax.swing.JLabel botonAnadirCliente;
     private javax.swing.JLabel botonEditarCliente;

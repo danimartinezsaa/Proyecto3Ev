@@ -5,6 +5,8 @@ import com.tallerplus.gestion.GestionTabla;
 import com.tallerplus.gestion.GestionUsuarios;
 import com.tallerplus.objetos.Usuario;
 import java.awt.Image;
+import java.util.Timer;
+import java.util.TimerTask;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.YES_OPTION;
@@ -23,6 +25,7 @@ public class Usuarios extends javax.swing.JFrame{
     boolean edicion=false;
     String usuario_editar;
     GestionUsuarios us=new GestionUsuarios();
+    Timer timer=new Timer();
 
     /**
      * Constructor que inicializa los componentes, centra la ventana, evita
@@ -38,6 +41,9 @@ public class Usuarios extends javax.swing.JFrame{
         ImageIcon ImageIcon=new ImageIcon(getClass().getResource("/com/tallerplus/icon/LogoT+.png"));
         Image Image=ImageIcon.getImage();
         this.setIconImage(Image);
+
+        aviso.setVisible(false);
+
         //Columnas de la tabla
         tabla.addColumn("Usuario");
         tabla.addColumn("Contraseña");
@@ -70,6 +76,7 @@ public class Usuarios extends javax.swing.JFrame{
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         combotipo = new javax.swing.JComboBox<>();
+        aviso = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Usuarios");
@@ -162,6 +169,8 @@ public class Usuarios extends javax.swing.JFrame{
 
         combotipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "mecanico", "recepcion", "admin" }));
 
+        aviso.setForeground(new java.awt.Color(255, 0, 0));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -189,8 +198,14 @@ public class Usuarios extends javax.swing.JFrame{
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(combotipo, javax.swing.GroupLayout.Alignment.LEADING, 0, 131, Short.MAX_VALUE)
                                 .addComponent(incontrasena, javax.swing.GroupLayout.Alignment.LEADING)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 529, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 529, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(234, 234, 234)
+                                .addComponent(aviso, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addGap(30, 30, 30))
         );
         jPanel1Layout.setVerticalGroup(
@@ -219,7 +234,10 @@ public class Usuarios extends javax.swing.JFrame{
                             .addComponent(beditarusuario, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(bborrarusuario, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(banadirusuario, javax.swing.GroupLayout.Alignment.TRAILING)))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(aviso, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(27, Short.MAX_VALUE))
         );
 
@@ -263,6 +281,17 @@ public class Usuarios extends javax.swing.JFrame{
                 boolean repetido=us.anadirUsuario(anadir[0], anadir[1], anadir[2]);
                 if(repetido==false){
                     mostrarTabla();
+
+                    aviso.setText("Usuario añadido");
+                    aviso.setVisible(true);
+                    timer.schedule(new Aviso(), 3000, 1);
+                    timer.purge();
+                }else{
+                    aviso.setText("Error, nombre de usuario existente");
+                    aviso.setVisible(true);
+
+                    timer.schedule(new Aviso(), 3000, 1);
+                    timer.purge();
                 }
             }else{
                 Mensajes.ventanaError("Debes cubrir todos los campos.", "Error.");
@@ -273,6 +302,11 @@ public class Usuarios extends javax.swing.JFrame{
                 JOptionPane.showMessageDialog(null, "Al usuario Admin sólo se le puede cambiar la contraseña, contraseña cambiada", "Información", 1);
             }else{
                 us.editarUsuario(usuario_editar, inusuario.getText(), incontrasena.getText(), (String) combotipo.getSelectedItem());
+
+                aviso.setText("Usuario editado");
+                aviso.setVisible(true);
+                timer.schedule(new Aviso(), 3000, 1);
+                timer.purge();
             }
 
             edicion=false;
@@ -300,6 +334,11 @@ public class Usuarios extends javax.swing.JFrame{
                     boolean correcto=us.borrarUsuario(usuario);
                     if(correcto!=false){
                         mostrarTabla();
+
+                        aviso.setText("Usuario eliminado");
+                        aviso.setVisible(true);
+                        timer.schedule(new Aviso(), 3000, 1);
+                        timer.purge();
                     }
                 }
             }else{
@@ -335,50 +374,50 @@ public class Usuarios extends javax.swing.JFrame{
     }//GEN-LAST:event_beditarusuarioMouseClicked
 
     private void banadirusuarioMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_banadirusuarioMouseEntered
-        for(int i=0;i<=5;i++){
-            banadirusuario.setLocation(banadirusuario.getX(),banadirusuario.getY()+1);          
+        for(int i=0; i<=5; i++){
+            banadirusuario.setLocation(banadirusuario.getX(), banadirusuario.getY()+1);
         }
     }//GEN-LAST:event_banadirusuarioMouseEntered
 
     private void banadirusuarioMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_banadirusuarioMouseExited
-        for(int i=0;i<=5;i++){
-            banadirusuario.setLocation(banadirusuario.getX(),banadirusuario.getY()-1);          
+        for(int i=0; i<=5; i++){
+            banadirusuario.setLocation(banadirusuario.getX(), banadirusuario.getY()-1);
         }
     }//GEN-LAST:event_banadirusuarioMouseExited
 
     private void beditarusuarioMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_beditarusuarioMouseEntered
-        for(int i=0;i<=5;i++){
-            beditarusuario.setLocation(beditarusuario.getX(),beditarusuario.getY()+1);          
+        for(int i=0; i<=5; i++){
+            beditarusuario.setLocation(beditarusuario.getX(), beditarusuario.getY()+1);
         }
     }//GEN-LAST:event_beditarusuarioMouseEntered
 
     private void beditarusuarioMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_beditarusuarioMouseExited
-        for(int i=0;i<=5;i++){
-            beditarusuario.setLocation(beditarusuario.getX(),beditarusuario.getY()-1);          
+        for(int i=0; i<=5; i++){
+            beditarusuario.setLocation(beditarusuario.getX(), beditarusuario.getY()-1);
         }
     }//GEN-LAST:event_beditarusuarioMouseExited
 
     private void bborrarusuarioMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bborrarusuarioMouseEntered
-        for(int i=0;i<=5;i++){
-            bborrarusuario.setLocation(bborrarusuario.getX(),bborrarusuario.getY()+1);          
+        for(int i=0; i<=5; i++){
+            bborrarusuario.setLocation(bborrarusuario.getX(), bborrarusuario.getY()+1);
         }
     }//GEN-LAST:event_bborrarusuarioMouseEntered
 
     private void bborrarusuarioMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bborrarusuarioMouseExited
-        for(int i=0;i<=5;i++){
-            bborrarusuario.setLocation(bborrarusuario.getX(),bborrarusuario.getY()-1);          
+        for(int i=0; i<=5; i++){
+            bborrarusuario.setLocation(bborrarusuario.getX(), bborrarusuario.getY()-1);
         }
     }//GEN-LAST:event_bborrarusuarioMouseExited
 
     private void batrasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_batrasMouseEntered
-        for(int i=0;i<=5;i++){
-            batras.setLocation(batras.getX(),batras.getY()+1);          
+        for(int i=0; i<=5; i++){
+            batras.setLocation(batras.getX(), batras.getY()+1);
         }
     }//GEN-LAST:event_batrasMouseEntered
 
     private void batrasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_batrasMouseExited
-        for(int i=0;i<=5;i++){
-            batras.setLocation(batras.getX(),batras.getY()-1);          
+        for(int i=0; i<=5; i++){
+            batras.setLocation(batras.getX(), batras.getY()-1);
         }
     }//GEN-LAST:event_batrasMouseExited
 
@@ -431,7 +470,18 @@ public class Usuarios extends javax.swing.JFrame{
         }
         this.tablausuarios.setModel(tabla);
     }
+
+    public class Aviso extends TimerTask{
+
+        @Override
+        public void run(){
+            aviso.setVisible(false);
+            cancel();
+        }
+
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel aviso;
     private javax.swing.JLabel banadirusuario;
     private javax.swing.JLabel batras;
     private javax.swing.JLabel bborrarusuario;

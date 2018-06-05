@@ -84,7 +84,11 @@ public class Clientes extends javax.swing.JFrame{
             validado=true;
         }else{
 
-            JOptionPane.showMessageDialog(null, "datos erroneos");
+            aviso.setText("Datos erróneos");
+            aviso.setVisible(true);
+            timer.schedule(new Aviso(), 3000, 1);
+            timer.purge();
+            
             if(caballosValidos==false){
                 textoCaballos.setForeground(Color.red);
             }else{

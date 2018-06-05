@@ -169,6 +169,7 @@ public class Clientes extends javax.swing.JFrame{
         jPanel1.setBackground(new java.awt.Color(109, 132, 180));
 
         batras1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tallerplus/icon/flecha-hacia-la-izquierda.png"))); // NOI18N
+        batras1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         batras1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 batras1MouseClicked(evt);
@@ -214,6 +215,7 @@ public class Clientes extends javax.swing.JFrame{
         jLabel10.setText("telefono");
 
         botonAnadirCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tallerplus/icon/003-usuario.png"))); // NOI18N
+        botonAnadirCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botonAnadirCliente.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 botonAnadirClienteMouseClicked(evt);
@@ -227,6 +229,7 @@ public class Clientes extends javax.swing.JFrame{
         });
 
         botonEditarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tallerplus/icon/001-usuario-2.png"))); // NOI18N
+        botonEditarCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botonEditarCliente.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 botonEditarClienteMouseClicked(evt);
@@ -240,6 +243,7 @@ public class Clientes extends javax.swing.JFrame{
         });
 
         botonEliminarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tallerplus/icon/002-usuario-1.png"))); // NOI18N
+        botonEliminarCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botonEliminarCliente.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 botonEliminarClienteMouseClicked(evt);

@@ -88,6 +88,7 @@ public class Usuarios extends javax.swing.JFrame{
         jPanel1.setBackground(new java.awt.Color(109, 132, 180));
 
         batras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tallerplus/icon/flecha-hacia-la-izquierda.png"))); // NOI18N
+        batras.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         batras.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 batrasMouseClicked(evt);
@@ -117,6 +118,7 @@ public class Usuarios extends javax.swing.JFrame{
         titulousuarios.setText("Usuarios");
 
         bborrarusuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tallerplus/icon/002-usuario-1.png"))); // NOI18N
+        bborrarusuario.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         bborrarusuario.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 bborrarusuarioMouseClicked(evt);
@@ -130,6 +132,7 @@ public class Usuarios extends javax.swing.JFrame{
         });
 
         beditarusuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tallerplus/icon/001-usuario-2.png"))); // NOI18N
+        beditarusuario.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         beditarusuario.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 beditarusuarioMouseClicked(evt);
@@ -143,6 +146,7 @@ public class Usuarios extends javax.swing.JFrame{
         });
 
         banadirusuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tallerplus/icon/003-usuario.png"))); // NOI18N
+        banadirusuario.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         banadirusuario.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 banadirusuarioMouseClicked(evt);

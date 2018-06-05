@@ -157,6 +157,7 @@ public class Citas extends javax.swing.JFrame{
         });
 
         bañadircita.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tallerplus/icon/mas.png"))); // NOI18N
+        bañadircita.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         bañadircita.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 bañadircitaMouseClicked(evt);
@@ -170,6 +171,7 @@ public class Citas extends javax.swing.JFrame{
         });
 
         bborrarcita.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tallerplus/icon/error.png"))); // NOI18N
+        bborrarcita.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         bborrarcita.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 bborrarcitaMouseClicked(evt);
@@ -203,6 +205,7 @@ public class Citas extends javax.swing.JFrame{
         jLabel6.setText("Estado");
 
         batras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tallerplus/icon/flecha-hacia-la-izquierda.png"))); // NOI18N
+        batras.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         batras.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 batrasMouseClicked(evt);

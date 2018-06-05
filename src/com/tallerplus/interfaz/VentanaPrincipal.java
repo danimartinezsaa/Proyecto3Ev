@@ -1,8 +1,15 @@
 package com.tallerplus.interfaz;
 
+import VentanasEmergentes.Mensajes;
 import com.tallerplus.gestion.GestionTiempo;
 import com.tallerplus.gestion.Login;
+import java.awt.Desktop;
 import java.awt.Image;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
@@ -13,25 +20,29 @@ import javax.swing.JOptionPane;
  *
  * @author dani_
  */
-public class VentanaPrincipal extends javax.swing.JFrame {
-    
-    String tiempo;
+public class VentanaPrincipal extends javax.swing.JFrame{
+
+    String tiempo, noticia;
+    Desktop enlace=Desktop.getDesktop();
+
     /**
      * Constructor que inicializa componentes, centra la ventana en la pantalla,
      * la hace visible y evita que sea redimensionable.
      */
-    public VentanaPrincipal() {
+    public VentanaPrincipal(){
         initComponents();
         setLocationRelativeTo(null);
         setVisible(true);
         setResizable(false);
         //Cambiamos icono
-        ImageIcon ImageIcon = new ImageIcon(getClass().getResource("/com/tallerplus/icon/LogoT+.png"));
-        Image Image = ImageIcon.getImage();
+        ImageIcon ImageIcon=new ImageIcon(getClass().getResource("/com/tallerplus/icon/LogoT+.png"));
+        Image Image=ImageIcon.getImage();
         this.setIconImage(Image);
-        
+
         tiempo=GestionTiempo.pasarTiempo();
+        noticia=GestionTiempo.pasarNoticia();
         jtiempo.setText(tiempo);
+        jnoticia.setText(noticia);
         jiconotiempo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tallerplus/icon/cloudy.png")));
     }
 
@@ -66,6 +77,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         bcambiousuario = new javax.swing.JLabel();
         jtiempo = new javax.swing.JLabel();
         jiconotiempo = new javax.swing.JLabel();
+        jnoticia = new javax.swing.JLabel();
+        jicononoticia = new javax.swing.JLabel();
 
         jLabel17.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(240, 240, 240));
@@ -95,10 +108,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(240, 240, 240));
         jLabel2.setText("ADMINISTRACIÓN");
         panelprincipal.add(jLabel2);
-        jLabel2.setBounds(21, 21, 238, 29);
+        jLabel2.setBounds(20, 30, 238, 29);
 
         busuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tallerplus/icon/social.png"))); // NOI18N
         busuario.setAlignmentY(0.0F);
+        busuario.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         busuario.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 busuarioMouseClicked(evt);
@@ -111,9 +125,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         });
         panelprincipal.add(busuario);
-        busuario.setBounds(63, 85, 128, 128);
+        busuario.setBounds(60, 100, 128, 128);
 
         bcliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tallerplus/icon/007-chico.png"))); // NOI18N
+        bcliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         bcliente.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 bclienteMouseClicked(evt);
@@ -126,9 +141,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         });
         panelprincipal.add(bcliente);
-        bcliente.setBounds(281, 85, 128, 128);
+        bcliente.setBounds(280, 100, 128, 128);
 
         bfactura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tallerplus/icon/recepcion.png"))); // NOI18N
+        bfactura.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         bfactura.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 bfacturaMouseClicked(evt);
@@ -141,27 +157,28 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         });
         panelprincipal.add(bfactura);
-        bfactura.setBounds(499, 85, 118, 128);
+        bfactura.setBounds(500, 100, 118, 128);
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(240, 240, 240));
         jLabel6.setText("Usuarios");
         panelprincipal.add(jLabel6);
-        jLabel6.setBounds(63, 56, 69, 17);
+        jLabel6.setBounds(60, 70, 69, 17);
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(240, 240, 240));
         jLabel7.setText("Facturas");
         panelprincipal.add(jLabel7);
-        jLabel7.setBounds(499, 56, 68, 17);
+        jLabel7.setBounds(500, 70, 68, 17);
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(240, 240, 240));
         jLabel8.setText("Clientes");
         panelprincipal.add(jLabel8);
-        jLabel8.setBounds(285, 56, 64, 17);
+        jLabel8.setBounds(290, 70, 64, 17);
 
         bhistorialcliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tallerplus/icon/historial.png"))); // NOI18N
+        bhistorialcliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         bhistorialcliente.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 bhistorialclienteMouseClicked(evt);
@@ -177,6 +194,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         bhistorialcliente.setBounds(499, 342, 128, 128);
 
         bbuscarcita.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tallerplus/icon/bloc.png"))); // NOI18N
+        bbuscarcita.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         bbuscarcita.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 bbuscarcitaMouseClicked(evt);
@@ -210,6 +228,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jLabel20.setBounds(499, 307, 122, 17);
 
         bcitas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tallerplus/icon/calendario.png"))); // NOI18N
+        bcitas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         bcitas.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 bcitasMouseClicked(evt);
@@ -225,6 +244,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         bcitas.setBounds(63, 342, 128, 128);
 
         bcoches.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tallerplus/icon/coche.png"))); // NOI18N
+        bcoches.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         bcoches.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 bcochesMouseClicked(evt);
@@ -246,6 +266,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jLabel9.setBounds(713, 307, 135, 17);
 
         bcambiousuario.setIcon(new javax.swing.ImageIcon("/home/dani/NetBeansProjects/Taller-Plus/src/com/tallerplus/icon/transfer.png")); // NOI18N
+        bcambiousuario.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         bcambiousuario.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 bcambiousuarioMouseClicked(evt);
@@ -258,13 +279,47 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         });
         panelprincipal.add(bcambiousuario);
-        bcambiousuario.setBounds(808, 21, 64, 64);
+        bcambiousuario.setBounds(820, 10, 64, 64);
 
         jtiempo.setForeground(new java.awt.Color(255, 255, 255));
+        jtiempo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jtiempo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jtiempoMouseClicked(evt);
+            }
+        });
         panelprincipal.add(jtiempo);
-        jtiempo.setBounds(668, 21, 122, 29);
+        jtiempo.setBounds(680, 20, 122, 29);
+
+        jiconotiempo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jiconotiempo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jiconotiempoMouseClicked(evt);
+            }
+        });
         panelprincipal.add(jiconotiempo);
-        jiconotiempo.setBounds(629, 21, 27, 29);
+        jiconotiempo.setBounds(650, 20, 27, 29);
+
+        jnoticia.setFont(new java.awt.Font("Dialog", 1, 10)); // NOI18N
+        jnoticia.setForeground(new java.awt.Color(255, 255, 255));
+        jnoticia.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jnoticia.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jnoticiaMouseClicked(evt);
+            }
+        });
+        panelprincipal.add(jnoticia);
+        jnoticia.setBounds(310, 20, 310, 29);
+
+        jicononoticia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tallerplus/icon/text-lines.png"))); // NOI18N
+        jicononoticia.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jicononoticia.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jicononoticiaMouseClicked(evt);
+            }
+        });
+        panelprincipal.add(jicononoticia);
+        jicononoticia.setBounds(280, 20, 27, 29);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -286,7 +341,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
      * @param evt
      */
     private void bbuscarcitaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bbuscarcitaMouseClicked
-        VerCitas ventanaBuscarCita = new VerCitas();
+        VerCitas ventanaBuscarCita=new VerCitas();
         dispose();
     }//GEN-LAST:event_bbuscarcitaMouseClicked
 
@@ -297,7 +352,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
      * @param evt
      */
     private void bhistorialclienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bhistorialclienteMouseClicked
-        HistorialCliente ventanaHistorialCliente = new HistorialCliente();
+        HistorialCliente ventanaHistorialCliente=new HistorialCliente();
         dispose();
     }//GEN-LAST:event_bhistorialclienteMouseClicked
     /**
@@ -306,10 +361,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
      * @param evt
      */
     private void busuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_busuarioMouseClicked
-        if (Login.getUsuarioLogueado().equals("admin")) {
-            Usuarios ventanaUsuarios = new Usuarios();
+        if(Login.getUsuarioLogueado().equals("admin")){
+            Usuarios ventanaUsuarios=new Usuarios();
             dispose();
-        } else {
+        }else{
             JOptionPane.showMessageDialog(null, "No tienes permisos para acceder aquí", "Error", 0);
         }
     }//GEN-LAST:event_busuarioMouseClicked
@@ -319,10 +374,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
      * @param evt
      */
     private void bclienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bclienteMouseClicked
-        if (!Login.getUsuarioLogueado().equals("mecanico")) {
-            Clientes ventanaClientes = new Clientes();
+        if(!Login.getUsuarioLogueado().equals("mecanico")){
+            Clientes ventanaClientes=new Clientes();
             dispose();
-        } else {
+        }else{
             JOptionPane.showMessageDialog(null, "No tienes permisos para acceder aquí", "Error", 0);
         }
     }//GEN-LAST:event_bclienteMouseClicked
@@ -332,10 +387,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
      * @param evt
      */
     private void bfacturaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bfacturaMouseClicked
-        if (!Login.getUsuarioLogueado().equals("mecanico")) {
-            Facturas ventanaFacturas = new Facturas();
+        if(!Login.getUsuarioLogueado().equals("mecanico")){
+            Facturas ventanaFacturas=new Facturas();
             dispose();
-        } else {
+        }else{
             JOptionPane.showMessageDialog(null, "No tienes permisos para acceder aquí", "Error", 0);
         }
     }//GEN-LAST:event_bfacturaMouseClicked
@@ -345,10 +400,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
      * @param evt
      */
     private void bcitasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bcitasMouseClicked
-        if (!Login.getUsuarioLogueado().equals("mecanico")) {
-            Citas ventanaCitas = new Citas();
+        if(!Login.getUsuarioLogueado().equals("mecanico")){
+            Citas ventanaCitas=new Citas();
             dispose();
-        } else {
+        }else{
             JOptionPane.showMessageDialog(null, "No tienes permisos para acceder aquí", "Error", 0);
         }
     }//GEN-LAST:event_bcitasMouseClicked
@@ -358,135 +413,175 @@ public class VentanaPrincipal extends javax.swing.JFrame {
      * @param evt
      */
     private void bcochesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bcochesMouseClicked
-        if (!Login.getUsuarioLogueado().equals("mecanico")) {
-            VentaCoches ventanaVentas = new VentaCoches();
+        if(!Login.getUsuarioLogueado().equals("mecanico")){
+            VentaCoches ventanaVentas=new VentaCoches();
             dispose();
-        } else {
+        }else{
             JOptionPane.showMessageDialog(null, "No tienes permisos para acceder aquí", "Error", 0);
         }
     }//GEN-LAST:event_bcochesMouseClicked
+
+    private void busuarioMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_busuarioMouseEntered
+
+        busuario.setLocation(busuario.getX(), busuario.getY()+5);
+    }//GEN-LAST:event_busuarioMouseEntered
+
+    private void busuarioMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_busuarioMouseExited
+
+        busuario.setLocation(busuario.getX(), busuario.getY()-5);
+    }//GEN-LAST:event_busuarioMouseExited
+
+    private void bclienteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bclienteMouseEntered
+
+        bcliente.setLocation(bcliente.getX(), bcliente.getY()+5);
+    }//GEN-LAST:event_bclienteMouseEntered
+
+    private void bclienteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bclienteMouseExited
+
+        bcliente.setLocation(bcliente.getX(), bcliente.getY()-5);
+    }//GEN-LAST:event_bclienteMouseExited
+
+    private void bfacturaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bfacturaMouseEntered
+
+        bfactura.setLocation(bfactura.getX(), bfactura.getY()+5);
+    }//GEN-LAST:event_bfacturaMouseEntered
+
+    private void bcitasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bcitasMouseEntered
+
+        bcitas.setLocation(bcitas.getX(), bcitas.getY()+5);
+    }//GEN-LAST:event_bcitasMouseEntered
+
+    private void bcitasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bcitasMouseExited
+
+        bcitas.setLocation(bcitas.getX(), bcitas.getY()-5);
+
+    }//GEN-LAST:event_bcitasMouseExited
+
+    private void bbuscarcitaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bbuscarcitaMouseEntered
+
+        bbuscarcita.setLocation(bbuscarcita.getX(), bbuscarcita.getY()+5);
+    }//GEN-LAST:event_bbuscarcitaMouseEntered
+
+    private void bhistorialclienteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bhistorialclienteMouseEntered
+
+        bhistorialcliente.setLocation(bhistorialcliente.getX(), bhistorialcliente.getY()+5);
+    }//GEN-LAST:event_bhistorialclienteMouseEntered
+
+    private void bbuscarcitaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bbuscarcitaMouseExited
+
+        bbuscarcita.setLocation(bbuscarcita.getX(), bbuscarcita.getY()-5);
+    }//GEN-LAST:event_bbuscarcitaMouseExited
+
+    private void bhistorialclienteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bhistorialclienteMouseExited
+        bhistorialcliente.setLocation(bhistorialcliente.getX(), bhistorialcliente.getY()-5);
+    }//GEN-LAST:event_bhistorialclienteMouseExited
+
+    private void bcochesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bcochesMouseEntered
+
+        bcoches.setLocation(bcoches.getX(), bcoches.getY()+5);
+    }//GEN-LAST:event_bcochesMouseEntered
+
+    private void bcochesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bcochesMouseExited
+
+        bcoches.setLocation(bcoches.getX(), bcoches.getY()-5);
+    }//GEN-LAST:event_bcochesMouseExited
+
+    private void bfacturaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bfacturaMouseExited
+
+        bfactura.setLocation(bfactura.getX(), bfactura.getY()-5);
+    }//GEN-LAST:event_bfacturaMouseExited
+
+    private void bcambiousuarioMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bcambiousuarioMouseEntered
+
+        bcambiousuario.setLocation(bcambiousuario.getX(), bcambiousuario.getY()+5);
+    }//GEN-LAST:event_bcambiousuarioMouseEntered
+
+    private void bcambiousuarioMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bcambiousuarioMouseExited
+
+        bcambiousuario.setLocation(bcambiousuario.getX(), bcambiousuario.getY()-5);
+    }//GEN-LAST:event_bcambiousuarioMouseExited
 
     private void bcambiousuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bcambiousuarioMouseClicked
         LoginUsers login=new LoginUsers();
         dispose();
     }//GEN-LAST:event_bcambiousuarioMouseClicked
 
-    private void busuarioMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_busuarioMouseEntered
+    private void jnoticiaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jnoticiaMouseClicked
+        try{
+            enlace.browse(new URI("https://www.elespanol.com/ultimas/"));
+        }catch(IOException ex){
+            Mensajes.ventanaError("Error al abrir la web.", "Error.");
+        }catch(URISyntaxException ex){
+            Mensajes.ventanaError("Error al abrir la web.", "Error.");
+        }
+    }//GEN-LAST:event_jnoticiaMouseClicked
 
-            busuario.setLocation(busuario.getX(),busuario.getY()+5);          
-    }//GEN-LAST:event_busuarioMouseEntered
+    private void jicononoticiaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jicononoticiaMouseClicked
+        try{
+            enlace.browse(new URI("https://www.elespanol.com/ultimas/"));
+        }catch(IOException ex){
+            Mensajes.ventanaError("Error al abrir la web.", "Error.");
+        }catch(URISyntaxException ex){
+            Mensajes.ventanaError("Error al abrir la web.", "Error.");
+        }
+    }//GEN-LAST:event_jicononoticiaMouseClicked
 
-    private void busuarioMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_busuarioMouseExited
+    private void jiconotiempoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jiconotiempoMouseClicked
+        try{
+            enlace.browse(new URI("https://weather.com/es-ES/tiempo/hoy/l/SPXX0084:1:SP"));
+        }catch(IOException ex){
+            Mensajes.ventanaError("Error al abrir la web.", "Error.");
+        }catch(URISyntaxException ex){
+            Mensajes.ventanaError("Error al abrir la web.", "Error.");
+        }
+    }//GEN-LAST:event_jiconotiempoMouseClicked
 
-            busuario.setLocation(busuario.getX(),busuario.getY()-5);          
-    }//GEN-LAST:event_busuarioMouseExited
-
-    private void bclienteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bclienteMouseEntered
-
-            bcliente.setLocation(bcliente.getX(),bcliente.getY()+5);          
-    }//GEN-LAST:event_bclienteMouseEntered
-
-    private void bclienteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bclienteMouseExited
-
-            bcliente.setLocation(bcliente.getX(),bcliente.getY()-5);  
-    }//GEN-LAST:event_bclienteMouseExited
-
-    private void bfacturaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bfacturaMouseEntered
-
-            bfactura.setLocation(bfactura.getX(),bfactura.getY()+5);
-    }//GEN-LAST:event_bfacturaMouseEntered
-
-    private void bcambiousuarioMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bcambiousuarioMouseEntered
-
-            bcambiousuario.setLocation(bcambiousuario.getX(),bcambiousuario.getY()+5);          
-    }//GEN-LAST:event_bcambiousuarioMouseEntered
-
-    private void bcambiousuarioMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bcambiousuarioMouseExited
-
-            bcambiousuario.setLocation(bcambiousuario.getX(),bcambiousuario.getY()-5);          
-    }//GEN-LAST:event_bcambiousuarioMouseExited
-
-    private void bcitasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bcitasMouseEntered
-
-            bcitas.setLocation(bcitas.getX(),bcitas.getY()+5);          
-    }//GEN-LAST:event_bcitasMouseEntered
-
-    private void bcitasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bcitasMouseExited
-
-            bcitas.setLocation(bcitas.getX(),bcitas.getY()-5);          
-
-    }//GEN-LAST:event_bcitasMouseExited
-
-    private void bbuscarcitaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bbuscarcitaMouseEntered
-
-            bbuscarcita.setLocation(bbuscarcita.getX(),bbuscarcita.getY()+5);          
-    }//GEN-LAST:event_bbuscarcitaMouseEntered
-
-    private void bhistorialclienteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bhistorialclienteMouseEntered
-
-            bhistorialcliente.setLocation(bhistorialcliente.getX(),bhistorialcliente.getY()+5);          
-    }//GEN-LAST:event_bhistorialclienteMouseEntered
-
-    private void bbuscarcitaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bbuscarcitaMouseExited
-
-            bbuscarcita.setLocation(bbuscarcita.getX(),bbuscarcita.getY()-5);          
-    }//GEN-LAST:event_bbuscarcitaMouseExited
-
-    private void bhistorialclienteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bhistorialclienteMouseExited
-            bhistorialcliente.setLocation(bhistorialcliente.getX(),bhistorialcliente.getY()-5);          
-    }//GEN-LAST:event_bhistorialclienteMouseExited
-
-    private void bcochesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bcochesMouseEntered
-
-            bcoches.setLocation(bcoches.getX(),bcoches.getY()+5);          
-    }//GEN-LAST:event_bcochesMouseEntered
-
-    private void bcochesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bcochesMouseExited
-
-            bcoches.setLocation(bcoches.getX(),bcoches.getY()-5);          
-    }//GEN-LAST:event_bcochesMouseExited
-
-    private void bfacturaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bfacturaMouseExited
-
-            bfactura.setLocation(bfactura.getX(),bfactura.getY()-5);
-    }//GEN-LAST:event_bfacturaMouseExited
+    private void jtiempoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtiempoMouseClicked
+        try{
+            enlace.browse(new URI("https://weather.com/es-ES/tiempo/hoy/l/SPXX0084:1:SP"));
+        }catch(IOException ex){
+            Mensajes.ventanaError("Error al abrir la web.", "Error.");
+        }catch(URISyntaxException ex){
+            Mensajes.ventanaError("Error al abrir la web.", "Error.");
+        }
+    }//GEN-LAST:event_jtiempoMouseClicked
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String args[]){
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+        try{
+            for(javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()){
+                if("Nimbus".equals(info.getName())){
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
+        }catch(ClassNotFoundException ex){
             java.util.logging.Logger.getLogger(VentanaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
+        }catch(InstantiationException ex){
             java.util.logging.Logger.getLogger(VentanaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
+        }catch(IllegalAccessException ex){
             java.util.logging.Logger.getLogger(VentanaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        }catch(javax.swing.UnsupportedLookAndFeelException ex){
             java.util.logging.Logger.getLogger(VentanaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
+        java.awt.EventQueue.invokeLater(new Runnable(){
+            public void run(){
 
             }
         });
     }
 
-    public void mostrar() {
+    public void mostrar(){
         setVisible(true);
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -509,7 +604,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jicononoticia;
     private javax.swing.JLabel jiconotiempo;
+    private javax.swing.JLabel jnoticia;
     private javax.swing.JLabel jtiempo;
     public static javax.swing.JPanel panelprincipal;
     // End of variables declaration//GEN-END:variables

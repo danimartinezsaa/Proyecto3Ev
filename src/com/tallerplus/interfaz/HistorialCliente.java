@@ -70,6 +70,7 @@ public class HistorialCliente extends javax.swing.JFrame {
         pbucita.setBackground(new java.awt.Color(109, 132, 180));
 
         batras1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tallerplus/icon/flecha-hacia-la-izquierda.png"))); // NOI18N
+        batras1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         batras1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 batras1MouseClicked(evt);
@@ -99,6 +100,7 @@ public class HistorialCliente extends javax.swing.JFrame {
         });
 
         bbuscarmatricula.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tallerplus/icon/busqueda-p.png"))); // NOI18N
+        bbuscarmatricula.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         bbuscarmatricula.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 bbuscarmatriculaMouseClicked(evt);

@@ -24,7 +24,19 @@ public class GestionTiempo{
         }catch(IOException ex){
             System.out.println("Error:"+ex);
         }
-        
+
         return tiempo+" "+temperatura;
+    }
+
+    public static String pasarNoticia(){
+        String noticia="";
+        try{
+            org.jsoup.nodes.Document doc=Jsoup.connect("https://www.elespanol.com/ultimas/").get();
+            noticia=doc.select(".last-articles-section .last-articles-section__list--image .item__title").text();
+        }catch(IOException ex){
+            System.out.println("Error:"+ex);
+        }
+
+        return noticia;
     }
 }

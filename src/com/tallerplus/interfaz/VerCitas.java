@@ -85,6 +85,7 @@ public class VerCitas extends javax.swing.JFrame{
         pbucita.setBackground(new java.awt.Color(109, 132, 180));
 
         batras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tallerplus/icon/flecha-hacia-la-izquierda.png"))); // NOI18N
+        batras.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         batras.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 batrasMouseClicked(evt);
@@ -102,6 +103,7 @@ public class VerCitas extends javax.swing.JFrame{
         titulousuarios.setText("Citas");
 
         bbuscarfecha.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tallerplus/icon/busqueda-p.png"))); // NOI18N
+        bbuscarfecha.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         bbuscarfecha.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 bbuscarfechaMouseClicked(evt);
@@ -121,6 +123,7 @@ public class VerCitas extends javax.swing.JFrame{
         });
 
         bbuscarmatricula.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tallerplus/icon/busqueda-p.png"))); // NOI18N
+        bbuscarmatricula.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         bbuscarmatricula.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 bbuscarmatriculaMouseClicked(evt);
@@ -159,6 +162,7 @@ public class VerCitas extends javax.swing.JFrame{
         jLabel4.setText("Cambiar estado:");
 
         botoncombo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tallerplus/icon/exito-p.png"))); // NOI18N
+        botoncombo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botoncombo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 botoncomboMouseClicked(evt);

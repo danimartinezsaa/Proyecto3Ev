@@ -109,6 +109,7 @@ public class ClientesVentas extends javax.swing.JFrame{
         });
 
         botonOk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tallerplus/icon/exito-p.png"))); // NOI18N
+        botonOk.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botonOk.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 botonOkMouseClicked(evt);

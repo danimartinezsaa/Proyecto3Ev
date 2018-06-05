@@ -82,6 +82,7 @@ public class Facturas extends javax.swing.JFrame{
         jPanel1.setBackground(new java.awt.Color(109, 132, 180));
 
         batras1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tallerplus/icon/flecha-hacia-la-izquierda.png"))); // NOI18N
+        batras1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         batras1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 batras1MouseClicked(evt);
@@ -105,6 +106,7 @@ public class Facturas extends javax.swing.JFrame{
         });
 
         bbuscarfecha.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tallerplus/icon/busqueda-p.png"))); // NOI18N
+        bbuscarfecha.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         bbuscarfecha.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 bbuscarfechaMouseClicked(evt);
@@ -128,6 +130,7 @@ public class Facturas extends javax.swing.JFrame{
         jLabel3.setText("Búsqueda por matrícula");
 
         bbuscarmatricula.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tallerplus/icon/busqueda-p.png"))); // NOI18N
+        bbuscarmatricula.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         bbuscarmatricula.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 bbuscarmatriculaMouseClicked(evt);
@@ -162,6 +165,7 @@ public class Facturas extends javax.swing.JFrame{
         jLabel2.setText("Al generar la factura la cita se cierra automáticamente.");
 
         bgenerar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tallerplus/icon/generar.png"))); // NOI18N
+        bgenerar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         bgenerar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 bgenerarMouseClicked(evt);

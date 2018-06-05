@@ -63,6 +63,7 @@ public class LoginUsers extends javax.swing.JFrame {
         });
 
         entrar.setText("Enviar");
+        entrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         entrar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 entrarMouseClicked(evt);

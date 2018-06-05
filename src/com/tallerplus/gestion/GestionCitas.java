@@ -198,7 +198,11 @@ public class GestionCitas extends Conexion{
 
             citas.clear();
             while(resultado.next()){
-                citas.add(new Cita(resultado.getString("matricula"), resultado.getString("fechaHora"), resultado.getString("descripcion"), Float.parseFloat(resultado.getString("precio")), resultado.getString("estado")));
+                citas.add(new Cita(resultado.getString("matricula"), 
+                        resultado.getString("fechaHora"), 
+                        resultado.getString("descripcion"),
+                        Float.parseFloat(resultado.getString("precio")), 
+                        resultado.getString("estado")));
             }
         }catch(SQLException ex){
             System.out.println("Error al ejecutar la consulta");

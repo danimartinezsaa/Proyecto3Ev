@@ -104,6 +104,7 @@ public class VentaCoches extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(109, 132, 180));
 
         batras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tallerplus/icon/flecha-hacia-la-izquierda.png"))); // NOI18N
+        batras.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         batras.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 batrasMouseClicked(evt);
@@ -139,6 +140,7 @@ public class VentaCoches extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tablabusqueda);
 
         bañadir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tallerplus/icon/exito-p.png"))); // NOI18N
+        bañadir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         bañadir.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 bañadirMouseClicked(evt);
@@ -182,6 +184,7 @@ public class VentaCoches extends javax.swing.JFrame {
         jLabel9.setText("€");
 
         bborrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tallerplus/icon/error.png"))); // NOI18N
+        bborrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         bborrar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 bborrarMouseClicked(evt);
@@ -195,6 +198,7 @@ public class VentaCoches extends javax.swing.JFrame {
         });
 
         bvender.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tallerplus/icon/euro.png"))); // NOI18N
+        bvender.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         bvender.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 bvenderMouseClicked(evt);
